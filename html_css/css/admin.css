@@ -1,0 +1,204 @@
+/* --ADMIN NAVBAR-SIDEBAR --*/
+
+.admin-navbar .navbar h3 {
+    font-size: 30px;
+}
+
+.sidebar-responsive {
+    display: none;
+}
+
+.sidemenu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background: var(--thirdColor);
+    margin-top: 72px;
+    width: 300px;
+    height: 100%;
+}
+
+.sidemenu .profil {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.sidemenu img {
+    margin-bottom: 50px;
+    width: 110px;
+    text-align: center;
+}
+
+.sidemenu .sidebar-menu .item {
+    background: var(--primaryColor);
+    line-height: 50px;
+}
+
+.sidemenu .sidebar-menu .item li {
+    list-style: none;
+}
+
+.sidemenu .sidebar-menu .item .sub-btn {
+    color: var(--secondaryColor);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sidemenu .sidebar-menu .item .sub-btn:hover {
+    color: var(--thirdColor);
+}
+
+.sidemenu .sidebar-menu .item i {
+    margin-right: 15px;
+}
+
+.sidemenu .sidebar-menu .item a .drop-down {
+    position: absolute;
+    margin: 15px 20px;
+    right: 0;
+}
+
+.sidemenu .sidebar-menu ul ul {
+    display:none;
+}
+
+.sidemenu .sidebar-menu ul li:hover > ul {
+    display: block;
+}
+
+.sidemenu .sidebar-menu .sub-menu .sub-item {
+    color: var(--secondaryColor);
+    list-style: none;
+    text-decoration: none;
+}
+
+.sidemenu .sidebar-menu .sub-menu .sub-item:hover {
+    color: var(--thirdColor);
+}
+
+/*-- WELCOME CONTENT --*/
+
+.welcome-content {
+    background: url(../images/background.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.auth {
+    margin-top: 450px;
+    width: 40%;
+}
+
+/*-- RESPONSIVE --*/
+
+@media screen and (max-width: 992px) {
+    .admin-navbar .nav-item .hidden {
+        padding-right: 8px;
+        visibility: visible;
+    }
+
+    .admin-navbar .nav-item i {
+        padding-right: 4px;
+    }
+
+    .sidemenu {
+        display: none;
+    }
+
+    .welcome-content {
+        margin-left: 0;
+        margin-top: 0;
+        padding: 10px 20px;
+    }
+
+    .sidebar-responsive {
+        position: absolute;
+        display: block;
+        margin-top: 80px;
+        width: 100%;
+    }
+
+    .profil-responsive {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--thirdColor);
+        padding: 10px 15px;  
+    }
+
+    .profil-responsive img {
+        width: 60px; 
+    }
+   
+    .profil-responsive .nav-btn {
+        color: var(--primaryColor);
+        font-size: 30px;
+        padding: 5px 15px;
+        border: 1px solid var(--primaryColor);
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .profil-responsive .nav-btn:hover {
+        background: var(--primaryColor);
+        color: var(--thirdColor);
+    }
+
+    .responsive-nav {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .sidebar-responsive .responsive-nav ul ul {
+        display:none;
+    }
+    
+    .sidebar-responsive .responsive-nav ul li:hover > ul {
+        display: block;
+    }
+
+    .sidebar-responsive .responsive-nav .item {
+        background: var(--thirdColor);
+        line-height: 50px;
+    }
+    
+    .sidebar-responsive .responsive-nav .item li {
+        list-style: none;
+    }
+    
+    .sidebar-responsive .responsive-nav .item .sub-btn {
+        color: var(--secondaryColor);
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .sidebar-responsive .responsive-nav .sub-btn:hover {
+        color: var(--primaryColor);
+    }
+    
+    .sidebar-responsive .responsive-nav .item i {
+        margin-right: 15px;
+    }
+    
+    .sidebar-responsive .responsive-nav .item a .drop-down {
+        position: absolute;
+        margin: 15px 20px;
+        right: 0;
+    }
+    
+    .sidebar-responsive .responsive-nav .sub-menu .sub-item {
+        color: var(--secondaryColor);
+        list-style: none;
+        text-decoration: none;
+    }
+    
+    .sidebar-responsive .responsive-nav .sub-menu .sub-item:hover {
+        color: var(--primaryColor);
+    }
+
+}
