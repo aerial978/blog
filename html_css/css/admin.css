@@ -114,7 +114,7 @@
 .main-content header h2 {
     color: var(--secondaryColor);
     font-size: 30px;
-}
+} 
 
 .main-content .nav-btn:hover {
     cursor: pointer;
@@ -125,7 +125,7 @@
     font-size: 25px;
     margin-left: 15px;
     margin-right: 20px;
-}
+} 
 
 .main-content li {
     list-style: none;
@@ -245,6 +245,12 @@ section .index {
         font-size: 20px;
     }
 
+    .main-content .nav-btn:hover {
+        cursor: pointer;
+        background: var(--secondaryColor);
+        color: var(--primaryColor);
+    }
+
     .main-content {
         width: 100%;
         margin-left: 0rem;
@@ -329,13 +335,14 @@ section .index .page-title {
     padding: 10px;
     border-radius: 30px 30px 30px 30px;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-section .index table {
+section .index .table {
     width: 100%;
-    border-collapse: collapse;
-    font-size: 18px;  
+    border-collapse: separate;
+    font-size: 18px;
+    margin-top: 50px;
 }
 
 section .index .auth {
@@ -351,6 +358,40 @@ section .index .action-btn {
 section .index .action-btn:first-child {
     background: orange;
 }
+
+section .index .action-btn:first-child:hover {
+    background: #e59400;
+}
+
+section .index .action-btn:last-child {
+    background: #00A65A;
+}
+
+section .index .action-btn:last-child:hover {
+    background: #009551;
+}
+
+section .index .table .table-title th {
+    text-align: center;
+    border: none;
+}
+
+section .index .table .table-body tr:hover {
+    background: #bccfc6;
+}
+
+section .index .table .table-body tr {
+    cursor: pointer;
+    text-align: center;
+    background: #d1e7dd;
+}
+
+section .index .table .table-body .table-bold {
+    font-weight: 600;
+}
+
+
+
 
 
 
