@@ -29,14 +29,20 @@ body {
     color: #3a6e3a;
     border: 1px solid #3a6e3a;
     background: #bcf5bc;
-  }
+}
   
   .error {
     background: #f5bcbc;
     color: #884b4b;
     border: 1px solid #884b4b;
     
-  }
+}
+
+@media(max-width: 576px) {
+    .message {
+        font-size: 5px;
+    }
+}
   
 .section-heading {
     font-size: 48px;
@@ -91,10 +97,6 @@ body {
 }
 
 .nav-link:hover {
-    color: var(--thirdColor) !important;
-}
-
-.active {
     color: var(--thirdColor) !important;
 }
 
