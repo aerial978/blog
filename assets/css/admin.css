@@ -272,7 +272,7 @@ section .content .submit-btn {
     margin: 20px 0;
     padding: 10px 10px;
     font-size: 20px;
-    color: var(--secondaryColor);
+    color: var(--primaryColor);
     border: 2px solid var(--primaryColor);
     border-radius: 8px;
 }
@@ -483,6 +483,7 @@ section .content .create .file-input {
 
 section .content .create .submit-post {
     background: rgba(0,212,255,1);
+    width: auto;
 }
 
 section .content .create .submit-post:hover {
