@@ -20,11 +20,13 @@
     <body>
         <!-- SIDEBAR -->
         <div class="sidemenu">
-            <h1 class="sidemenu-brand"><span>Michel HATHIER</span></h1>
+            <div class="close-btn">
+                <i class="fa fa-times"></i>
+            </div>
             <div class="sidebar-menu">  
                 <ul>
-                    <li><a href="#" class="nav-link"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
-                    <li><a href="#" class="nav-link active"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
+                    <li><a href="../dashboard.html" class="nav-link"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
+                    <li><a href="index.html" class="nav-link active"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
                     <li><a href="#" class="nav-link"><span class="fas fa-comments"></span><span>Comments</span></a></li>
                     <li><a href="#" class="nav-link"><span class="fas fa-user"></span><span>Users</span></a></li>
                     <li><a href="#" class="nav-link"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
@@ -52,10 +54,12 @@
             </header>
             <!-- CARDS POSTS -->
             <section>
-                <div class="index">
-                    <div class="index-header">
-                        <h4 class="title-post">Manage Posts</h4>
-                        <button type="button" class="post-btn add-btn btn"><i class="fas fa-plus"></i> Post</button>
+                <div class="content">
+                    <div class="content-header">
+                        <h4 class="title title-post">Manage Posts</h4>
+                        <div class="link-btn">
+                        <a href="add.html" role="button" class="post-btn add-btn btn"><i class="fas fa-plus"></i> Post</a>
+                        </div>
                     </div>
                     <div class="auth message success text-dark">
                         <h5>Post created successfully !</h5>

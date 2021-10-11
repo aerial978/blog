@@ -1,0 +1,588 @@
+:root {
+	--primaryColor: #2C3E50;
+	--secondaryColor: #f6f6f6;
+    --thirdColor: #1aBC9C;
+    --primaryFontFamily: 'Candal';
+    --secondaryFontFamily: 'Lato';   
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    background: var(--secondaryColor);
+    font-family: var(--primaryFontFamily);
+}
+
+.message {
+    width: 100%;
+    text-align: center;
+    margin: 30px auto;
+    padding: 8px;
+    border-radius: 5px;
+    list-style: none;
+    font-family: var(--secondaryFontFamily);
+}
+  
+  .success {
+    background: #bcf5bc;
+    color: #3a6e3a;
+    border: 1px solid #3a6e3a;
+    background: #bcf5bc;
+}
+  
+  .error {
+    background: #f5bcbc;
+    color: #884b4b;
+    border: 1px solid #884b4b;
+    
+}
+
+@media(max-width: 576px) {
+    .message h4 {
+        font-size: 15px;
+    }
+}
+  
+.section-heading {
+    font-size: 48px;
+}
+
+@media(max-width: 992px) {
+    .section-heading {
+        font-size: 36px;
+    }
+}
+
+.section .container {
+    padding: 80px 20px;
+}
+
+.section .divider-custom.divider-light .divider-custom-line {
+    background-color: var(--primaryColor);
+}
+
+.section .divider-custom.divider-light .divider-custom-icon {
+    color: var(--primaryColor);
+}
+
+/*-- NAVBAR --*/
+
+.navbar {
+    background-color: var(--primaryColor);
+    height: 10vh;
+    position: fixed;
+    width: 100%;
+}
+
+.navbar .navbar-brand {
+    color: var(--secondaryColor);
+}
+
+.navbar-brand {
+    font-size: 30px;
+}
+
+.navbar-brand:hover {
+    color: var(--thirdColor) !important;
+}
+
+.nav-item .hidden {
+    visibility: hidden;
+}
+
+.nav-link {
+    font-size: 20px;
+    color: var(--secondaryColor) !important;
+}
+
+.nav-link:hover {
+    color: var(--thirdColor) !important;
+}
+
+.dropdown-menu .dropdown-item {
+    color: var(--thirdColor);
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: var(--thirdColor);
+}
+
+@media(max-width: 992px) {
+
+    .navbar .container {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navbar-brand {
+        font-size: 22px;
+        margin: 15px;
+    }
+
+    .navbar-toggler {
+        margin-right: 15px;
+    }
+
+    .navbar-toggler:hover {
+        color: white!important;
+    }
+    
+    .navbar-collapse {
+        background : var(--primaryColor);
+    }
+
+    .navbar-nav .nav-link {
+        width: 100%;
+        padding-left: 25px;
+        font-size: 17px;
+    }
+
+    .navbar-nav .nav-link:hover {
+        background: var(--thirdColor);
+        color: var(--primaryColor)!important;
+    }
+
+    .dropdown-menu .dropdown-item {
+        padding-left: 45px;
+    }
+}
+
+/*-- HERO --*/
+
+.jumbotron {
+    height: 78vh;
+    background: var(--thirdColor);
+    background-size: cover;
+    background-position: center;
+}
+
+.jumbotron h1 {
+    margin: auto;
+}
+
+.text-center {
+    text-align: center!important;
+}
+
+.intro {
+    padding-top: 120px;
+}
+
+.jumbotron img {
+    width: 15rem;
+    margin: 0 0 40px;
+}
+
+.heading {
+    font-size: 64px;
+    color: var(--secondaryColor);
+}
+
+.divider-custom {
+    margin: 1.25rem 0 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .divider-custom .divider-custom-line {
+    width: 100%;
+    max-width: 7rem;
+    height: 0.25rem;
+    border-radius: 1rem;
+}
+
+  .divider-custom .divider-custom-line:first-child {
+    margin-right: 1rem;
+}
+
+  .divider-custom .divider-custom-line:last-child {
+    margin-left: 1rem;
+}
+
+  .divider-custom .divider-custom-icon {
+    color: var(--secondaryColor);
+    font-size: 2rem;
+}
+
+  .divider-custom.divider-light .divider-custom-line {
+    background-color: var(--secondaryColor);
+}
+
+  .divider-custom.divider-light .divider-custom-icon {
+    color: var(--secondaryColor);
+}
+
+.subheading {
+    color: var(--secondaryColor);
+    font-size: 1.50rem;
+}
+
+@media(max-width: 992px) {
+    .heading {
+        font-size: 44px;
+    }
+
+    .subheading {
+        font-size: 20px;
+    }
+}
+
+/*-- RECENT POSTS SECTION --*/
+
+.recent-posts .postcards {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+    margin: 0 20px 20px 20px;
+}
+
+.recent-posts .postcards .card-img-top {
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+
+@media(max-width: 768px) {
+    .recent-posts .postcards .card-img-top {
+        border-radius: 10px 10px 0 0;
+    }
+}
+
+.recent-posts .postcards .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+    height: 100%;
+    border-radius: 0 10px 10px 0;
+}
+
+@media(max-width: 768px) {
+    .recent-posts .postcards .card-body {
+        border-radius: 10px 10px 10px 10px;
+    }
+}
+
+.recent-posts .postcards .card-body .badge {
+    font-family: var(--secondaryFontFamily);
+}
+
+.card-text {
+    font-family: var(--secondaryFontFamily);
+}
+
+.aside-tags,
+.aside-posts,
+.aside-comments {
+   background: var(--thirdColor);
+   border-radius: 10px;
+   padding: 20px;
+}
+
+.aside-tags ul,
+.aside-posts ul,
+.aside-comments ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border-top: 1px solid var(--primaryColor);
+}
+
+.aside-tags ul li a,
+.aside-posts ul li a,
+.aside-comments ul li a {
+    font-family: var(--secondaryFontFamily);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--secondaryColor);
+    display: block;
+    padding: 15px 0px 15px 0px;
+    border-bottom: 1px solid var(--primaryColor);
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.section-tags ul li a:hover {
+    color: var(--primaryColor);
+}
+
+/*-- ABOUT SECTION --*/
+
+.about {
+    background: var(--thirdColor);
+}
+
+.about .section-heading {
+    color: var(--secondaryColor);
+}
+
+.about .divider-custom.divider-light .divider-custom-line {
+    background-color: var(--secondaryColor);
+}
+
+.about .divider-custom.divider-light .divider-custom-icon {
+    color: var(--secondaryColor);
+}
+
+.about .main-text {
+    font-family: var(--secondaryFontFamily);
+    color: var(--secondaryColor);
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 50px;;
+}
+
+.about .download-btn {
+    background: var(--primaryColor);
+    color: var(--secondaryColor);
+    font-family: var(--secondaryFontFamily);
+    font-size: 25px;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: var(--secondaryColor);
+    outline: none;
+    overflow: hidden;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.about .download-btn:hover {
+    background: var(--secondaryColor);
+    color: var(--primaryColor);
+}
+
+/*-- CONTACT SECTION --*/
+
+.contact .form-group {
+    max-width: 700px;
+}
+
+.contact .form-field {
+    position: relative;
+    margin: 32px 0;
+}
+
+.contact .input-text {
+    width: 100%;
+    border-width: 0 0 1px 0;
+    border-color: #ced4da;
+    font-size: 18px;  
+    font-weight: 400;
+    background: none;
+}
+
+.contact .form-field input ~ label,
+.contact .form-field textarea ~ label {
+    font-size: 25px;
+    color: #858585;
+}
+
+.contact .form-field input ~ label {
+    bottom: 15px;
+}
+
+.contact .form-field input:focus ~ label,
+.contact .form-field input:valid ~ label,
+.contact .form-field textarea:focus ~ label,
+.contact .form-field textarea:valid ~ label {
+    transform : translateY(-30px);
+    font-size: 17px;
+    opacity: 0.50;   
+    letter-spacing: 1px;
+}
+
+.contact .input-text:focus {
+    outline: none;
+}
+
+.contact .label {
+    font-family: var(--secondaryFontFamily);
+    position: absolute;
+    left: 20px;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 400;
+    color: var(--primaryColor);
+    transition: transform 0.2s ease-in-out;
+}
+
+.contact .form-check .form-check-label {
+    color: #858585;
+}
+
+.contact .submit-btn {
+    width: 120px;
+    margin: 20px 0;
+    padding: 16px 16px;
+    font-size: 20px;
+    background: var(--thirdColor);
+    opacity: 0.55;
+    color: var(--secondaryColor);
+    border: none;
+    border-radius: 8px;
+}
+
+/*-- FOOTER --*/
+
+.footer {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+.footer a {
+    margin: 5px;
+    color: white;
+}
+
+.about a {
+    border-width: 2px;
+} 
+
+.about a:hover {
+    color: var(--thirdColor);
+    background: var(--primaryColor);
+    border: none;
+}
+
+/* -- LIST & SINGLE POST PAGE -- */
+
+.single-section,
+.list-section {
+    margin-top: 140px;
+}
+
+.comment-area {
+    font-family: var(--secondaryFontFamily);
+}
+
+.comment-area h3 {
+    border-bottom: solid 1px #858585;
+    padding-bottom: 10px;
+}
+
+.comment-area label {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.comment-area input,
+.comment-area textarea {
+    margin-bottom: 25px;
+}
+
+.comment-area form {
+    margin-bottom: 30px;
+}
+
+.comment-list {
+    margin-bottom: 40px;
+}
+
+.comment-list .comment-id {
+    margin-bottom : 15px;
+}
+
+.comment-list .comment-id img {
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 15px;
+}
+
+/*-- SIGN PAGE --*/
+
+.sign {
+    width: 100%;
+    height: 90vh;
+}
+
+.sign-form {
+    background: white;
+    margin-top: 80px;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+}
+
+.sign label {
+    margin-bottom: 5px;
+    font-family: var(--secondaryFontFamily);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sign input {
+    font-family: var(--secondaryFontFamily);
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.sign-form small {
+    font-family: var(--secondaryFontFamily);
+}
+
+.sign-form small span {
+    font-weight: bold;
+}
+
+.sign-form .pass-link {
+    font-family: var(--secondaryFontFamily);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.sign-form .pass-link a {
+    text-decoration: none;
+}
+
+.sign .submit-btn {
+    width: 100%;
+    margin: 20px 0;
+    padding: 16px 16px;
+    font-size: 22px;
+    background: var(--thirdColor);
+    color: var(--secondaryColor);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--secondaryFontFamily);
+}
+
+.sign-form .sign-link {
+    font-family: var(--secondaryFontFamily);
+    text-align: center;
+}
+
+.sign-form .sign-link a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
