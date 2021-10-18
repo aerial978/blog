@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-        <title>Admin posts add</title>
+        <title>Admin comments edit</title>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -55,53 +55,37 @@
                     </li>
                 </ul>
             </header>
-            <!-- ADD POST FORM -->
+            <!-- EDIT COMMENT FORM -->
             <section>
                 <div class="content">
                     <div class="content-header">
-                            <h4 class="title title-post">Create Posts</h4>
-                        <div class="link-btn">
-                            <!--<a href="index.html" role="button" class="post-btn add-btn btn">Manage posts</a>-->
-                            <a href="add.html" class="post-btn add-btn btn"><i class="fas fa-plus"></i> Post</a>
-                        </div>
+                            <h4 class="title title-comment">Edit Comments</h4>
                     </div>
-                    <div class="create">
+                    <div class="edit">
                         <div class="container">
                             <form method="post" action=".php">
-                                <fieldset class="form-group form-post row g-0">
+                                <fieldset class="form-group form-comment row g-0">
                                     <div class="form-field col-lg-12">
-                                        <label for="tags">Tag category</label>
-                                        <input list="tag" name="tags" id="tags" required class="form-control">
-                                        <datalist id="tag">
-                                            <option value="Database">Database</option>
-                                            <option value="Git/Github">Git/Github</option>
-                                            <option value="HTML5/CSS3">HTML5/CSS3</option>
-                                            <option value="Framework">Framework</option>
-                                            <option value="PHP/Symfony">PHP/Symfony</option>
-                                            <option value="Javascript">Javascript</option>
-                                            <option value="Security">Security</option>
-                                        </datalist>
+                                        <label for="auth-com">Author</label>
+                                        <input type="text" name="auth-com" id="auth-com" disabled class="form-control">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label for="title">Title</label>
-                                        <input type="text" name="title" id="title" required class="form-control">
+                                        <label for="comment-date">Date</label>
+                                        <input type="text" name="date" id="date" disabled class="form-control">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label for="headline">Catchy headline</label>
-                                        <input type="text" name="headline" id="headline" required class="form-control">
+                                        <label for="title-post">Title post</label>
+                                        <input type="text" name="headline" id="title-post" disabled class="form-control">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label>Post content</label>
-                                        <div id="toolbar"></div>
-                                        <div id="editor">
-                                            <p>Hello World!</p>
-                                        </div>
+                                        <label for="exampleFormControlTextarea1" class="form-label">Comment Content</label>
+                                        <textarea class="form-control" disabled id="exampleFormControlTextarea1" rows="5"></textarea>
                                     </div>
-                                    <div class="form-field col-lg-12 file-input">
-                                        <label for="formFile" class="form-label">Image</label>
-                                        <input type="file" id="formFile" class="form-control">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="checkbox">
+                                        <label class="form-check-label" for="checkbox">Published</label>
                                     </div>
-                                    <button type="submit" class="submit-post submit-btn">Add post</button>
+                                    <button type="submit" class="submit-btn"><i class="fas fa-arrow-left"></i> back</button>
                                 </fieldset>
                             </form>
                         </div>                 

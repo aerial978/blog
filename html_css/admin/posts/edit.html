@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-        <title>Admin edit post</title>
+        <title>Admin posts edit</title>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -61,25 +61,24 @@
                     <div class="content-header">
                             <h4 class="title title-post">Edit Posts</h4>
                         <div class="link-btn">
-                            <!--<a href="index.html" role="button" class="post-btn add-btn btn">Manage posts</a>-->
                             <a href="add.html" role="button" class="post-btn add-btn btn"><i class="fas fa-plus"></i> Post</a>
                         </div>
                     </div>
-                    <div class="create">
+                    <div class="edit">
                         <div class="container">
-                            <form method="post" action="">
-                                <fieldset class="form-group row g-0">
+                            <form method="post" action=".php">
+                                <fieldset class="form-group form-post row g-0">
                                     <div class="form-field col-lg-12">
                                         <label for="tags">Tag category</label>
-                                        <input list="tags" name="tags" id="tags" required class="form-control">
-                                        <datalist id="tags">
-                                            <option value="Database">Database</option>
-                                            <option value="Git/Github">Git/Github</option>
-                                            <option value="HTML5/CSS3">HTML5/CSS3</option>
-                                            <option value="Framework">Framework</option>
-                                            <option value="PHP/Symfony">PHP/Symfony</option>
-                                            <option value="Javascript">Javascript</option>
-                                            <option value="Security">Security</option>
+                                        <input list="tag" name="tags" id="tags" required class="form-control">
+                                        <datalist id="tag">
+                                            <option value="Database">
+                                            <option value="Git/Github">
+                                            <option value="HTML5/CSS3">
+                                            <option value="Framework">
+                                            <option value="PHP/Symfony">
+                                            <option value="Javascript">
+                                            <option value="Security">
                                         </datalist>
                                     </div>
                                     <div class="form-field col-lg-12">
@@ -91,8 +90,9 @@
                                         <input type="text" name="headline" id="headline" required class="form-control">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label for="post-content">Post content</label>
-                                        <div id="toolbar"></div>
+                                        <label>Post content</label>
+                                        <div id="toolbar">
+                                        </div>
                                         <div id="editor">
                                             <p>Hello World!</p>
                                         </div>
@@ -101,13 +101,13 @@
                                         <label for="formFile" class="form-label">Image</label>
                                         <input type="file" id="formFile" class="form-control">
                                     </div>
-                                    <button type="submit" class="submit-post submit-btn">Update post</button>
+                                    <button type="submit" class="submit-btn">Update post</button>
                                 </fieldset>
                             </form>
                         </div>                 
                     </div>
+                </div>
             </section>
-
         </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

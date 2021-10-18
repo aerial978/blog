@@ -246,6 +246,7 @@ section .content .content-header .title {
     border: 2px solid var(--primaryColor);
     border-radius: 30px;
     text-align: center;
+    margin-bottom: 100px;
 }
 
 section .content .content-header {
@@ -285,17 +286,15 @@ section .content .auth {
     width: 40%;
 }
 
-section .content label {
-    color: rgba(0,212,255,1);
-    margin-bottom: 5px;
-    font-size: 20px;
-}
-
 @media(max-width: 768px) {
     section .content .content-header .title {
         width: 150px;
         padding: 5px;  
     }
+}
+
+section .content .file-input {
+    margin-top: 70px;
 }
 
 /*-- ADMIN WELCOME DASHBOARD CONTENT PAGE --*/
@@ -305,7 +304,7 @@ section .content .title-dash {
 }
 
 section .content .dashboard {
-    margin-top: 100px;
+    margin-top: 75px;
 }
 
 section .content .dashboard .card {
@@ -420,8 +419,17 @@ section .content .action-btn {
     border: none;
 }
 
-section .content .cards {
-    margin-top: 50px;
+section .content .table {
+    cursor: pointer;
+    text-align: center;
+}
+
+section .content .table-post .table-body tr {
+    background: rgba(0,212,255,1);
+}
+
+section .content .table-post .table-body tr:hover {
+    background: rgba(13,110,253,1);
 }
 
 section .content .cards .card {
@@ -432,6 +440,9 @@ section .content .cards .card {
 section .content .cards .card .card-header {
     display: flex;
     justify-content: space-between;
+}
+
+section .content .cards .card .card-post {
     background: rgba(0,212,255,1);
 }
 
@@ -447,39 +458,48 @@ section .content .cards .card .card-body img {
     width: 100%;
 }
 
-section .content .cards .card .card-footer {
-    background: rgba(0,212,255,1);
-}
-
-section .content .cards .card .card-footer .action-post {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-section .content .cards .card .card-footer .action-post .edit-post .action-btn {
+section .content .edit-post {
     background: orange;
 }
 
-section .content .cards .card .card-footer .action-post .edit-post .action-btn:hover {
+section .content .edit-post:hover {
     background: #cc8400;
+}
+
+section .content .cards-post {
+    display: none;
+   }
+
+@media(max-width: 1200px) {
+    section .content .table-post {
+        display: none;
+    }
+
+    section .content .cards-post {
+        display: inline;
+       }
 }
 
 @media(max-width: 576px) {
     section .content .cards .card {
-        margin: auto;
+    margin: auto;
    }
 }
 
+/*-- ADMIN EDIT POST CONTENT PAGE --*/
+
+section .content .form-post label {
+    color: rgba(0,212,255,1);
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+section .content .edit .form-post .submit-btn  {
+    background: rgba(0,212,255,1);
+    width: auto;
+}
+
 /*-- ADMIN ADD POST CONTENT PAGE --*/
-
-section .content .create {
-    margin-top: 50px;
-}
-
-section .content .create .file-input {
-    margin-top: 70px;
-}
 
 section .content .create .submit-post {
     background: rgba(0,212,255,1);
@@ -490,12 +510,8 @@ section .content .create .submit-post:hover {
     color: rgba(0,212,255,1);
 }
 
-.ql-toolbar {
+.form-post .ql-toolbar {
     background: rgba(0,212,255,1);
-}
-
-.ql-editor {
-    background: white;
 }
 
 @media(max-width: 576px) {
@@ -503,3 +519,142 @@ section .content .create .submit-post:hover {
         margin-top: 90px;
     }
 }
+
+/*-- ADMIN INDEX COMMENTS CONTENT PAGE --*/
+
+section .content .title-comment {
+    color: rgba(255,193,7,1);
+}
+
+section .content .table {
+    width: 100%;
+    border-collapse: separate;
+    font-size: 18px;
+}
+
+@media(max-width: 1200px) {
+    section .content .table-comment {
+        display: none;
+    }
+}
+
+section .content .action-button {
+    display: flex;
+    justify-content: space-around;
+}
+
+section .content .action-btn {
+    padding: 4px 10px;
+    width: auto;
+    border: none;
+}
+
+section .content .table .table-title th {
+    text-align: center;
+    border: none;
+}
+
+section .content .table {
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+}
+
+section .content .table-comment .table-body tr {
+    cursor: pointer;
+    text-align: center;
+    background: rgba(255,224,131,1);
+}
+
+section .content .table-comment .table-body tr:hover {
+    background: rgba(255,193,7,1);
+}
+
+section .content .table .table-body .table-bold {
+    font-weight: 600;
+}
+
+.comment-id img {
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 15px;
+}
+
+section .content .status {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+section .content .status-red {
+    color: red;
+    font-weight: bold;
+}
+
+section .content .status-green {
+    color: green;
+    font-weight: bold;
+}
+
+section .content .comment-date {
+    width: 90px;
+}
+
+section .content .cards .card .card-com {
+    background: rgba(255,224,131,1);
+}
+
+section .content .cards-comment {
+    display: none;
+   }
+
+@media(max-width: 1200px) {
+    section .content .cards-comment {
+     display: inline;
+    }
+
+    section .content .cards-comment .card-footer i {
+        display: none;
+    }
+}
+
+/*-- ADMIN EDIT COMMENT CONTENT PAGE --*/
+
+section .content .form-comment label {
+    color: rgba(255,193,7,1);
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.form-comment .ql-toolbar {
+    background: rgba(255,224,131,1);
+}
+
+.form-comment .ql-editor {
+    background: #E9ECEF;
+}
+
+.form-comment .form-check {
+    font-size: 20px;
+}
+
+section .content .edit .form-comment .submit-btn {
+    background: rgba(255,224,131,1);
+    width: auto;
+}
+
+/*-- ADMIN INDEX USER CONTENT PAGE --*/
+
+section .content .title-user {
+    color: rgba(220,53,69,1);
+}
+
+section .content .user-btn {
+    background: rgba(220,53,69,1);
+}
+
+section .content .user-btn:hover { 
+    color: rgba(220,53,69,1);
+}
+
+section .content .table-user .table-body tr {
+    background: rgba(237,154,162,1);
+}
+
