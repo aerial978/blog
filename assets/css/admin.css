@@ -1,0 +1,660 @@
+/* --ADMIN NAVBAR-SIDEBAR --*/
+
+.sidemenu {
+    position: fixed;
+    background: var(--thirdColor);
+    top: 0;
+    width: 275px;
+    height: 100%;
+    z-index: 500;
+}
+
+.sidemenu .close-btn {
+    position: absolute;
+    color: var(--primaryColor);
+    font-size: 30px;
+    right: 0;
+    margin: 10px 15px;
+    cursor: pointer;
+    display: none;
+}
+
+.sidebar-menu {
+    margin-top: 150px;
+    padding-top: 30px;
+}
+
+.sidebar-menu li {
+    width: 100%;
+    margin-bottom: 27px;
+    padding-left: 20px;
+    list-style: none;
+}
+
+.sidebar-menu a {
+    background: var(--primaryColor);
+    color: var(--secondaryColor);
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 30px 0px 0px 30px;
+    padding: 15px 0 15px 25px;  
+}
+
+.sidebar-menu a.active {
+    background: var(--secondaryColor);
+    color: var(--primaryColor) !important;
+}
+
+.sidebar-menu a span {
+    font-size: 18px;
+    padding-right: 15px;
+}
+
+.main-content {
+    margin-left: 275px;
+}
+
+.main-content header {
+    display: flex;
+    justify-content: space-between;
+    background: var(--primaryColor);
+    padding: 20px 20px 0 20px;
+    position: fixed;
+    width: calc(100% - 275px);
+    top: 0;
+    z-index: 250;
+} 
+
+.main-content header .nav-btn {
+   visibility: hidden;
+}
+
+.main-content header .nav-btn .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background: var(--secondaryColor);
+    transition: all 0.3s ease-in-out;
+}
+
+.main-content header span {
+    font-size: 25px;
+    margin-left: 15px;
+    margin-right: 20px;
+} 
+
+.main-content li {
+    list-style: none;
+}
+
+.main-content li a {
+    color: var(--secondaryColor);
+    text-decoration: none;
+}
+
+.user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user-wrapper .dropdown-menu {
+    margin-top: 28px;
+    border: 2px solid var(--primaryColor);
+    color: var(--primaryColor);
+    background: var(--thirdColor);
+}
+
+.user-wrapper .dropdown-menu a {
+    color: var(--primaryColor);
+}
+
+.user-wrapper img {
+    margin-right: 15px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.user-wrapper small {
+    display: inline-block;
+    color: var(--secondaryColor);
+}
+
+section .content {
+    font-family: var(--secondaryFontFamily);
+    margin-top: 70px;
+    padding: 30px;
+    background: var(--secondaryColor);
+    min-height: calc(100vh - 90px);
+    z-index: 150;
+}
+
+@media(max-width: 992px) {
+    .sidemenu {
+        width: 200px;
+    }
+
+    .sidebar-menu {
+        margin-top: 120px;
+        padding-top: 30px;
+    }
+
+    .sidebar-menu li {
+        padding-left: 5px;
+    }
+
+    .sidebar-menu a {
+        font-size: 14px;
+    }
+
+    .sidebar-menu a span {
+        font-size: 14px;
+        padding-right: 15px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+    }
+
+    .main-content header {
+        width: calc(100% - 200px);
+    }
+}
+
+@media(max-width: 768px) {
+    .sidemenu {
+        left: -100%;
+        transition: 1s;
+    }
+
+    .sidemenu.active {
+        left: 0;
+        transition: 0.55s;
+    }
+
+    .nav-btn.active {
+        padding-left: 200px;
+        transition: 0.55s;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .main-content header {
+        width: 100% !important;
+        left: 0px !important;
+    }
+
+    .main-content header .nav-btn {
+        visibility: visible;
+    }
+
+    .nav-btn.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-btn.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-btn.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media(max-width: 576px) {
+    .sidemenu:active {
+        left: -100%;
+        transition: 0.55s;
+    }
+
+    .sidemenu .close-btn {
+        display: inline;
+    }
+    
+    .sidebar-menu a.active {
+        background: var(--secondaryColor);
+        color: var(--primaryColor) !important;
+    }
+
+    .nav-btn.active {
+        padding-left: 0;
+    }
+}
+
+/*-- ADMIN --*/
+
+section .content {
+    font-family: var(--secondaryFontFamily);
+    margin-top: 70px;
+    padding: 30px;
+}
+
+section .content .content-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+section .content .content-header .title {
+    width: 230px;
+    font-weight: bold;
+    background: white;
+    padding: 10px;
+    border: 2px solid var(--primaryColor);
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+section .content .content-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+section .content .add-btn {
+    color: white;
+    border: 2px solid var(--primaryColor);
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    width: auto;
+}
+
+section .content .add-btn:hover {
+    background: white;
+    border: 2px solid var(--primaryColor);
+}
+
+section .content .submit-btn {
+    width: 120px;
+    margin: 20px 0;
+    padding: 10px 10px;
+    font-size: 20px;
+    color: var(--primaryColor);
+    border: 2px solid var(--primaryColor);
+    border-radius: 8px;
+}
+
+section .content .submit-btn:hover {
+    background: white !important;
+}
+
+section .content .auth {
+    width: 40%;
+}
+
+@media(max-width: 768px) {
+    section .content .content-header .title {
+        width: 150px;
+        padding: 5px;  
+    }
+}
+
+section .content .file-input {
+    margin-top: 70px;
+}
+
+/*-- ADMIN WELCOME DASHBOARD CONTENT PAGE --*/
+
+section .content .title-dash {
+    color: var(--primaryColor);
+}
+
+section .content .dashboard {
+    margin-top: 75px;
+}
+
+section .content .dashboard .card {
+    border: none;
+    box-shadow: rgba(77, 55, 55, 0.5) 0px 5px 15px;
+}
+
+section .content .dashboard .card-post {
+    background: rgb(13,110,253);
+    background: linear-gradient(90deg, rgba(13,110,253,1) 50%, rgba(0,212,255,1) 100%);
+}
+
+section .content .dashboard .card-com {
+    background: rgb(255,193,7);
+    background: linear-gradient(90deg, rgba(255,193,7,1) 50%, rgba(255,224,131,1) 100%);
+}
+
+section .content .dashboard .card-users {
+    background: rgb(220,53,69);
+    background: linear-gradient(90deg, rgba(220,53,69,1) 50%, rgba(237,154,162,1) 100%);
+}
+
+section .content .dashboard .card-tags {
+    background: rgb(25,135,84);
+    background: linear-gradient(90deg, rgba(25,135,84,1) 50%, rgba(140,195,169,1) 100%);  
+}
+
+section .content .dashboard a {
+    text-decoration: none;
+}
+
+section .content .dashboard .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 125px;
+    margin: 5px 5px;
+}
+
+section .content .dashboard .card-body .card-icon {
+    font-size: 55px;
+}
+
+section .content .dashboard .card .card-footer {
+    color: white; 
+}
+
+section .content .dashboard .card-post .card-footer:hover {
+    background: white;
+    color: rgb(13,110,253);
+}
+
+section .content .dashboard .card-com .card-footer:hover {
+    background: white;
+    color: rgb(255,193,7);
+}
+
+section .content .dashboard .card-users .card-footer:hover {
+    background: white;
+    color: rgb(220,53,69);
+}
+
+section .content .dashboard .card-tags .card-footer:hover {
+    background: white;
+    color: rgb(25,135,84);
+}
+
+section .content .dashboard .auth {
+    width: 40%;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+}
+
+@media(max-width: 768px) {
+    section .content .dashboard .card {
+        margin: auto;
+    }
+
+    .section .content .message h5 {
+        font-size: 15px;
+    }
+
+    section .content .content-header h4 {
+        font-size: 18px;
+    }
+
+    section .content .link-btn .add-btn {
+        font-size: 15px;
+        width: 80px;
+        height: 40px;
+    }
+}
+
+/*-- ADMIN INDEX POSTS CONTENT PAGE --*/
+
+section .content .title-post {
+    color: rgba(0,212,255,1);
+}
+
+section .content .post-btn {
+    background: rgba(0,212,255,1);
+}
+
+section .content .post-btn:hover { 
+    color: rgba(0,212,255,1);
+}
+
+section .content .action-btn {
+    padding: 4px 10px;
+    width: auto;
+    border: none;
+}
+
+section .content .table {
+    cursor: pointer;
+    text-align: center;
+}
+
+section .content .table-post .table-body tr {
+    background: rgba(0,212,255,1);
+}
+
+section .content .table-post .table-body tr:hover {
+    background: rgba(13,110,253,1);
+}
+
+section .content .cards .card {
+    box-shadow: rgba(77, 55, 55, 0.5) 0px 5px 15px;
+    border: none;
+}
+
+section .content .cards .card .card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+section .content .cards .card .card-post {
+    background: rgba(0,212,255,1);
+}
+
+section .content .cards .card .card-header .id-post {
+    font-weight: bold;
+}
+
+section .content .cards .card .card-header .card-comment {
+    text-align: center;
+}
+
+section .content .cards .card .card-body img {
+    width: 100%;
+}
+
+section .content .edit-post {
+    background: orange;
+}
+
+section .content .edit-post:hover {
+    background: #cc8400;
+}
+
+section .content .cards-post {
+    display: none;
+   }
+
+@media(max-width: 1200px) {
+    section .content .table-post {
+        display: none;
+    }
+
+    section .content .cards-post {
+        display: inline;
+       }
+}
+
+@media(max-width: 576px) {
+    section .content .cards .card {
+    margin: auto;
+   }
+}
+
+/*-- ADMIN EDIT POST CONTENT PAGE --*/
+
+section .content .form-post label {
+    color: rgba(0,212,255,1);
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+section .content .edit .form-post .submit-btn  {
+    background: rgba(0,212,255,1);
+    width: auto;
+}
+
+/*-- ADMIN ADD POST CONTENT PAGE --*/
+
+section .content .create .submit-post {
+    background: rgba(0,212,255,1);
+    width: auto;
+}
+
+section .content .create .submit-post:hover {
+    color: rgba(0,212,255,1);
+}
+
+.form-post .ql-toolbar {
+    background: rgba(0,212,255,1);
+}
+
+@media(max-width: 576px) {
+    section .content .create .file-input {
+        margin-top: 90px;
+    }
+}
+
+/*-- ADMIN INDEX COMMENTS CONTENT PAGE --*/
+
+section .content .title-comment {
+    color: rgba(255,193,7,1);
+}
+
+section .content .table {
+    width: 100%;
+    border-collapse: separate;
+    font-size: 18px;
+}
+
+@media(max-width: 1200px) {
+    section .content .table-comment {
+        display: none;
+    }
+}
+
+section .content .action-button {
+    display: flex;
+    justify-content: space-around;
+}
+
+section .content .action-btn {
+    padding: 4px 10px;
+    width: auto;
+    border: none;
+}
+
+section .content .table .table-title th {
+    text-align: center;
+    border: none;
+}
+
+section .content .table {
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+}
+
+section .content .table-comment .table-body tr {
+    cursor: pointer;
+    text-align: center;
+    background: rgba(255,224,131,1);
+}
+
+section .content .table-comment .table-body tr:hover {
+    background: rgba(255,193,7,1);
+}
+
+section .content .table .table-body .table-bold {
+    font-weight: 600;
+}
+
+.comment-id img {
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 15px;
+}
+
+section .content .status {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+section .content .status-red {
+    color: red;
+    font-weight: bold;
+}
+
+section .content .status-green {
+    color: green;
+    font-weight: bold;
+}
+
+section .content .comment-date {
+    width: 90px;
+}
+
+section .content .cards .card .card-com {
+    background: rgba(255,224,131,1);
+}
+
+section .content .cards-comment {
+    display: none;
+   }
+
+@media(max-width: 1200px) {
+    section .content .cards-comment {
+     display: inline;
+    }
+
+    section .content .cards-comment .card-footer i {
+        display: none;
+    }
+}
+
+/*-- ADMIN EDIT COMMENT CONTENT PAGE --*/
+
+section .content .form-comment label {
+    color: rgba(255,193,7,1);
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.form-comment .ql-toolbar {
+    background: rgba(255,224,131,1);
+}
+
+.form-comment .ql-editor {
+    background: #E9ECEF;
+}
+
+.form-comment .form-check {
+    font-size: 20px;
+}
+
+section .content .edit .form-comment .submit-btn {
+    background: rgba(255,224,131,1);
+    width: auto;
+}
+
+/*-- ADMIN INDEX USER CONTENT PAGE --*/
+
+section .content .title-user {
+    color: rgba(220,53,69,1);
+}
+
+section .content .user-btn {
+    background: rgba(220,53,69,1);
+}
+
+section .content .user-btn:hover { 
+    color: rgba(220,53,69,1);
+}
+
+section .content .table-user .table-body tr {
+    background: rgba(237,154,162,1);
+}
+
