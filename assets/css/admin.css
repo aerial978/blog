@@ -270,7 +270,6 @@ section .content .add-btn:hover {
 
 section .content .submit-btn {
     width: 120px;
-    margin: 20px 0;
     padding: 10px 10px;
     font-size: 20px;
     color: var(--primaryColor);
@@ -635,9 +634,15 @@ section .content .form-comment label {
     font-size: 20px;
 }
 
-section .content .edit .form-comment .submit-btn {
+section .content .edit .form-comment .btn {
     background: rgba(255,224,131,1);
+    margin-top: 20px;
+    font-size: 22px;
     width: auto;
+    margin-top: 20px;
+    border: 2px solid var(--primaryColor);
+    padding: 10px 10px;
+    border-radius: 8px;
 }
 
 /*-- ADMIN INDEX USER CONTENT PAGE --*/
@@ -657,4 +662,107 @@ section .content .user-btn:hover {
 section .content .table-user .table-body tr {
     background: rgba(237,154,162,1);
 }
+
+section .content .table-user .user-img img {
+    width: 60px;
+}
+
+section .content .table-user .table-body th,td {
+    vertical-align: middle;
+}
+
+@media(max-width: 1200px) {
+    section .content .table-user {
+        display: none;
+    }
+}
+
+section .content .cards .card .card-user {
+    background: rgba(237,154,162,1);  
+}
+
+section .content .cards .card .card-body img {
+    width: 80px;
+}
+
+section .content .cards .card .card-body .card-userdetail {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+section .content .cards-user {
+    display: none;
+}
+
+@media(max-width: 1200px) {
+    section .content .cards-user {
+     display: inline;
+    }
+}
+
+@media(max-width: 992px) {
+    section .content .cards .card .card-body h5 {
+        font-size: 16px;
+    }
+
+    section .content .cards .card .card-body h6 {
+            font-size: 12px;
+    }   
+ }
+
+ @media(max-width: 768px) {
+    section .content .cards-user .card {
+        margin: auto;
+    }
+ }
+
+ @media(max-width: 576px) {
+    section .content .cards .card .card-body img {
+        width: 50px;
+    }
+ }
+
+ /*-- ADMIN ADD USER CONTENT PAGE --*/
+
+ section .content .form-user label {
+    color: rgba(237,154,162,1);
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.form-user .form-check {
+    font-size: 20px;
+}
+
+section .content .create .form-user .submit-user {
+    background: rgba(237,154,162,1);
+    width: auto;
+    margin-top: 20px;
+}
+
+section .content .create .form-user .submit-user:hover {
+    color: rgba(237,154,162,1);
+}
+
+ /*-- ADMIN EDIT USER CONTENT PAGE --*/
+
+ section .content .edit .form-user .btn-user {
+     margin-top: 20px;
+ }
+
+section .content .edit .form-user .btn-user .submit-user {
+    background: rgba(237,154,162,1);
+    width: auto;
+}
+
+section .content .edit .form-user .btn-user .btn {
+    background: rgba(237,154,162,1);
+    font-size: 22px;
+    width: auto;
+    border: 2px solid var(--primaryColor);
+    border-radius: 8px;
+}
+
 
