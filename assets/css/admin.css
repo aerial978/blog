@@ -765,4 +765,28 @@ section .content .edit .form-user .btn-user .btn {
     border-radius: 8px;
 }
 
+/*-- ADMIN INDEX TAG CONTENT PAGE --*/
+
+section .content .title-tag {
+    color: rgba(25,135,84,1);
+}
+
+section .content .tag-btn {
+    background: rgba(25,135,84,1);
+}
+
+section .content .tag-btn:hover { 
+    color: rgba(25,135,84,1);
+}
+
+section .content .table-tag .table-body tr {
+    background: rgba(140,195,169,1);
+}
+
+@media(max-width: 576px) {
+    section .content .table-tag .action-button span {
+        display: none;
+    }
+ }
+
 
