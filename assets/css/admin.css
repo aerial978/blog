@@ -757,12 +757,22 @@ section .content .edit .form-user .btn-user .submit-user {
     width: auto;
 }
 
+section .content .edit .form-user .btn-user .submit-user:hover {
+    color: rgba(237,154,162,1);
+}
+
+
 section .content .edit .form-user .btn-user .btn {
     background: rgba(237,154,162,1);
     font-size: 22px;
     width: auto;
     border: 2px solid var(--primaryColor);
     border-radius: 8px;
+}
+
+section .content .edit .form-user .btn-user .btn:hover {
+    color: rgba(237,154,162,1);
+    background: white;
 }
 
 /*-- ADMIN INDEX TAG CONTENT PAGE --*/
@@ -787,6 +797,48 @@ section .content .table-tag .table-body tr {
     section .content .table-tag .action-button span {
         display: none;
     }
+
+    section .content .table-tag .action-button i {
+        width: 10px;
+    }
  }
+
+/*-- ADMIN EDIT TAG CONTENT PAGE --*/
+
+section .content .form-tag label {
+    color: rgba(140,195,169,1);
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.form-tag .ql-toolbar {
+    background: rgba(140,195,169,1);
+}
+
+section .content .create .form-tag .submit-tag {
+    background: rgba(140,195,169,1);
+    width: auto;
+}
+
+section .content .create .form-tag .submit-tag:hover {
+    color: rgba(140,195,169,1);
+}
+
+section .content .create .form-tag .btn-tag {
+    margin-top: 80px;
+}
+
+section .content .create .form-tag .btn-tag .btn {
+    background: rgba(140,195,169,1);
+    font-size: 22px;
+    width: auto;
+    border: 2px solid var(--primaryColor);
+    border-radius: 8px;
+}
+
+section .content .create .form-tag .btn-tag .btn:hover {
+    color: rgba(140,195,169,1);
+    background: white;
+}
 
 
