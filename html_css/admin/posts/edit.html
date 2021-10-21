@@ -17,8 +17,8 @@
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../../css/style.css">
-        <link rel="stylesheet" href="../../css/admin.css">
+        <link rel="stylesheet" href="../../../assets/css/style.css">
+        <link rel="stylesheet" href="../../../assets/css/admin.css">
     </head>
     <body>
         <!-- SIDEBAR -->
@@ -60,9 +60,6 @@
                 <div class="content">
                     <div class="content-header">
                             <h4 class="title title-post">Edit Posts</h4>
-                        <div class="link-btn">
-                            <a href="add.html" role="button" class="post-btn add-btn btn"><i class="fas fa-plus"></i> Post</a>
-                        </div>
                     </div>
                     <div class="edit">
                         <div class="container">
@@ -101,7 +98,10 @@
                                         <label for="formFile" class="form-label">Image</label>
                                         <input type="file" id="formFile" class="form-control">
                                     </div>
-                                    <button type="submit" class="submit-btn">Update post</button>
+                                    <div class="btn-post d-flex justify-content-between">
+                                        <button type="submit" class="submit-post submit-btn">Update Post</button>
+                                        <a class="btn" href="#" role="button"><i class="fas fa-arrow-left"></i> back</a>
+                                    </div>
                                 </fieldset>
                             </form>
                         </div>                 
@@ -118,7 +118,7 @@
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     
-    <script src="../../js/main.js"></script>
+    <script src="../../../assets/js/main.js"></script>
 
     </body>
 </html>

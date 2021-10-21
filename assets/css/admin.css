@@ -498,7 +498,29 @@ section .content .edit .form-post .submit-btn  {
     width: auto;
 }
 
+section .content .edit .form-post .submit-btn:hover {
+    color: rgba(0,212,255,1);
+}
+
+section .content .edit .form-post .btn-post .btn {
+    background: rgba(0,212,255,1);
+    font-size: 22px;
+    width: auto;
+    border: 2px solid var(--primaryColor);
+    border-radius: 8px;
+}
+
+section .content .edit .form-post .btn-post .btn:hover {
+    color: rgba(0,212,255,1);
+    background: white;
+}
+
+
 /*-- ADMIN ADD POST CONTENT PAGE --*/
+
+.form-post .ql-toolbar {
+    background: rgba(0,212,255,1);
+}
 
 section .content .create .submit-post {
     background: rgba(0,212,255,1);
@@ -509,8 +531,21 @@ section .content .create .submit-post:hover {
     color: rgba(0,212,255,1);
 }
 
-.form-post .ql-toolbar {
+section .content .create .form-post .submit-btn:hover {
+    color: rgba(0,212,255,1);
+}
+
+section .content .create .form-post .btn-post .btn {
     background: rgba(0,212,255,1);
+    font-size: 22px;
+    width: auto;
+    border: 2px solid var(--primaryColor);
+    border-radius: 8px;
+}
+
+section .content .create .form-post .btn-post .btn:hover {
+    color: rgba(0,212,255,1);
+    background: white;
 }
 
 @media(max-width: 576px) {
@@ -736,14 +771,30 @@ section .content .cards-user {
     font-size: 20px;
 }
 
+section .content .create .form-user .btn-user {
+    margin-top: 20px;
+}
+
 section .content .create .form-user .submit-user {
     background: rgba(237,154,162,1);
     width: auto;
-    margin-top: 20px;
 }
 
 section .content .create .form-user .submit-user:hover {
     color: rgba(237,154,162,1);
+}
+
+section .content .create .form-user .btn-user .btn {
+    background: rgba(237,154,162,1);
+    font-size: 22px;
+    width: auto;
+    border: 2px solid var(--primaryColor);
+    border-radius: 8px;
+}
+
+section .content .create .form-user .btn-user .btn:hover {
+    color: rgba(237,154,162,1);
+    background: white;
 }
 
  /*-- ADMIN EDIT USER CONTENT PAGE --*/
