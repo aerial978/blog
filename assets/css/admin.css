@@ -19,9 +19,17 @@
     display: none;
 }
 
-.sidebar-menu {
-    margin-top: 150px;
-    padding-top: 30px;
+.sidebar {
+    margin-top: 100px;
+}
+
+.sidebar .profil-image {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.sidebar .profil-image img {
+    width: 140px;
 }
 
 .sidebar-menu li {
@@ -136,7 +144,6 @@ section .content {
     }
 
     .sidebar-menu {
-        margin-top: 120px;
         padding-top: 30px;
     }
 
@@ -504,11 +511,18 @@ section .content .edit .form-post .submit-btn:hover {
 
 section .content .edit .form-post .btn-post .btn {
     background: rgba(0,212,255,1);
-    font-size: 22px;
+    font-size: 5px;
     width: auto;
     border: 2px solid var(--primaryColor);
     border-radius: 8px;
 }
+
+@media(max-width: 768px) {
+    section .content .edit .form-post .btn-post .btn {
+        font-size: 15px;
+    }
+ }
+
 
 section .content .edit .form-post .btn-post .btn:hover {
     color: rgba(0,212,255,1);

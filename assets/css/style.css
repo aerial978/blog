@@ -95,6 +95,10 @@ body {
     color: var(--secondaryColor) !important;
 }
 
+.nav-link.active {
+    color: var(--thirdColor) !important;
+}
+
 .nav-link:hover {
     color: var(--thirdColor) !important;
 }
