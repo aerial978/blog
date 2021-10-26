@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title>Admin comments index</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Candal&family=Lato&display=swap" rel="stylesheet">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="../../../assets/css/style.css">
+        <link rel="stylesheet" href="../../../assets/css/admin.css">
+    </head>
+    <body>
+        <!-- SIDEBAR -->
+        <div class="sidemenu">
+            <div class="close-btn">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="sidebar">
+                <div class="profil-image">
+                    <img src="../../../assets/images/avatar.png" alt="avatar">
+                </div>
+                <div class="sidebar-menu"> 
+                    <ul>
+                        <li><a href="../dashboard.html" class="nav-link"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
+                        <li><a href="../posts/index.html" class="nav-link"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
+                        <li><a href="index.html" class="nav-link active"><span class="fas fa-comments"></span><span>Comments</span></a></li>
+                        <li><a href="../users/index.html" class="nav-link"><span class="fas fa-user"></span><span>Users</span></a></li>
+                        <li><a href="../tags/index.html" class="nav-link"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- NAVBAR -->
+        <div class="main-content">
+            <header>
+                <div class="nav-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="user-wrapper">
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../../../assets/images/comment-avatar.png" alt="avatar">Admin</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../../index.html">Home</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </header>
+            <section>
+                <div class="content">
+                    <div class="content-header">
+                        <h4 class="title title-comment">Manage Comments</h4>
+                    </div>
+                    <div class="auth message success text-dark">
+                        <h5>Comment published successfully !</h5>
+                    </div>
+                    <!-- TABLE COMMENTS -->
+                    <table class="table table-comment">
+                        <thead>
+                            <tr class="table-title table-primary">
+                                <th class="col-2">Author</th>
+                                <th class="col-1">Date</th>
+                                <th class="col-4">Post title</th>
+                                <th class="col-2">Status</th>
+                                <th class="col-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            <tr>
+                                <th scope="row auth-com">Dave</th>
+                                <td class="comment-date">10/10/21</td>
+                                <td class="post-title">Feature post</td>
+                                <td class="status status-red">unpublished</td>
+                                <td>
+                                    <div class="action-button">
+                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row auth-com">Mike</th>
+                                <td class="comment-date">05/10/21</td>
+                                <td class="post-title">Feature post</td>
+                                <td class="status status-green">published</td>
+                                <td>
+                                    <div class="action-button">
+                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row auth-com">Lea</th>
+                                <td class="comment-date">03/10/21</td>
+                                <td class="post-title">Feature post</td>
+                                <td class="status status-green">published</td>
+                                <td>
+                                    <div class="action-button">
+                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row auth-com">Paul</th>
+                                <td class="comment-date">02/10/21</td>
+                                <td class="post-title">Feature post</td>
+                                <td class="status status-green">published</td>
+                                <td>
+                                    <div class="action-button">
+                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row auth-com">John</th>
+                                <td class="comment-date">30/09/21</td>
+                                <td class="post-title">Feature post</td>
+                                <td class="status status-green">published</td>
+                                <td>
+                                    <div class="action-button">
+                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row auth-com">Aurore</th>
+                                <td class="comment-date">27/09/21</td>
+                                <td class="post-title">Feature post</td>
+                                <td class="status status-green">published</td>
+                                <td>
+                                    <div class="action-button">
+                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- CARDS COMMENTS -->   
+                    <div class="cards cards-comment">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                        <div class="card-header card-com">
+                                            <div class="comment-id d-flex align-items-center">
+                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                                <div class="auth-com">Dave</div>
+                                            </div>
+                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>10/10/21</span></div>
+                                        </div>
+                                        <div class="card-body image">
+                                            <img src="../../../assets/images/design.jpg" alt="design">
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="post-title">Feature post</h5>
+                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                        <div class="card-footer card-com border-success d-flex justify-content-around">
+                                            <div class="status status-red d-flex align-items-center"><span>unpublished</span></div>
+                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                        <div class="card-header card-com">
+                                            <div class="comment-id d-flex align-items-center">
+                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                                <div class="auth-com">Mike</div>
+                                            </div>
+                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>05/10/21</span></div>
+                                        </div>
+                                        <div class="card-body image">
+                                            <img src="../../../assets/images/lorem.jpg" alt="design">
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="post-title">Feature post</h5>
+                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                        <div class="card-footer card-com border-success d-flex justify-content-around">
+                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
+                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                        <div class="card-header card-com">
+                                            <div class="comment-id d-flex align-items-center">
+                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                                <div class="auth-com">Lea</div>
+                                            </div>
+                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>03/10/21</span></div>
+                                        </div>
+                                        <div class="card-body image">
+                                            <img src="../../../assets/images/js.jpg" alt="design">
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="post-title">Feature post</h5>
+                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                        <div class="card-footer card-com border-success d-flex justify-content-around">
+                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
+                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                        <div class="card-header card-com">
+                                            <div class="comment-id d-flex align-items-center">
+                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                                <div class="auth-com">Paul</div>
+                                            </div>
+                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>02/10/21</span></div>
+                                        </div>
+                                        <div class="card-body image">
+                                            <img src="../../../assets/images/lorem.jpg" alt="design">
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="post-title">Feature post</h5>
+                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                        <div class="card-footer card-com border-success d-flex justify-content-around">
+                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
+                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                        <div class="card-header card-com">
+                                            <div class="comment-id d-flex align-items-center">
+                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                                <div class="auth-com">John</div>
+                                            </div>
+                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>30/09/21</span></div>
+                                        </div>
+                                        <div class="card-body image">
+                                            <img src="../../../assets/images/js.jpg" alt="design">
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="post-title">Feature post</h5>
+                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                        <div class="card-footer card-com border-success d-flex justify-content-around">
+                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
+                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                        <div class="card-header card-com">
+                                            <div class="comment-id d-flex align-items-center">
+                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                                <div class="auth-com">Aurore</div>
+                                            </div>
+                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>27/09/21</span></div>
+                                        </div>
+                                        <div class="card-body image">
+                                            <img src="../../../assets/images/design.jpg" alt="design">
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="post-title">Feature post</h5>
+                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                        <div class="card-footer card-com card- border-success d-flex justify-content-around">
+                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
+                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                        </div>         
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="../../../assets/js/main.js"></script>
+
+    </body>
+</html>
