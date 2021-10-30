@@ -511,6 +511,13 @@ body {
     box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
 }
 
+.sign-title {
+    border: 3px solid var(--thirdColor);
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--primaryColor);
+}
+
 .sign label {
     margin-bottom: 5px;
     font-family: var(--secondaryFontFamily);
