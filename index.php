@@ -5,97 +5,97 @@ $_GET["page"] == "home";
 switch ($_GET["page"]) {
 
     case 'postslist':
-        require "controller/FrontendController.php";
+        require "Controller/FrontendController.php";
         $postslistController = new FrontendController();
         $postslistController->postslist();
         break;
     
     case 'postsingle':
-        require "controller/FrontendController.php";
+        require "Controller/FrontendController.php";
         $postsingleController = new FrontendController();
         $postsingleController->postsingle();
         break;
 
     case 'register':
-        require "controller/FrontendController.php";
+        require "Controller/FrontendController.php";
         $registerController = new FrontendController();
         $registerController->register();
         break;
 
     case 'login':
-        require "controller/FrontendController.php";
+        require "Controller/FrontendController.php";
         $loginController = new FrontendController();
         $loginController->login();
         break;
 
     case 'dashboard':
-        require "controller/BackendController/DashboardController.php";
+        require "Controller/BackendController/DashboardController.php";
         $dashboardController = new DashboardController();
         $dashboardController->dashboard();
         break;
 
     case 'indexpost':
-        require "controller/BackendController/PostsController.php";
+        require "Controller/BackendController/PostsController.php";
         $indexpostController = new PostsController();
         $indexpostController->indexpost();
         break;
 
     case 'addpost':
-        require "controller/BackendController/PostsController.php";
+        require "Controller/BackendController/PostsController.php";
         $addpostController = new PostsController();
         $addpostController->addpost();
         break;
 
     case 'editpost':
-        require "controller/BackendController/PostsController.php";
+        require "Controller/BackendController/PostsController.php";
         $editpostController = new PostsController();
         $editpostController->editpost();
         break;
 
     case 'indexcomment':
-        require "controller/BackendController/CommentssController.php";
+        require "Controller/BackendController/CommentsController.php";
         $indexcommentController = new CommentsController();
         $indexcommentController->indexcomment();
         break;
 
     case 'editcomment':
-        require "controller/BackendController/CommentssController.php";
+        require "Controller/BackendController/CommentsController.php";
         $editcommentController = new CommentsController();
         $editcommentController->editcomment();
         break;
 
     case 'indexuser':
-        require "controller/BackendController/UsersController.php";
+        require "Controller/BackendController/UsersController.php";
         $indexuserController = new UsersController();
         $indexuserController->indexuser();
         break;
 
     case 'adduser':
-        require "controller/BackendController/UsersController.php";
+        require "Controller/BackendController/UsersController.php";
         $adduserController = new UsersController();
         $adduserController->adduser();
         break;
 
     case 'edituser':
-        require "controller/BackendController/UsersController.php";
+        require "Controller/BackendController/UsersController.php";
         $edituserController = new UsersController();
         $edituserController->edituser();
         break;
 
     case 'indextag':
-        require "controller/BackendController/TagsController.php";
+        require "Controller/BackendController/TagsController.php";
         $indextagController = new TagsController();
         $indextagController->indextag();
         break;
 
     case 'addtag':
-        require "controller/BackendController/TagsController.php";
+        require "Controller/BackendController/TagsController.php";
         $addtagController = new TagsController();
         $addtagController->addtag();
         break;
 
     case 'edittag':
-        require "controller/BackendController/TagsController.php";
+        require "Controller/BackendController/TagsController.php";
         $edittagController = new TagsController();
         $edittagController->edittag();
         break;

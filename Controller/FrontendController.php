@@ -9,18 +9,18 @@ class FrontendController extends BaseController{
     }
 
     public function postslist(){
-        echo $this->twig->render("postslist.html.twig");
+        echo $this->twig->render("frontend/postslist.html.twig");
     }
 
     public function postsingle(){
-        echo $this->twig->render("postsingle.html.twig");
+        echo $this->twig->render("frontend/postsingle.html.twig");
     }
 
     public function register(){
-        echo $this->twig->render("register.html.twig");
+        echo $this->twig->render("frontend/register.html.twig");
     }
 
     public function login(){
-        echo $this->twig->render("login.html.twig");
+        echo $this->twig->render("frontend/login.html.twig");
     }
 };

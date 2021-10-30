@@ -1,14 +1,14 @@
 <?php
 
-require_once('BaseController.php');
+require_once('Controller/BaseController.php');
 
 class CommentsController extends BaseController{
 
     public function indexcomment(){
-        echo $this->twig->render("indexcomment.html.twig");
+        echo $this->twig->render("backend/comments/indexcomment.html.twig");
     }
 
     public function editcomment(){
-        echo $this->twig->render("editcomment.html.twig");
+        echo $this->twig->render("backend/comments/editcomment.html.twig");
     }
 }

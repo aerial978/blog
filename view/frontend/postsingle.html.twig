@@ -1,4 +1,4 @@
-{% extends "basefrontend.html.twig" %}
+{% extends "frontend/basefrontend.html.twig" %}
 {% block title %} {% endblock %}
 {% block body %}
         <!-- SINGLE POST -->
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-8">
-                        <figure class="mb-4"><img class="img-fluid rounded" src="../../../assets/images/lorem.jpg" alt="..." /></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="assets/images/lorem.jpg" alt="image post" /></figure>
                         <div class="mb-1">
                             <p class="card-text fw-bolder fs-4 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <p class="card-text fs-5 mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
@@ -25,6 +25,7 @@
                             <p class="card-text fs-5 mb-4">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
                             <p class="card-text fs-5 mb-4">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
                         </div>
+                        <!-- COMMENTS -->
                         <div class="comment-area mt-5 mb-5">
                             <div class="mb-4">
                                 <h3 class="fw-bolder">2 comments</h3>
@@ -45,7 +46,7 @@
                             <hr>
                             <div class="comment-list">
                                 <div class="comment-id d-flex justify-content flex-start">
-                                    <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                    <img src="assets/images/comment-avatar.png" alt="comment avatar">
                                     <div class="meta-area d-flex flex-column">
                                         <div class="comment-author">Dave</div>
                                         <div class="comment-datetime">6 days ago</div>
@@ -57,7 +58,7 @@
                             </div>
                             <div class="comment-list">
                                 <div class="comment-id d-flex justify-content flex-start">
-                                    <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
+                                    <img src="assets/images/comment-avatar.png" alt="comment avatar">
                                     <div class="meta-area d-flex flex-column">
                                         <div class="comment-author">Mike</div>
                                         <div class="comment-datetime">10 days ago</div>
