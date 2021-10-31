@@ -23,10 +23,14 @@ class FrontendController extends BaseController{
     }
 
     public function register(){
-        echo $this->twig->render("frontend/register.html.twig");
+        echo $this->twig->render("frontend/register.html.twig",[
+            'activemenu' => 'signupmenu' 
+        ]);
     }
 
     public function login(){
-        echo $this->twig->render("frontend/login.html.twig");
+        echo $this->twig->render("frontend/login.html.twig",[
+            'activemenu' => 'signinmenu' 
+        ]);
     }
 };

@@ -22,20 +22,6 @@ body {
     list-style: none;
     font-family: var(--secondaryFontFamily);
 }
-  
-  .success {
-    background: #bcf5bc;
-    color: #3a6e3a;
-    border: 1px solid #3a6e3a;
-    background: #bcf5bc;
-}
-  
-  .error {
-    background: #f5bcbc;
-    color: #884b4b;
-    border: 1px solid #884b4b;
-    
-}
 
 @media(max-width: 576px) {
     .message h4 {

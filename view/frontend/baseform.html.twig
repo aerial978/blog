@@ -37,10 +37,10 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="?page=register">Sign up</a>
+                            <a class="nav-link {% if activemenu == 'signupmenu' %} active {% endif %}" href="?page=register">Sign up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?page=login">Sign in</a>
+                            <a class="nav-link {% if activemenu == 'signinmenu' %} active {% endif %}" href="?page=login">Sign in</a>
                         </li>
                     </ul>
                 </div>
