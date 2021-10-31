@@ -5,7 +5,9 @@ require_once('Controller/BaseController.php');
 class PostsController extends BaseController{
 
     public function indexpost(){
-        echo $this->twig->render("backend/posts/indexpost.html.twig");
+        echo $this->twig->render("backend/posts/indexpost.html.twig",[
+            'activemenu' => 'postmenu' 
+        ]);
     }
 
     public function addpost(){

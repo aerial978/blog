@@ -5,7 +5,9 @@ require_once('Controller/BaseController.php');
 class TagsController extends BaseController{
 
     public function indextag(){
-        echo $this->twig->render("backend/tags/indextag.html.twig");
+        echo $this->twig->render("backend/tags/indextag.html.twig",[
+            'activemenu' => 'tagmenu' 
+        ]);
     }
 
     public function addtag(){

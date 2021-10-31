@@ -5,7 +5,9 @@ require_once('Controller/BaseController.php');
 class UsersController extends BaseController{
 
     public function indexuser(){
-        echo $this->twig->render("backend/users/indexuser.html.twig");
+        echo $this->twig->render("backend/users/indexuser.html.twig",[
+            'activemenu' => 'usermenu' 
+        ]);
     }
 
     public function adduser(){
@@ -13,6 +15,6 @@ class UsersController extends BaseController{
     }
 
     public function edituser(){
-        echo $this->twig->render("backend/user/edituser.html.twig");
+        echo $this->twig->render("backend/users/edituser.html.twig");
     }
 }

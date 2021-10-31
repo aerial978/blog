@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
         <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/png" href="assets/images/avatar.png" />
+
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -32,11 +34,11 @@
             </div>
             <div class="sidebar-menu">   
                 <ul>
-                    <li><a href="?page=dashboard" class="nav-link active"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
-                    <li><a href="?page=indexpost" class="nav-link"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
-                    <li><a href="?page=indexcomment" class="nav-link"><span class="fas fa-comments"></span><span>Comments</span></a></li>
-                    <li><a href="?page=indexuser" class="nav-link"><span class="fas fa-user"></span><span>Users</span></a></li>
-                    <li><a href="?page=indextag" class="nav-link"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
+                    <li><a href="?page=dashboard" class="nav-link {% if activemenu == 'dashboardmenu' %} active {% endif %}"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
+                    <li><a href="?page=indexpost" class="nav-link {% if activemenu == 'postmenu' %} active {% endif %}"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
+                    <li><a href="?page=indexcomment" class="nav-link {% if activemenu == 'commentmenu' %} active {% endif %}"><span class="fas fa-comments"></span><span>Comments</span></a></li>
+                    <li><a href="?page=indexuser" class="nav-link {% if activemenu == 'usermenu' %} active {% endif %}"><span class="fas fa-user"></span><span>Users</span></a></li>
+                    <li><a href="?page=indextag" class="nav-link {% if activemenu == 'tagmenu' %} active {% endif %}"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
                 </ul>
             </div>
         </div>
