@@ -1,0 +1,84 @@
+{% extends "frontend/basefrontend.html.twig" %}
+{% block title %} User posts {% endblock %}
+{% block body %}
+<!-- POSTS LIST BY USER -->
+        <section class="user-section">
+            <div class="container">
+                <div class="title_tag mb-4 h4"><?= $tag['username']; ?></div> 
+                <div class="row">
+                    <div class="col-xl-9">
+                        <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
+                            <?php foreach ($data as $datas) { ?> 
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="<?="../assets/images/".$datas['image']; ?>" alt="img post" class="card-img-top">
+                                        <div class="card-body">    
+                                            <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
+                                                <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
+                                                <a href="user_posts.php?id=<?=$datas['user_id'] ?>">
+                                                <?= $datas['username'] ?></a></span>
+                                                <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span><?=$datas['date_create']?></span></div>
+                                                <span class="badge"><a href="tag_posts.php?id=<?=$data['tag_id']?>"><?=$datas['name']; ?></a></span>
+                                            </div>
+                                            <div class="card-content">
+                                                <h6 class="card-title"><?= $datas['title']; ?></h6>
+                                                <p class="card-head"><?= $datas['headline']; ?></p>
+                                                <p class="card-text"><span><?= number_words($datas['content']); ?></span></p>
+                                            </div>
+                                            <div class="card-meta d-flex justify-content-end">       
+                                                <a class="btn btn-primary" href="postsingle.php?id=<?= $datas['postId']?>" role="button">Read More</a>
+                                            </div>
+                                        </div>        
+                                    </div>
+                                </div> 
+                            <?php }  ?>
+                        </div>                
+                    </div>           
+            <!-- TAGS LIST -->        
+                    <div class="col-xl-3">
+                        <aside class="aside-tags mb-4">
+                            <h5 class="tags-title">Tags</h5> 
+                            <ul>
+                            <?php $req = $bdd->query('SELECT * FROM tags ORDER BY id'); ?>
+                                <?php while ($data = $req->fetch()) { ?>
+                                    <li><a href="tag_posts.php?id=<?=$data['id']?>"><?= $data['name']; ?></a></li>
+                                <?php } ?>
+                            </ul>     
+                        </aside>
+            <!-- RECENTS POSTS LIST -->
+            <aside class="aside-posts mb-4">
+                            <h5 class="posts-title">Recent posts</h5> 
+                            <ul>
+                                <?php $req = $bdd->query('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
+                                LEFT JOIN users ON posts.user_id = users.id 
+                                WHERE status_post = 2 ORDER BY date_create DESC LIMIT 5'); ?>
+                                <?php while ($data = $req->fetch()) { ?>
+                                    <li>
+                                        <div class="recent-post">
+                                            <img src="<?= "../assets/images/".$data['image']; ?>" class="img-recent img-fluid">
+                                            <div class="title-recents">
+                                            <h6><a href="postsingle.php?id=<?= $data['postId'] ?>"><?= $data['title'] ?></a></h6>
+                                            <p><a href="user_posts.php?id=<?= $data['user_id'] ?>"><?= $data['username'] ?></a></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <?php } ?>      
+                            </ul>     
+                        </aside>
+            <!-- RECENTS COMMENTS -->
+                        <aside class="aside-comments">
+                            <h5 class="posts-title">Recent comments</h5> 
+                            <ul>
+                            <?php $req = $bdd->query('SELECT * FROM comments 
+                            LEFT JOIN posts ON comments.post_id = posts.id  
+                            WHERE status_post = 2 ORDER BY comments.id DESC LIMIT 5'); ?>
+                                <?php while ($data = $req->fetch()) { ?>
+                                    <li><a href="postsingle.php?id=<?=$data['post_id']?>"><?= $data['name_author'] ?><span> sur </span><?= $data['title']; ?></a></li>
+                                <?php } ?>
+                            </ul>    
+                        </aside>                                     
+                    </div>
+                </div>
+            </div>
+        </section>     
+{% endblock %}  

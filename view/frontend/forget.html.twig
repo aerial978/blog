@@ -1,0 +1,37 @@
+{% extends "frontend/baseform.html.twig" %}
+{% block title %} Forget {% endblock %}
+{% block form %}
+<!-- LOGIN AREA -->   
+        <section class="sign section">
+            <div class="container">
+                <div class="row">
+                    <div class="sign-form col-md-5 mx-auto">
+                    <?php if(isset($logout)):?>
+                        <p class="h6 text-center"><?php echo $logout; ?></p>
+                        <?php endif; ?>
+                        <h3 class="sign-title text-center">Forgot password</h3>
+                        <!--<div class="message error text-light d-flex align-items-center justify-content-center">
+                        <h5>Username required</h5>
+                        </div>-->
+                        <?php if(!empty($_SESSION['danger'])): ?>
+                            <div class="alert alert-danger message">
+                                <p>You have not completed the form correctly :</p>
+                                <ul> 
+                                    <li><?= $_SESSION['danger']; ?></li>  
+                                </ul>
+                            </div>     
+                        <?php endif; ?>
+                        <form method="post" action="">
+                            <fieldset class="form-group row">    
+                                <div class="form-field col-md-12">
+                                    <label for="email" class="label">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value=""/>        
+                                </div>   
+                            </fieldset>
+                            <button type="submit" class="submit-btn">Submit</button>  
+                        </form>
+                    </div>    
+                </div>
+            </div>
+        </section>
+{% endblock %}

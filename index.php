@@ -16,6 +16,17 @@ switch ($_GET["page"]) {
         $postsingleController->postsingle();
         break;
 
+    case 'userposts':
+        require "Controller/FrontendController.php";
+        $userpostsController = new FrontendController();
+        $userpostsController->userposts();
+
+    case 'tagposts':
+        require "Controller/FrontendController.php";
+        $tagpostsController = new FrontendController();
+        $tagpostsController->tagposts();
+        break;
+
     case 'register':
         require "Controller/FrontendController.php";
         $registerController = new FrontendController();
@@ -26,6 +37,12 @@ switch ($_GET["page"]) {
         require "Controller/FrontendController.php";
         $loginController = new FrontendController();
         $loginController->login();
+        break;
+
+    case 'forget':
+        require "Controller/FrontendController.php";
+        $forgetController = new FrontendController();
+        $forgetController->forget();
         break;
 
     case 'dashboard':

@@ -22,6 +22,18 @@ class FrontendController extends BaseController{
         ]);
     }
 
+    public function userposts(){
+        echo $this->twig->render("frontend/userposts.html.twig",[
+            'activemenu' => 'postslistmenu'
+        ]);
+    }
+
+    public function tagposts(){
+        echo $this->twig->render("frontend/tagposts.html.twig",[
+            'activemenu' => 'postslistmenu'
+        ]);
+    }
+
     public function register(){
         echo $this->twig->render("frontend/register.html.twig",[
             'activemenu' => 'signupmenu' 
@@ -31,6 +43,11 @@ class FrontendController extends BaseController{
     public function login(){
         echo $this->twig->render("frontend/login.html.twig",[
             'activemenu' => 'signinmenu' 
+        ]);
+    }
+
+    public function forget(){
+        echo $this->twig->render("frontend/forget.html.twig",[
         ]);
     }
 };
