@@ -11,7 +11,7 @@ class FrontendController extends BaseController{
         function post()
         {
 
-        $postManager = new PostManager();
+        $postManager = new \Hathier\Blog\Model\PostManager();
         $data = $postManager->getPosts();
 
         require('view/frontend/home.html.twig');
