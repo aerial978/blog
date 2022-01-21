@@ -1,12 +1,25 @@
 <?php
 
-require_once 'BaseController.php'; 
+namespace Hathier\Blog\Model;
+namespace Hathier\Blog\Controller;
 
 class FrontendController extends BaseController{
 
-    public function home(){
+    public function home()
+    {
+
+        function post()
+        {
+
+        $postManager = new PostManager();
+        $data = $postManager->getPosts();
+
+        require('view/frontend/home.html.twig');
+
+        }    
+
         echo $this->twig->render("frontend/home.html.twig",[
-            'activemenu' => 'homemenu' 
+            'activemenu' => 'homemenu'
         ]);
     }
 
@@ -34,6 +47,11 @@ class FrontendController extends BaseController{
         ]);
     }
 
+    public function page404(){
+        echo $this->twig->render("frontend/page404.html.twig");
+    }
+
+
     public function register(){
         echo $this->twig->render("frontend/register.html.twig",[
             'activemenu' => 'signupmenu' 
@@ -47,7 +65,8 @@ class FrontendController extends BaseController{
     }
 
     public function forget(){
-        echo $this->twig->render("frontend/forget.html.twig",[
-        ]);
+        echo $this->twig->render("frontend/forget.html.twig");
     }
+
+    
 };

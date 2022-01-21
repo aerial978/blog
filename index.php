@@ -27,6 +27,12 @@ switch ($_GET["page"]) {
         $tagpostsController->tagposts();
         break;
 
+    case 'page404':
+        require "Controller/FrontendController.php";
+        $page404Controller = new FrontendController();
+        $page404Controller->page404();
+        break;
+
     case 'register':
         require "Controller/FrontendController.php";
         $registerController = new FrontendController();

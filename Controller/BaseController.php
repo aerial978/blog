@@ -1,5 +1,7 @@
 <?php
 
+namespace Hathier\Blog\Controller;
+
 require_once 'vendor/autoload.php';
 
 class BaseController{
