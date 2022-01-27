@@ -1,26 +1,21 @@
 <?php
 
-namespace Hathier\Blog\Model;
-namespace Hathier\Blog\Controller;
+require_once 'BaseController.php';
+require_once 'Model/PostManager.php';
+
 
 class FrontendController extends BaseController{
 
     public function home()
     {
-
-        function post()
-        {
-
-        $postManager = new \Hathier\Blog\Model\PostManager();
-        $data = $postManager->getPosts();
-
-        require('view/frontend/home.html.twig');
-
-        }    
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
 
         echo $this->twig->render("frontend/home.html.twig",[
-            'activemenu' => 'homemenu'
+            'activemenu' => 'homemenu',
+            'posts' => $posts
         ]);
+
     }
 
     public function postslist(){
@@ -67,6 +62,5 @@ class FrontendController extends BaseController{
     public function forget(){
         echo $this->twig->render("frontend/forget.html.twig");
     }
-
-    
+  
 };

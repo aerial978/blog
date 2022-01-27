@@ -1,7 +1,5 @@
 <?php
 
-namespace Hathier\Blog\Controller;
-
 require_once 'vendor/autoload.php';
 
 class BaseController{
@@ -11,5 +9,6 @@ class BaseController{
             'debug'=>true
        ]);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
+        $this->twig->addGlobal('session',$_SESSION);
     }
 }

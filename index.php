@@ -20,6 +20,7 @@ switch ($_GET["page"]) {
         require "Controller/FrontendController.php";
         $userpostsController = new FrontendController();
         $userpostsController->userposts();
+        break;
 
     case 'tagposts':
         require "Controller/FrontendController.php";

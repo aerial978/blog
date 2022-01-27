@@ -5,7 +5,7 @@
         <header class="jumbotron text-center">
             <div class="intro">
                 <img src="assets/images/avatar.png" alt="avatar">
-                <h1 class="heading">MY BLOG</h1>
+                <h1 class="heading">Bienvenue sur mon blog de dev</h1>
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
@@ -32,96 +32,33 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-8">
-                        <div class="row postcards g-0">
-                            <div class="col-md-4">
-                                <img class="card-img-top" src="assets/images/pic.jpg" alt="Card image cap">   
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="card-top d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">Featured Post</h5>
-                                    <span class="badge bg-success">Tag</span>
-                                    </div>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Exercitationem optio possimus a inventore maxime laborum.
-                                    </p>
-                                    <div class="card-meta d-flex justify-content-between align-items-center">
-                                        <span><i class="fas fa-clock"></i></span>
-                                        <span><i class="fas fa-user"></i></span>
-                                        <a class="btn btn-danger" href="?page=postsingle" role="button">Read More</a>
+                    <div class="col-xl-8">   
+                    {{dump(posts)}} 
+                    {#  {% for post in posts %}
+                            <div class="row postcards g-0">
+                                <div class="col-md-4">
+                                    <img src="<?="../assets/images/".$datas['image'] ?>" class="img-fluid" alt="image post">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="card-top d-flex justify-content-between align-items-center mb-4">
+                                            <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
+                                            <a href="user_posts.php?id=<?=$datas['user_id'] ?>">
+                                            <?= " ".$datas['username'] ?></a></span>
+                                            <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span>{{ post.date_create }}</span></div>
+                                            <span class="badge"><a href="tag_posts.php?id=<?=$datas['tag_id']?>"><?=$datas['name']; ?></a></span>
+                                        </div>
+                                        <h6 class="card-title fw-bold"><?= $datas['title'] ?></h6>
+                                        <p class="card-text fs-5"><?= number_words($datas['content']); ?></p>
+                                        <div class="card-meta d-flex justify-content-end">
+                                            <a href="postsingle.php?id=<?= $datas['postId'] ?>"class="btn btn-primary">Read more</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>            
-                        <div class="row postcards g-0">
-                            <div class="col-md-4">
-                                <img class="card-img-top" src="assets/images/js.jpg" alt="Card image cap">   
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="card-top d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">Featured Post</h5>
-                                    <span class="badge bg-success">Tag</span>
-                                    </div>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Exercitationem optio possimus a inventore maxime laborum.
-                                    </p>
-                                    <div class="card-meta d-flex justify-content-between align-items-center">
-                                        <span><i class="fas fa-clock"></i></span>
-                                        <span><i class="fas fa-user"></i></span>
-                                        <a class="btn btn-danger" href="?page=postsingle" role="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>        
-                        <div class="row postcards g-0">
-                            <div class="col-md-4">
-                                <img class="card-img-top" src="assets/images/pic.jpg" alt="Card image cap">   
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="card-top d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">Featured Post</h5>
-                                    <span class="badge bg-success">Tag</span>
-                                    </div>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Exercitationem optio possimus a inventore maxime laborum.
-                                    </p>
-                                    <div class="card-meta d-flex justify-content-between align-items-center">
-                                        <span><i class="fas fa-clock"></i></span>
-                                        <span><i class="fas fa-user"></i></span>
-                                        <a class="btn btn-danger" href="?page=postsingle" role="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>            
-                        <div class="row postcards g-0">
-                            <div class="col-md-4">
-                                <img class="card-img-top" src="assets/images/js.jpg" alt="Card image cap">   
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="card-top d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">Featured Post</h5>
-                                    <span class="badge bg-success">Tag</span>
-                                    </div>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Exercitationem optio possimus a inventore maxime laborum.
-                                    </p>
-                                    <div class="card-meta d-flex justify-content-between align-items-center">
-                                        <span><i class="fas fa-clock"></i></span>
-                                        <span><i class="fas fa-user"></i></span>
-                                        <a class="btn btn-danger" href="?page=postsingle" role="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>          
+                            </div> 
+                        {% endfor %}  #}     
                     </div>
+                <!-- ASIDE TAGS LIST -->
                     <div class="col-xl-4">
                         <aside class="aside-tags">
                             <h3 class="tags-title">Tags</h3> 
