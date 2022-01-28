@@ -1,5 +1,4 @@
 /* --ADMIN NAVBAR-SIDEBAR --*/
-
 .sidemenu {
     position: fixed;
     background: var(--thirdColor);
@@ -32,6 +31,12 @@
     width: 140px;
 }
 
+.sidebar-menu {
+    margin-top: 150px;
+    padding-top: 30px;
+    
+}
+
 .sidebar-menu li {
     width: 100%;
     margin-bottom: 27px;
@@ -39,7 +44,7 @@
     list-style: none;
 }
 
-.sidebar-menu li a {
+.sidebar-menu a {
     background: var(--primaryColor);
     color: var(--secondaryColor);
     display: block;
@@ -54,7 +59,8 @@
     color: var(--primaryColor) !important;
 }
 
-.sidebar-menu a span:first-child {
+.sidebar-menu a span {
+    font-size: 18px;
     padding-right: 15px;
 }
 
@@ -71,6 +77,7 @@
     width: calc(100% - 275px);
     top: 0;
     z-index: 250;
+    height: 80px;
 } 
 
 .main-content header .nav-btn {
@@ -119,7 +126,7 @@
 
 .user-wrapper img {
     margin-right: 15px;
-    width: 40px;
+    
     border-radius: 50%;
 }
 
@@ -128,21 +135,13 @@
     color: var(--secondaryColor);
 }
 
-section .content {
-    font-family: var(--secondaryFontFamily);
-    margin-top: 70px;
-    padding: 30px;
-    background: var(--secondaryColor);
-    min-height: calc(100vh - 90px);
-    z-index: 150;
-}
-
 @media(max-width: 992px) {
     .sidemenu {
         width: 200px;
     }
 
     .sidebar-menu {
+        margin-top: 120px;
         padding-top: 30px;
     }
 
@@ -235,16 +234,19 @@ section .content {
 
 section .content {
     font-family: var(--secondaryFontFamily);
-    margin-top: 70px;
     padding: 30px;
+    margin-top: 120px;
+    background: var(--secondaryColor);
+    min-height: calc(100vh - 90px);
+    z-index: 150;
 }
 
-section .content .content-header {
+.content-header {
     display: flex;
     justify-content: space-between;
 }
 
-section .content .content-header .title {
+.content-header .title {
     width: 230px;
     font-weight: bold;
     background: white;
@@ -253,14 +255,9 @@ section .content .content-header .title {
     border-radius: 30px;
     text-align: center;
     margin-bottom: 100px;
+   
 }
-
-section .content .content-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-section .content .add-btn {
+.link-btn .add-btn {
     color: white;
     border: 2px solid var(--primaryColor);
     border-radius: 5px;
@@ -269,194 +266,181 @@ section .content .add-btn {
     width: auto;
 }
 
-section .content .add-btn:hover {
+.link-btn .add-btn:hover {
     background: white;
     border: 2px solid var(--primaryColor);
 }
 
-section .content .submit-btn {
+.submit-btn {
     width: 120px;
+    margin: 20px 0;
     padding: 10px 10px;
     font-size: 20px;
     color: var(--primaryColor);
     border: 2px solid var(--primaryColor);
     border-radius: 8px;
-}
-
-section .content .submit-btn:hover {
-    background: white !important;
-}
-
-section .content .auth {
-    width: 40%;
-}
-
-@media(max-width: 768px) {
-    section .content .content-header .title {
-        width: 150px;
-        padding: 5px;  
-    }
-}
-
-section .content .file-input {
-    margin-top: 70px;
-}
-
-/*-- ADMIN WELCOME DASHBOARD CONTENT PAGE --*/
-
-section .content .title-dash {
-    color: var(--primaryColor);
-}
-
-section .content .dashboard {
-    margin-top: 75px;
-}
-
-section .content .dashboard .card {
-    border: none;
-    box-shadow: rgba(77, 55, 55, 0.5) 0px 5px 15px;
-}
-
-section .content .dashboard .card-post {
-    background: rgb(13,110,253);
-    background: linear-gradient(90deg, rgba(13,110,253,1) 50%, rgba(0,212,255,1) 100%);
-}
-
-section .content .dashboard .card-com {
-    background: rgb(255,193,7);
-    background: linear-gradient(90deg, rgba(255,193,7,1) 50%, rgba(255,224,131,1) 100%);
-}
-
-section .content .dashboard .card-users {
-    background: rgb(220,53,69);
-    background: linear-gradient(90deg, rgba(220,53,69,1) 50%, rgba(237,154,162,1) 100%);
-}
-
-section .content .dashboard .card-tags {
-    background: rgb(25,135,84);
-    background: linear-gradient(90deg, rgba(25,135,84,1) 50%, rgba(140,195,169,1) 100%);  
-}
-
-section .content .dashboard a {
     text-decoration: none;
 }
 
-section .content .dashboard .card-body {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 125px;
-    margin: 5px 5px;
-}
-
-section .content .dashboard .card-body .card-icon {
-    font-size: 55px;
-}
-
-section .content .dashboard .card .card-footer {
-    color: white; 
-}
-
-section .content .dashboard .card-post .card-footer:hover {
-    background: white;
-    color: rgb(13,110,253);
-}
-
-section .content .dashboard .card-com .card-footer:hover {
-    background: white;
-    color: rgb(255,193,7);
-}
-
-section .content .dashboard .card-users .card-footer:hover {
-    background: white;
-    color: rgb(220,53,69);
-}
-
-section .content .dashboard .card-tags .card-footer:hover {
-    background: white;
-    color: rgb(25,135,84);
-}
-
-section .content .dashboard .auth {
-    width: 40%;
-    position: absolute;
-    top: 20%;
-    left: 35%;
+.submit-btn:hover {
+    background: white !important;
 }
 
 @media(max-width: 768px) {
-    section .content .dashboard .card {
-        margin: auto;
+    .content-header .title {
+        width: 150px;
+        padding: 5px;  
     }
 
-    .section .content .message h5 {
-        font-size: 15px;
-    }
-
-    section .content .content-header h4 {
-        font-size: 18px;
-    }
-
-    section .content .link-btn .add-btn {
+    .link-btn .add-btn {
         font-size: 15px;
         width: 80px;
         height: 40px;
     }
 }
 
-/*-- ADMIN INDEX POSTS CONTENT PAGE --*/
+/*-- ADMIN WELCOME DASHBOARD CONTENT PAGE --*/
 
-section .content .title-post {
-    color: rgba(0,212,255,1);
+.content-header .title-dash {
+    color: var(--primaryColor);
 }
 
-section .content .post-btn {
-    background: rgba(0,212,255,1);
+.dashboard .container .cards-dash {
+    display: flex;
+    justify-content: center;
 }
 
-section .content .post-btn:hover { 
-    color: rgba(0,212,255,1);
+.dashboard .cards-dash .card {
+    color: var(--secondaryColor);
+    border: none;
+    box-shadow: rgba(77, 55, 55, 0.5) 0px 5px 15px;
 }
 
-section .content .action-btn {
+.dashboard .cards-dash .card-post {
+    background: rgb(13,110,253);
+    background: linear-gradient(90deg, rgba(13,110,253,1) 50%, rgba(0,212,255,1) 100%);
+}
+
+.dashboard .cards-dash .card-com {
+    background: rgb(255,193,7);
+    background: linear-gradient(90deg, rgba(255,193,7,1) 50%, rgba(255,224,131,1) 100%);
+}
+
+.dashboard .cards-dash .card-users {
+    background: rgb(220,53,69);
+    background: linear-gradient(90deg, rgba(220,53,69,1) 50%, rgba(237,154,162,1) 100%);
+}
+
+.dashboard .cards-dash .card-tags {
+    background: rgb(25,135,84);
+    background: linear-gradient(90deg, rgba(25,135,84,1) 50%, rgba(140,195,169,1) 100%);  
+}
+
+.dashboard .card .card-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 125px;
+    margin: 5px 5px;
+}
+
+.dashboard .card .card-footer a {
+    color: white;
+    text-decoration: none;  
+}
+
+.dashboard .card-body .card-icon {
+    font-size: 55px;
+}
+
+.dashboard .card .card-footer:hover {
+    background: white;
+}
+
+.dashboard .card-post .card-footer a:hover { 
+    color: rgb(13,110,253);
+}
+
+.dashboard .card-com .card-footer a:hover {
+    color: rgb(255,193,7);
+}
+
+.dashboard .card-users .card-footer a:hover {
+    color: rgb(220,53,69);
+}
+
+.dashboard .card-tags .card-footer a:hover {
+    color: rgb(25,135,84);
+}
+
+@media(max-width: 768px) {
+    .dashboard .card {
+        margin: auto;
+    }
+
+    .content-header .title-dash {
+        font-size: 18px;
+    }
+}
+
+/* INDEX PAGE RECURRENT */
+
+.table {
+    text-align: center;
+}
+
+.table-body th,td {
+    vertical-align: middle;
+}
+
+.table-body .action-button .btn {
     padding: 4px 10px;
     width: auto;
     border: none;
 }
 
-section .content .table {
-    cursor: pointer;
-    text-align: center;
-}
-
-section .content .table-post .table-body tr {
-    background: rgba(0,212,255,1);
-}
-
-section .content .table-post .table-body tr:hover {
-    background: rgba(13,110,253,1);
-}
-
-section .content .cards .card {
+.cards .card {
     box-shadow: rgba(77, 55, 55, 0.5) 0px 5px 15px;
     border: none;
 }
 
-section .content .cards .card .card-header {
+.cards .card .card-header {
     display: flex;
     justify-content: space-between;
 }
 
-section .content .cards .card .card-post {
-    background: rgba(0,212,255,1);
-}
-
-section .content .cards .card .card-header .id-post {
+.cards .card .card-header .id {
     font-weight: bold;
 }
 
-section .content .cards .card .card-header .card-comment {
-    text-align: center;
+/*-- ADMIN INDEX POSTS CONTENT PAGE --*/
+
+.content-header .title-post {
+    color: rgba(0,212,255,1);
+}
+
+.link-btn .post-btn {
+    background: rgba(0,212,255,1);
+}
+
+.link-btn .post-btn:hover { 
+    color: rgba(0,212,255,1);
+}
+
+.table-post .table-body tr {
+    background: rgba(147,236,255);
+}
+
+.table-post .table-body tr:hover {
+    background: rgba(0,210,255);
+}
+
+.cards-post .card {
+    height: 50vh;
+}
+
+.cards .card .card-post {
+    background: rgba(0,212,255,1);
 }
 
 section .content .cards .card .card-body img {
@@ -475,6 +459,13 @@ section .content .cards-post {
     display: none;
    }
 
+@media(max-width: 1400px) {
+
+    section .content .table-body .action-button span {
+        display: none;
+    }
+}
+
 @media(max-width: 1200px) {
     section .content .table-post {
         display: none;
@@ -483,6 +474,26 @@ section .content .cards-post {
     section .content .cards-post {
         display: inline;
        }
+
+    section .content .cards-post .image {
+        background: #bfbfbf;
+    }
+
+    section .content .cards-post .card-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    section .content .cards-post .card-text {
+        font-size: 14px;
+    }
+    
+}
+
+@media(max-width: 992px) {
+    section .content .cards-post .card-title {
+        font-size: 15px;
+   }
 }
 
 @media(max-width: 576px) {
@@ -504,36 +515,7 @@ section .content .edit .form-post .submit-btn  {
     width: auto;
 }
 
-section .content .edit .form-post .submit-btn:hover {
-    color: rgba(0,212,255,1);
-}
-
-section .content .edit .form-post .btn-post .btn {
-    background: rgba(0,212,255,1);
-    font-size: 5px;
-    width: auto;
-    border: 2px solid var(--primaryColor);
-    border-radius: 8px;
-}
-
-@media(max-width: 768px) {
-    section .content .edit .form-post .btn-post .btn {
-        font-size: 15px;
-    }
- }
-
-
-section .content .edit .form-post .btn-post .btn:hover {
-    color: rgba(0,212,255,1);
-    background: white;
-}
-
-
 /*-- ADMIN ADD POST CONTENT PAGE --*/
-
-.form-post .ql-toolbar {
-    background: rgba(0,212,255,1);
-}
 
 section .content .create .submit-post {
     background: rgba(0,212,255,1);
@@ -542,23 +524,6 @@ section .content .create .submit-post {
 
 section .content .create .submit-post:hover {
     color: rgba(0,212,255,1);
-}
-
-section .content .create .form-post .submit-btn:hover {
-    color: rgba(0,212,255,1);
-}
-
-section .content .create .form-post .btn-post .btn {
-    background: rgba(0,212,255,1);
-    font-size: 22px;
-    width: auto;
-    border: 2px solid var(--primaryColor);
-    border-radius: 8px;
-}
-
-section .content .create .form-post .btn-post .btn:hover {
-    color: rgba(0,212,255,1);
-    background: white;
 }
 
 @media(max-width: 576px) {
@@ -608,7 +573,7 @@ section .content .table {
 section .content .table-comment .table-body tr {
     cursor: pointer;
     text-align: center;
-    background: rgba(255,224,131,1);
+    background: rgba(255,239,193);
 }
 
 section .content .table-comment .table-body tr:hover {
@@ -645,16 +610,31 @@ section .content .comment-date {
 }
 
 section .content .cards .card .card-com {
-    background: rgba(255,224,131,1);
+    background: rgba(255,224,131);
 }
 
 section .content .cards-comment {
     display: none;
    }
 
+.cards .card .card-header .card-comment {
+    text-align: center;
+}
+
 @media(max-width: 1200px) {
     section .content .cards-comment {
      display: inline;
+    }
+
+    section .content .cards-comment .card {
+        height: 35vh;
+    }
+
+    section .content .cards-comment .card-body .post-title {
+        font-size : 15px;
+        font-weight: bold;
+        height: 40px;
+
     }
 
     section .content .cards-comment .card-footer i {
@@ -670,27 +650,30 @@ section .content .form-comment label {
     font-size: 20px;
 }
 
-.form-comment .ql-toolbar {
-    background: rgba(255,224,131,1);
-}
-
-.form-comment .ql-editor {
-    background: #E9ECEF;
-}
-
 .form-comment .form-check {
     font-size: 20px;
 }
 
-section .content .edit .form-comment .btn {
+section .content .edit .form-comment .submit-btn {
     background: rgba(255,224,131,1);
-    margin-top: 20px;
+    width: auto;
+}
+
+section .content .edit .form-comment .submit-comment:hover {
+    color: rgba(255,224,131,1);
+}
+
+section .content .edit .form-comment .btn-comment .btn {
+    background: rgba(255,224,131,1);
     font-size: 22px;
     width: auto;
-    margin-top: 20px;
     border: 2px solid var(--primaryColor);
-    padding: 10px 10px;
     border-radius: 8px;
+}
+
+section .content .edit .form-comment .btn-comment .btn:hover {
+    color: rgba(255,224,131,1);
+    background: white;
 }
 
 /*-- ADMIN INDEX USER CONTENT PAGE --*/
@@ -704,11 +687,15 @@ section .content .user-btn {
 }
 
 section .content .user-btn:hover { 
-    color: rgba(220,53,69,1);
+    color: rgba(220,53,69);
 }
 
 section .content .table-user .table-body tr {
-    background: rgba(237,154,162,1);
+    background: rgba(244,194,199);
+}
+
+section .content .table-user .table-body tr:hover {
+    background: rgba(227,93,106);
 }
 
 section .content .table-user .user-img img {
@@ -725,35 +712,69 @@ section .content .table-user .table-body th,td {
     }
 }
 
+section .content .cards-user .card {
+    border: none;
+    box-shadow: rgba(77, 55, 55, 0.5) 0px 5px 15px;
+}
+
 section .content .cards .card .card-user {
-    background: rgba(237,154,162,1);  
+    background: rgba(237,154,162,1);
+}
+
+section .content .cards-user .card .card-body img {
+    width: 75px;
 }
 
 section .content .cards .card .card-body .card-userdetail {
-    margin-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
 section .content .cards-user {
-    display: none;
+    display: none;  
+}
+
+section .content .cards-user .card .card-body {
+    background: #bfbfbf;
 }
 
 @media(max-width: 1200px) {
     section .content .cards-user {
      display: inline;
     }
+
+    section .content .cards-user .card .card-body {
+        display: flex;
+        justify-content: center;
+    }
+
+    section .content .cards-user .card .card-userdetail {
+        text-align: center;
+    }
 }
 
 @media(max-width: 992px) {
-    section .content .cards .card .card-body h5 {
-        font-size: 16px;
+
+    section .content .cards-user .card .card-header .id-user {
+        font-size: 13px;
     }
 
-    section .content .cards .card .card-body h6 {
-            font-size: 12px;
-    }   
+    section .content .cards-user .card .card-header .card-status {
+        font-size: 13px;
+    }
+
+    section .content .cards-user .card .card-userdetail .card-username {
+        font-size: 15px;
+    }
+
+    section .content .cards-user .card .card-userdetail .card-email {
+        font-size: 13px;
+    }
+
+    section .content .cards-user .action-button span {
+        display: none;
+    }
  }
 
  @media(max-width: 768px) {
@@ -762,9 +783,9 @@ section .content .cards-user {
     }
  }
 
- /*-- ADMIN ADD USER CONTENT PAGE --*/
+/*-- ADMIN ADD USER CONTENT PAGE --*/
 
- section .content .form-user label {
+section .content .form-user label {
     color: rgba(237,154,162,1);
     margin-bottom: 5px;
     font-size: 20px;
@@ -844,7 +865,11 @@ section .content .tag-btn:hover {
 }
 
 section .content .table-tag .table-body tr {
-    background: rgba(140,195,169,1);
+    background: rgba(186,219,203);
+}
+
+section .content .table-tag .table-body tr:hover {
+    background: rgba(140,195,169);
 }
 
 @media(max-width: 576px) {
@@ -857,35 +882,35 @@ section .content .table-tag .table-body tr {
     }
  }
 
-/*-- ADMIN EDIT TAG CONTENT PAGE --*/
+ /*-- ADMIN ADD/EDIT TAG CONTENT PAGE --*/
 
-section .content .form-tag label {
-    color: rgba(140,195,169,1);
+ section .content .form-tag label {
+    color: rgba(25,135,84,1);
     margin-bottom: 5px;
     font-size: 20px;
 }
 
-.form-tag .ql-toolbar {
-    background: rgba(140,195,169,1);
+.form-tag .form-check {
+    font-size: 20px;
+}
+
+section .content .create .form-tag .btn-tag {
+    margin-top: 20px;
 }
 
 section .content .create .form-tag .submit-tag {
     background: rgba(140,195,169,1);
-    width: auto;
+    width: 150px;
+    
 }
 
 section .content .create .form-tag .submit-tag:hover {
     color: rgba(140,195,169,1);
 }
 
-section .content .create .form-tag .btn-tag {
-    margin-top: 80px;
-}
-
 section .content .create .form-tag .btn-tag .btn {
     background: rgba(140,195,169,1);
     font-size: 22px;
-    width: auto;
     border: 2px solid var(--primaryColor);
     border-radius: 8px;
 }
@@ -894,5 +919,6 @@ section .content .create .form-tag .btn-tag .btn:hover {
     color: rgba(140,195,169,1);
     background: white;
 }
+
 
 

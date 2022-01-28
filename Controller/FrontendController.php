@@ -42,6 +42,16 @@ class FrontendController extends BaseController{
         ]);
     }
 
+    public function aside(){
+
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
+
+        echo $this->twig->render("frontend/partials/asides.html.twig",[
+            'posts' => $posts
+        ]);
+    }
+
     public function page404(){
         echo $this->twig->render("frontend/page404.html.twig");
     }

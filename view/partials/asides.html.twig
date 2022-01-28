@@ -1,0 +1,40 @@
+<!-- ASIDE TAGS LIST -->
+                    <div class="col-xl-4">      
+                        <aside class="aside-tags mb-4">
+                            <h4 class="tags-title">Tags</h4> 
+                            <ul>
+                                <?php foreach ($tag as $tags) { ?>
+                                    <li><a href="tag_posts.php?id=<?= $tags['id'] ?>"><?= $tags['name']; ?></a></li>
+                                <?php } ?>
+                            </ul>   
+                        </aside>
+<!-- ASIDE RECENTS POSTS LIST -->
+                        <aside class="aside-posts mb-4">
+                            <h4 class="posts-title">Recent posts</h4> 
+                            <ul>    
+                                {% for post in posts %}
+                                    <li>
+                                        <div class="post-recent d-flex">
+                                            <img src="assets/images/{{ post.image }}" width="100px;">
+                                            <div class="meta-recent">
+                                                <span class="title-recent"><a href="?page=postsingle?id={{ post.postId }}">{{ post.title }}</a></span>
+                                                <span class="auth-recent fw-bolder"><a href="{{ post.user_id }}"><?= $posts['username'] ?></a></span>
+                                            </div>
+                                        </div>
+                                    </li> 
+                                {% endfor %}      
+                            </ul>     
+                        </aside>
+<!-- ASIDE RECENTS COMMENTS -->
+                        <aside class="aside-comments">
+                            <h4 class="posts-title">Recent comments</h4> 
+                            <ul>
+                                <?php foreach ($comment as $comments) { ?>
+                                    <li><a href="postsingle.php?id=<?=$comments['post_id']?>"><?= $comments['name_author'] ?><span> sur </span><?= $comments['title']; ?></a></li>
+                                <?php } ?>
+                            </ul>    
+                        </aside>                                      
+                    </div>
+                </div>
+            </div>
+        </section>

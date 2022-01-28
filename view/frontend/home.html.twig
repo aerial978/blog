@@ -16,11 +16,11 @@
                 <p class="subheading mb-5">PHP / Symfony Application Developer</p>
                 <div class="social-network col-lg-12 mb-5 mb-lg-0">
                     <a href="https://github.com/aerial978"><i class="fab fa-github-square"></i></a>
-                    <a href="https://fr.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://fr.linkedin.com/in/mh4125"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </header>
-        <!-- RECENTS POSTS / TAGS -->
+        <!-- RECENTS POSTS  -->
         <section class="recent-posts section">
             <div class="container">
                 <h2 class="section-heading text-center text-uppercase">Recent Posts</h2>
@@ -33,47 +33,31 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-8">   
-                    {{dump(posts)}} 
-                    {#  {% for post in posts %}
+                      {% for post in posts %}
                             <div class="row postcards g-0">
                                 <div class="col-md-4">
-                                    <img src="<?="../assets/images/".$datas['image'] ?>" class="img-fluid" alt="image post">
+                                    <img src="assets/images/{{ post.image }}" class="img-fluid" alt="image post">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <div class="card-top d-flex justify-content-between align-items-center mb-4">
                                             <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
-                                            <a href="user_posts.php?id=<?=$datas['user_id'] ?>">
-                                            <?= " ".$datas['username'] ?></a></span>
+                                            <a href="user_posts.php?id={{ post.user_id }}">
+                                            {{ post.username }}</a></span>
                                             <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span>{{ post.date_create }}</span></div>
-                                            <span class="badge"><a href="tag_posts.php?id=<?=$datas['tag_id']?>"><?=$datas['name']; ?></a></span>
+                                            <span class="badge"><a href="tag_posts.php?id=<?=$datas['tag_id']?>">{{ post.name }}</a></span>
                                         </div>
-                                        <h6 class="card-title fw-bold"><?= $datas['title'] ?></h6>
+                                        <h6 class="card-title fw-bold">{{ post.title }}</h6>
                                         <p class="card-text fs-5"><?= number_words($datas['content']); ?></p>
                                         <div class="card-meta d-flex justify-content-end">
-                                            <a href="postsingle.php?id=<?= $datas['postId'] ?>"class="btn btn-primary">Read more</a>
+                                            <a href="postsingle.php?id={{ post.postId }}" class="btn btn-primary">Read more</a>
                                         </div>
                                     </div>
                                 </div>
                             </div> 
-                        {% endfor %}  #}     
+                        {% endfor %}  
                     </div>
-                <!-- ASIDE TAGS LIST -->
-                    <div class="col-xl-4">
-                        <aside class="aside-tags">
-                            <h3 class="tags-title">Tags</h3> 
-                            <ul>
-                                <li><a href="#">Base de Données</a></li>
-                                <li><a href="#">GIT</a></li>
-                                <li><a href="#">HTML5/CSS3</a></li>
-                                <li><a href="#">Framework</a></li>
-                                <li><a href="#">PHP/Symfony</a></li>
-                                <li><a href="#">Javascript</a></li>
-                                <li><a href="#">Sécurité</a></li>
-                            </ul>     
-                        </aside>
-                    </div>
-                </div>
+                {% include "partials/asides.html.twig" %}
             </div>
         </section>
         <!-- ABOUT SECTION -->

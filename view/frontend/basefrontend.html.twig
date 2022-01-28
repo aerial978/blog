@@ -43,16 +43,27 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="?page=login">Sign in</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user-cog"></i> Admin</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="?page=dashboard">Dashboard</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
-                                </div>
-                            </li>
                         </ul>
                         {% endif %}
+                        <ul class="navbar-nav">
+                            {% if session.auth is defined %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% if session.pictures is not empty %}
+                                    <img src="../assets/images/{{ session.pictures }}" alt="user-pic" width="70px;">
+                                        {% else %}
+                                            <img src="../assets/images/default.png" alt="user-pic" width="70px;">
+                                        {% endif %}
+                                        {{ session.username }}
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="dashboard.php">Dashboard</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
+                                        </div>
+                                    </li>
+                            {% endif %}
+                        </ul>
                     </div>
                 </div> 
             </nav>
@@ -64,7 +75,7 @@
                 <div class="row">
                     <div class="social-network col-lg-12 mb-5 mb-lg-0">
                         <a href="https://github.com/aerial978"><i class="fab fa-github-square"></i></a>
-                        <a href="https://fr.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://fr.linkedin.com/in/mh4125"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>

@@ -11,15 +11,12 @@ body {
     margin: 0px;
     background: var(--secondaryColor);
     font-family: var(--primaryFontFamily);
+    text-decoration: none;
 }
 
 .message {
-    width: 100%;
-    text-align: center;
-    margin: 30px auto;
     padding: 8px;
     border-radius: 5px;
-    list-style: none;
     font-family: var(--secondaryFontFamily);
 }
 
@@ -72,21 +69,25 @@ body {
     color: var(--thirdColor) !important;
 }
 
-.nav-item .hidden {
-    visibility: hidden;
-}
-
 .nav-link {
     font-size: 20px;
     color: var(--secondaryColor) !important;
+}
+
+.nav-link:hover {
+    color: var(--thirdColor) !important;
 }
 
 .nav-link.active {
     color: var(--thirdColor) !important;
 }
 
-.nav-link:hover {
-    color: var(--thirdColor) !important;
+.navbar img {
+    border-radius: 50%;
+}
+
+.dropdown-menu {
+    width: 100%;
 }
 
 .dropdown-menu .dropdown-item {
@@ -141,7 +142,7 @@ body {
 /*-- HERO --*/
 
 .jumbotron {
-    height: 78vh;
+    height: 100vh;
     background: var(--thirdColor);
     background-size: cover;
     background-position: center;
@@ -156,7 +157,7 @@ body {
 }
 
 .intro {
-    padding-top: 120px;
+    padding-top: 175px;
 }
 
 .jumbotron img {
@@ -210,6 +211,26 @@ body {
     font-size: 2rem;
 }
 
+.jumbotron .social-network a {
+    color: var(--primaryColor);
+    font-size: 75px;
+    margin: 5px;
+}
+
+.jumbotron .social-network a:hover {
+    color: var(--secondaryColor);
+    background: var(--thirdColor);
+}
+
+@media(max-width: 768px) {
+    .jumbotron .social-network a {
+        color: var(--primaryColor);
+        font-size: 50px;
+        margin: 5px;
+    }
+
+}
+
 @media(max-width: 992px) {
     .heading {
         font-size: 44px;
@@ -228,23 +249,73 @@ body {
     margin: 0 20px 20px 20px;
 }
 
-.recent-posts .postcards .card-img-top {
-    height: 100%;
+.recent-posts .postcards img {
     border-radius: 10px 0 0 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.recent-posts .postcards .card-body .card-top .badge {
+    font-family: var(--secondaryFontFamily);
+    background: var(--thirdColor);
+    padding: 2px;
+    font-size: 10px;
+}
+
+.recent-posts .postcards .card-body .card-top .badge a {
+    color: var(--secondaryColor);
+}
+
+.recent-posts .postcards .card-body .card-top span a {
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.recent-posts .postcards .card-body .card-top .card-user a {
+    text-decoration: none;
+    color: var(--thirdColor);
+}
+
+.recent-posts .postcards .card-body .card-user a:hover {
+    color: var(--secondaryColor);
+    border: 1px solid none;
+    border-radius: 5px;
+}
+
+.recent-posts .postcards .card-body .card-date {
+    font-size: 13px;
+}
+
+.recent-posts .postcards .card-body .card-date span {
+    color: var(--thirdColor);
+}
+
+.recent-posts .postcards .card-body .card-top span a:hover {
+    color : var(--primaryColor);
+}
+
+.recent-posts .postcards .card-body .card-top .badge:hover {
+    background: var(--secondaryColor);
+    border: 1px solid var(--thirdColor);
+}
+
+.recent-posts .postcards .card-body .card-title, p {
+    font-size: 15px;
+    font-family: var(--secondaryFontFamily);
+}
+
+.recent-posts .postcards .card-body .btn {
+    padding: 5px;
+    font-size: 15px;
 }
 
 @media(max-width: 768px) {
-    .recent-posts .postcards .card-img-top {
+    .recent-posts .postcards img {
         border-radius: 10px 10px 0 0;
     }
 }
 
 .recent-posts .postcards .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: white;
-    height: 100%;
     border-radius: 0 10px 10px 0;
 }
 
@@ -258,20 +329,24 @@ body {
     font-family: var(--secondaryFontFamily);
 }
 
-.card-text {
-    font-family: var(--secondaryFontFamily);
-}
-
 .aside-tags,
-.aside-posts,
 .aside-comments {
    background: var(--thirdColor);
    border-radius: 10px;
    padding: 20px;
 }
 
+.aside-posts {
+    background: var(--primaryColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.aside-posts .posts-title {
+    color: var(--thirdColor);
+}
+
 .aside-tags ul,
-.aside-posts ul,
 .aside-comments ul {
     margin: 0px;
     padding: 0px;
@@ -279,8 +354,14 @@ body {
     border-top: 1px solid var(--primaryColor);
 }
 
+.aside-posts ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border-top: 1px solid var(--thirdColor);
+}
+
 .aside-tags ul li a,
-.aside-posts ul li a,
 .aside-comments ul li a {
     font-family: var(--secondaryFontFamily);
     font-size: 18px;
@@ -293,8 +374,96 @@ body {
     text-decoration: none;
 }
 
-.section-tags ul li a:hover {
+.aside-comments ul li a span {
+    font-style: italic;
     color: var(--primaryColor);
+}
+
+.aside-tags ul a:hover {
+    color: var(--primaryColor);
+}
+
+.aside-posts ul li {  
+    padding: 15px 0px 15px 0px;
+    border-bottom: 1px solid var(--thirdColor);
+    transition: all 0.3s; 
+}
+
+.aside-posts ul li img {
+    margin-right: 10px;
+}
+
+.aside-posts ul li .meta-recent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: var(--secondaryFontFamily);
+    color: var(--secondaryColor);
+    font-size: 15px;
+    width: 100%;
+}
+
+.aside-posts ul li .meta-recent .title-recent a {
+    color: var(--secondaryColor);
+    text-decoration: none;
+}
+
+.aside-posts ul li .meta-recent .title-recent a:hover {
+    color: var(--thirdColor);
+}
+
+.aside-posts ul li .auth-recent a {
+    display: flex;
+    justify-content: flex-end;
+    color: var(--thirdColor);
+    text-decoration: none;
+}
+
+.aside-posts ul li .auth-recent a:hover {
+    color: var(--secondaryColor);
+}
+
+.aside-posts ul li .recent-post {
+    position: relative;
+}
+
+.aside-posts ul li .recent-post img {
+    height: auto;
+}
+
+.aside-posts ul li .recent-post h6 a {
+    text-decoration: none;
+    color: var(--secondaryColor);
+    font-weight: bold;
+}
+
+.aside-posts ul li .recent-post h6 a:hover {
+    color: var(--primaryColor);
+}
+
+.aside-posts ul li .recent-post p a {
+    text-decoration: none;
+    color: var(--primaryColor);
+    font-weight: bold;
+}
+
+.aside-posts ul li .recent-post p a:hover {
+    color: var(--secondaryColor);
+}
+
+.aside-posts ul li .title-recents {
+    background-color: var(--thirdColor);
+    position: absolute;
+    bottom: 7px;
+    width: 100%;
+    opacity: 0.8;
+    z-index: 100;
+    color: var(--secondaryColor);
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 5px 5px 5px;
+    font-family: var(--secondaryFontFamily);
+    font-weight: bolder;
 }
 
 /*-- ABOUT SECTION --*/
@@ -422,35 +591,190 @@ body {
     color: #fff;
 }
 
-.footer a {
+.footer .social-network a {
+    color: var(--secondaryColor);
+    font-size: 75px;
     margin: 5px;
-    color: white;
 }
 
-.about a {
-    border-width: 2px;
-} 
-
-.about a:hover {
+.footer .social-network a:hover {
     color: var(--thirdColor);
     background: var(--primaryColor);
-    border: none;
 }
 
-/* -- LIST & SINGLE POST PAGE -- */
+@media(max-width: 768px) {
+    .footer .social-network a {
+        font-size: 50px;
+    }
+
+}
+
+/* -- LIST, SINGLE & BY TAG POST PAGE -- */
 
 .single-section,
-.list-section {
+.list-section,
+.tag-section,
+.user-section {
     margin-top: 140px;
+}
+
+.list-section .card {
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+    background: var(--secondaryColor);
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+.list-section .card .card-img-top { 
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+.list-section .card .card-body .card-top .card-user a {
+    text-decoration: none;
+    color: var(--thirdColor);
+}
+
+.list-section .card .card-body .card-top .card-user a:hover {
+    color: var(--primaryColor);
+}
+
+.list-section .card-body .card-top span a {
+    font-size: 13px;
+}
+
+.list-section .card .card-body .card-top .badge {
+    font-family: var(--secondaryFontFamily);
+    background: var(--thirdColor);
+    padding: 2px;
+    font-size: 10px;
+}
+
+.list-section .card .card-body .card-top .badge:hover {
+    background: var(--secondaryColor);
+    border: 1px solid var(--thirdColor);
+}
+
+.list-section .card .card-body .badge a {
+    text-decoration: none;
+    color: var(--secondaryColor);
+}
+
+.list-section .card .card-body .badge a:hover {
+    color : var(--thirdColor);
+}
+
+.list-section .card-body .card-date {
+    font-size: 13px;
+}
+
+.list-section .card-body .card-date span {
+    color: var(--thirdColor);
+}
+
+.list-section .card .card-body .card-title {
+    font-family : var(--secondaryFontFamily);
+    font-weight: bold;
+}
+
+.list-section .card .card-body .card-content {
+    height: 180px;  
+}
+
+@media(max-width: 992px) {
+    .list-section .card .card-body .card-content {
+        height: 220px;
+    }
+
+}
+
+@media(max-width: 768px) {
+    .list-section .card .card-body .card-content {
+        height: 180px;
+    }
+
+}
+
+@media(max-width: 576px) {
+    .list-section .card .card-body .card-content {
+        height: 210px;
+    }
+
+}
+
+.list-section .card-body .btn {
+    padding: 5px;
+    font-size: 15px;
+}
+
+.single-section .badge {
+    font-family: var(--secondaryFontFamily);
+    background: var(--thirdColor);
+}
+
+.single-section span a {
+    text-decoration: none;
+    color: var(--secondaryColor);
+}
+
+.single-section span a:hover {
+    color : var(--thirdColor);
+}
+
+.single-section .badge:hover {
+    background: var(--secondaryColor);
+    border: 1px solid var(--thirdColor)
+}
+
+.single-section h6 a {
+    text-decoration: none;
+    color: var(--thirdColor);
+}
+
+.single-section h6 a:hover {
+    color : var(--primaryColor);
+    border: 1px solid none;
+    border-radius: 5px;
+}
+
+.single-section figure img {
+    width: 850px;
+}
+
+.comment-list {
+    margin-bottom: 40px;
+    padding: 10px;
+}
+
+.comment-list .comment-id {
+    margin-bottom : 15px;
+}
+
+.comment-id img {
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 15px;
 }
 
 .comment-area {
     font-family: var(--secondaryFontFamily);
 }
 
-.comment-area h3 {
-    border-bottom: solid 1px #858585;
-    padding-bottom: 10px;
+.comment-area .comment-number {
+    color: var(--thirdColor);
+    border-bottom: 1px solid var(--primaryColor);
+    padding-bottom: 8px;
+}
+
+.comment-area .comment-list .comment-datetime {
+    font-style: italic;
+    color: grey;
+}
+
+.comment-area .comment-form {
+    border-bottom: 1px solid var(--primaryColor);
+    padding-bottom: 8px;
 }
 
 .comment-area label {
@@ -468,20 +792,6 @@ body {
     margin-bottom: 30px;
 }
 
-.comment-list {
-    margin-bottom: 40px;
-}
-
-.comment-list .comment-id {
-    margin-bottom : 15px;
-}
-
-.comment-id img {
-    width: 50px;
-    border-radius: 50px;
-    margin-right: 15px;
-}
-
 /*-- SIGN PAGE --*/
 
 .sign {
@@ -491,7 +801,7 @@ body {
 
 .sign-form {
     background: white;
-    margin-top: 80px;
+    margin-top: 75px;
     padding: 25px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
@@ -499,7 +809,8 @@ body {
 
 .sign-title {
     border: 3px solid var(--thirdColor);
-    padding: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
     border-radius: 5px;
     color: var(--primaryColor);
 }
@@ -560,6 +871,237 @@ body {
     font-weight: bold;
     text-decoration: none;
 }
+
+/*-- 404 PAGE --*/
+
+.error-section .wrapper {
+    background: var(--secondaryColor);
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.error-section .wrapper h1 {
+    font-size: 100px;
+    color: var(--thirdColor);
+}
+
+.error-section .wrapper h2 {
+    color: var(--primaryColor);
+}
+
+.error-section .wrapper img {
+    width: 450px;
+}
+
+.error-section .wrapper h3 {
+    color: var(--primaryColor);
+}
+
+.error-section .wrapper button {
+    font-size: 25px;
+    width: 250px;
+    height: 50px;
+    background: var(--thirdColor);
+    border-radius: 8px;
+    border: none;
+}
+
+.error-section .wrapper button a {
+    text-decoration: none;
+    color: var(--secondaryColor);
+}
+
+/*-- USER POSTS PAGE --*/
+
+.user-section .card {
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+    background: var(--secondaryColor);
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+.user-section .card .card-img-top { 
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+.user-section .card .card-body .card-top .card-user a {
+    text-decoration: none;
+    color: var(--thirdColor);
+}
+
+.user-section .card .card-body .card-top .card-user a:hover {
+    color: var(--primaryColor);
+}
+
+.user-section .card-body .card-top span a {
+    font-size: 13px;
+}
+
+.user-section .card .card-body .card-top .badge {
+    font-family: var(--secondaryFontFamily);
+    background: var(--thirdColor);
+    padding: 2px;
+    font-size: 10px;
+}
+
+.user-section .card .card-body .card-top .badge:hover {
+    background: var(--secondaryColor);
+    border: 1px solid var(--thirdColor);
+}
+
+.user-section .card .card-body .badge a {
+    text-decoration: none;
+    color: var(--secondaryColor);
+}
+
+.user-section .card .card-body .badge a:hover {
+    color : var(--thirdColor);
+}
+
+.user-section .card-body .card-date {
+    font-size: 13px;
+}
+
+.user-section .card-body .card-date span {
+    color: var(--thirdColor);
+}
+
+.user-section .card .card-body .card-title {
+    font-family : var(--secondaryFontFamily);
+    font-weight: bold;
+}
+
+.user-section .card .card-body .card-content {
+    height: 180px;  
+}
+
+@media(max-width: 992px) {
+    .user-section .card .card-body .card-content {
+        height: 220px;
+    }
+
+}
+
+@media(max-width: 768px) {
+    .user-section .card .card-body .card-content {
+        height: 180px;
+    }
+
+}
+
+@media(max-width: 576px) {
+    .user-section .card .card-body .card-content {
+        height: 210px;
+    }
+
+}
+
+.user-section .card-body .btn {
+    padding: 5px;
+    font-size: 15px;
+}
+
+/*-- TAGS POSTS PAGE --*/
+
+.tag-section .card {
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+    background: var(--secondaryColor);
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+.tag-section .card .card-img-top { 
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tag-section .card .card-body .card-top .card-user a {
+    text-decoration: none;
+    color: var(--thirdColor);
+}
+
+.tag-section .card .card-body .card-top .card-user a:hover {
+    color: var(--primaryColor);
+}
+
+.tag-section .card-body .card-top span a {
+    font-size: 13px;
+}
+
+.tag-section .card .card-body .card-top .badge {
+    font-family: var(--secondaryFontFamily);
+    background: var(--thirdColor);
+    padding: 2px;
+    font-size: 10px;
+}
+
+.tag-section .card .card-body .card-top .badge:hover {
+    background: var(--secondaryColor);
+    border: 1px solid var(--thirdColor);
+}
+
+.tag-section .card .card-body .badge a {
+    text-decoration: none;
+    color: var(--secondaryColor);
+}
+
+.tag-section .card .card-body .badge a:hover {
+    color : var(--thirdColor);
+}
+
+.tag-section .card-body .card-date {
+    font-size: 13px;
+}
+
+.tag-section .card-body .card-date span {
+    color: var(--thirdColor);
+}
+
+.tag-section .card .card-body .card-title {
+    font-family : var(--secondaryFontFamily);
+    font-weight: bold;
+}
+
+.tag-section .card .card-body .card-content {
+    height: 180px;  
+}
+
+@media(max-width: 992px) {
+    .tag-section .card .card-body .card-content {
+        height: 220px;
+    }
+
+}
+
+@media(max-width: 768px) {
+    .tag-section .card .card-body .card-content {
+        height: 180px;
+    }
+
+}
+
+@media(max-width: 576px) {
+    .tag-section .card .card-body .card-content {
+        height: 210px;
+    }
+
+}
+
+.tag-section .card-body .btn {
+    padding: 5px;
+    font-size: 15px;
+}
+
+
+
+
+
 
 
 
