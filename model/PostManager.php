@@ -15,7 +15,7 @@ class PostManager extends Manager
         LEFT JOIN tags ON posts.tag_id = tags.id 
         LEFT JOIN users ON posts.user_id = users.id 
         WHERE status_post = 2 ORDER BY date_create DESC');
-        $post = $req->FetchAll();
+        $post = $req->fetchAll();
 
         return $post;
     }

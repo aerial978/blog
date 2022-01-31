@@ -1,7 +1,9 @@
 <?php
 
 require_once 'BaseController.php';
-require_once 'Model/PostManager.php';
+require_once 'model/PostManager.php';
+require_once 'model/TagManager.php';
+require_once 'model/CommentManager.php';
 
 
 class FrontendController extends BaseController{
@@ -11,9 +13,17 @@ class FrontendController extends BaseController{
         $postManager = new PostManager();
         $posts = $postManager->getPosts();
 
+        $tagManager = new TagManager();
+        $tags = $tagManager->getTags();
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getComments();
+
         echo $this->twig->render("frontend/home.html.twig",[
             'activemenu' => 'homemenu',
-            'posts' => $posts
+            'posts' => $posts,
+            'tags' => $tags,
+            'comments' => $comments
         ]);
 
     }
@@ -39,16 +49,6 @@ class FrontendController extends BaseController{
     public function tagposts(){
         echo $this->twig->render("frontend/tagposts.html.twig",[
             'activemenu' => 'postslistmenu'
-        ]);
-    }
-
-    public function aside(){
-
-        $postManager = new PostManager();
-        $posts = $postManager->getPosts();
-
-        echo $this->twig->render("frontend/partials/asides.html.twig",[
-            'posts' => $posts
         ]);
     }
 
