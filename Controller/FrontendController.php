@@ -28,9 +28,24 @@ class FrontendController extends BaseController{
 
     }
 
-    public function postslist(){
+    public function postslist()
+    {
+
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
+
+        $tagManager = new TagManager();
+        $tags = $tagManager->getTags();
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getComments();
+
         echo $this->twig->render("frontend/postslist.html.twig",[
-            'activemenu' => 'postslistmenu' 
+            'activemenu' => 'postslistmenu',
+            'posts' => $posts,
+            'tags' => $tags,
+            'comments' => $comments
+
         ]);
     }
 

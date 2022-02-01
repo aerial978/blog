@@ -11,7 +11,7 @@ class FormManager extends Manager
 
     public function contactForm()
     {
-        $this->error = array();
+        
 
     }
 }
