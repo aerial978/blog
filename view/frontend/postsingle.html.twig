@@ -1,110 +1,95 @@
 {% extends "frontend/basefrontend.html.twig" %}
 {% block title %} Post single {% endblock %}
 {% block body %}
-        <!-- SINGLE POST -->
         <section class="single-section">
             <div class="container">
                 <div class="row">
+                {% for id, singlepost in singleposts %}
                     <div class="col-xl-12">
                         <div class="mb-4">
-                            <a class="badge bg-success text-decoration-none mb-2" href="#!">Tag</a>
-                            <h2 class="fw-bolder mb-2">Single Post</h2>
-                            <div class="text-muted fst-italic mb-2">Posted on date, 2021 by User</div>
+                            <span class="badge mb-3"><a href="tag_posts.php?id=<?=$data['tag_id']?>">{{ 'id' : singlepost.name }}</a></span>
+                            <h4 class="fw-bolder mb-2"><?= $data['title']; ?></h4>
+                            <h6 class="mb-2 fst-italic">By <a href="user_posts.php?id=<?=$data['user_id'] ?>"><?=$data['username'] ?></a></h6>
+                            <div class="text-muted fst-italic mb-2"><?php echo 'Posted on' .' '. $data['date_create']; ?></div>
                         </div>
                     </div>
+                {% endfor %}
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-8">
-                        <figure class="mb-4"><img class="img-fluid rounded" src="assets/images/lorem.jpg" alt="image post" /></figure>
+                        <figure class="mb-4"><img src="<?="../assets/images/".$data['image']; ?>" alt="image post" class="img-fluid rounded" ></figure>
                         <div class="mb-1">
-                            <p class="card-text fw-bolder fs-4 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p class="card-text fs-5 mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                            <p class="card-text fs-5 mb-4">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                            <p class="card-text fs-5 mb-4">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                            <p class="card-text fs-5 mb-4">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+                            <p class="card-text fw-bolder fs-4 mb-4"><?= $data['headline']; ?></p>
+                            <p class="card-text fs-5 mb-4"><?= $data['content']; ?></p>
                         </div>
-                        <!-- COMMENTS -->
-                        <div class="comment-area mt-5 mb-5">
+            <!-- COMMENTS AREA -->
+                        <div class="comment-area mt-5 mb-5" id="comments">
                             <div class="mb-4">
-                                <h3 class="fw-bolder">2 comments</h3>
+                                <h4 class="fw-bolder">
+                                    <?php $req = $bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); ?>
+                                    <?php while($count=$req->fetch()) { ?>
+                                    <p class="comment-number"><?= $count['total'] .' comment(s)'; } ?></p>
+                                </h4>
                             </div>
+                            <?php $req = $bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y à %H/%i/%s\') AS date_comment FROM comments 
+                            WHERE post_id = ? AND status_comm = 2 ORDER BY date_comment DESC'); ?>
+                            <?php $req->execute([$_GET['id']]); ?>
+                            <?php $comments = $req->fetchAll() ?>
+                            <?php foreach($comments as $comment): ?>                
+                            <div class="comment-list" style="background-color: #e5e5e5;">
+                                <div class="comment-id d-flex justify-content flex-start">
+                                    <div class="meta-area d-flex flex-column">
+                                        <div class="comment-author fw-bolder"><?= $comment['name_author'] ?></div>
+                                        <div class="comment-datetime"><?= $comment['date_comment'] ?></div>
+                                    </div>
+                                </div>
+                                <div class="comment-content"><?= $comment['comment'] ?></div>
+                            </div>
+                            <?php endforeach; ?>
+                            <div class="mb-4">
+                                <h3 class="comment-form fw-bolder text-primary">Leave a comment</h3>
+                            </div>
+                            <div class="comment-moderate mb-4">
+                                <h6 class="fw-bolder">Comments on this blog are moderated.</h6>
+                                <p>Your email address will not be published. Required fields are indicated with *</p>
+                            </div>                      
                             <form method="post" action="">         
                                 <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="author">Author</label>
-                                        <input type="text" class="form-control" name="author" id="author" required>
+                                    <?php if(!empty($errors)): ?>
+                                        <div class="alert alert-danger alert-dismissible show" role="alert">
+                                        <p>You have not completed the form correctly :</p>
+                                            <ul>
+                                                <?php foreach($errors as $error): ?>
+                                                    <li><?= $error; ?></li>  
+                                                <?php endforeach; ?>
+                                            </ul>
+                                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
+                                        </div>    
+                                    <?php endif; ?>
+                                    <div class="form-group col-md-12">
+                                        <label for="author">Name *</label>
+                                        <input type="text" class="form-control" name="name_author" id="name_author">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="author">Email *</label>
+                                        <input type="text" class="form-control" name="email_author" id="email_author">
                                     </div>
                                     <div class="form-group">
-                                        <label for="message">Message</label>
-                                        <textarea class="form-control" id="message" rows="5" required></textarea>
-                                    </div>
-                                </div> 
-                                <button type="submit" class="btn btn-primary">Submit</button>  
-                            </form>
-                            <hr>
-                            <div class="comment-list">
-                                <div class="comment-id d-flex justify-content flex-start">
-                                    <img src="assets/images/comment-avatar.png" alt="comment avatar">
-                                    <div class="meta-area d-flex flex-column">
-                                        <div class="comment-author">Dave</div>
-                                        <div class="comment-datetime">6 days ago</div>
+                                        <label for="message">Comment *</label>
+                                        <textarea class="form-control" name="comment" id="comment" rows="5"></textarea>
                                     </div>
                                 </div>
-                                <div class="comment-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="comment-id d-flex justify-content flex-start">
-                                    <img src="assets/images/comment-avatar.png" alt="comment avatar">
-                                    <div class="meta-area d-flex flex-column">
-                                        <div class="comment-author">Mike</div>
-                                        <div class="comment-datetime">10 days ago</div>
-                                    </div>
-                                </div>
-                                <div class="comment-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                            </div>
+                                <button type="submit" name="submit" class="comment-btn btn btn-primary" href="#comments">Send</button>
+                            </form>  
                         </div>
                     </div>
+
                     <div class="col-xl-3">
-                        <aside class="aside-tags mb-4">
-                            <h5 class="tags-title">Tags</h5> 
-                            <ul>
-                                <li><a href="#">Database</a></li>
-                                <li><a href="#">Git/Github</a></li>
-                                <li><a href="#">HTML5/CSS3</a></li>
-                                <li><a href="#">Framework</a></li>
-                                <li><a href="#">PHP/Symfony</a></li>
-                                <li><a href="#">Javascript</a></li>
-                                <li><a href="#">Sécurity</a></li>
-                            </ul>     
-                        </aside>
-                        <aside class="aside-posts mb-4">
-                            <h5 class="posts-title">Recent posts</h5> 
-                            <ul>
-                                <li><a href="#">Feature post</a></li>
-                                <li><a href="#">Feature post</a></li>
-                                <li><a href="#">Feature post</a></li>
-                                <li><a href="#">Feature post</a></li>
-                                <li><a href="#">Feature post</a></li>
-                                <li><a href="#">Feature post</a></li>
-                                <li><a href="#">Feature post</a></li>
-                            </ul>     
-                        </aside>
-                        <aside class="aside-comments">
-                            <h5 class="posts-title">Recent comments</h5> 
-                            <ul>
-                                <li><a href="postsingle.html">Dave le 15/09/2021 dans feature post</a></li>
-                                <li><a href="postsingle.html">Mike le 13/09/2021 dans feature post</a></li>
-                                <li><a href="#">Léa le 10/09/2021 dans feature post</a></li>
-                                <li><a href="#">Paul le 05/09/2021 dans feature post</a></li>
-                            </ul>     
-                        </aside>
+                        {% include "partials/asides.html.twig" %}  
                     </div>
+
                 </div>
             </div>       
         </section>

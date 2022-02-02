@@ -50,8 +50,25 @@ class FrontendController extends BaseController{
     }
 
     public function postsingle(){
+
+        $postManager = new PostManager();
+        $singleposts = $postManager->singlePost($_GET['id']);
+
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
+
+        $tagManager = new TagManager();
+        $tags = $tagManager->getTags();
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getComments();
+
         echo $this->twig->render("frontend/postsingle.html.twig",[
-            'activemenu' => 'postslistmenu' 
+            'activemenu' => 'postslistmenu',
+            'singleposts' => $singleposts,
+            'posts' => $posts,
+            'tags' => $tags,
+            'comments' => $comments
         ]);
     }
 

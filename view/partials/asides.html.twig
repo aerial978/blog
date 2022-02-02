@@ -4,7 +4,7 @@
                             <h4 class="tags-title">Tags</h4> 
                             <ul>
                                 {% for tag in tags %}
-                                    <li><a href="?page=tagposts"{{ tag.id }}>{{ tag.name }}</a></li>
+                                    <li><a href="?page=tagposts&id="{{ tag.id }}>{{ tag.name }}</a></li>
                                 {% endfor %}
                             </ul>   
                         </aside>
@@ -17,8 +17,8 @@
                                         <div class="post-recent d-flex">
                                             <img src="assets/images/{{ post.image }}" width="100px;">
                                             <div class="meta-recent">
-                                                <span class="title-recent"><a href="?page=postsingle"{{ post.postId }}>{{ post.title }}</a></span>
-                                                <span class="auth-recent fw-bolder"><a href="?page=userposts"{{ post.user_id }}>{{ post.username }}</a></span> 
+                                                <span class="title-recent"><a href="?page=postsingle&id="{{ post.postId }}>{{ post.title }}</a></span>
+                                                <span class="auth-recent fw-bolder"><a href="?page=userposts&id="{{ post.user_id }}>{{ post.username }}</a></span> 
                                             </div>
                                         </div>
                                     </li> 
@@ -30,7 +30,7 @@
                             <h4 class="posts-title">Recent comments</h4> 
                             <ul>
                                 {% for comment in comments %}
-                                    <li><a href="?page=postsingle"{{ comment.post_id }}>{{ comment.name_author }}<span> sur </span>{{ comment.title }}</a></li>
+                                    <li><a href="?page=postsingle&id="{{ comment.post_id }}>{{ comment.name_author }}<span> sur </span>{{ comment.title }}</a></li>
                                 {% endfor %}
                             </ul>    
                         </aside>                                      
