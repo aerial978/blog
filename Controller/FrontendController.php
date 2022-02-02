@@ -30,7 +30,6 @@ class FrontendController extends BaseController{
 
     public function postslist()
     {
-
         $postManager = new PostManager();
         $posts = $postManager->getPosts();
 
@@ -45,14 +44,10 @@ class FrontendController extends BaseController{
             'posts' => $posts,
             'tags' => $tags,
             'comments' => $comments
-
         ]);
     }
 
     public function postsingle(){
-
-        $postManager = new PostManager();
-        $singleposts = $postManager->singlePost($_GET['id']);
 
         $postManager = new PostManager();
         $posts = $postManager->getPosts();
@@ -63,18 +58,38 @@ class FrontendController extends BaseController{
         $commentManager = new CommentManager();
         $comments = $commentManager->getComments();
 
+        $commentManager = new CommentManager();
+        $listcomments = $commentManager->listComments();
+
+        $commentManager = new CommentManager();
+        $countcomments = $commentManager->countComments();
+
         echo $this->twig->render("frontend/postsingle.html.twig",[
             'activemenu' => 'postslistmenu',
-            'singleposts' => $singleposts,
             'posts' => $posts,
             'tags' => $tags,
-            'comments' => $comments
+            'comments' => $comments,
+            'listcomments' => $listcomments,
+            'countcomments' => $countcomments
         ]);
     }
 
     public function userposts(){
+
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
+
+        $tagManager = new TagManager();
+        $tags = $tagManager->getTags();
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getComments();
+
         echo $this->twig->render("frontend/userposts.html.twig",[
-            'activemenu' => 'postslistmenu'
+            'activemenu' => 'postslistmenu',
+            'posts' => $posts,
+            'tags' => $tags,
+            'comments' => $comments
         ]);
     }
 

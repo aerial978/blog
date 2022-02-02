@@ -20,7 +20,7 @@ class PostManager extends Manager
         return $post;
     }
 
-    public function number_words($string, $limit = 25, $fin = ' ...')
+    public function number_words($string, $limit = 25, $fin = ' ...') /* off */
     {
     preg_match('/^\s*+(?:\S++\s*+){1,' .$limit. '}/u', $string, $matches);
     
@@ -30,7 +30,7 @@ class PostManager extends Manager
     return rtrim($matches[0]).$fin;
     }
 
-    public function singlePost($id)
+    public function singlePost($id) /* off */
     {
         $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
         LEFT JOIN tags ON posts.tag_id = tags.id 

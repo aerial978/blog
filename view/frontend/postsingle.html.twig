@@ -4,16 +4,14 @@
         <section class="single-section">
             <div class="container">
                 <div class="row">
-                {% for id, singlepost in singleposts %}
                     <div class="col-xl-12">
                         <div class="mb-4">
-                            <span class="badge mb-3"><a href="tag_posts.php?id=<?=$data['tag_id']?>">{{ 'id' : singlepost.name }}</a></span>
+                            <span class="badge mb-3"><a href="tag_posts.php?id=<?=$data['tag_id']?>"></a></span>
                             <h4 class="fw-bolder mb-2"><?= $data['title']; ?></h4>
                             <h6 class="mb-2 fst-italic">By <a href="user_posts.php?id=<?=$data['user_id'] ?>"><?=$data['username'] ?></a></h6>
                             <div class="text-muted fst-italic mb-2"><?php echo 'Posted on' .' '. $data['date_create']; ?></div>
                         </div>
                     </div>
-                {% endfor %}
                 </div>
             </div>
             <div class="container">
@@ -28,26 +26,22 @@
                         <div class="comment-area mt-5 mb-5" id="comments">
                             <div class="mb-4">
                                 <h4 class="fw-bolder">
-                                    <?php $req = $bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); ?>
-                                    <?php while($count=$req->fetch()) { ?>
-                                    <p class="comment-number"><?= $count['total'] .' comment(s)'; } ?></p>
+                                {% for count in counts %}
+                                    <p class="comment-number">{{ count.total }}' comment(s)'</p>
+                                {% endfor %}
                                 </h4>
                             </div>
-                            <?php $req = $bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y à %H/%i/%s\') AS date_comment FROM comments 
-                            WHERE post_id = ? AND status_comm = 2 ORDER BY date_comment DESC'); ?>
-                            <?php $req->execute([$_GET['id']]); ?>
-                            <?php $comments = $req->fetchAll() ?>
-                            <?php foreach($comments as $comment): ?>                
+                            {% for comment in comments %}                
                             <div class="comment-list" style="background-color: #e5e5e5;">
                                 <div class="comment-id d-flex justify-content flex-start">
                                     <div class="meta-area d-flex flex-column">
-                                        <div class="comment-author fw-bolder"><?= $comment['name_author'] ?></div>
-                                        <div class="comment-datetime"><?= $comment['date_comment'] ?></div>
+                                        <div class="comment-author fw-bolder">{{ comment.name_author }}</div>
+                                        <div class="comment-datetime">{{ comment.date_comment }}</div>
                                     </div>
                                 </div>
-                                <div class="comment-content"><?= $comment['comment'] ?></div>
+                                <div class="comment-content">{{ comment.comment }}</div>
                             </div>
-                            <?php endforeach; ?>
+                            {% endfor %}
                             <div class="mb-4">
                                 <h3 class="comment-form fw-bolder text-primary">Leave a comment</h3>
                             </div>

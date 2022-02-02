@@ -18,4 +18,25 @@ class CommentManager extends Manager
 
         return $comment;
     }
+
+    public function listComments() /* off */
+    {
+        $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y à %H/%i/%s\') AS date_comment FROM comments 
+        WHERE post_id = ? AND status_comm = 2 ORDER BY date_comment DESC');
+        $req->execute([$_GET['id']]);
+        $comments = $req->fetchAll();
+
+        return $comments;
+
+    }
+
+    public function countComments() /* off */
+    {
+        $req = $this->bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); 
+        $count=$req->fetchAll();
+
+        return $count;
+    }
+
+
 }
