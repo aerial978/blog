@@ -9,6 +9,23 @@ class BaseController{
             'debug'=>true
        ]);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-        $this->twig->addGlobal('session',$_SESSION);
+        /*$this->twig->addGlobal('session',$_SESSION);*/
+
+        $this->globalVariables();
+    }
+
+    public function globalVariables()
+    {
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
+        $this->twig->addGlobal('posts',$posts);
+
+        $tagManager = new TagManager();
+        $tags = $tagManager->getTags();
+        $this->twig->addGlobal('tags',$tags);
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getComments();
+        $this->twig->addGlobal('comments',$comments);
     }
 }
