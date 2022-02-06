@@ -4,27 +4,27 @@
 <!-- POSTS LIST BY USER -->
         <section class="user-section">
             <div class="container">
-                <div class="title_tag mb-4 h4"><?= $user['username']; ?></div> 
+                <div class="title_tag mb-4 h4">{{ user.username }}</div> 
                 <div class="row">
                     <div class="col-xl-9">
                         <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
-                            {% for post in posts %}
+                            {% for userpost in userposts %}
                                 <div class="col">
                                     <div class="card">
-                                        <img src="assets/images/{{ post.image }}" alt="img post" class="card-img-top">
+                                        <img src="assets/images/{{ userpost.image }}" alt="img post" class="card-img-top">
                                         <div class="card-body">    
                                             <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
-                                                <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>{{ post.username }}</span>
-                                                <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span>{{ post.date_create }}</span></div>
-                                                <span class="badge"><a href="?page=tagposts&id={{ post.tag_id }}">{{ post.name }}</a></span>
+                                                <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>{{ userpost.username }}</span>
+                                                <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span>{{ userpost.date_create }}</span></div>
+                                                <span class="badge"><a href="?page=tagposts&id={{ userpost.tag_id }}">{{ userpost.name }}</a></span>
                                             </div>
                                             <div class="card-content">
-                                                <h6 class="card-title">{{ post.title }}</h6>
-                                                <p class="card-head">{{ post.headline }}</p>
+                                                <h6 class="card-title">{{ userpost.title }}</h6>
+                                                <p class="card-head">{{ userpost.headline }}</p>
                                                 <p class="card-text"><span><?= number_words($datas['content']); ?></span></p>
                                             </div>
                                             <div class="card-meta d-flex justify-content-end">       
-                                                <a class="btn btn-primary" href="?page=postsingle&id={{ post.postId }}" role="button">Read More</a>
+                                                <a class="btn btn-primary" href="?page=postsingle&id={{ userpost.postId }}" role="button">Read More</a>
                                             </div>
                                         </div>        
                                     </div>

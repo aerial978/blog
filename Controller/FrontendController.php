@@ -4,6 +4,7 @@ require_once 'BaseController.php';
 require_once 'model/PostManager.php';
 require_once 'model/TagManager.php';
 require_once 'model/CommentManager.php';
+require_once 'model/UserManager.php';
 
 
 class FrontendController extends BaseController{
@@ -30,21 +31,22 @@ class FrontendController extends BaseController{
             $postManager = new PostManager();
             $post = $postManager->singlePost($_GET['id']);
 
+            $commentManager = new CommentManager();
+            $listcomments = $commentManager->listComments($_GET['id']);
+
             if($post == NULL) {
                 header('location: ?page=page404');
             }
 
+            /*
             $commentManager = new CommentManager();
-            $listcomments = $commentManager->listComments($_GET['id']); /* off */
-
-            $commentManager = new CommentManager();
-            $countcomments = $commentManager->countComments(); /* off */
+            $countcomments = $commentManager->countComments(); off */
 
             echo $this->twig->render("frontend/postsingle.html.twig",[
                 'activemenu' => 'postslistmenu',
                 'post' => $post,
-                'listcomments' => $listcomments,
-                'countcomments' => $countcomments
+                'listcomments' => $listcomments
+               /* 'countcomments' => $countcomments*/
             ]);
 
         } else {
@@ -54,9 +56,29 @@ class FrontendController extends BaseController{
 
     public function userposts(){
 
+        if(isset($_GET['id']) && !empty($_GET['id'])) {
+
+            $userManager = new UserManager();
+            $user = $userManager->getUser($_GET['id']);
+
+            $postManager = new PostManager();
+            $userposts = $postManager->userPost($_GET['id']);
+
+            if($userposts == NULL) {
+                header('location: ?page=page404');
+            }
+
+
         echo $this->twig->render("frontend/userposts.html.twig",[
             'activemenu' => 'postslistmenu',
+            'user' => $user,
+            'userposts' => $userposts
+            
         ]);
+
+        } else {
+            header('location: ?page=page404');
+        }
     }
 
     public function tagposts(){

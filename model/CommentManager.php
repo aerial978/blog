@@ -19,11 +19,11 @@ class CommentManager extends Manager
         return $comment;
     }
 
-    public function listComments($id) /* off */
+    public function listComments($post_id)
     {
         $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y à %H/%i/%s\') AS date_comment FROM comments 
-        WHERE post_id = ? AND status_comm = 2 ORDER BY date_comment DESC');
-        $req->execute(array($id));
+        WHERE post_id = ? /* AND status_comm = 2 */ ORDER BY date_comment DESC');
+        $req->execute(array($post_id));
         $comments = $req->fetchAll();
 
         return $comments;

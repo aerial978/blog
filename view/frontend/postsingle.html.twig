@@ -31,19 +31,22 @@
                                     <p class="comment-number">{{ count.total }}' comment(s)'</p>
                                 {% endfor %}
                                 </h4>
-                            </div>             
+                            </div>
+                            {% for listcomment in listcomments %}           
                             <div class="comment-list" style="background-color: #e5e5e5;">
                                 <div class="comment-id d-flex justify-content flex-start">
                                     <div class="meta-area d-flex flex-column">
-                                        <div class="comment-author fw-bolder">{{ listcomments.name_author }}</div>
-                                        <div class="comment-datetime">{{ listcomments.date_comment }}</div>
+                                        <div class="comment-author fw-bolder">{{ listcomment.name_author }}</div>
+                                        <div class="comment-datetime">{{ listcomment.date_comment }}</div>
                                     </div>
                                 </div>
-                                <div class="comment-content">{{ comment.comment }}</div>
+                                <div class="comment-content">{{ listcomment.comment }}</div>
                             </div>
+                            {% endfor %}
                             <div class="mb-4">
                                 <h3 class="comment-form fw-bolder text-primary">Leave a comment</h3>
                             </div>
+                            
                             <div class="comment-moderate mb-4">
                                 <h6 class="fw-bolder">Comments on this blog are moderated.</h6>
                                 <p>Your email address will not be published. Required fields are indicated with *</p>
