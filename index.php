@@ -4,6 +4,12 @@ $_GET["page"] == "home";
 
 switch ($_GET["page"]) {
 
+    case 'home':
+        require "Controller/FrontendController.php";
+        $homeController = new FrontendController();
+        $homeController->home();
+        break;
+
     case 'postslist':
         require "Controller/FrontendController.php";
         $postslistController = new FrontendController();
@@ -26,12 +32,6 @@ switch ($_GET["page"]) {
         require "Controller/FrontendController.php";
         $tagpostsController = new FrontendController();
         $tagpostsController->tagposts();
-        break;
-
-    case 'page404':
-        require "Controller/FrontendController.php";
-        $page404Controller = new FrontendController();
-        $page404Controller->page404();
         break;
 
     case 'register':
@@ -126,8 +126,9 @@ switch ($_GET["page"]) {
     
     default:
         require "Controller/FrontendController.php";
-        $homeController = new FrontendController();
-        $homeController->home();
+        $page404Controller = new FrontendController();
+        $page404Controller->page404();
+        break;      
 }
 
 ?>

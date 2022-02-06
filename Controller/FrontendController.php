@@ -13,7 +13,6 @@ class FrontendController extends BaseController{
         echo $this->twig->render("frontend/home.html.twig",[
             'activemenu' => 'homemenu',
         ]);
-
     }
 
     public function postslist()
@@ -67,7 +66,7 @@ class FrontendController extends BaseController{
     }
 
     public function page404(){
-        echo $this->twig->render("error/page404.html.twig");
+        echo $this->twig->render("frontend/error/page404.html.twig");
     }
 
 

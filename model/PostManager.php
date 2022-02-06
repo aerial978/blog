@@ -30,7 +30,7 @@ class PostManager extends Manager
     return rtrim($matches[0]).$fin;
     }
 
-    public function singlePost($id) /* off */
+    public function singlePost($id)
     {
         $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
         LEFT JOIN tags ON posts.tag_id = tags.id 
