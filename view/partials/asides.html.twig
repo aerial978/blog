@@ -4,7 +4,7 @@
     <ul>
         {% for tag in tags %}
             <li>
-                <a href="?page=tagposts&id="{{ tag.id }}>{{ tag.name }}</a>
+                <a href="?page=tagposts&id={{ tag.id }}">{{ tag.name }}</a>
             </li>
         {% endfor %}
     </ul>     
@@ -18,8 +18,8 @@
                 <div class="recent-post">
                     <img src="assets/images/{{ post.image }}" class="img-recent img-fluid">
                     <div class="title-recents">
-                        <h6><a href="?page=postsingle&id="{{ post.postId }}>{{ post.title }}</a></h6>
-                        <p><a href="?page=userposts&id="{{ post.user_id }}>{{ post.username }}</a></p>
+                        <h6><a href="?page=postsingle&id={{ post.postId }}">{{ post.title }}</a></h6>
+                        <p><a href="?page=userposts&id={{ post.user_id }}">{{ post.username }}</a></p>
                     </div>
                 </div>
             </li>
@@ -32,7 +32,9 @@
     <ul>
         {% for comment in comments %}
             <li>
-                <a href="?page=postsingle&id="{{ comment.post_id }}>{{ comment.name_author }}<span> sur </span>{{ comment.title }}</a>
+                <li>
+                    <a href="?page=postsingle&id={{ comment.post_id }}">{{ comment.name_author }}<span> sur </span>{{ comment.title }}</a>
+                </li>
             </li>
         {% endfor %}
     </ul>    

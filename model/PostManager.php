@@ -54,5 +54,17 @@ class PostManager extends Manager
 
     }
 
+    public function tagPost()
+    {
+        $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
+    LEFT JOIN tags ON posts.tag_id = tags.id
+    LEFT JOIN users ON posts.user_id = users.id 
+    WHERE tags.id = '.$_GET['id'].' AND status_post = 2 ORDER BY date_create');
+    $tagposts = $req->fetchAll();
+
+        return $tagposts;
+
+    }
+
 
 }

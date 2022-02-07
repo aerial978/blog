@@ -13,7 +13,7 @@ class CommentManager extends Manager
     {
         $req = $this->bdd->query('SELECT * FROM comments 
         LEFT JOIN posts ON comments.post_id = posts.id
-        WHERE status_post = 2 ORDER BY comments.id DESC LIMIT 5');
+        WHERE status_comm = 2 ORDER BY comments.id DESC LIMIT 5');
         $comment = $req->fetchAll();
 
         return $comment;
@@ -22,7 +22,7 @@ class CommentManager extends Manager
     public function listComments($post_id)
     {
         $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y à %H/%i/%s\') AS date_comment FROM comments 
-        WHERE post_id = ? /* AND status_comm = 2 */ ORDER BY date_comment DESC');
+        WHERE post_id = ? AND status_comm = 2  ORDER BY date_comment DESC');
         $req->execute(array($post_id));
         $comments = $req->fetchAll();
 

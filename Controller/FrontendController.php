@@ -12,7 +12,7 @@ class FrontendController extends BaseController{
     public function home()
     {
         echo $this->twig->render("frontend/home.html.twig",[
-            'activemenu' => 'homemenu',
+            'activemenu' => 'homemenu'
         ]);
     }
 
@@ -20,7 +20,7 @@ class FrontendController extends BaseController{
     {
     
         echo $this->twig->render("frontend/postslist.html.twig",[
-            'activemenu' => 'postslistmenu',
+            'activemenu' => 'postslistmenu'
         ]);
     }
 
@@ -38,9 +38,9 @@ class FrontendController extends BaseController{
                 header('location: ?page=page404');
             }
 
-            /*
+            
             $commentManager = new CommentManager();
-            $countcomments = $commentManager->countComments(); off */
+            $countcomments = $commentManager->countComments();  /* off */
 
             echo $this->twig->render("frontend/postsingle.html.twig",[
                 'activemenu' => 'postslistmenu',
@@ -54,7 +54,8 @@ class FrontendController extends BaseController{
         }
     }
 
-    public function userposts(){
+    public function userposts()
+    {
 
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
@@ -81,10 +82,31 @@ class FrontendController extends BaseController{
         }
     }
 
-    public function tagposts(){
+    public function tagposts()
+    {
+
+        if(isset($_GET['id']) && !empty($_GET['id'])) {
+
+            $tagManager = new tagManager();
+            $tag = $tagManager->getTag($_GET['id']);
+
+            $postManager = new PostManager();
+            $tagposts = $postManager->tagPost($_GET['id']);
+
+            if($tag == NULL) {
+                header('location: ?page=page404');
+            }
+
+
         echo $this->twig->render("frontend/tagposts.html.twig",[
-            'activemenu' => 'postslistmenu'
+            'activemenu' => 'postslistmenu',
+            'tag' => $tag,
+            'tagposts' => $tagposts
         ]);
+
+        } else {
+            header('location: ?page=page404');
+        }
     }
 
     public function page404(){

@@ -21,7 +21,7 @@ class BaseController{
         $this->twig->addGlobal('posts',$posts);
 
         $tagManager = new TagManager();
-        $tags = $tagManager->getTags();
+        $tags = $tagManager->listTags();
         $this->twig->addGlobal('tags',$tags);
 
         $commentManager = new CommentManager();

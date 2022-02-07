@@ -64,7 +64,7 @@
                                 <ul>
                                     {% for tag in tags %}
                                         <li>
-                                            <a href="?page=tagposts&id="{{ tag.id }}>{{ tag.name }}</a>
+                                            <a href="?page=tagposts&id={{ tag.id }}">{{ tag.name }}</a>
                                         </li>
                                     {% endfor %}
                                 </ul>   
@@ -74,7 +74,9 @@
                             <h4 class="posts-title">Recent comments</h4> 
                             <ul>
                                 {% for comment in comments %}
-                                    <li><a href="?page=postsingle&id="{{ comment.post_id }}>{{ comment.name_author }}<span> sur </span>{{ comment.title }}</a></li>
+                                    <li>
+                                        <li><a href="?page=postsingle&id={{ comment.post_id }}">{{ comment.name_author }}<span> sur </span>{{ comment.title }}</a></li>
+                                    </li>
                                 {% endfor %}
                             </ul>    
                         </aside>                                     
