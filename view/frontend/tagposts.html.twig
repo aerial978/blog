@@ -16,20 +16,21 @@
                                 {% for tagpost in tagposts %}
                                     <div class="col">
                                         <div class="card">
-                                            <img src="assets/images/{{ userpost.image }}" alt="img post" class="card-img-top">
+                                            <img src="assets/images/{{ tagpost.image }}" alt="img post" class="card-img-top">
                                             <div class="card-body">    
                                                 <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
-                                                    <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>{{ userpost.username }}</span>
-                                                    <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span>{{ userpost.date_create }}</span></div>
-                                                    <span class="badge"><a href="?page=tagposts&id={{ userpost.tag_id }}">{{ userpost.name }}</a></span>
+                                                    <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
+                                                    <a href="?page=userposts&id={{ tagpost.user_id }}"> {{ tagpost.username }}</a></span>
+                                                    <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span>{{ tagpost.date_create }}</span></div>
+                                                    <span class="badge"><a href="?page=tagposts&id={{ tagpost.tag_id }}">{{ tagpost.name }}</a></span>
                                                 </div>
                                                 <div class="card-content">
-                                                    <h6 class="card-title">{{ userpost.title }}</h6>
-                                                    <p class="card-head">{{ userpost.headline }}</p>
+                                                    <h6 class="card-title">{{ tagpost.title }}</h6> 
+                                                    <p class="card-head">{{ tagpost.headline }}</p>
                                                     <p class="card-text"><span><?= number_words($datas['content']); ?></span></p>
                                                 </div>
                                                 <div class="card-meta d-flex justify-content-end">       
-                                                    <a class="btn btn-primary" href="?page=postsingle&id={{ userpost.postId }}" role="button">Read More</a>
+                                                    <a class="btn btn-primary" href="?page=postsingle&id={{ tagpost.postId }}" role="button">Read More</a>
                                                 </div>
                                             </div>        
                                         </div>

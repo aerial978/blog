@@ -52,6 +52,12 @@ switch ($_GET["page"]) {
         $forgetController->forget();
         break;
 
+    case 'reset':
+        require "Controller/FrontendController.php";
+        $resetController = new FrontendController();
+        $resetController->reset();
+        break;
+    
     case 'dashboard':
         require "Controller/BackendController/DashboardController.php";
         $dashboardController = new DashboardController();

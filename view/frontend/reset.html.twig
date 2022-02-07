@@ -1,7 +1,7 @@
 {% extends "frontend/baseform.html.twig" %}
-{% block title %} Forget {% endblock %}
+{% block title %} Login {% endblock %}
 {% block form %}
-<!-- FORGET AREA -->   
+        <!-- RESET AREA -->   
         <section class="sign section">
             <div class="container">
                 <div class="row">
@@ -9,7 +9,7 @@
                     <?php if(isset($logout)):?>
                         <p class="h6 text-center"><?php echo $logout; ?></p>
                         <?php endif; ?>
-                        <h3 class="sign-title text-center">Forgot password</h3>
+                        <h3 class="sign-title text-center">Password reset</h3>
                         <!--<div class="message error text-light d-flex align-items-center justify-content-center">
                         <h5>Username required</h5>
                         </div>-->
@@ -21,14 +21,19 @@
                                 </ul>
                             </div>     
                         <?php endif; ?>
+                        <?php unset($_SESSION['danger']); ?>
                         <form method="post" action="">
                             <fieldset class="form-group row">    
+                            <div class="form-field col-md-12">
+                                    <label for="password" class="label">New password</label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters"/>        
+                                </div>
                                 <div class="form-field col-md-12">
-                                    <label for="email" class="label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value=""/>        
-                                </div>   
+                                    <label for="password" class="label">Confirm new password</label>
+                                    <input type="password" class="form-control" name="password_confirm" id="password_confirm"/>        
+                                </div>  
                             </fieldset>
-                            <button type="submit" class="submit-btn">Submit</button>  
+                            <button type="submit" class="submit-btn">Reset</button>  
                         </form>
                     </div>    
                 </div>

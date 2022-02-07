@@ -24,7 +24,8 @@ class FrontendController extends BaseController{
         ]);
     }
 
-    public function postsingle(){
+    public function postsingle()
+    {
 
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
@@ -46,7 +47,7 @@ class FrontendController extends BaseController{
                 'activemenu' => 'postslistmenu',
                 'post' => $post,
                 'listcomments' => $listcomments
-               /* 'countcomments' => $countcomments*/
+                /* 'countcomments' => $countcomments*/
             ]);
 
         } else {
@@ -56,7 +57,6 @@ class FrontendController extends BaseController{
 
     public function userposts()
     {
-
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
             $userManager = new UserManager();
@@ -69,13 +69,11 @@ class FrontendController extends BaseController{
                 header('location: ?page=page404');
             }
 
-
-        echo $this->twig->render("frontend/userposts.html.twig",[
-            'activemenu' => 'postslistmenu',
-            'user' => $user,
-            'userposts' => $userposts
-            
-        ]);
+            echo $this->twig->render("frontend/userposts.html.twig",[
+                'activemenu' => 'postslistmenu',
+                'user' => $user,
+                'userposts' => $userposts    
+            ]);
 
         } else {
             header('location: ?page=page404');
@@ -84,7 +82,6 @@ class FrontendController extends BaseController{
 
     public function tagposts()
     {
-
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
             $tagManager = new tagManager();
@@ -96,7 +93,6 @@ class FrontendController extends BaseController{
             if($tag == NULL) {
                 header('location: ?page=page404');
             }
-
 
         echo $this->twig->render("frontend/tagposts.html.twig",[
             'activemenu' => 'postslistmenu',
@@ -120,7 +116,8 @@ class FrontendController extends BaseController{
         ]);
     }
 
-    public function login(){
+    public function login()
+    {
         echo $this->twig->render("frontend/login.html.twig",[
             'activemenu' => 'signinmenu' 
         ]);
@@ -128,6 +125,10 @@ class FrontendController extends BaseController{
 
     public function forget(){
         echo $this->twig->render("frontend/forget.html.twig");
+    }
+
+    public function reset(){
+        echo $this->twig->render("frontend/reset.html.twig");
     }
   
 };
