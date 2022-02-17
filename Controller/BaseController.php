@@ -2,6 +2,10 @@
 
 require_once 'vendor/autoload.php';
 
+require_once 'model/PostManager.php';
+require_once 'model/TagManager.php';
+require_once 'model/CommentManager.php';
+
 class BaseController
     {
     public function __construct() {
@@ -10,7 +14,7 @@ class BaseController
             'debug'=>true
        ]);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-        /*$this->twig->addGlobal('session',$_SESSION);*/
+        $this->twig->addGlobal('session', $_SESSION);
 
         $this->globalVariables();
     }

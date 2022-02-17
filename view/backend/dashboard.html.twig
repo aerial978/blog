@@ -7,14 +7,11 @@
                 <div class="content-header">
                     <h4 class="title title-dash">Dashboard</h4>
                 </div>
-                <div class="auth message success text-dark">
-                    <h4>Welcome, you are authentified now !</h4>
-                </div>
                 <div class="dashboard">
                     <div class="container">
-                        <div class="row">
+                        <div class="row cards-dash">
                             <div class="col-xl-3 col-md-6">
-                                <div class="card text-white mb-3 card-post" style="max-width: 20rem;">
+                                <div class="card card-post mb-3" style="max-width: 20rem;">
                                     <div class="card-body">
                                         <div class="card-info">
                                             <h2>9</h2>
@@ -24,13 +21,16 @@
                                             <i class="far fa-file-alt"></i>
                                         </div>
                                     </div>
-                                    <a href="?page=indexpost" class="card-footer border-light">
-                                        <h6>View details</h6>
-                                    </a>
+                                    <div class="card-footer border-light">
+                                        <a href="admin/posts/indexpost.php">
+                                            <h6>View details</h6>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
+                            <?php if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 2) { ?>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card text-white mb-3 card-com" style="max-width: 20rem;">
+                                <div class="card card-com mb-3" style="max-width: 20rem;">
                                     <div class="card-body">
                                         <div class="card-info">
                                             <h2>5</h2>
@@ -40,13 +40,16 @@
                                             <i class="fas fa-comments"></i>
                                         </div>
                                     </div>
-                                    <a href="?page=indexcomment" class="card-footer border-light">
-                                        <h6>View details</h6>
-                                    </a>
+                                    <div class="card-footer border-light">
+                                        <a href="admin/comments/indexcomment.php">
+                                            <h6>View details</h6>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
+                            <?php } ?>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card text-white mb-3 card-users" style="max-width: 20rem;">
+                                <div class="card card-users mb-3" style="max-width: 20rem;">
                                     <div class="card-body">
                                         <div class="card-info">
                                             <h2>6</h2>
@@ -56,13 +59,15 @@
                                             <i class="fas fa-user"></i>
                                         </div>
                                     </div>
-                                    <a href="?page=indexuser" class="card-footer border-light">
-                                        <h6>View details</h6>
-                                    </a>
+                                    <div  class="card-footer border-light">
+                                        <a href="admin/users/indexuser.php">
+                                            <h6>View details</h6>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card text-white mb-3 card-tags" style="max-width: 20rem;">
+                                <div class="card card-tags mb-3" style="max-width: 20rem;">
                                     <div class="card-body">
                                         <div class="card-info">
                                             <h2>12</h2>
@@ -72,9 +77,11 @@
                                             <i class="fas fa-tag"></i>
                                         </div>
                                     </div>
-                                    <a href="?page=indextag" class="card-footer border-light">
-                                        <h6>View details</h6>
-                                    </a>
+                                    <div class="card-footer border-light">
+                                        <a href="admin/tags/indextag.php">  
+                                            <h6>View details</h6>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

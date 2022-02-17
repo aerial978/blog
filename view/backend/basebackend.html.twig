@@ -36,7 +36,9 @@
                 <ul>
                     <li><a href="?page=dashboard" class="nav-link {% if activemenu == 'dashboardmenu' %} active {% endif %}"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
                     <li><a href="?page=indexpost" class="nav-link {% if activemenu == 'postmenu' %} active {% endif %}"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
+                    {% if session.auth_role is defined and session.auth_role == 2 %}
                     <li><a href="?page=indexcomment" class="nav-link {% if activemenu == 'commentmenu' %} active {% endif %}"><span class="fas fa-comments"></span><span>Comments</span></a></li>
+                    {% endif %}
                     <li><a href="?page=indexuser" class="nav-link {% if activemenu == 'usermenu' %} active {% endif %}"><span class="fas fa-user"></span><span>Users</span></a></li>
                     <li><a href="?page=indextag" class="nav-link {% if activemenu == 'tagmenu' %} active {% endif %}"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
                 </ul>
@@ -51,16 +53,24 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-            <ul class="user-wrapper">
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="assets/images/comment-avatar.png" alt="avatar">Admin</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="?page=home">Home</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
-                    </div>
-                </li>
-            </ul>
+           {% if session.auth is defined %}
+                <ul class="user-wrapper">
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% if session.pictures is defined %}
+                                <img src="assets/images/{{ session.pictures }}" alt="user-pic" width="63px;">
+                            {% else %}
+                                <img src="assets/images/default.png" alt="user-pic" width="63px;">
+                            {% endif %}
+                            {{ session.username }}   
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="index.php?page=home">Home</a>
+                            <a class="dropdown-item" href="index.php?page=logout"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            {% endif %}
         </header>
     
     {% block bodyadmin %} {% endblock %}

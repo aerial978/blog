@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $_GET["page"] == "home";
 
 switch ($_GET["page"]) {
@@ -40,10 +42,22 @@ switch ($_GET["page"]) {
         $registerController->register();
         break;
 
+    case 'confirmation':
+        require "Controller/FrontendController.php";
+        $confirmationController = new FrontendController();
+        $confirmationController->confirmation();
+        break;
+    
     case 'login':
         require "Controller/FrontendController.php";
         $loginController = new FrontendController();
         $loginController->login();
+        break;
+
+    case 'logout':
+        require "Controller/FrontendController.php";
+        $logoutController = new FrontendController();
+        $logoutController->logout();
         break;
 
     case 'forget':

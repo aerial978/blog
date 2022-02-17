@@ -50,16 +50,16 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {% if session.pictures is not empty %}
-                                    <img src="../assets/images/{{ session.pictures }}" alt="user-pic" width="70px;">
+                                    <img src="assets/images/{{ session.pictures }}" alt="user-pic" width="70px;">
                                         {% else %}
-                                            <img src="../assets/images/default.png" alt="user-pic" width="70px;">
+                                            <img src="assets/images/default.png" alt="user-pic" width="70px;">
                                         {% endif %}
                                         {{ session.username }}
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <a class="dropdown-item" href="dashboard.php">Dashboard</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
+                                            <a class="dropdown-item" href="index.php?page=logout"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
                                         </div>
                                     </li>
                             {% endif %}

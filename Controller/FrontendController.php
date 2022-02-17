@@ -1,6 +1,7 @@
 <?php
 
 require_once 'BaseController.php';
+require_once 'model/FormManager.php';
 require_once 'model/PostManager.php';
 require_once 'model/TagManager.php';
 require_once 'model/CommentManager.php';
@@ -39,7 +40,6 @@ class FrontendController extends BaseController{
                 header('location: ?page=page404');
             }
 
-            
             $commentManager = new CommentManager();
             $countcomments = $commentManager->countComments();  /* off */
 
@@ -84,7 +84,7 @@ class FrontendController extends BaseController{
     {
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
-            $tagManager = new tagManager();
+            $tagManager = new TagManager();
             $tag = $tagManager->getTag($_GET['id']);
 
             $postManager = new PostManager();
@@ -116,18 +116,69 @@ class FrontendController extends BaseController{
         ]);
     }
 
-    public function login()
-    {
-        echo $this->twig->render("frontend/login.html.twig",[
-            'activemenu' => 'signinmenu' 
+    public function confirmation(){
+        echo $this->twig->render("frontend/confirmation.html.twig",[
+            
         ]);
     }
 
-    public function forget(){
+    public function login()
+    {
+        if(!empty($_POST['username']) && !empty($_POST['password'])) {  
+
+            $formManager = new FormManager();
+            $user = $formManager->loginUser($_POST['username']);
+            
+            if($user != false) {
+                if(password_verify($_POST['password'], $user['password'])) {
+                $_SESSION['auth'] = $user;
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['pictures'] = $user['picture'];
+                $_SESSION['auth_role'] = $user['role'];
+                $_SESSION['successlogin'] = 'Welcome to the Dashboard !';
+
+                header('Location: index.php?page=dashboard');
+
+                exit();
+                }  else 
+                    {
+                    $_SESSION['danger'] = 'Incorrect username or password';
+                    header('Location: index.php?page=login');
+                }
+            } else 
+                { 
+                $_SESSION['danger'] = 'Incorrect username or password';
+                header('Location: index.php?page=login');
+            }
+            
+        } else {
+
+            echo $this->twig->render("frontend/login.html.twig",[
+                'activemenu' => 'signinmenu' 
+        
+            ]);
+        }
+    }
+
+    public function logout()
+    
+    {   
+        session_destroy();
+
+        $_SESSION['logout'] = 'See you soon !';
+
+        header('Location: index.php?page=login');
+
+    }
+
+    public function forget()
+    {
         echo $this->twig->render("frontend/forget.html.twig");
     }
 
-    public function reset(){
+    public function reset()
+    {
         echo $this->twig->render("frontend/reset.html.twig");
     }
   

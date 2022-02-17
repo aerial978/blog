@@ -9,9 +9,12 @@ class FormManager extends Manager
         $this->bdd = $this->bddConnect();
     }
 
-    public function contactForm()
+    public function loginUser($username)
     {
+        $req = $this->bdd->prepare('SELECT * FROM users WHERE username = ?');
+        $req->execute([$username]);
+        $user = $req->fetch();
         
-
+        return $user;
     }
 }

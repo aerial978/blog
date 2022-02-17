@@ -1,0 +1,41 @@
+<?php
+
+$user_id = $_GET['id'];
+
+$token = $_GET['token'];
+
+$bdd = new PDO('mysql:dbname=blogtest;host=localhost', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+if(isset($_GET['id']) && isset($_GET['token'])) {
+
+    $req = $bdd->prepare('SELECT * FROM users WHERE id = ? AND token_confirm = ?');
+    $req->execute([$user_id,$token]);
+    $user = $req->fetch();
+
+    session_start();
+
+    if($user && $user['token_confirm'] == $token) {
+        
+        $req = $bdd->prepare('UPDATE users SET token_confirm = NULL, token_date = NOW() WHERE id = ?');
+        $req->execute([$user_id]);
+        
+        $_SESSION['auth'] = $user;
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['picture'] = $user['picture'];
+        $_SESSION['auth_role'] = $user['role'];
+        
+        $_SESSION['successreg'] = "Your account has been validated !";
+        header('Location: index.php');
+        
+        
+    } else {
+
+        $_SESSION['erroreg'] = 'Link is no longer valid !';
+        header('Location: login.php');
+        
+    }
+
+}
+
+?>
