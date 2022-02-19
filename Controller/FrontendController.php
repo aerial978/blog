@@ -110,10 +110,63 @@ class FrontendController extends BaseController{
     }
 
 
-    public function register(){
-        echo $this->twig->render("frontend/register.html.twig",[
-            'activemenu' => 'signupmenu' 
-        ]);
+    public function register()
+    {
+        if (!empty($_POST)) {
+
+            $errors = array();
+        
+            $_SESSION['input'] = $_POST;
+        
+            if(empty($_POST['username']) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$_POST['username'])) {
+                $errors['username'] = "Username is not valid !";
+                header('Location: index.php?page=register');
+
+            } else {
+
+                $formManager = new FormManager();
+                $user = $formManager->registerUsername($_POST['username']);
+
+                if($user) {
+                    $errors['username'] = 'Username already used !';
+                    header('Location: index.php?page=register');
+                } 
+            }
+
+            if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors['email'] = "Your email is not valid";
+                header('Location: index.php?page=register');
+            } else {
+
+                $formManager = new FormManager();
+                $user = $formManager->registerEmail($_POST['email']);
+
+                if($user) {
+                    $errors['email'] = 'Email already used !';
+                    header('Location: index.php?page=register');
+                }
+            }
+
+            if(empty($_POST['password']) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
+                $errors['password'] = "Invalid password !";
+                header('Location: index.php?page=register');
+            }
+
+            if(empty($errors)){
+
+                $formManager = new FormManager();
+                $user_id = $formManager->registerUser($_POST['username'],$_POST['email']);
+
+                $_SESSION['success'] = "Your registration successful !";
+            }
+
+        } else {
+
+            echo $this->twig->render("frontend/register.html.twig",[
+                'activemenu' => 'signupmenu' 
+            ]);
+
+        }
     }
 
     public function confirmation(){
@@ -141,22 +194,18 @@ class FrontendController extends BaseController{
                 header('Location: index.php?page=dashboard');
 
                 exit();
-                }  else 
-                    {
+                } else {
                     $_SESSION['danger'] = 'Incorrect username or password';
                     header('Location: index.php?page=login');
                 }
-            } else 
-                { 
+            } else { 
                 $_SESSION['danger'] = 'Incorrect username or password';
                 header('Location: index.php?page=login');
             }
             
         } else {
-
             echo $this->twig->render("frontend/login.html.twig",[
                 'activemenu' => 'signinmenu' 
-        
             ]);
         }
     }

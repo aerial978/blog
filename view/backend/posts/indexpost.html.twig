@@ -7,232 +7,87 @@
                     <div class="content-header">
                         <h4 class="title title-post">Manage Posts</h4>
                         <div class="link-btn">
-                        <a href="?page=addpost" class="post-btn add-btn btn"><i class="fas fa-plus"></i> Post</a>
+                            <a href="addpost.php" class="add-btn post-btn btn"><i class="fas fa-plus"></i> Post</a>
                         </div>
                     </div>
-                    <div class="auth message success text-dark">
-                        <h5>Post created successfully !</h5>
-                    </div>
+                    <!-- TABLE POSTS -->
                     <table class="table table-post">
-                        <thead>
+                        <thead> 
                             <tr class="table-title table-primary">
                                 <th class="col-1">#</th>
-                                <th class="col-5">Title</th>
-                                <th class="col-1">Tag</th>
-                                <th class="col-2">Comments</th>
-                                <th class="col-3">Action</th>
+                                <th class="col-1">User</th>
+                                <th class="col-4">Title</th>
+                                <th class="col-2">Image</th>
+                                <th class="col-1">Comments</th>
+                                <th class="col-1">Status</th>
+                                <th class="col-2">Action</th>
                             </tr>
                         </thead>
                         <tbody class="table-body">
-                            <tr>
-                                <th scope="row">6</th>
-                                <td class="table-bold">Feature post</td>
-                                <td><div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div></td>
-                                <td>2</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="?page=editpost" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td class="table-bold">Feature post</td>
-                                <td><div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div></td>
-                                <td>5</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td class="table-bold">Feature post</td>
-                                <td><div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div></td>
-                                <td>1</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td class="table-bold">Feature post</td>
-                                <td><div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div></td>
-                                <td>2</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td class="table-bold">Feature post</td>
-                                <td><div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div></td>
-                                <td>5</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>          
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td class="table-bold">Feature post</td>
-                                <td><div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div></td>
-                                <td>1</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            {% for indexpost in indexposts %}
+                                <tr>
+                                    <th scope="row">{{ indexpost.postId }}</th>
+                                    <td>{{ indexpost.username }}</td>
+                                    <td class="table-bold">{{ indexpost.title }}</td>
+                                    <td class="status-post">
+                                        {% if indexpost.image is not empty and indexpost.image != NULL %}
+                                            <img src="assets/images/{{ indexpost.image }}" alt="post-pic" width="100px;"></td>
+                                        {% else %}
+                                            <img src="assets/images/land-default.png" alt="img-post">
+                                        {% endif %}
+                                    </td>
+                                    <td><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>{{ indexpost.total }}</span></td>
+                                    <td>
+                                    {% if indexpost.status_post == 2 %}
+                                        <h6 style="color: green;">{{ 'published' }}</h6>
+                                        {% else %}
+                                        <h6 style="color: red;">{{ 'unpublished' }}</h6>
+                                    {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="action-button">
+                                            <a href="?page=editpost&id={{ indexpost.postId }}" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                            <a href="?page=deletepost&id={{ indexpost.postId }}" class="btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
+                                        </div>
+                                    </td>
+                                </tr>      
+                            {% endfor %}
                         </tbody>
                     </table>
                     <!-- CARDS POSTS -->
                     <div class="cards cards-post">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                            {% for indexpost in indexposts %}
+                                <div class="col-lg-4 col-sm-6"> 
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">     
                                         <div class="card-header card-post">
-                                            <div class="id-post"><span># 6</span></div>
-                                            <div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div>
-                                            <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>1</span></div>
+                                            <div class="id"><span>{{ indexpost.postId }}</span></div>
+                                            <div class="status">
+                                                {% if indexpost.status_post == 2 %}
+                                                <h6 style="color: green;">{{ 'published' }}</h6>
+                                                {% else %}
+                                                <h6 style="color: red;">{{ 'unpublished' }}</h6>
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>{{ indexpost.total }}</span></div>
                                         </div>
                                         <div class="card-body image">
-                                        <img src="../../../assets/images/design.jpg" alt="design">
+                                            <img src="assets/images/{{ indexpost.image }}" alt="img-post">
+                                        </div>    
+                                        <div class="card-body h-50 text-dark">
+                                                <h5 class="card-title h-50">{{ indexpost.title }}</h5>
+                                                <p class="card-text h-25">{{ indexpost.headline }}</p>
                                         </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="card-title">Feature post</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-post border-success">
+                                        <div class="card-footer card-post border-success">    
                                             <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
+                                                <a href="?page=editpost&id={{ indexpost.postId }}"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                                <a href="?page=deletepost&id={{ indexpost.postId }}" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></a>    
                                             </div>
-                                        </div>
+                                        </div>   
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-post">
-                                            <div class="id-post"><span># 5</span></div>
-                                            <div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div>
-                                            <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>3</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/lorem.jpg" alt="body-pic">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="card-title">Feature post</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-post border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-post">
-                                            <div class="id-post"><span># 4</span></div>
-                                            <div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div>
-                                            <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>4</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/js.jpg" alt="body-pic">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                        <h5 class="card-title">Feature post</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-post border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-post">
-                                            <div class="id-post"><span># 3</span></div>
-                                            <div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div>
-                                            <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>5</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/lorem.jpg" alt="body-pic">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                        <h5 class="card-title">Feature post</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-post border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-post">
-                                            <div class="id-post"><span># 2</span></div>
-                                            <div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div>
-                                            <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>7</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/js.jpg" alt="body-pic">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                        <h5 class="card-title">Feature post</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-post border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-post">
-                                            <div class="id-post"><span># 1</span></div>
-                                            <div class="tag-post"><span class="badge bg-success text-decoration-none mb-2">Tag</span></div>
-                                            <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>9</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/design.jpg" alt="body-pic">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                        <h5 class="card-title">Feature post</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-post border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> 
+                            {% endfor %}    
                             </div>        
                         </div>         
                     </div>
