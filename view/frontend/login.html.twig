@@ -10,14 +10,11 @@
                         <p class="h6 text-center"><?php echo $logout; ?></p>
                         <?php endif; ?> #}
                         <h3 class="sign-title text-center">Login</h3>
-                        <div class="message error text-light d-flex align-items-center justify-content-center">
-                        <h5>Username required</h5>
-                        </div>
-                        {% if session.danger is defined %}
+                        {% if session.danger is not empty %}
                             <div class="alert alert-danger message">
                                 <p>You have not completed the form correctly :</p>
-                                <ul> 
-                                    <li>{{ session.danger }}</li>  
+                                <ul>
+                                    <li>{{ session.danger }}</li>
                                 </ul>
                             </div>     
                         {% endif %}
@@ -25,11 +22,11 @@
                             <fieldset class="form-group row">    
                                 <div class="form-field col-md-12">
                                     <label for="username" class="label">Username</label>
-                                    <input type="text" class="form-control" name="username" id="username" required/>  
+                                    <input type="text" class="form-control" name="username" id="username"/>  
                                 </div>
                                 <div class="form-field col-md-12">
                                     <label for="password" class="label">Password</label>
-                                    <input type="password" class="form-control" name="password" id="password" required/>        
+                                    <input type="password" class="form-control" name="password" id="password"/>        
                                 </div>
                                 <div class="pass-link">
                                 <a href="forget.php">Forgot password ?</a>

@@ -114,12 +114,12 @@ class FrontendController extends BaseController{
     {
         if (!empty($_POST)) {
 
-            $errors = array();
+            $_SESSION['danger'] = array();
         
             $_SESSION['input'] = $_POST;
         
             if(empty($_POST['username']) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$_POST['username'])) {
-                $errors['username'] = "Username is not valid !";
+                $_SESSION['danger'] = "Username is not valid !";
                 header('Location: index.php?page=register');
 
             } else {
@@ -128,13 +128,13 @@ class FrontendController extends BaseController{
                 $user = $formManager->registerUsername($_POST['username']);
 
                 if($user) {
-                    $errors['username'] = 'Username already used !';
+                    $_SESSION['danger'] = 'Username already used !';
                     header('Location: index.php?page=register');
                 } 
             }
 
             if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                $errors['email'] = "Your email is not valid";
+                $_SESSION['danger'] = "Your email is not valid";
                 header('Location: index.php?page=register');
             } else {
 
@@ -142,17 +142,17 @@ class FrontendController extends BaseController{
                 $user = $formManager->registerEmail($_POST['email']);
 
                 if($user) {
-                    $errors['email'] = 'Email already used !';
+                    $_SESSION['danger'] = 'Email already used !';
                     header('Location: index.php?page=register');
                 }
             }
 
             if(empty($_POST['password']) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
-                $errors['password'] = "Invalid password !";
+                $_SESSION['danger'] = "Invalid password !";
                 header('Location: index.php?page=register');
             }
 
-            if(empty($errors)){
+            if(empty($_SESSION['danger'])){
 
                 $formManager = new FormManager();
                 $user_id = $formManager->registerUser($_POST['username'],$_POST['email']);
@@ -167,6 +167,7 @@ class FrontendController extends BaseController{
             ]);
 
         }
+
     }
 
     public function confirmation(){
@@ -177,7 +178,7 @@ class FrontendController extends BaseController{
 
     public function login()
     {
-        if(!empty($_POST['username']) && !empty($_POST['password'])) {  
+        if(!empty($_POST)) {  
 
             $formManager = new FormManager();
             $user = $formManager->loginUser($_POST['username']);
@@ -192,8 +193,8 @@ class FrontendController extends BaseController{
                 $_SESSION['successlogin'] = 'Welcome to the Dashboard !';
 
                 header('Location: index.php?page=dashboard');
-
                 exit();
+
                 } else {
                     $_SESSION['danger'] = 'Incorrect username or password';
                     header('Location: index.php?page=login');
@@ -201,13 +202,16 @@ class FrontendController extends BaseController{
             } else { 
                 $_SESSION['danger'] = 'Incorrect username or password';
                 header('Location: index.php?page=login');
-            }
-            
+            }     
         } else {
+
+            unset($_SESSION['danger']);
             echo $this->twig->render("frontend/login.html.twig",[
                 'activemenu' => 'signinmenu' 
-            ]);
+            ]);        
         }
+
+        
     }
 
     public function logout()

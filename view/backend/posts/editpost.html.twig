@@ -5,48 +5,72 @@
             <section>
                 <div class="content">
                     <div class="content-header">
-                            <h4 class="title title-post">Edit Posts</h4>
+                        <h4 class="title title-post">Edit Posts</h4>
                     </div>
                     <div class="edit">
                         <div class="container">
-                            <form method="post" action=".php">
+                            <form method="post" action="" enctype="multipart/form-data">
                                 <fieldset class="form-group form-post row g-0">
+                                    <?php if(!empty($_SESSION['errors'])): ?>
+                                        <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
+                                            <p>You have not completed the form correctly :</p>
+                                            <ul>
+                                                <?php foreach($_SESSION['errors'] as $error): ?>
+                                                    <li><?= $error; ?></li>  
+                                                <?php endforeach; ?>
+                                            </ul>
+                                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
+                                        </div>    
+                                    <?php endif; ?>
                                     <div class="form-field col-lg-12">
-                                        <label for="tags">Tag category</label>
-                                        <input list="tag" name="tags" id="tags" required class="form-control">
-                                        <datalist id="tag">
-                                            <option value="Database">
-                                            <option value="Git/Github">
-                                            <option value="HTML5/CSS3">
-                                            <option value="Framework">
-                                            <option value="PHP/Symfony">
-                                            <option value="Javascript">
-                                            <option value="Security">
-                                        </datalist>
+                                        <label for="author">Author</label>
+                                        <input type="text" name="username" id="username" class="form-control" value="<?= $_SESSION['username'] ?>">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="title">Title</label>
-                                        <input type="text" name="title" id="title" required class="form-control">
+                                        <input type="text" name="title" id="title" class="form-control" value="<?= isset($_SESSION['input']['title']) && !empty($_SESSION['input']['title']) ? $_SESSION['input']['title'] : $posts['title'] ?>">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label for="headline">Catchy headline</label>
-                                        <input type="text" name="headline" id="headline" required class="form-control">
+                                        <label for="headline">Headline</label>
+                                        <input type="text" name="headline" id="headline" class="form-control" value="<?= isset($_SESSION['input']['headline']) ? $_SESSION['input']['headline'] : $posts['headline'] ?>">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label>Post content</label>
-                                        <div id="toolbar">
-                                        </div>
-                                        <div id="editor">
-                                            <p>Hello World!</p>
-                                        </div>
+                                        <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+                                        <textarea name="content" id="content" class="form-control"><?= isset($_SESSION['input']['content']) ? $_SESSION['input']['content'] : $posts['content'] ?></textarea>
                                     </div>
-                                    <div class="form-field col-lg-12 file-input">
+                                    <div class="form-field col-lg-12 d-flex flex-column">
                                         <label for="formFile" class="form-label">Image</label>
-                                        <input type="file" id="formFile" class="form-control">
+                                        <?php if(!empty($posts['image']) && $posts['image'] != NULL) { ?>
+                                        <img src="../../../assets/images/<?= isset($_SESSION['picture']['name']) ? $_SESSION['picture']['name'] : $posts['image']; ?>" alt="post-pic" width="200px;">
+                                        <?= isset($_SESSION['picture']['name']) ? basename($_SESSION['picture']['name']) : basename($posts['image']); ?>
+                                        <? } else { ?>
+                                            <img src="../../../assets/images/land-default.png" alt="post-pic" width="200px;">
+                                        <? } ?>
+                                    </div>  
+                                    <div class="form-field col-lg-12">  
+                                        <input type="file" name="image" id="image" class="form-control">
                                     </div>
+                                    <div class="form-field col-lg-12">
+                                        <label for="tags">Tag category</label>
+                                        <select name="tag" id="tag" class="form-control">
+                                            <option value="0">Select option</option>
+                                            <?php $req = $bdd->prepare('SELECT * FROM tags');
+                                            $req->execute(array($id));
+                                            $tags = $req->fetchAll(PDO::FETCH_ASSOC); ?>
+                                            <?php if(count($tags)>0) : ?>
+                                                <?php for ($i=0; $i<count($tags); $i++) : ?>
+                                                    <option value="<?= $tags[$i]['id']?>"<?= isset($posts['tag_id']) && $tags[$i]['id'] == $posts['tag_id'] ? "selected" : "" ?>><?= $tags[$i]['name']?></option>
+                                                    <?php endfor; ?>    
+                                            <?php endif; ?>      
+                                        </select>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="status_post" class="form-check-input" value="2" <?php if(isset($posts['status_post']) && $posts['status_post'] == 2) { echo "checked='checked'"; } ?> id="checkbox">
+                                        <label class="form-check-label" for="checkbox">Published</label>
+                                    </div> 
                                     <div class="btn-post d-flex justify-content-between">
-                                        <button type="submit" class="submit-post submit-btn">Update Post</button>
-                                        <a class="btn" href="index.html" role="button"><i class="fas fa-arrow-left"></i> back</a>
+                                        <button type="submit" name="submit" class="submit-post submit-btn">Update post</button>
+                                        <a class="submit-btn submit-post" href="?page=indexpost" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>    
                                     </div>
                                 </fieldset>
                             </form>

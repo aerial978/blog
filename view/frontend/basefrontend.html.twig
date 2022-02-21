@@ -50,10 +50,10 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {% if session.pictures is not empty %}
-                                    <img src="assets/images/{{ session.pictures }}" alt="user-pic" width="70px;">
+                                        <img src="assets/images/{{ session.pictures }}" alt="user-pic" width="70px;">
                                         {% else %}
-                                            <img src="assets/images/default.png" alt="user-pic" width="70px;">
-                                        {% endif %}
+                                        <img src="assets/images/default.png" alt="user-pic" width="70px;">
+                                    {% endif %}
                                         {{ session.username }}
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

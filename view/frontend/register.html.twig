@@ -12,12 +12,12 @@
                                 <p class="h6 text-center"><?= $success; ?></p>
                             </div>
                         <?php endif;*/ ?>#}
-                        {% if errors is not empty %}
+                        {% if session.danger is not empty %}
                             <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                                 <p>You have not completed the form correctly :</p>
                                 <ul>
-                                    {% for error in errors %}
-                                        <li> {{ error }}</li>  
+                                    {% for errors in session.danger %}
+                                        <li> {{ errors }}</li>  
                                     {% endfor %}
                                 </ul>
                                 <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
@@ -27,19 +27,19 @@
                             <fieldset class="form-group row">    
                                 <div class="form-field col-md-12">
                                     <label for="username" class="label">Username</label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" required value="{{ (input.username is defined) ? session.input.username : "" }}"/>  
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="{{ (input.username is defined) ? session.input.username : "" }}"/>  
                                 </div>
                                 <div class="form-field col-md-12">
                                     <label for="email" class="label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" required value="{{ (input.mail is defined) ? session.input.email : "" }}"/>        
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="{{ (input.mail is defined) ? session.input.email : "" }}"/>        
                                 </div>
                                 <div class="form-field col-md-12">
                                     <label for="password" class="label">Password</label>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters" required />        
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters"/>        
                                 </div>
                                 <div class="form-field col-md-12">
                                     <label for="password" class="label">Confirm password</label>
-                                    <input type="password" class="form-control" name="password_confirm" id="password_confirm" required />        
+                                    <input type="password" class="form-control" name="password_confirm" id="password_confirm"/>        
                                 </div>
                                 <small>By clicking <span>sign up</span> you agree to this site to keep 
                                     your personal data via this form.</small>

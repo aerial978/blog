@@ -1,7 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-
+require_once 'model/FormManager.php';
 require_once 'model/PostManager.php';
 require_once 'model/TagManager.php';
 require_once 'model/CommentManager.php';

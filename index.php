@@ -148,7 +148,8 @@ switch ($_GET["page"]) {
         require "Controller/FrontendController.php";
         $page404Controller = new FrontendController();
         $page404Controller->page404();
-        break;      
+        break;
+            
 }
 
 ?>
