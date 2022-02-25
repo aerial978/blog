@@ -19,7 +19,6 @@ class FrontendController extends BaseController{
 
     public function postslist()
     {
-    
         echo $this->twig->render("frontend/postslist.html.twig",[
             'activemenu' => 'postslistmenu'
         ]);
@@ -27,7 +26,6 @@ class FrontendController extends BaseController{
 
     public function postsingle()
     {
-
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
             $postManager = new PostManager();
@@ -119,7 +117,7 @@ class FrontendController extends BaseController{
             $_SESSION['input'] = $_POST;
         
             if(empty($_POST['username']) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$_POST['username'])) {
-                $_SESSION['danger'] = "Username is not valid !";
+                array_push($_SESSION['danger'],"Username is not valid !");
                 header('Location: index.php?page=register');
 
             } else {
@@ -128,13 +126,13 @@ class FrontendController extends BaseController{
                 $user = $formManager->registerUsername($_POST['username']);
 
                 if($user) {
-                    $_SESSION['danger'] = 'Username already used !';
+                    array_push($_SESSION['danger'],'Username already used !');
                     header('Location: index.php?page=register');
                 } 
             }
 
             if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['danger'] = "Your email is not valid";
+                array_push($_SESSION['danger'],"Your email is not valid !");
                 header('Location: index.php?page=register');
             } else {
 
@@ -142,26 +140,27 @@ class FrontendController extends BaseController{
                 $user = $formManager->registerEmail($_POST['email']);
 
                 if($user) {
-                    $_SESSION['danger'] = 'Email already used !';
+                    array_push($_SESSION['danger'],'Email already used !');
                     header('Location: index.php?page=register');
                 }
             }
 
             if(empty($_POST['password']) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
-                $_SESSION['danger'] = "Invalid password !";
+                array_push($_SESSION['danger'],'Invalid password !');
                 header('Location: index.php?page=register');
             }
 
             if(empty($_SESSION['danger'])){
 
                 $formManager = new FormManager();
-                $user_id = $formManager->registerUser($_POST['username'],$_POST['email']);
+                $formManager->registerUser($_POST['username'],$_POST['email']);
 
                 $_SESSION['success'] = "Your registration successful !";
             }
 
         } else {
 
+            unset($_SESSION['danger']);
             echo $this->twig->render("frontend/register.html.twig",[
                 'activemenu' => 'signupmenu' 
             ]);
@@ -170,7 +169,38 @@ class FrontendController extends BaseController{
 
     }
 
-    public function confirmation(){
+    public function confirmation()
+    {
+        $user_id = $_GET['id'];
+
+        $token = $_GET['token'];
+
+        if(isset($_GET['id']) && isset($_GET['token'])) {
+
+            $userManager = new UserManager();
+            $tokenUser = $userManager->tokenUser($_GET['id'],$_GET['token']);
+
+            if($tokenUser && $tokenUser['token_confirm'] == $token) {
+                
+                $_SESSION['auth'] = $tokenUser;
+                $_SESSION['username'] = $tokenUser['username'];
+                $_SESSION['id'] = $tokenUser['id'];
+                $_SESSION['picture'] = $tokenUser['picture'];
+                $_SESSION['auth_role'] = $tokenUser['role'];
+                
+                $_SESSION['successreg'] = "Your account has been validated !";
+                header('Location: index.php');
+                
+                
+            } else {
+
+                $_SESSION['erroreg'] = 'Link is no longer valid !';
+                header('Location: login.php');
+                
+            }
+
+        }
+
         echo $this->twig->render("frontend/confirmation.html.twig",[
             
         ]);
@@ -210,8 +240,7 @@ class FrontendController extends BaseController{
                 'activemenu' => 'signinmenu' 
             ]);        
         }
-
-        
+  
     }
 
     public function logout()

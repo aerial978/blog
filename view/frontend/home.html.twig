@@ -48,7 +48,7 @@
                                             <span class="badge"><a href="?page=tagposts&id={{ post.tag_id }}">{{ post.name }}</a></span>
                                         </div>
                                         <h6 class="card-title fw-bold">{{ post.title }}</h6>
-                                        <p class="card-text fs-5"><?= number_words($datas['content']); ?></p>
+                                        {#<p class="card-text fs-5">{{ post.content|number_word }}</p>#}
                                         <div class="card-meta d-flex justify-content-end">
                                             <a href="?page=postsingle&id={{ post.postId }}" class="btn btn-primary">Read more</a>
                                         </div>

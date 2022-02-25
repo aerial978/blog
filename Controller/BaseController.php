@@ -1,10 +1,12 @@
 <?php
 
 require_once 'vendor/autoload.php';
+require_once 'src/twig/AppExtension.php';
 require_once 'model/FormManager.php';
 require_once 'model/PostManager.php';
 require_once 'model/TagManager.php';
 require_once 'model/CommentManager.php';
+require_once 'model/UserManager.php';
 
 class BaseController
     {
@@ -17,6 +19,7 @@ class BaseController
         $this->twig->addGlobal('session', $_SESSION);
 
         $this->globalVariables();
+
     }
 
     public function globalVariables()
@@ -33,4 +36,6 @@ class BaseController
         $comments = $commentManager->getComments();
         $this->twig->addGlobal('comments',$comments);
     }
+
+    
 }

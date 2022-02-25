@@ -11,11 +11,12 @@
                         <?php endif; ?> #}
                         <h3 class="sign-title text-center">Login</h3>
                         {% if session.danger is not empty %}
-                            <div class="alert alert-danger message">
+                            <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                                 <p>You have not completed the form correctly :</p>
                                 <ul>
                                     <li>{{ session.danger }}</li>
                                 </ul>
+                                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                             </div>     
                         {% endif %}
                         <form method="post" action="index.php?page=login">
@@ -29,13 +30,13 @@
                                     <input type="password" class="form-control" name="password" id="password"/>        
                                 </div>
                                 <div class="pass-link">
-                                <a href="forget.php">Forgot password ?</a>
+                                <a href="?page=forget">Forgot password ?</a>
                                 </div>
                             </fieldset>
                                 <button type="submit" class="submit-btn">Sign in</button>  
                         </form>
                         <div class="sign-link">
-                            <h5>Not a member ?<a href="register.php"> Sign up</a></h5>
+                            <h5>Not a member ?<a href="?page=register"> Sign up</a></h5>
                         </div>
                     </div>    
                 </div>

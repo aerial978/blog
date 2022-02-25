@@ -45,7 +45,7 @@ class FormManager extends Manager
         $user_id = $this->bdd->lastInsertId();
         $to         = $_POST['email'];
         $subject    = 'Confirmation of your account';
-        $message    = "In order to validate your registration, please <a href='http://localhost/blogtest/html_css/confirmation.php?id=$user_id&token=$token'>click on this link</a>";
+        $message    = "In order to validate your registration, please <a href='http://index.php?page=confirmation&id=$user_id&token=$token'>click on this link</a>";
         $headers    = 'MIME Version 1.0\r\n';
         $headers    = 'FROM: Your name <info@address.com>' . "\r\n";
         $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";

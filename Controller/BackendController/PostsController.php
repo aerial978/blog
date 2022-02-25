@@ -29,7 +29,27 @@ class PostsController extends BaseController{
         echo $this->twig->render("backend/posts/addpost.html.twig");
     }
 
-    public function editpost(){
-        echo $this->twig->render("backend/posts/editpost.html.twig");
+    public function editpost()
+    {
+        $errors = array();
+
+        if(isset($_GET['id'])) {
+
+            $id = $_GET['id'];
+
+            $postManager = new PostManager();
+            $editpost = $postManager->editPost($id);
+
+            $tagManager = new TagManager();
+            $selectags = $tagManager->selectTag($_GET['id']);
+
+        }
+	
+        echo $this->twig->render("backend/posts/editpost.html.twig",[
+        'editpost' => $editpost,
+        'selectags' => $selectags 
+        ]);
+            
     }
+
 }

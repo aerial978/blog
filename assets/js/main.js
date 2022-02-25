@@ -20,9 +20,8 @@ document.querySelectorAll(".close-btn").forEach(n => n.addEventListener("click",
     navbtn.classList.remove("active");
 }));
 
-var quill = new Quill('#editor', {
-    theme: 'snow'
-});
+
+
 
 
 

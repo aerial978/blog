@@ -20,16 +20,6 @@ class PostManager extends Manager
         return $post;
     }
 
-    public function number_words($string, $limit = 25, $fin = ' ...') /* off */
-    {
-    preg_match('/^\s*+(?:\S++\s*+){1,' .$limit. '}/u', $string, $matches);
-    
-    if (!isset($matches[0]) || strlen($string) === strlen($matches[0])) {
-        return $string;
-        }
-    return rtrim($matches[0]).$fin;
-    }
-
     public function singlePost($id)
     {
         $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
@@ -51,7 +41,6 @@ class PostManager extends Manager
         $userposts = $req->fetchAll();
 
         return $userposts;
-
     }
 
     public function tagPost()
@@ -63,7 +52,6 @@ class PostManager extends Manager
         $tagposts = $req->fetchAll();
 
         return $tagposts;
-
     }
 
     public function indexPost1()
@@ -75,8 +63,7 @@ class PostManager extends Manager
         GROUP BY posts.id ORDER BY date_create AND status_post = 2');
         $indexposts = $req->fetchAll();
 
-        return $indexposts;
-                
+        return $indexposts;            
     }
 
     public function indexPost2()
@@ -87,8 +74,24 @@ class PostManager extends Manager
         GROUP BY posts.id ORDER BY date_comment AND status_post = 2 DESC');
         $indexposts = $req->fetchAll();
         
-        return $indexposts;
-                
+        return $indexposts;         
+    }
+
+    public function editPost($id)
+    {
+        $req = $this->bdd->prepare('SELECT * FROM posts LEFT JOIN tags ON posts.tag_id = tags.id WHERE posts.id = ?');
+	    $req->execute(array($id));
+	    $editpost = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $editpost;
+    }
+
+    public function countPosts()
+    {
+        $req = $this->bdd->query('SELECT * FROM posts');
+        $countPosts = $req->rowCount();
+
+        return $countPosts;
     }
 
 }

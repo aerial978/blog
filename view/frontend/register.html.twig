@@ -16,9 +16,9 @@
                             <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                                 <p>You have not completed the form correctly :</p>
                                 <ul>
-                                    {% for errors in session.danger %}
-                                        <li> {{ errors }}</li>  
-                                    {% endfor %}
+                                    {% for danger in session.danger %}
+                                        <li> {{ danger }}</li>  
+                                    {% endfor %}   
                                 </ul>
                                 <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
                             </div>    
@@ -48,7 +48,7 @@
                                 <button type="submit" class="submit-btn">Sign up</button>  
                         </form>
                         <div class="sign-link">
-                            <h5>Already a member ?<a href="login.php"> Sign in</a></h5>
+                            <h5>Already a member ?<a href="?page=login"> Sign in</a></h5>
                         </div>
                     </div>
                 </div>

@@ -11,41 +11,41 @@
                         <div class="container">
                             <form method="post" action="" enctype="multipart/form-data">
                                 <fieldset class="form-group form-post row g-0">
-                                    <?php if(!empty($_SESSION['errors'])): ?>
+                                    {% if session.errors is not empty %}
                                         <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                                             <p>You have not completed the form correctly :</p>
                                             <ul>
-                                                <?php foreach($_SESSION['errors'] as $error): ?>
-                                                    <li><?= $error; ?></li>  
-                                                <?php endforeach; ?>
+                                                {% for error in session.errors %}
+                                                    <li>{{ error }}</li>  
+                                                {% endfor %}
                                             </ul>
                                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
                                         </div>    
-                                    <?php endif; ?>
+                                    {% endif %}
                                     <div class="form-field col-lg-12">
                                         <label for="author">Author</label>
-                                        <input type="text" name="username" id="username" class="form-control" value="<?= $_SESSION['username'] ?>">
+                                        <input type="text" name="username" id="username" class="form-control" value="{{ session.username }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="title">Title</label>
-                                        <input type="text" name="title" id="title" class="form-control" value="<?= isset($_SESSION['input']['title']) && !empty($_SESSION['input']['title']) ? $_SESSION['input']['title'] : $posts['title'] ?>">
+                                        <input type="text" name="title" id="title" class="form-control" value="{{ session.input.title is defined ? session.input.title : editpost.title }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="headline">Headline</label>
-                                        <input type="text" name="headline" id="headline" class="form-control" value="<?= isset($_SESSION['input']['headline']) ? $_SESSION['input']['headline'] : $posts['headline'] ?>">
+                                        <input type="text" name="headline" id="headline" class="form-control" value="{{ session.input.headline is defined ? session.input.headline : editpost.headline }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-                                        <textarea name="content" id="content" class="form-control"><?= isset($_SESSION['input']['content']) ? $_SESSION['input']['content'] : $posts['content'] ?></textarea>
+                                        <textarea name="content" id="content" class="form-control">{{ session.input.content is defined ? session.input.content : editpost.content }}</textarea>
                                     </div>
                                     <div class="form-field col-lg-12 d-flex flex-column">
                                         <label for="formFile" class="form-label">Image</label>
-                                        <?php if(!empty($posts['image']) && $posts['image'] != NULL) { ?>
-                                        <img src="../../../assets/images/<?= isset($_SESSION['picture']['name']) ? $_SESSION['picture']['name'] : $posts['image']; ?>" alt="post-pic" width="200px;">
-                                        <?= isset($_SESSION['picture']['name']) ? basename($_SESSION['picture']['name']) : basename($posts['image']); ?>
-                                        <? } else { ?>
-                                            <img src="../../../assets/images/land-default.png" alt="post-pic" width="200px;">
-                                        <? } ?>
+                                        {% if editpost.image is not empty and editpost.image != NULL %}
+                                        <img src="assets/images/{{ session.picture.name is defined ? session.picture.name : editpost.image }}" alt="post-pic" width="200px;">
+                                        {{ session.picture.name is defined ? section.picture.name : editpost.image }}
+                                        {% else %}
+                                            <img src="assets/images/land-default.png" alt="post-pic" width="200px;">
+                                        {% endif %}
                                     </div>  
                                     <div class="form-field col-lg-12">  
                                         <input type="file" name="image" id="image" class="form-control">
@@ -54,18 +54,15 @@
                                         <label for="tags">Tag category</label>
                                         <select name="tag" id="tag" class="form-control">
                                             <option value="0">Select option</option>
-                                            <?php $req = $bdd->prepare('SELECT * FROM tags');
-                                            $req->execute(array($id));
-                                            $tags = $req->fetchAll(PDO::FETCH_ASSOC); ?>
-                                            <?php if(count($tags)>0) : ?>
-                                                <?php for ($i=0; $i<count($tags); $i++) : ?>
-                                                    <option value="<?= $tags[$i]['id']?>"<?= isset($posts['tag_id']) && $tags[$i]['id'] == $posts['tag_id'] ? "selected" : "" ?>><?= $tags[$i]['name']?></option>
-                                                    <?php endfor; ?>    
-                                            <?php endif; ?>      
+                                            {% if selectags %}
+                                                {% for tag in selectags %}
+                                                    <option value="{{ tag.id }}" {% if editpost.tag_id == tag.id %} selected {% endif %}>{{ tag.name }}</option>
+                                                    {% endfor %}  
+                                             {% endif %}     
                                         </select>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" name="status_post" class="form-check-input" value="2" <?php if(isset($posts['status_post']) && $posts['status_post'] == 2) { echo "checked='checked'"; } ?> id="checkbox">
+                                        <input type="checkbox" name="status_post" class="form-check-input" value="2" <?php if(isset($posts['status_post']) && $posts['status_post'] == 2) { echo "checked='checked'"; } ?>
                                         <label class="form-check-label" for="checkbox">Published</label>
                                     </div> 
                                     <div class="btn-post d-flex justify-content-between">

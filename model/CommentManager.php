@@ -29,13 +29,21 @@ class CommentManager extends Manager
         return $comments;
 
     }
-
-    public function countComments() /* off */
+    /* off
+    public function countComments()
     {
         $req = $this->bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); 
         $count=$req->fetchAll();
 
         return $count;
+    }*/
+
+    public function countComments()
+    {
+        $req = $this->bdd->query('SELECT * FROM comments');
+        $countComments = $req->rowCount();
+
+        return $countComments;
     }
 
 
