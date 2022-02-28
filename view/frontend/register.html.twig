@@ -23,15 +23,15 @@
                                 <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
                             </div>    
                         {% endif %}
-                        <form method="post" action="">
+                        <form method="post" action="index.php?page=register">
                             <fieldset class="form-group row">    
                                 <div class="form-field col-md-12">
                                     <label for="username" class="label">Username</label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="{{ (input.username is defined) ? session.input.username : "" }}"/>  
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="{{ session.input.username is defined ? session.input.username : "" }}"/>  
                                 </div>
                                 <div class="form-field col-md-12">
                                     <label for="email" class="label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="{{ (input.mail is defined) ? session.input.email : "" }}"/>        
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="{{ session.input.email is defined ? session.input.email : "" }}"/>        
                                 </div>
                                 <div class="form-field col-md-12">
                                     <label for="password" class="label">Password</label>

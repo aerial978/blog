@@ -41,7 +41,7 @@ class FormManager extends Manager
         $req = $this->bdd->prepare("INSERT INTO users SET username = ?, email = ?, password = ?, token_confirm = ?");
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $token = bin2hex(random_bytes(60));
-        $req->execute([$username, $email, $password, $token]);
+        $registerUser = $req->execute([$username, $email, $password, $token]);
         $user_id = $this->bdd->lastInsertId();
         $to         = $_POST['email'];
         $subject    = 'Confirmation of your account';
@@ -51,6 +51,8 @@ class FormManager extends Manager
         $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
         
         mail($to, $subject, $message, $headers);
+
+        return $registerUser;
 
     }
 

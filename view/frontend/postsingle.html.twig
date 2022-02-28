@@ -28,9 +28,9 @@
                         <div class="comment-area mt-5 mb-5" id="comments">
                             <div class="mb-4">
                                 <h4 class="fw-bolder">
-                                {% for count in counts %}
-                                    <p class="comment-number">{{ count.total }}' comment(s)'</p>
-                                {% endfor %}
+                                {% for countcommentsPost in countcommentsPosts %}
+                                    <p class="comment-number">{{ countcommentsPost.total }} comment(s)</p>
+                               {% endfor %}
                                 </h4>
                             </div>
                             {% for listcomment in listcomments %}           

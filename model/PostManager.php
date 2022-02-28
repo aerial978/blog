@@ -54,6 +54,14 @@ class PostManager extends Manager
         return $tagposts;
     }
 
+    public function countPosts()
+    {
+        $req = $this->bdd->query('SELECT * FROM posts');
+        $countPosts = $req->rowCount();
+
+        return $countPosts;
+    }
+
     public function indexPost1()
     {
         $req = $this->bdd->query('SELECT *, COUNT(comments.id) AS total, posts.id AS postId FROM posts 
@@ -86,12 +94,6 @@ class PostManager extends Manager
         return $editpost;
     }
 
-    public function countPosts()
-    {
-        $req = $this->bdd->query('SELECT * FROM posts');
-        $countPosts = $req->rowCount();
-
-        return $countPosts;
-    }
+   
 
 }

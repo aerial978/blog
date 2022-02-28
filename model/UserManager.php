@@ -38,7 +38,9 @@ class UserManager extends Manager
     public function tokenConfirm($user_id)
     {
         $req = $this->bdd->prepare('UPDATE users SET token_confirm = NULL, token_date = NOW() WHERE id = ?');
-        $req->execute([$user_id]);
+        $tokenConfirm = $req->execute([$user_id]);
+
+        return $tokenConfirm;
 
     }
 

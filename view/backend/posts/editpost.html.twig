@@ -62,7 +62,7 @@
                                         </select>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" name="status_post" class="form-check-input" value="2" <?php if(isset($posts['status_post']) && $posts['status_post'] == 2) { echo "checked='checked'"; } ?>
+                                        <input type="checkbox" name="status_post" class="form-check-input" value="2" {% if editpost.status_post is defined and editpost.status_post == 2 %} checked {% endif %} id="checkbox">
                                         <label class="form-check-label" for="checkbox">Published</label>
                                     </div> 
                                     <div class="btn-post d-flex justify-content-between">

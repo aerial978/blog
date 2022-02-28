@@ -125,12 +125,12 @@
                     </div>
                     <div class="divider-custom-line"></div>
                 </div>
-                {% if errors is not empty %}
+                {% if session.danger is not empty %}
                     <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                         <p>You have not completed the form correctly :</p>
                         <ul>
-                            {% for error in errors %}
-                                <li>{{ error }}</li>  
+                            {% for danger in session.danger %}
+                                <li>{{ danger }}</li>  
                             {% endfor %}
                         </ul>
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
@@ -139,19 +139,15 @@
                 <form method="post" action="" class="d-flex justify-content-center">
                     <fieldset class="form-group row">    
                         <div class="form-field col-lg-12">
-                            <input type="text" name="name" id="name" class="input-text" required value="<?= isset($_SESSION['input']['name']) ? $_SESSION['input']['name'] : ""; ?>"/>        
+                            <input type="text" name="name" id="name" class="input-text" value="{{ session.input.name is defined ? session.input.name : "" }}"/>        
                             <label for="name" class="label">Name</label>
                         </div>
                         <div class="form-field col-lg-12">
-                            <input type="text" name="first-name" id="first-name" class="input-text" required value="<?= isset($_SESSION['input']['first-name']) ? $_SESSION['input']['first-name'] : ""; ?>"/>
-                            <label for="first-name" class="label">First name</label>    
-                        </div>
-                        <div class="form-field col-lg-12">
-                            <input type="email" name="email" id="email" class="input-text" required value="<?= isset($_SESSION['input']['email']) ? $_SESSION['input']['email'] : ""; ?>"/> 
+                            <input type="email" name="email" id="email" class="input-text" value="{{ session.input.email is defined ? session.input.email : "" }}"/> 
                             <label for="email" class="label">Email address</label>
                         </div>
                         <div class="form-field col-lg-12">
-                            <textarea id="textarea" name="message" class="input-text" rows="5" cols="50" required><?= isset($_SESSION['input']['message']) ? $_SESSION['input']['message'] : ""; ?></textarea>
+                            <textarea id="textarea" name="message" class="input-text" rows="5" cols="50">{{ session.input.message is defined ? session.input.message : "" }}</textarea>
                             <label for="textarea" class="label">Message</label>
                         </div>
                         <div class="form-check">

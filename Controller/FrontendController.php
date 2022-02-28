@@ -12,6 +12,36 @@ class FrontendController extends BaseController{
 
     public function home()
     {
+        if (!empty($_POST)) {
+
+            $_SESSION['danger'] = array();
+        
+            $_SESSION['input'] = $_POST;
+        
+            if(!isset($_POST['name']) || $_POST['name'] == "") {
+        
+                array_push($_SESSION['danger'], "Name required !");
+            } 
+        
+            if(!isset($_POST['email']) || $_POST['email'] == "" || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        
+                array_push($_SESSION['danger'], "Email invalid !");
+            }
+        
+            if(!isset($_POST['message']) || $_POST['message'] == "") {
+        
+                array_push($_SESSION['danger'], "Message is required or invalid !");
+            }
+        
+            if(empty($_SESSION['danger'])) {
+                $headers = 'FROM: '. $_POST['email'];
+                mail('mhathier@gmail.com', 'Mon blog, contact de '.$_POST['name'], $_POST['message'], $headers);
+        
+                $_SESSION['success'] = 'Message sent successfully !';
+        
+            }   
+        }
+
         echo $this->twig->render("frontend/home.html.twig",[
             'activemenu' => 'homemenu'
         ]);
@@ -39,13 +69,13 @@ class FrontendController extends BaseController{
             }
 
             $commentManager = new CommentManager();
-            $countcomments = $commentManager->countComments();  /* off */
+            $countcommentsPosts = $commentManager->countCommentsPost($_GET['id']);
 
             echo $this->twig->render("frontend/postsingle.html.twig",[
                 'activemenu' => 'postslistmenu',
                 'post' => $post,
-                'listcomments' => $listcomments
-                /* 'countcomments' => $countcomments*/
+                'listcomments' => $listcomments,
+                'countcommentsPosts' => $countcommentsPosts
             ]);
 
         } else {
@@ -153,7 +183,7 @@ class FrontendController extends BaseController{
             if(empty($_SESSION['danger'])){
 
                 $formManager = new FormManager();
-                $formManager->registerUser($_POST['username'],$_POST['email']);
+                $registerUser = $formManager->registerUser($_POST['username'],$_POST['email']);
 
                 $_SESSION['success'] = "Your registration successful !";
             }
@@ -164,9 +194,22 @@ class FrontendController extends BaseController{
             echo $this->twig->render("frontend/register.html.twig",[
                 'activemenu' => 'signupmenu' 
             ]);
-
         }
 
+        if(isset($_SESSION['success']) && $_SESSION['success'] != "") { ?>
+                <script>
+                    swal({
+                    title: "<?= $_SESSION['success'] ?>",
+                    text: "Check your inbox for a confirmation email",
+                    icon: "success", 
+                    }).then(function() {
+                    window.location = "index.php?page=home";
+                    });
+                </script>
+        <?php
+        unset($_SESSION['success']);
+        }
+        
     }
 
     public function confirmation()
@@ -181,6 +224,9 @@ class FrontendController extends BaseController{
             $tokenUser = $userManager->tokenUser($_GET['id'],$_GET['token']);
 
             if($tokenUser && $tokenUser['token_confirm'] == $token) {
+
+                $userManager = new UserManager();
+                $tokenConfirm = $userManager->tokenConfirm($_GET['id']);
                 
                 $_SESSION['auth'] = $tokenUser;
                 $_SESSION['username'] = $tokenUser['username'];
@@ -188,22 +234,15 @@ class FrontendController extends BaseController{
                 $_SESSION['picture'] = $tokenUser['picture'];
                 $_SESSION['auth_role'] = $tokenUser['role'];
                 
-                $_SESSION['successreg'] = "Your account has been validated !";
-                header('Location: index.php');
-                
-                
+                $_SESSION['success'] = "Your account has been validated !";
+                header('Location: index.php?page=home');
+                    
             } else {
 
-                $_SESSION['erroreg'] = 'Link is no longer valid !';
-                header('Location: login.php');
-                
+                $_SESSION['danger'] = 'Link is no longer valid !';
+                header('Location: index.php?page=login');            
             }
-
         }
-
-        echo $this->twig->render("frontend/confirmation.html.twig",[
-            
-        ]);
     }
 
     public function login()
@@ -243,8 +282,7 @@ class FrontendController extends BaseController{
   
     }
 
-    public function logout()
-    
+    public function logout() 
     {   
         session_destroy();
 

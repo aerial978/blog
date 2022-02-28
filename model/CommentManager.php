@@ -19,6 +19,15 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    
+    public function countcommentsPost()
+    {
+        $req = $this->bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); 
+        $countcommentsPosts = $req->fetchAll();
+
+        return $countcommentsPosts;
+    }
+
     public function listComments($post_id)
     {
         $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y à %H/%i/%s\') AS date_comment FROM comments 
@@ -27,16 +36,7 @@ class CommentManager extends Manager
         $comments = $req->fetchAll();
 
         return $comments;
-
     }
-    /* off
-    public function countComments()
-    {
-        $req = $this->bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); 
-        $count=$req->fetchAll();
-
-        return $count;
-    }*/
 
     public function countComments()
     {
@@ -45,6 +45,5 @@ class CommentManager extends Manager
 
         return $countComments;
     }
-
 
 }
