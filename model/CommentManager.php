@@ -19,7 +19,6 @@ class CommentManager extends Manager
         return $comment;
     }
 
-    
     public function countcommentsPost()
     {
         $req = $this->bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); 

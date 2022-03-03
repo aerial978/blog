@@ -139,15 +139,15 @@
                 <form method="post" action="" class="d-flex justify-content-center">
                     <fieldset class="form-group row">    
                         <div class="form-field col-lg-12">
-                            <input type="text" name="name" id="name" class="input-text" value="{{ session.input.name is defined ? session.input.name : "" }}"/>        
+                            <input type="text" name="name" id="name" class="input-text" required value="{{ session.input.name is defined ? session.input.name : "" }}"/>        
                             <label for="name" class="label">Name</label>
                         </div>
                         <div class="form-field col-lg-12">
-                            <input type="email" name="email" id="email" class="input-text" value="{{ session.input.email is defined ? session.input.email : "" }}"/> 
+                            <input type="email" name="email" id="email" class="input-text" required value="{{ session.input.email is defined ? session.input.email : "" }}"/> 
                             <label for="email" class="label">Email address</label>
                         </div>
                         <div class="form-field col-lg-12">
-                            <textarea id="textarea" name="message" class="input-text" rows="5" cols="50">{{ session.input.message is defined ? session.input.message : "" }}</textarea>
+                            <textarea id="textarea" name="message" class="input-text" rows="5" cols="50" required>{{ session.input.message is defined ? session.input.message : "" }}</textarea>
                             <label for="textarea" class="label">Message</label>
                         </div>
                         <div class="form-check">
@@ -155,7 +155,7 @@
                             <label class="form-check-label" for="checkbox">J'autorise ce site à conserver mes données personnelles transmises via ce formulaire.</label>
                         </div>
                         <button type="submit" class="submit-btn" href="#contact">Send</button>
-                    </fieldset>
+                    </fieldset>    
                 </form>
             </div>
         </section>

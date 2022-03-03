@@ -94,6 +94,51 @@ class PostManager extends Manager
         return $editpost;
     }
 
+    public function imagePost($image,$id)
+    {
+        $req = $this->bdd->prepare('UPDATE posts SET image = :image WHERE id = :id');
+        $imageUpdate = $req->execute([
+        'image' => $image,
+        'id' => $id
+        ]);
+
+        return $imageUpdate;
+    }
+
+    public function updatePost($title,$headline,$content,$tag,$status_post,$id)
+    {
+        $req = $this->bdd->prepare('UPDATE posts SET title = :title, headline = :headline, content = :content, tag_id = :tag, status_post = :status_post, date_create = NOW() WHERE id = :id');
+        $updatePost = $req->execute([
+        'title'=> $title,
+        'headline'=> $headline,
+        'content'=> $content,
+        'tag'=> $tag,
+        'status_post'=> $status_post,
+        'id' => $id
+        ]);
+        
+        return $updatePost;
+    
+    }
+
+    public function insertPost($title,$headline,$content,$image,$tag,$status_post)
+    {
+        $req = $this->bdd->prepare("INSERT INTO posts(user_id,tag_id,title,headline,content,image,status_post,date_create) VALUES (:user_id, :tag, :title, :headline, :content, :image, :status_post, NOW())");
+        $insertPost = $req->execute([
+        'user_id' => $_SESSION['id'],
+        'title' => $title,
+        'headline' => $headline,
+        'content' => $content,
+        'image' => $image,
+        'tag' => $tag,
+        'status_post' => $status_post
+        ]);
+        
+        return $insertPost;
+
+
+    }
+
    
 
 }

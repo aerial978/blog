@@ -45,6 +45,21 @@ class FrontendController extends BaseController{
         echo $this->twig->render("frontend/home.html.twig",[
             'activemenu' => 'homemenu'
         ]);
+
+        if(isset($_SESSION['success']) && $_SESSION['success'] != "") { ?>
+        
+            <script>
+                swal({
+                title: "<?= $_SESSION['success'] ?>",
+                text: "",
+                icon: "success", 
+                });
+            </script>
+        <?php
+            unset($_SESSION['input']);
+            unset($_SESSION['danger']);
+            unset($_SESSION['success']);    
+            }
     }
 
     public function postslist()
@@ -164,6 +179,7 @@ class FrontendController extends BaseController{
             if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 array_push($_SESSION['danger'],"Your email is not valid !");
                 header('Location: index.php?page=register');
+
             } else {
 
                 $formManager = new FormManager();
@@ -182,10 +198,29 @@ class FrontendController extends BaseController{
 
             if(empty($_SESSION['danger'])){
 
-                $formManager = new FormManager();
-                $registerUser = $formManager->registerUser($_POST['username'],$_POST['email']);
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $token = bin2hex(random_bytes(60));
 
-                $_SESSION['success'] = "Your registration successful !";
+                $formManager = new FormManager();
+                $registerUser = $formManager->registerUser($_POST['username'],$_POST['email'],$password,$token);
+
+                if($registerUser != NULL) {
+
+                    $to         = $_POST['email'];
+                    $subject    = 'Confirmation of your account';
+                    $message    = "In order to validate your registration, please <a href='http://localhost/blog/index.php?page=confirmation&id=$registerUser&token=$token'>click on this link</a>";
+                    $headers    = 'MIME Version 1.0\r\n';
+                    $headers    = 'FROM: Your name <info@address.com>' . "\r\n";
+                    $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+                    
+                    mail($to, $subject, $message, $headers);
+
+                    $_SESSION['success'] = "Your registration successful !";
+                    header('Location: index.php?page=home');
+
+                } else {
+                    array_push($_SESSION['danger'],'Probleme !');
+                }
             }
 
         } else {
@@ -207,6 +242,7 @@ class FrontendController extends BaseController{
                     });
                 </script>
         <?php
+        unset($_SESSION['input']);
         unset($_SESSION['success']);
         }
         
@@ -214,11 +250,10 @@ class FrontendController extends BaseController{
 
     public function confirmation()
     {
-        $user_id = $_GET['id'];
-
+    
         $token = $_GET['token'];
 
-        if(isset($_GET['id']) && isset($_GET['token'])) {
+        if(isset($_GET['id']) && isset($_GET['token']) && !empty($_GET['id']) && !empty($_GET['token'])) {
 
             $userManager = new UserManager();
             $tokenUser = $userManager->tokenUser($_GET['id'],$_GET['token']);
@@ -227,15 +262,21 @@ class FrontendController extends BaseController{
 
                 $userManager = new UserManager();
                 $tokenConfirm = $userManager->tokenConfirm($_GET['id']);
+
+                if($tokenConfirm == true) {
                 
-                $_SESSION['auth'] = $tokenUser;
-                $_SESSION['username'] = $tokenUser['username'];
-                $_SESSION['id'] = $tokenUser['id'];
-                $_SESSION['picture'] = $tokenUser['picture'];
-                $_SESSION['auth_role'] = $tokenUser['role'];
-                
-                $_SESSION['success'] = "Your account has been validated !";
-                header('Location: index.php?page=home');
+                    $_SESSION['auth'] = $tokenUser;
+                    $_SESSION['username'] = $tokenUser['username'];
+                    $_SESSION['id'] = $tokenUser['id'];
+                    $_SESSION['picture'] = $tokenUser['picture'];
+                    $_SESSION['auth_role'] = $tokenUser['role'];
+                    
+                    $_SESSION['success'] = "Your account has been validated !";
+                    header('Location: index.php?page=home');
+
+                } else {
+                    array_push($_SESSION['danger'],'Probleme !');
+                }
                     
             } else {
 
@@ -247,7 +288,7 @@ class FrontendController extends BaseController{
 
     public function login()
     {
-        if(!empty($_POST)) {  
+        if(isset($_POST) && !empty($_POST)) {  
 
             $formManager = new FormManager();
             $user = $formManager->loginUser($_POST['username']);

@@ -9,58 +9,58 @@
                     </div>
                     <div class="create">
                         <div class="container">
-                        <? if(isset($_SESSION['errors'])): ?>
-                            <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
-                                <p>You have not completed the post correctly :</p>
-                                <ul>
-                                    <?php foreach($_SESSION['errors'] as $error): ?>
-                                        <li><?= $error; ?></li>  
-                                    <?php endforeach; ?>
-                                </ul>
-                                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
-                            </div>    
-                        <?php endif;?>
+                            {% if session.danger is not empty %}
+                                <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
+                                    <p>You have not completed the form correctly :</p>
+                                        <ul>
+                                            {% for danger in session.danger %}
+                                                <li> {{ danger }}</li>  
+                                            {% endfor %}   
+                                        </ul>
+                                     <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
+                                </div>    
+                            {% endif %}
                             <form method="post" action="" enctype="multipart/form-data">
                                 <fieldset class="form-group form-post row g-0">
                                     <div class="form-field col-lg-12">
                                         <label for="author">Author</label>
-                                        <input type="text" name="username" id="username" class="form-control" value="<?= $_SESSION['username'] ?>">
+                                        <input type="text" name="username" id="username" class="form-control" value="{{ session.username }}">
                                     </div>  
                                     <div class="form-field col-lg-12">
                                         <label for="title">Title</label>
-                                        <input type="text" name="title" id="title" class="form-control" value="<?= isset($_SESSION['input']['title']) ? $_SESSION['input']['title'] : "" ; ?>">
+                                        <input type="text" name="title" id="title" class="form-control" value="{{ session.input.title is defined ? session.input.title : addpost.title }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="headline">Catchy headline</label>
-                                        <input type="text" name="headline" id="headline" class="form-control" value="<?= isset($_SESSION['input']['headline']) ? $_SESSION['input']['headline'] : "" ; ?>">
+                                        <input type="text" name="headline" id="headline" class="form-control" value="{{ session.input.headline is defined ? session.input.headline : addpost.headline }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                     <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-                                    <textarea name="content" id="content" class="form-control"><?= isset($_SESSION['input']['content']) ? $_SESSION['input']['content'] : "" ; ?></textarea>      
+                                    <textarea name="content" id="content" class="form-control">{{ session.input.content is defined ? session.input.content : addpost.content }}</textarea>      
                                     </div>
                                     
                                     <div class="form-field col-lg-12 file-input">
                                         <label for="formFile" class="form-label">Image</label>
-                                        <input type="file" name="image" id="image" class="form-control" value="<?= isset($_SESSION['input']['image']) ? $_SESSION['input']['image'] : "" ; ?>">
+                                        <input type="file" name="image" id="image" class="form-control" value="{{ session.input.image is defined ? session.input.image : "" }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="tags">Tag category</label>
                                         <select name="tag" id="tag" class="form-control">
                                             <option value="0">Select option</option>
-                                           <?php if(count($tags)>0) : ?>
-                                                <?php for ($i=0; $i<count($tags); $i++) : ?>
-                                                    <option <?= isset($_SESSION['input']['tag']) && $_SESSION['input']['tag'] == $tags[$i]['id'] ? "selected" : "" ; ?> value="<?= $tags[$i]['id'];?>"><?= $tags[$i]['name'];?></option>
-                                                <?php endfor; ?>    
-                                            <?php endif; ?>      
+                                            {% if selectags %}
+                                                {% for tag in selectags %}
+                                                    <option {{ session.input.tag_id is defined and session.input.tag_id == tag.id ? selected : "" }} value="{{ tag.id }}">{{ tag.name }}</option>
+                                                {% endfor %}  
+                                            {% endif %}  
                                         </select>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" name="status_post" class="form-check-input" value="2" <?php if(isset($posts['status_post']) && $posts['status_post'] == 2) { echo "checked='checked'"; } ?>
+                                        <input type="checkbox" name="status_post" class="form-check-input" value="2" {% if editpost.status_post is defined and editpost.status_post == 2 %} checked {% endif %} id="checkbox">
                                         <label class="form-check-label" for="checkbox">Published</label>
                                     </div> 
                                     <div class="btn-post d-flex justify-content-between">
                                         <button type="submit" name="submit" class="submit-post submit-btn">Update post</button>
-                                        <a class="submit-btn submit-post" href="?page=indexpost" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>    
+                                        <a class="submit-btn submit-post" href="index.php?page=indexpost" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>    
                                     </div>
                                 </fieldset>
                             </form>
@@ -68,5 +68,5 @@
                     </div>
                 </div>
             </section>
-        </div>    
+        </div>
 {% endblock %}     

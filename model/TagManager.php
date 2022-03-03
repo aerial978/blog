@@ -34,9 +34,9 @@ class TagManager extends Manager
     {
         $req = $this->bdd->prepare('SELECT * FROM tags');
         $req->execute(array($id));
-        $selectags = $req->fetchAll(PDO::FETCH_ASSOC);
+        $selectTags = $req->fetchAll(PDO::FETCH_ASSOC);
 
-        return $selectags;
+        return $selectTags;
     }
 
     public function countTags()

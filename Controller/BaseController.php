@@ -1,7 +1,6 @@
 <?php
 
 require_once 'vendor/autoload.php';
-require_once 'src/twig/AppExtension.php';
 require_once 'model/FormManager.php';
 require_once 'model/PostManager.php';
 require_once 'model/TagManager.php';
@@ -9,8 +8,9 @@ require_once 'model/CommentManager.php';
 require_once 'model/UserManager.php';
 
 class BaseController
+{
+    public function __construct() 
     {
-    public function __construct() {
         $loader = new \Twig\Loader\FilesystemLoader('view');
         $this->twig = new \Twig\Environment($loader,[
             'debug'=>true
@@ -19,6 +19,10 @@ class BaseController
         $this->twig->addGlobal('session', $_SESSION);
 
         $this->globalVariables();
+
+        $this->unset();
+
+        $this->number_words($string, $limit = 25, $fin = ' ...');
 
     }
 
@@ -37,5 +41,22 @@ class BaseController
         $this->twig->addGlobal('comments',$comments);
     }
 
-    
+    private function unset()
+    {
+        $filterUnset = new \Twig\TwigFilter('unset', function ($string) {
+
+            unset($string);
+        });
+        $this->twig->addFilter($filterUnset);
+    }
+
+    public function number_words($string, $limit = 25, $fin = ' ...')
+    {
+        preg_match('/^\s*+(?:\S++\s*+){1,' .$limit. '}/u', $string, $matches);
+        
+        if (!isset($matches[0]) || strlen($string) === strlen($matches[0])) {
+            return $string;
+            }
+        echo rtrim($matches[0]).$fin;
+    }
 }

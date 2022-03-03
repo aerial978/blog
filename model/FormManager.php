@@ -36,23 +36,12 @@ class FormManager extends Manager
         return $user;
     }
 
-    public function registerUser($username,$email)
+    public function registerUser($username,$email,$password,$token)
     {
-        $req = $this->bdd->prepare("INSERT INTO users SET username = ?, email = ?, password = ?, token_confirm = ?");
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $token = bin2hex(random_bytes(60));
-        $registerUser = $req->execute([$username, $email, $password, $token]);
+        $req = $this->bdd->prepare("INSERT INTO users SET username = ?, email = ?, password = ?, token_confirm = ?");  
+        $req->execute([$username, $email, $password, $token]);
         $user_id = $this->bdd->lastInsertId();
-        $to         = $_POST['email'];
-        $subject    = 'Confirmation of your account';
-        $message    = "In order to validate your registration, please <a href='http://index.php?page=confirmation&id=$user_id&token=$token'>click on this link</a>";
-        $headers    = 'MIME Version 1.0\r\n';
-        $headers    = 'FROM: Your name <info@address.com>' . "\r\n";
-        $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-        
-        mail($to, $subject, $message, $headers);
-
-        return $registerUser;
+        return $user_id;
 
     }
 

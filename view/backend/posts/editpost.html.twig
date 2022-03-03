@@ -9,15 +9,15 @@
                     </div>
                     <div class="edit">
                         <div class="container">
-                            <form method="post" action="" enctype="multipart/form-data">
+                            <form method="post" action="index.php?page=editpost&id={{ editpost.id }}" enctype="multipart/form-data">
                                 <fieldset class="form-group form-post row g-0">
-                                    {% if session.errors is not empty %}
+                                    {% if session.danger is not empty %}
                                         <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                                             <p>You have not completed the form correctly :</p>
                                             <ul>
-                                                {% for error in session.errors %}
-                                                    <li>{{ error }}</li>  
-                                                {% endfor %}
+                                                {% for danger in session.danger %}
+                                                    <li> {{ danger }}</li>  
+                                                {% endfor %}   
                                             </ul>
                                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
                                         </div>    
@@ -34,6 +34,7 @@
                                         <label for="headline">Headline</label>
                                         <input type="text" name="headline" id="headline" class="form-control" value="{{ session.input.headline is defined ? session.input.headline : editpost.headline }}">
                                     </div>
+                                    {{ dump(session) }}
                                     <div class="form-field col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label">Content</label>
                                         <textarea name="content" id="content" class="form-control">{{ session.input.content is defined ? session.input.content : editpost.content }}</textarea>
@@ -57,8 +58,8 @@
                                             {% if selectags %}
                                                 {% for tag in selectags %}
                                                     <option value="{{ tag.id }}" {% if editpost.tag_id == tag.id %} selected {% endif %}>{{ tag.name }}</option>
-                                                    {% endfor %}  
-                                             {% endif %}     
+                                                {% endfor %}  
+                                            {% endif %}     
                                         </select>
                                     </div>
                                     <div class="form-check">
@@ -76,4 +77,5 @@
                 </div>
             </section>
         </div>
+        {{ session | unset }}
 {% endblock %}

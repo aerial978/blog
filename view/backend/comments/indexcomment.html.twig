@@ -6,238 +6,76 @@
                     <div class="content-header">
                         <h4 class="title title-comment">Manage Comments</h4>
                     </div>
-                    <div class="auth message success text-dark">
-                        <h5>Comment published successfully !</h5>
-                    </div>
                     <!-- TABLE COMMENTS -->
                     <table class="table table-comment">
                         <thead>
                             <tr class="table-title table-primary">
+                                <th class="col-1"># Post</th>
                                 <th class="col-2">Author</th>
+                                <th class="col-2">Email</th>
                                 <th class="col-1">Date</th>
-                                <th class="col-4">Post title</th>
-                                <th class="col-2">Status</th>
-                                <th class="col-3">Action</th>
+                                <th class="col-3">Post title</th>
+                                <th class="col-1">Status</th>
+                                <th class="col-2">Action</th>
                             </tr>
                         </thead>
                         <tbody class="table-body">
+                        <?php foreach ($data as $datas) { ?>
                             <tr>
-                                <th scope="row auth-com">Dave</th>
-                                <td class="comment-date">10/10/21</td>
-                                <td class="post-title">Feature post</td>
-                                <td class="status status-red">unpublished</td>
+                                <th scope="row"><?= $datas['post_id']; ?></th>
+                                <th class="name_author"><?= $datas['name_author']; ?></th>
+                                <td class="email_author"><?= $datas['email_author']; ?></td>
+                                <td class="date_comment"><?= $datas['date_comment']; ?></td>
+                                <td class="post-title"><small><?= $datas['title']; ?></small></td>
+                                <td class="status"><?php if($datas['status_comm'] == 2) { ?>
+                                    <h6 style="color: green;"><?php echo 'published'; ?></h6>
+                                    <?php } else { ?><h6 style="color: red;"><?php echo 'unpublished'; } ?></h6></td>
                                 <td>
                                     <div class="action-button">
-                                        <a href="?page=editcomment" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                        <a href="editcomment.php?id=<?= $datas['commentId'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <a href="deletecomment.php?id=<?= $datas['commentId'] ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row auth-com">Mike</th>
-                                <td class="comment-date">05/10/21</td>
-                                <td class="post-title">Feature post</td>
-                                <td class="status status-green">published</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row auth-com">Lea</th>
-                                <td class="comment-date">03/10/21</td>
-                                <td class="post-title">Feature post</td>
-                                <td class="status status-green">published</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row auth-com">Paul</th>
-                                <td class="comment-date">02/10/21</td>
-                                <td class="post-title">Feature post</td>
-                                <td class="status status-green">published</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row auth-com">John</th>
-                                <td class="comment-date">30/09/21</td>
-                                <td class="post-title">Feature post</td>
-                                <td class="status status-green">published</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row auth-com">Aurore</th>
-                                <td class="comment-date">27/09/21</td>
-                                <td class="post-title">Feature post</td>
-                                <td class="status status-green">published</td>
-                                <td>
-                                    <div class="action-button">
-                                        <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php } ?>    
                         </tbody>
                     </table>
                     <!-- CARDS COMMENTS -->   
                     <div class="cards cards-comment">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-com">
-                                            <div class="comment-id d-flex align-items-center">
-                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
-                                                <div class="auth-com">Dave</div>
+                            <?php foreach ($data as $datas) { ?>
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                            <div class="card-header card-com">
+                                                <div class="comment-id w-50 d-flex justify-content-between">
+                                                    <div class="id"><span># <?= $datas['post_id']; ?></span></div>
+                                                </div>
+                                                <div class="comment-date"><?= $datas['date_comment']; ?></div>
                                             </div>
-                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>10/10/21</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/design.jpg" alt="design">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="post-title">Feature post</h5>
-                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-com border-success d-flex justify-content-around">
-                                            <div class="status status-red d-flex align-items-center"><span>unpublished</span></div>
-                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
+                                            <div class="card-header card-com">
+                                                <div class="comment-id w-50 d-flex justify-content-between">
+                                                    <div class="auth-com"><?= $datas['name_author']; ?></div>
+                                                </div>
+                                                <div class=""><?= $datas['email_author']; ?></div>
+                                            </div>
+                                            <div class="card-body text-dark">
+                                                <h5 class="post-title"><?= $datas['title']; ?></h5>
+                                                <p class="comment-text"><span class="far fa-comment">&thinsp;</span><?= $datas['comment']; ?></p>
+                                            </div>
+                                            <div class="card-footer card-com border-success d-flex justify-content-around">
+                                                <div class="status status-red d-flex align-items-center">
+                                                    <?php if($datas['status_comm'] == 2) { ?>
+                                                    <h6 style="color: green;"><?php echo 'published'; ?></h6>
+                                                    <?php } else { ?>
+                                                    <h6 style="color: red;"><?php echo 'unpublished'; } ?></div>
+                                                <a href="editcomment.php?id=<?= $datas['commentId'] ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                                <a href="deletecomment.php?id=<?= $datas['commentId'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-com">
-                                            <div class="comment-id d-flex align-items-center">
-                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
-                                                <div class="auth-com">Mike</div>
-                                            </div>
-                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>05/10/21</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/lorem.jpg" alt="design">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="post-title">Feature post</h5>
-                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-com border-success d-flex justify-content-around">
-                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
-                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-com">
-                                            <div class="comment-id d-flex align-items-center">
-                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
-                                                <div class="auth-com">Lea</div>
-                                            </div>
-                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>03/10/21</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/js.jpg" alt="design">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="post-title">Feature post</h5>
-                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-com border-success d-flex justify-content-around">
-                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
-                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-com">
-                                            <div class="comment-id d-flex align-items-center">
-                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
-                                                <div class="auth-com">Paul</div>
-                                            </div>
-                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>02/10/21</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/lorem.jpg" alt="design">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="post-title">Feature post</h5>
-                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-com border-success d-flex justify-content-around">
-                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
-                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-com">
-                                            <div class="comment-id d-flex align-items-center">
-                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
-                                                <div class="auth-com">John</div>
-                                            </div>
-                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>30/09/21</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/js.jpg" alt="design">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="post-title">Feature post</h5>
-                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-com border-success d-flex justify-content-around">
-                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
-                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-com">
-                                            <div class="comment-id d-flex align-items-center">
-                                                <img src="../../../assets/images/comment-avatar.png" alt="comment avatar">
-                                                <div class="auth-com">Aurore</div>
-                                            </div>
-                                            <div class="comment-date d-flex justify-content-between align-items-center"><i class="fas fa-clock"></i><span>27/09/21</span></div>
-                                        </div>
-                                        <div class="card-body image">
-                                            <img src="../../../assets/images/design.jpg" alt="design">
-                                        </div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="post-title">Feature post</h5>
-                                            <p class="comment-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                        <div class="card-footer card-com card- border-success d-flex justify-content-around">
-                                            <div class="status status-green d-flex align-items-center"><span>published</span></div>
-                                            <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>        
+                                <?php } ?> 
+                            </div>    
                         </div>         
                     </div>
                 </div>
