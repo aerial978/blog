@@ -203,7 +203,7 @@ class PostsController extends BaseController{
                     $imageUpdate = $postManager->imagePost($image,$_GET['id']);
 
                     if($imageUpdate == NULL) {
-                        echo "probleme";
+                        array_push($_SESSION['danger'], "There was a problem with a data processing !");
                     }
                 }
             }
@@ -250,7 +250,7 @@ class PostsController extends BaseController{
 
                 if($editPost == NULL) {
 
-                    echo "4041";
+                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
                 }
 
                 $tagManager = new TagManager();
@@ -263,11 +263,8 @@ class PostsController extends BaseController{
     
             } else {
     
-                 echo "404";
-                
-            } 
-            
-        }     
-            
+                array_push($_SESSION['danger'], "There was a problem with a data processing !");        
+            }             
+        }                 
     } 
 }

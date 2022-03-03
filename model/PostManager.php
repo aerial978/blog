@@ -118,7 +118,6 @@ class PostManager extends Manager
         ]);
         
         return $updatePost;
-    
     }
 
     public function insertPost($title,$headline,$content,$image,$tag,$status_post)
@@ -135,10 +134,17 @@ class PostManager extends Manager
         ]);
         
         return $insertPost;
-
-
     }
 
-   
+    public function indexComment()
+    {
+        $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS date_comment, comments.id AS commentId FROM comments 
+        LEFT JOIN posts ON comments.post_id = posts.id 
+        LEFT JOIN users ON posts.user_id = users.id 
+        WHERE posts.user_id = users.id 
+        ORDER BY date_comment DESC');
+        $indexComment = $req->fetchAll();
 
+        return $indexComment;
+    }
 }

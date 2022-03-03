@@ -20,61 +20,67 @@
                             </tr>
                         </thead>
                         <tbody class="table-body">
-                        <?php foreach ($data as $datas) { ?>
+                        {% for indexcomment in indexcomments %}
                             <tr>
-                                <th scope="row"><?= $datas['post_id']; ?></th>
-                                <th class="name_author"><?= $datas['name_author']; ?></th>
-                                <td class="email_author"><?= $datas['email_author']; ?></td>
-                                <td class="date_comment"><?= $datas['date_comment']; ?></td>
-                                <td class="post-title"><small><?= $datas['title']; ?></small></td>
-                                <td class="status"><?php if($datas['status_comm'] == 2) { ?>
-                                    <h6 style="color: green;"><?php echo 'published'; ?></h6>
-                                    <?php } else { ?><h6 style="color: red;"><?php echo 'unpublished'; } ?></h6></td>
+                                <th scope="row">{{ indexcomment.post_id }}</th>
+                                <th class="name_author">{{ indexcomment.name_author }}</th>
+                                <td class="email_author">{{ indexcomment.email_author }}</td>
+                                <td class="date_comment">{{ indexcomment.date_comment }}</td>
+                                <td class="post-title"><small>{{ indexcomment.title }}</small></td>
+                                <td class="status">
+                                    {% if indexcomment.status_comm == 2 %}
+                                        <h6 style="color: green;">{{ 'published' }}</h6>
+                                    {% else %} 
+                                        <h6 style="color: red;">{{ 'unpublished' }}</h6>
+                                    {% endif %}
+                                </td>
                                 <td>
                                     <div class="action-button">
-                                        <a href="editcomment.php?id=<?= $datas['commentId'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <a href="deletecomment.php?id=<?= $datas['commentId'] ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                        <a href="?page=editcomment&id={{ indexcomment.commentId }}" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <a href="?page=deletecomment&id={{ indexcomment.commentId }}" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                     </div>
                                 </td>
                             </tr>
-                            <?php } ?>    
+                        {% endfor %}   
                         </tbody>
                     </table>
                     <!-- CARDS COMMENTS -->   
                     <div class="cards cards-comment">
                         <div class="container">
                             <div class="row">
-                            <?php foreach ($data as $datas) { ?>
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                            <div class="card-header card-com">
-                                                <div class="comment-id w-50 d-flex justify-content-between">
-                                                    <div class="id"><span># <?= $datas['post_id']; ?></span></div>
-                                                </div>
-                                                <div class="comment-date"><?= $datas['date_comment']; ?></div>
+                            {% for indexcomment in indexcomments %}
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
+                                        <div class="card-header card-com">
+                                            <div class="comment-id w-50 d-flex justify-content-between">
+                                                <div class="id"><span># {{ indexcomment.post_id }}</span></div>
                                             </div>
-                                            <div class="card-header card-com">
-                                                <div class="comment-id w-50 d-flex justify-content-between">
-                                                    <div class="auth-com"><?= $datas['name_author']; ?></div>
-                                                </div>
-                                                <div class=""><?= $datas['email_author']; ?></div>
-                                            </div>
-                                            <div class="card-body text-dark">
-                                                <h5 class="post-title"><?= $datas['title']; ?></h5>
-                                                <p class="comment-text"><span class="far fa-comment">&thinsp;</span><?= $datas['comment']; ?></p>
-                                            </div>
-                                            <div class="card-footer card-com border-success d-flex justify-content-around">
-                                                <div class="status status-red d-flex align-items-center">
-                                                    <?php if($datas['status_comm'] == 2) { ?>
-                                                    <h6 style="color: green;"><?php echo 'published'; ?></h6>
-                                                    <?php } else { ?>
-                                                    <h6 style="color: red;"><?php echo 'unpublished'; } ?></div>
-                                                <a href="editcomment.php?id=<?= $datas['commentId'] ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <a href="deletecomment.php?id=<?= $datas['commentId'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
-                                            </div>
+                                            <div class="comment-date">{{ indexcomment.date_comment }}</div>
                                         </div>
-                                    </div>
-                                <?php } ?> 
+                                        <div class="card-header card-com">
+                                            <div class="comment-id w-50 d-flex justify-content-between">
+                                                <div class="auth-com">{{ indexcomment.name_author }}</div>
+                                            </div>
+                                            <div class="email_author">{{ indexcomment.email_author }}</div>
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="post-title">{{ indexcomment.title }}</h5>
+                                            <p class="comment-text"><span class="far fa-comment">&thinsp;</span>{{ indexcomment.comment }}</p>
+                                        </div>
+                                        <div class="card-footer card-com border-success d-flex justify-content-around">
+                                            <div class="status status-red d-flex align-items-center">
+                                                {% if indexcomment.status_comm == 2 %}
+                                                    <h6 style="color: green;">{{ 'published' }}</h6>
+                                                {% else %} 
+                                                    <h6 style="color: red;">{{ 'unpublished' }}</h6>
+                                                {% endif %}
+                                            </div>
+                                            <a href="?page=editcomment&id={{ indexcomment.commentId }}" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                            <a href="?page=deletecomment&id={{ indexcomment.commentId }}" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                        </div>
+                                    </div>        
+                                </div>          
+                            {% endfor %}    
                             </div>    
                         </div>         
                     </div>

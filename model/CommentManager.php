@@ -45,4 +45,26 @@ class CommentManager extends Manager
         return $countComments;
     }
 
+    public function indexComment()
+    {
+        $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS date_comment, comments.id AS commentId FROM comments 
+        LEFT JOIN posts ON comments.post_id = posts.id 
+        LEFT JOIN users ON posts.user_id = users.id 
+        WHERE posts.user_id = users.id 
+        ORDER BY date_comment DESC');
+        $indexComments = $req->fetchAll();
+
+        return $indexComments;
+    }
+
+    public function editComment($id)
+    {
+        $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS date_comment FROM comments LEFT JOIN posts ON comments.post_id = posts.id WHERE comments.id = ?');
+        $req->execute(array($id));
+        $editComment = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $editComment;
+
+    }
+
 }

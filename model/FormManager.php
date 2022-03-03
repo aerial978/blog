@@ -42,7 +42,6 @@ class FormManager extends Manager
         $req->execute([$username, $email, $password, $token]);
         $user_id = $this->bdd->lastInsertId();
         return $user_id;
-
     }
 
 }

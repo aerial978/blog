@@ -29,20 +29,20 @@
                                     <th scope="row">{{ indexpost.postId }}</th>
                                     <td>{{ indexpost.username }}</td>
                                     <td class="table-bold">{{ indexpost.title }}</td>
-                                    <td class="status-post">
+                                    <td class="status-image">
                                         {% if indexpost.image is not empty and indexpost.image != NULL %}
                                             <img src="assets/images/{{ indexpost.image }}" alt="post-pic" width="100px;"></td>
                                         {% else %}
                                             <img src="assets/images/land-default.png" alt="img-post">
                                         {% endif %}
                                     </td>
-                                    <td><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>{{ indexpost.total }}</span></td>
-                                    <td>
-                                    {% if indexpost.status_post == 2 %}
-                                        <h6 style="color: green;">{{ 'published' }}</h6>
+                                    <td class="comments"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i>{{ indexpost.total }}</span></td>
+                                    <td class="status">
+                                        {% if indexpost.status_post == 2 %}
+                                            <h6 style="color: green;">{{ 'published' }}</h6>
                                         {% else %}
-                                        <h6 style="color: red;">{{ 'unpublished' }}</h6>
-                                    {% endif %}
+                                            <h6 style="color: red;">{{ 'unpublished' }}</h6>
+                                        {% endif %}
                                     </td>
                                     <td>
                                         <div class="action-button">
