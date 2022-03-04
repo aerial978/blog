@@ -25,17 +25,17 @@ class PostsController extends BaseController{
             'indexposts' => $indexposts
         ]);
 
-        if(isset($_SESSION['success']) && $_SESSION['success'] != "") { ?>
+        if(isset($_SESSION['editpost']) && $_SESSION['editpost'] != "") { ?>
         
             <script>
                 swal({
-                title: "<?= $_SESSION['success'] ?>",
+                title: "<?= $_SESSION['editpost'] ?>",
                 text: "",
                 icon: "success", 
                 });
             </script>
         <?php
-            unset($_SESSION['success']);
+            unset($_SESSION['editpost']);
         }
 
         if(isset($_SESSION['addpost']) && $_SESSION['addpost'] != "") { ?>
@@ -122,8 +122,12 @@ class PostsController extends BaseController{
                 
                 $postManager = new PostManager();
                 $insertPost = $postManager->insertPost($title,$headline,$content,$image,$tag,$status_post);
+
+                if($insertPost == NULL) {
+                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                }
             
-                $_SESSION['success'] = 'Creation success !';
+                $_SESSION['addpost'] = 'Creation success !';
                  
                 header('Location: index.php?page=indexpost');   
             }
@@ -227,8 +231,12 @@ class PostsController extends BaseController{
   
                 $postManager = new PostManager();
                 $updatePost = $postManager->updatePost($title,$headline,$content,$tag,$status_post,$_GET['id']);
+
+                if($updatePost == NULL) {
+                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                }
         
-                $_SESSION['success'] = 'Update success !';
+                $_SESSION['editpost'] = 'Update success !';
 
                 unset($_SESSION['input']);
                 unset($_SESSION['danger']);

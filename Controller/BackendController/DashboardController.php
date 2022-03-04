@@ -25,5 +25,18 @@ class DashboardController extends BaseController{
             'countusers' => $countUsers,
             'counttags' => $countTags
         ]);
+
+        if(isset($_SESSION['login']) && $_SESSION['login'] != "") { ?>
+                
+            <script>
+                swal({
+                title: "<?= $_SESSION['login'] ?>",
+                text: "You are identified now !",
+                icon: "success", 
+                });
+            </script>
+        <?php
+            unset($_SESSION['login']);
+        } 
     }
 };

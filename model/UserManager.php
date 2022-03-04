@@ -41,7 +41,22 @@ class UserManager extends Manager
         $tokenConfirm = $req->execute([$user_id]);
 
         return $tokenConfirm;
+    }
 
+    public function indexUser1()
+    {
+        $req = $this->bdd->query('SELECT * FROM users WHERE username ="'.$_SESSION['username'].'"');
+        $indexUsers = $req->fetchAll();
+
+        return $indexUsers;
+    }
+
+    public function indexUser2()
+    {
+        $req = $this->bdd->query('SELECT * FROM users ORDER BY id DESC');
+        $indexUsers = $req->fetchAll();
+
+        return $indexUsers;
     }
 
 }    

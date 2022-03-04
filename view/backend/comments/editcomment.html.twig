@@ -28,12 +28,12 @@
                                         <textarea name="comment" id="comment" class="form-control" disabled id="exampleFormControlTextarea1" rows="5">{{ editcomment.content }}</textarea>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" name="status_comm" class="form-check-input" value="2" <?php if(isset($data['status_comm']) && $data['status_comm'] == 2) { echo "checked='checked'"; } ?> id="checkbox">
+                                        <input type="checkbox" name="status_comm" class="form-check-input" value="2" {% if editcomment.status_comm is defined and editcomment.status_comm == 2 %} checked {% endif %} id="checkbox">
                                         <label class="form-check-label" for="checkbox">Published</label>
                                     </div>
                                     <div class="btn-comment d-flex justify-content-between">
                                         <button type="submit" name="submit" class="submit-comment submit-btn">Update comment</button>
-                                        <a class="submit-btn" href="indexcomment.php" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+                                        <a class="submit-btn" href="?page=indexcomment" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
                                     </div>
                                 </fieldset>
                             </form>

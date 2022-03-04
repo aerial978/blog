@@ -64,7 +64,17 @@ class CommentManager extends Manager
         $editComment = $req->fetch(PDO::FETCH_ASSOC);
 
         return $editComment;
+    }
 
+    public function statusComment($status_comm,$id)
+    {
+        $req = $this->bdd->prepare('UPDATE comments SET status_comm = :status_comm WHERE id = :id');
+        $statusComm = $req->execute([
+        'status_comm'=> $status_comm,
+        'id' => $id                    
+        ]);
+
+        return $statusComm;
     }
 
 }

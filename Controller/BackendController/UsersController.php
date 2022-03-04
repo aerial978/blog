@@ -4,9 +4,22 @@ require_once('Controller/BaseController.php');
 
 class UsersController extends BaseController{
 
-    public function indexuser(){
+    public function indexuser()
+    {
+        if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 1) {
+
+            $userManager = new UserManager();
+            $indexUsers = $userManager->indexUser1();
+
+            } else {
+            
+                $userManager = new UserManager();
+                $indexUsers = $userManager->indexUser2();
+            }
+            
         echo $this->twig->render("backend/users/indexuser.html.twig",[
-            'activemenu' => 'usermenu' 
+            'activemenu' => 'usermenu',
+            'indexusers' => $indexUsers
         ]);
     }
 

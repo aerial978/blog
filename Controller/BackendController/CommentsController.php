@@ -14,6 +14,19 @@ class CommentsController extends BaseController{
             'activemenu' => 'commentmenu',
             'indexcomments' => $indexComments
         ]);
+
+        if(isset($_SESSION['editcomm']) && $_SESSION['editcomm'] != "") { ?>
+        
+            <script>
+                swal({
+                title: "<?= $_SESSION['editcomm'] ?>",
+                text: "",
+                icon: "success", 
+                });
+            </script>
+        <?php
+            unset($_SESSION['editcomm']);
+        }
     }
 
     public function editcomment()
@@ -23,8 +36,7 @@ class CommentsController extends BaseController{
             $id = $_GET['id'];
             
             $commentManager = new CommentManager();
-            $editComment = $commentManager->editComment($id);
-            
+            $editComment = $commentManager->editComment($id); 
             }
             
             if (!empty($_POST) && isset($_POST)) {
@@ -35,23 +47,22 @@ class CommentsController extends BaseController{
                     $status_comm = 1; 
                 }
             
-            $update = $this->bdd->prepare('UPDATE comments SET status_comm = :status_comm WHERE id = :id');
-            $update->execute([
-            'status_comm'=> $status_comm,
-            'id' => $id
-                    
-            ]);
+            $commentManager = new CommentManager();
+            $statusComment = $commentManager->statusComment($status_comm,$id);
+
+            if($statusComment == NULL) {
+                array_push($_SESSION['danger'], "There was a problem with a data processing !");
+            }
                  
-            $_SESSION['success'] = 'Your update successfully !';
+            $_SESSION['editcomm'] = 'Your update successfully !';
                     
-            header('Location: indexcomment.php');
+            header('Location: index.php?page=indexcomment');
             
             }
 
         echo $this->twig->render("backend/comments/editcomment.html.twig",[
             'activemenu' => 'commentmenu',
             'editcomment' => $editComment
-
         ]);
     }
 }

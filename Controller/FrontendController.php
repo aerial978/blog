@@ -300,7 +300,7 @@ class FrontendController extends BaseController{
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['pictures'] = $user['picture'];
                 $_SESSION['auth_role'] = $user['role'];
-                $_SESSION['successlogin'] = 'Welcome to the Dashboard !';
+                $_SESSION['login'] = 'Welcome to the Dashboard !';
 
                 header('Location: index.php?page=dashboard');
                 exit();

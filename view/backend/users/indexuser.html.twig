@@ -5,12 +5,11 @@
                 <div class="content">
                     <div class="content-header">
                         <h4 class="title title-user">Manage Users</h4>
+                        {% if session.auth_role is defined and session.auth_role == 2 %}
                         <div class="link-btn">
-                        <a href="?page=adduser" class="user-btn add-btn btn"><i class="fas fa-plus"></i> User</a>
+                        <a href="adduser.php" class="user-btn add-btn btn"><i class="fas fa-plus"></i> User</a>
                         </div>
-                    </div>
-                    <div class="auth message success text-dark">
-                        <h5>User created successfully !</h5>
+                        {% endif %}
                     </div>
                     <!-- TABLE USERS -->
                     <div class="container">
@@ -26,83 +25,27 @@
                                 </tr>
                             </thead>
                             <tbody class="table-body">
-                                <tr>
-                                    <th scope="row">6</th>
-                                    <td class="user-img"><img src="assets/images/comment-avatar.png" alt="avatar"></td>
-                                    <td class="table-bold">Paul</td>
-                                    <td>paul62@gmail.com</td>
-                                    <td>User</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <a href="?page=edituser" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td class="user-img"><img src="assets/images/comment-avatar.png" alt="avatar"></td>
-                                    <td class="table-bold">Lea</td>
-                                    <td>lea666@yahoo.com</td>
-                                    <td>User</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <button type="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</button>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td class="user-img"><img src="assets/images/comment-avatar.png" alt="avatar"></td>
-                                    <td class="table-bold">John</td>
-                                    <td>johndoe@orange.com</td>
-                                    <td>User</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <button type="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</button>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </td> 
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td class="user-img"><img src="assets/images/comment-avatar.png" alt="avatar"></td>
-                                    <td class="table-bold">Aurore</td>
-                                    <td>aurore596@outlook.fr</td>
-                                    <td>User</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <button type="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</button>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </td>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td class="user-img"><img src="assets/images/comment-avatar.png" alt="avatar"></td>
-                                    <td class="table-bold">Dave</td>
-                                    <td>dave123@gmail.com</td>
-                                    <td>User</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <button type="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</button>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td class="user-img"><img src="assets/images/avatar.png" alt="avatar"></td>
-                                    <td class="table-bold">Michel</td>
-                                    <td>michel475@orange.com</td>
-                                    <td>Admin</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <button type="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</button>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                {% for indexuser in indexusers %} 
+                                    <tr>
+                                        <th scope="row">{{ indexuser.id }}</th>
+                                        <td class="user-img">
+                                            {% if indexuser.picture is not empty and indexuser.picture != NULL %}
+                                                <img src="assets/images/{{indexuser.picture }}" alt="user-pic"></td>
+                                            {% else %}
+                                                <img src="assets/images/default.png" alt="user-pic">
+                                            {% endif %}
+                                        </td>            
+                                        <td class="table-bold">{{indexuser.username }}</td>
+                                        <td>{{ indexuser.email }}</td>
+                                        <td>{% if indexuser.role == 2 %} super admin {% else %} admin {% endif %}</td>
+                                        <td>
+                                            <div class="action-button">
+                                                <a href="?page=edituser&id=indexuser.id" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                                <a href="?page=deleteuser&id=indexuser.id" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -110,135 +53,36 @@
                     <div class="cards cards-user">
                         <div class="container">
                             <div class="row">
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-user">
-                                            <div class="id-post"><span># 6</span></div>
-                                            <div class="card-status"><span>User</span></div>
-                                        </div>
-                                        <div class="card-body d-flex">
-                                            <div class="card-avatar"><img src="../../../assets/images/comment-avatar.png" alt="avatar"></div>
-                                            <div class="card-userdetail text-dark">
-                                                <h5 class="card-username">Paul</h5>
-                                                <h6 class="card-email">paul62@gmail.com</h6>
+                            <?php foreach ($data as $datas) {?>
+                                <div class="col-lg-4 col-sm-4 col-6">
+                                    <div class="card border-dark mb-3">
+                                        <div class="card-header card-user"> 
+                                            <div class="id"><span># <?= $datas['id']; ?></span></div>
+                                            <div class="status"><span><?php if($datas['role'] == 2) { echo 'super admin'; } else { echo 'admin';} ?></span></div>
                                             </div>
-                                        </div>
-                                        <div class="card-footer card-user border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-user">
-                                            <div class="id-post"><span># 5</span></div>
-                                            <div class="card-status"><span>User</span></div>
-                                        </div>
-                                        <div class="card-body d-flex">
-                                            <div class="card-avatar"><img src="../../../assets/images/comment-avatar.png" alt="avatar"></div>
-                                            <div class="card-userdetail text-dark">
-                                                <h5 class="card-username">Lea</h5>
-                                                <h6 class="card-email">lea666@yahoo.com</h6>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer card-user border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
+                                                <div class="card-body h-75">
+                                                    <?php if(!empty($datas['picture']) && $datas['picture'] != NULL) { ?>
+                                                        <img src="../../../assets/images/<?= $datas['picture']; ?>" alt="user-pic"></td>
+                                                    <?php } else { ?>
+                                                        <img src="../../../assets/images/default.png" alt="user-pic">
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="card-userdetail text-dark">
+                                                    <h5 class="card-username"><?= $datas['username']; ?></h5>
+                                                    <h6 class="card-email"><?= $datas['email']; ?></h6>
+                                                </div>
+                                            <div class="card-footer card-user border-success">
+                                                <div class="action-button">
+                                                <a href="edituser.php?id=<?= $datas['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                                <a href="deleteuser.php?id=<?= $datas['id'] ?>" class="btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-user">
-                                            <div class="id-post"><span># 4</span></div>
-                                            <div class="card-status"><span>User</span></div>
-                                        </div>
-                                        <div class="card-body d-flex">
-                                            <div class="card-avatar"><img src="../../../assets/images/comment-avatar.png" alt="avatar"></div>
-                                            <div class="card-userdetail text-dark">
-                                                <h5 class="card-username">John</h5>
-                                                <h6 class="card-email">johndoe@orange.com</h6>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer card-user border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-user">
-                                            <div class="id-post"><span># 3</span></div>
-                                            <div class="card-status"><span>User</span></div>
-                                        </div>
-                                        <div class="card-body d-flex">
-                                            <div class="card-avatar"><img src="../../../assets/images/comment-avatar.png" alt="avatar"></div>
-                                            <div class="card-userdetail text-dark">
-                                                <h5 class="card-username">Aurore</h5>
-                                                <h6 class="card-email">aurore596@outlook.fr</h6>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer card-user border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-user">
-                                            <div class="id-post"><span># 2</span></div>
-                                            <div class="card-status"><span>User</span></div>
-                                        </div>
-                                        <div class="card-body d-flex">
-                                            <div class="card-avatar"><img src="../../../assets/images/comment-avatar.png" alt="avatar"></div>
-                                            <div class="card-userdetail text-dark">
-                                                <h5 class="card-username">Dave</h5>
-                                                <h6 class="card-email">dave123@gmail.com</h6>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer card-user border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card border-dark mb-3" style="max-width: 20rem;">
-                                        <div class="card-header card-user">
-                                            <div class="id-post"><span># 1</span></div>
-                                            <div class="card-status"><span>Admin</span></div>
-                                        </div>
-                                        <div class="card-body d-flex">
-                                            <div class="card-avatar"><img src="../../../assets/images/avatar.png" alt="avatar"></div>
-                                            <div class="card-userdetail text-dark">
-                                                <h5 class="card-username">Michel</h5>
-                                                <h6 class="card-email">michel475@orange.com</h6>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer card-user border-success">
-                                            <div class="action-button">
-                                                <a href="edit.html" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <div class="delete-post"><button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <?php } ?>
                             </div>        
                         </div>         
-                    </div>
+                    </div>           
                 </div>
             </section>
         </div>
