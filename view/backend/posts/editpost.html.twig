@@ -43,7 +43,7 @@
                                         <label for="formFile" class="form-label">Image</label>
                                         {% if editpost.image is not empty and editpost.image != NULL %}
                                         <img src="assets/images/{{ session.picture.name is defined ? session.picture.name : editpost.image }}" alt="post-pic" width="200px;">
-                                        {{ session.picture.name is defined ? section.picture.name : editpost.image }}
+                                        {{ session.picture.name is defined ? session.picture.name : editpost.image }}
                                         {% else %}
                                             <img src="assets/images/land-default.png" alt="post-pic" width="200px;">
                                         {% endif %}

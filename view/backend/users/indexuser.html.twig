@@ -40,8 +40,8 @@
                                         <td>{% if indexuser.role == 2 %} super admin {% else %} admin {% endif %}</td>
                                         <td>
                                             <div class="action-button">
-                                                <a href="?page=edituser&id=indexuser.id" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                                <a href="?page=deleteuser&id=indexuser.id" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                                <a href="?page=edituser&id={{ indexuser.id }}" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                                <a href="?page=deleteuser&id={{ indexuser.id }}" class="action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -53,33 +53,33 @@
                     <div class="cards cards-user">
                         <div class="container">
                             <div class="row">
-                            <?php foreach ($data as $datas) {?>
+                            {% for indexuser in indexusers %}
                                 <div class="col-lg-4 col-sm-4 col-6">
                                     <div class="card border-dark mb-3">
                                         <div class="card-header card-user"> 
-                                            <div class="id"><span># <?= $datas['id']; ?></span></div>
-                                            <div class="status"><span><?php if($datas['role'] == 2) { echo 'super admin'; } else { echo 'admin';} ?></span></div>
+                                            <div class="id"><span># {{ indexuser.id }}</span></div>
+                                            <div class="status"><span>{% if indexuser.role == 2 %} super admin {% else %} admin {% endif %}</span></div>
                                             </div>
                                                 <div class="card-body h-75">
-                                                    <?php if(!empty($datas['picture']) && $datas['picture'] != NULL) { ?>
-                                                        <img src="../../../assets/images/<?= $datas['picture']; ?>" alt="user-pic"></td>
-                                                    <?php } else { ?>
-                                                        <img src="../../../assets/images/default.png" alt="user-pic">
-                                                    <?php } ?>
+                                                    {% if indexuser.picture is not empty and indexuser.picture != NULL %}
+                                                        <img src="assets/images/{{ indexuser.picture }}" alt="user-pic"></td>
+                                                    {% else %}
+                                                        <img src="assets/images/default.png" alt="user-pic">
+                                                    {% endif %}
                                                 </div>
                                                 <div class="card-userdetail text-dark">
-                                                    <h5 class="card-username"><?= $datas['username']; ?></h5>
-                                                    <h6 class="card-email"><?= $datas['email']; ?></h6>
+                                                    <h5 class="card-username">{{ indexuser.username }}</h5>
+                                                    <h6 class="card-email">{{ indexuser.email }}</h6>
                                                 </div>
                                             <div class="card-footer card-user border-success">
                                                 <div class="action-button">
-                                                <a href="edituser.php?id=<?= $datas['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                                <a href="deleteuser.php?id=<?= $datas['id'] ?>" class="btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
+                                                <a href="?page=edituser&id=indexuser.id" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                                <a href="?page=deleteuser&id=indexuser.id" class="btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                            <?php } ?>
+                            {% endfor %}
                             </div>        
                         </div>         
                     </div>           

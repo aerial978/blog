@@ -262,7 +262,7 @@ class PostsController extends BaseController{
                 }
 
                 $tagManager = new TagManager();
-                 $selectTags = $tagManager->selectTag($_GET['id']);
+                $selectTags = $tagManager->selectTag($_GET['id']);
 
                 echo $this->twig->render("backend/posts/editpost.html.twig",[
                     'editpost' => $editPost,
@@ -271,7 +271,7 @@ class PostsController extends BaseController{
     
             } else {
     
-                array_push($_SESSION['danger'], "There was a problem with a data processing !");        
+                array_push($_SESSION['danger'], "You need a post id to change it ! !");        
             }             
         }                 
     } 

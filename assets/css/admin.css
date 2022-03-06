@@ -235,7 +235,7 @@
 section .content {
     font-family: var(--secondaryFontFamily);
     padding: 30px;
-    margin-top: 120px;
+    margin-top: 60px;
     background: var(--secondaryColor);
     min-height: calc(100vh - 90px);
     z-index: 150;

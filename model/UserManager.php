@@ -59,4 +59,59 @@ class UserManager extends Manager
         return $indexUsers;
     }
 
+    public function editUser($id)
+    {
+        $req = $this->bdd->prepare('SELECT * FROM users WHERE id = ?');
+        $req->execute(array($id));
+        $editUser = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $editUser;
+    }
+
+    public function updateUsername($username,$id)
+    {
+        $req = $this->bdd->prepare('UPDATE users SET username = :username WHERE id = :id');
+        $updateUsername = $req->execute([
+            'username'=> $username,
+            'id'=>$id,
+        ]);
+
+        return $updateUsername;
+    }
+
+    public function updatePicture($picture,$id)
+    {
+        $req = $this->bdd->prepare('UPDATE users SET picture = :picture WHERE id = :id');
+        $updatePicture = $req->execute([
+            'picture' => $picture,
+            'id' => $id
+         ]);
+
+         return $updatePicture;
+    }
+
+    public function updateEmail($email,$id)
+    {
+        $req = $this->bdd->prepare('UPDATE users SET email = :email WHERE id = :id');
+        $updateEmail = $req->execute([
+            'email'=> strtolower($email),
+            'id' => $id
+        ]);
+
+        return $updateEmail;
+    }
+
+    public function updatePasswordRole($password,$role,$id)
+    {
+        $req = $this->bdd->prepare("UPDATE users SET password = :password, role = :role, date_signup = NOW() WHERE id = :id");
+        $updatePasswordRole = $req->execute([
+            'password'=> $password,
+            'id' => $id,
+            'role' => $role 
+        ]);
+
+        return $updatePasswordRole;
+
+    }
+
 }    

@@ -1,40 +1,65 @@
 {% extends "backend/basebackend.html.twig" %}
 {% block title %} Admin users edit {% endblock %}
 {% block bodyadmin %}
-            <!-- EDIT POST FORM -->
+            <!-- EDIT USER FORM -->
             <section>
                 <div class="content">
                     <div class="content-header">
-                        <h4 class="title title-user">Edit User</h4>
+                            <h4 class="title title-user">Edit User</h4>
                     </div>
                     <div class="edit">
                         <div class="container">
-                            <form method="post" action=".php">
+                            <form method="post" action="" enctype="multipart/form-data">
                                 <fieldset class="form-group form-user row g-0">
-                                    <div class="form-field col-lg-12">
-                                        <label for="username">Username</label>
-                                        <input type="text" name="username" id="username" disabled required class="form-control">
+                                    {% if session.danger is not empty %}
+                                        <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
+                                            <p>You have not completed the form correctly :</p>
+                                            <ul>
+                                                {% for danger in session.danger %}
+                                                    <li> {{ danger }}</li>  
+                                                {% endfor %}   
+                                            </ul>
+                                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
+                                        </div>    
+                                    {% endif %}
+                                        <div class="form-field col-lg-12">
+                                            <label for="username">Username</label>
+                                            <input type="text" name="username" id="username" class="form-control" value="{{ session.input.username is defined ? session.input.username : edituser.username }}">
+                                        </div>
+                                        <div class="form-field col-lg-12 d-flex flex-column">
+                                        <label for="formFile" class="form-label">Image</label>
+                                        {% if edituser.picture is not empty and edituser.picture != NULL %}
+                                            <img src="assets/images/{{ session.picture.name is defined ? session.picture.name : edituser.picture }}" alt="" width="115px;">
+                                            {{ session.picture.name is defined ? session.picture.name : edituser.picture }}
+                                        {% else %}
+                                            <img src="assets/images/default.png" alt="pic-user" width="115px;">
+                                        {% endif %}
+                                    </div>  
+                                    <div class="form-field col-lg-12">  
+                                        <input type="file" name="picture" id="image" class="form-control">
                                     </div>
-                                    <div class="form-field col-lg-12">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" disabled aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="form-field col-lg-12">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                                        <input type="password" class="form-control" disabled id="inputPassword">
-                                    </div>
-                                    <div class="form-field col-lg-12">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Confirm password</label>
-                                        <input type="password" class="form-control"  disabled id="inputPassword">
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="checkbox">
-                                        <label class="form-check-label" for="checkbox">Admin</label>
-                                    </div>
-                                    <div class="btn-user d-flex justify-content-between">
-                                        <button type="submit" class="submit-user submit-btn">Update user</button>
-                                        <a class="btn" href="?page=indexuser" role="button"><i class="fas fa-arrow-left"></i> back</a>
-                                    </div>
+                                        <div class="form-field col-lg-12">
+                                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder = "email@address.com" value="{{ session.input.email is defined ? session.input.email : edituser.email }}">
+                                        </div>
+                                        <div class="form-field col-lg-12">
+                                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                            <input type="password" class="form-control" name="password" id="password" >
+                                        </div>
+                                        <div class="form-field col-lg-12">
+                                            <label for="password" class="col-sm-2 col-form-label">Confirm password</label>
+                                            <input type="password" class="form-control" name="password_confirm" id="password_confirm">
+                                        </div>
+                                        {% if session.auth_role and session.auth_role == 2 %}
+                                        <div class="form-check">
+                                        <input type="checkbox" name="role" class="form-check-input" value="2" {% if edituser.role and edituser.role == 2 %} checked {% endif %} id="checkbox">
+                                        <label class="form-check-label" for="checkbox">Super admin</label>
+                                        </div>
+                                        {% endif %}
+                                        <div class="btn-user d-flex justify-content-between">
+                                            <button type="submit" name="submit" class="submit-user submit-btn">Update user</button>
+                                            <a class="submit-btn submit-user" href="?page=indexuser" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+                                        </div>        
                                 </fieldset>
                             </form>
                         </div>                 
