@@ -9,13 +9,13 @@ class UserManager extends Manager
         $this->bdd = $this->bddConnect();
     }
 
-    public function getUser()
+    public function getUsername()
     {
         $req = $this->bdd->prepare('SELECT username FROM users WHERE id = ?');
         $req->execute([$_GET['id']]);
-        $user = $req->fetch();
+        $getusername = $req->fetch();
 
-        return $user;
+        return $getusername;
     }
 
     public function countUsers()
@@ -111,7 +111,32 @@ class UserManager extends Manager
         ]);
 
         return $updatePasswordRole;
+    }
 
+    public function getUserId()
+    {
+        $req = $this->bdd->prepare("SELECT id FROM users WHERE username = ?");
+        $req->execute([$_POST['username']]);
+        $getUserId = $req->fetch();
+
+        return $getUserId;
+    }
+
+    public function getUserEmail()
+    {
+        $req = $this->bdd->prepare("SELECT ID FROM users WHERE email = ?");
+        $req->execute([$_POST['email']]);
+        $getUserEmail = $req->fetch();
+
+        return $getUserEmail;
+    }
+
+    public function insertUser($password,$role)
+    {
+        $req = $this->bdd->prepare("INSERT INTO users (username, picture, email, password, role) VALUES (?,?,?,?,?)");    
+        $insertUser = $req->execute([$_POST['username'], $_POST['picture'],$_POST['email'], $password, $role]);
+
+        return $insertUser;
     }
 
 }    

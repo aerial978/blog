@@ -45,7 +45,26 @@ class TagManager extends Manager
         $countTags = $req->rowCount();
 
         return $countTags;
-  
     }
 
+    public function tagId($id)
+    {
+        $req = $this->bdd->prepare('SELECT * FROM tags WHERE id = ?');
+        $req->execute(array($id));
+        $tagId = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $tagId;
+    }
+
+    public function updateTag($name,$description,$id)
+    {
+        $req = $this->bdd->prepare("UPDATE tags SET name = :name, description = :description WHERE id = :id");
+        $updateTag = $req->execute([
+        'name'=> $name,
+        'description' => $description,
+        'id' => $id
+        ]);
+
+        return $updateTag;
+    }   
 }

@@ -16,7 +16,7 @@
                                             <p>You have not completed the form correctly :</p>
                                             <ul>
                                                 {% for danger in session.danger %}
-                                                    <li> {{ danger }}</li>  
+                                                    <li>{{ danger }}</li>  
                                                 {% endfor %}   
                                             </ul>
                                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
@@ -77,5 +77,5 @@
                 </div>
             </section>
         </div>
-        {{ session | unset }}
+        {#{{ session | unset }} #}
 {% endblock %}

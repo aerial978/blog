@@ -118,6 +118,7 @@ class PostsController extends BaseController{
                 } else {
                     $status_post = 1; 
                 }
+                
                 move_uploaded_file($image_tmp_name, $upload_folder);    
                 
                 $postManager = new PostManager();
@@ -138,6 +139,7 @@ class PostsController extends BaseController{
         $selectTags = $tagManager->selectTag($_GET['id']);
 
         echo $this->twig->render("backend/posts/addpost.html.twig",[
+            'activemenu' => 'postmenu',
             'selectags' => $selectTags 
         ]);
 
@@ -148,6 +150,19 @@ class PostsController extends BaseController{
     public function editpost()
     {
         $_SESSION['danger'] = array();
+
+        if(isset($_GET['id'])) {
+
+            $id = $_GET['id'];
+
+            $postManager = new PostManager();
+            $editPost = $postManager->editPost($id);
+
+        } else {
+
+            array_push($_SESSION['danger'], "You need a post id to change it !");
+            
+        } 
         
         if (!empty($_POST) && isset($_POST)) {
         
@@ -197,7 +212,7 @@ class PostsController extends BaseController{
                 }
             
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
-                    $_SESSION['picture'] = $_FILES['image'];
+                    $_SESSION['pictures'] = $_FILES['image'];
                 }
         
                 if (empty($errors)) {
@@ -240,39 +255,21 @@ class PostsController extends BaseController{
 
                 unset($_SESSION['input']);
                 unset($_SESSION['danger']);
-                unset($_SESSION['picture']);
-            
+               
                 header('Location: index.php?page=indexpost');
 
             } else {
                 header('Location: index.php?page=editpost&id='.$_GET['id']);
             }
-        } else {
-
-            if(isset($_GET['id'])) {
-
-                $id = $_GET['id'];
-    
-                $postManager = new PostManager();
-                $editPost = $postManager->editPost($id);
-
-                if($editPost == NULL) {
-
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
-                }
+        } 
 
                 $tagManager = new TagManager();
                 $selectTags = $tagManager->selectTag($_GET['id']);
 
                 echo $this->twig->render("backend/posts/editpost.html.twig",[
+                    'activemenu' => 'postmenu',
                     'editpost' => $editPost,
                     'selectags' => $selectTags 
                 ]);
-    
-            } else {
-    
-                array_push($_SESSION['danger'], "You need a post id to change it ! !");        
-            }             
-        }                 
-    } 
+    }                          
 }

@@ -20,9 +20,9 @@ class BaseController
 
         $this->globalVariables();
 
-        $this->unset();
+        /*$this->unset();*/
 
-        $this->number_words($string, $limit = 25, $fin = ' ...');
+        /*$this->number_words($string, $limit = 25, $fin = ' ...');*/
 
     }
 
@@ -41,7 +41,7 @@ class BaseController
         $this->twig->addGlobal('comments',$comments);
     }
 
-    private function unset()
+    /*private function unset()
     {
         $filterUnset = new \Twig\TwigFilter('unset', function ($string) {
 
@@ -58,5 +58,5 @@ class BaseController
             return $string;
             }
         echo rtrim($matches[0]).$fin;
-    }
+    }*/
 }

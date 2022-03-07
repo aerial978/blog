@@ -37,7 +37,7 @@ class FrontendController extends BaseController{
                 $headers = 'FROM: '. $_POST['email'];
                 mail('mhathier@gmail.com', 'Mon blog, contact de '.$_POST['name'], $_POST['message'], $headers);
         
-                $_SESSION['success'] = 'Message sent successfully !';
+                $_SESSION['message'] = 'Message sent successfully !';
         
             }   
         }
@@ -47,10 +47,37 @@ class FrontendController extends BaseController{
         ]);
 
         if(isset($_SESSION['success']) && $_SESSION['success'] != "") { ?>
-        
             <script>
                 swal({
                 title: "<?= $_SESSION['success'] ?>",
+                text: "Check your inbox for a confirmation email",
+                icon: "success", 
+                }).then(function() {
+                window.location = "index.php?page=home";
+                });
+            </script>
+        <?php
+            unset($_SESSION['success']);
+            }
+
+        if(isset($_SESSION['confirmation']) && $_SESSION['confirmation'] != "") { ?>
+        
+            <script>
+                swal({
+                title: "<?= $_SESSION['confirmation'] ?>",
+                text: "",
+                icon: "success", 
+                });
+            </script>
+        <?php
+            unset($_SESSION['confirmation']);
+            } 
+
+        if(isset($_SESSION['message']) && $_SESSION['message'] != "") { ?>
+        
+            <script>
+                swal({
+                title: "<?= $_SESSION['message'] ?>",
                 text: "",
                 icon: "success", 
                 });
@@ -58,7 +85,7 @@ class FrontendController extends BaseController{
         <?php
             unset($_SESSION['input']);
             unset($_SESSION['danger']);
-            unset($_SESSION['success']);    
+            unset($_SESSION['message']); 
             }
     }
 
@@ -103,7 +130,7 @@ class FrontendController extends BaseController{
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
             $userManager = new UserManager();
-            $user = $userManager->getUser($_GET['id']);
+            $getUsername = $userManager->getUsername($_GET['id']);
 
             $postManager = new PostManager();
             $userposts = $postManager->userPost($_GET['id']);
@@ -114,7 +141,7 @@ class FrontendController extends BaseController{
 
             echo $this->twig->render("frontend/userposts.html.twig",[
                 'activemenu' => 'postslistmenu',
-                'user' => $user,
+                'user' => $getUsername,
                 'userposts' => $userposts    
             ]);
 
@@ -128,7 +155,7 @@ class FrontendController extends BaseController{
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
             $tagManager = new TagManager();
-            $tag = $tagManager->getTag($_GET['id']);
+            $tag = $tagManager->gettag($_GET['id']);
 
             $postManager = new PostManager();
             $tagposts = $postManager->tagPost($_GET['id']);
@@ -224,33 +251,18 @@ class FrontendController extends BaseController{
             }
 
         } else {
-
+            
             unset($_SESSION['danger']);
             echo $this->twig->render("frontend/register.html.twig",[
                 'activemenu' => 'signupmenu' 
             ]);
-        }
 
-        if(isset($_SESSION['success']) && $_SESSION['success'] != "") { ?>
-                <script>
-                    swal({
-                    title: "<?= $_SESSION['success'] ?>",
-                    text: "Check your inbox for a confirmation email",
-                    icon: "success", 
-                    }).then(function() {
-                    window.location = "index.php?page=home";
-                    });
-                </script>
-        <?php
-        unset($_SESSION['input']);
-        unset($_SESSION['success']);
-        }
-        
+            unset($_SESSION['input']);
+        }        
     }
 
     public function confirmation()
     {
-    
         $token = $_GET['token'];
 
         if(isset($_GET['id']) && isset($_GET['token']) && !empty($_GET['id']) && !empty($_GET['token'])) {
@@ -271,7 +283,7 @@ class FrontendController extends BaseController{
                     $_SESSION['picture'] = $tokenUser['picture'];
                     $_SESSION['auth_role'] = $tokenUser['role'];
                     
-                    $_SESSION['success'] = "Your account has been validated !";
+                    $_SESSION['confirmation'] = "Your account has been validated !";
                     header('Location: index.php?page=home');
 
                 } else {

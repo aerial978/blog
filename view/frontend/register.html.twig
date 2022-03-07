@@ -7,11 +7,6 @@
                 <div class="row">
                     <div class="sign-form col-md-5 mx-auto">            
                         <h3 class="sign-title text-center">Register</h3>
-                        {#<?php /*if(isset($success)):?>
-                            <div class="alert alert-success alert-dismissible show" role="alert">
-                                <p class="h6 text-center"><?= $success; ?></p>
-                            </div>
-                        <?php endif;*/ ?>#}
                         {% if session.danger is not empty %}
                             <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                                 <p>You have not completed the form correctly :</p>
@@ -23,7 +18,7 @@
                                 <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
                             </div>    
                         {% endif %}
-                        <form method="post" action="index.php?page=register">
+                        <form method="post" action="">
                             <fieldset class="form-group row">    
                                 <div class="form-field col-md-12">
                                     <label for="username" class="label">Username</label>

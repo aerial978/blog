@@ -7,7 +7,7 @@
                         <h4 class="title title-user">Manage Users</h4>
                         {% if session.auth_role is defined and session.auth_role == 2 %}
                         <div class="link-btn">
-                        <a href="adduser.php" class="user-btn add-btn btn"><i class="fas fa-plus"></i> User</a>
+                        <a href="?page=adduser" class="user-btn add-btn btn"><i class="fas fa-plus"></i> User</a>
                         </div>
                         {% endif %}
                     </div>
@@ -30,7 +30,7 @@
                                         <th scope="row">{{ indexuser.id }}</th>
                                         <td class="user-img">
                                             {% if indexuser.picture is not empty and indexuser.picture != NULL %}
-                                                <img src="assets/images/{{indexuser.picture }}" alt="user-pic"></td>
+                                                <img src="assets/images/{{ indexuser.picture }}" alt="user-pic"></td>
                                             {% else %}
                                                 <img src="assets/images/default.png" alt="user-pic">
                                             {% endif %}

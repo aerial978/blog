@@ -57,12 +57,12 @@
                 <ul class="user-wrapper">
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {% if session.pictures is defined %}
-                                <img src="assets/images/{{ session.pictures }}" alt="user-pic" width="63px;">
+                            {% if session.pictures is not empty %}
+                                <img src="assets/images/{{ session.pictures }}" alt="user-pic" width="60px;">
                             {% else %}
-                                <img src="assets/images/default.png" alt="user-pic" width="63px;">
+                                <img src="assets/images/default.png" alt="user-pic" width="60px;">
                             {% endif %}
-                            {{ session.username }}   
+                            {{ session.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="index.php?page=home">Home</a>

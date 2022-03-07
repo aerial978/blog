@@ -9,10 +9,7 @@
                         <a href="?page=addtag" class="tag-btn add-btn btn"><i class="fas fa-plus"></i> Tag</a>
                         </div>
                     </div>
-                    <div class="auth message success text-dark">
-                        <h5>Tag delete successfully !</h5>
-                    </div>
-                    <!-- TABLE USERS -->
+                    <!-- TABLE TAGS -->
                     <div class="container">
                         <table class="table table-tag">
                             <thead>
@@ -23,66 +20,18 @@
                                 </tr>
                             </thead>
                             <tbody class="table-body">
-                                <tr>
-                                    <th scope="row">6</th>
-                                    <td class="tagname">Database</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <a href="?page=edittag" role="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td class="tagname">Git/Github</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <a href="#" role="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td class="tagname">HTML5/CSS3</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <a href="#" role="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td class="tagname">PHP/Symfony</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <a href="#" role="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td class="tagname">Javascript</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <a href="#" role="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td class="tagname">Sécurity</td>
-                                    <td>
-                                        <div class="action-button">
-                                            <a href="#" role="button" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                            <button type="button" class="action-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                {% for tag in tags %}
+                                    <tr>
+                                        <th scope="row">{{ tag.id }}</th>
+                                        <td class="tagname">{{ tag.name }}</td>
+                                        <td>
+                                            <div class="action-button">
+                                            <a href="?page=edittag&id={{ tag.id }}" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                                <a href="?page=deletetag&id={{ tag.id }}" class="btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}   
                             </tbody>
                         </table>
                     </div>
