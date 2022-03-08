@@ -11,10 +11,61 @@ class TagsController extends BaseController {
         ]);
     }
 
-    public function addtag(){
+    public function addtag()
+    {
+        if($_POST) {
+
+            $_SESSION['danger'] = array();
+            
+            if(isset($_POST)) {
+                $_SESSION['input'] = $_POST;
+            }
+            
+            if(isset($_POST['submit']) && empty($_POST['name'])) {
+                array_push($_SESSION['danger'], "Enter a name !");
+            } else {
+                
+                $tagManager = new TagManager();
+                $getTagName = $tagManager->getTagName();
+
+                if($getTagName) {
+                    array_push($_SESSION['danger'], "Name already used !");
+                } 
+            }
+            
+            if(isset($_POST['submit']) && empty($_POST['description']) && $_POST['description'] == "") {
+                array_push($_SESSION['danger'], "Enter a description !");
+            } else {
+                $tagManager = new TagManager();
+                $getTagDescription= $tagManager->getTagDescription();
+
+                if($getTagDescription) {
+                    array_push($_SESSION['danger'], "Description already used !");
+                } 
+            }
+            
+            if(empty($_SESSION['danger'])){
+
+                $tagManager = new TagManager();
+                $insertTag = $tagManager->insertTag();
+
+                if($insertTag == NULL) {
+                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                }
+            
+                $_SESSION['addtag'] = 'Creation success !'; 
+            
+                header('Location: index.php?page=indextag');
+
+                unset($_SESSION['danger']);
+                unset($_SESSION['input']);    
+            }
+        }
+
         echo $this->twig->render("backend/tags/addtag.html.twig",[
             'activemenu' => 'tagmenu'
         ]);
+
     }
 
     public function edittag()

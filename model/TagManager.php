@@ -66,5 +66,33 @@ class TagManager extends Manager
         ]);
 
         return $updateTag;
-    }   
+    }
+
+    public function getTagName()
+    {
+        $req = $this->bdd->prepare("SELECT id FROM tags WHERE name = ?");
+        $req->execute([$_POST['name']]);
+        $getTagName = $req->fetch();
+
+        return $getTagName;
+    }
+
+    public function getTagDescription()
+    {
+        $req = $this->bdd->prepare("SELECT id FROM tags WHERE description = ?");
+        $req->execute([$_POST['description']]);
+        $getTagDescription = $req->fetch();
+
+        return $getTagDescription;
+    }
+
+    public function insertTag()
+    {
+        $req = $this->bdd->prepare("INSERT INTO tags SET name = ?, description = ?");
+        $insertTag = $req->execute([$_POST['name'], $_POST['description']]);
+
+        return $insertTag;
+    }
+
+
 }

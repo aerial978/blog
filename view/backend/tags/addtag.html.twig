@@ -9,22 +9,30 @@
                     </div>
                     <div class="create">
                         <div class="container">
-                            <form method="post" action=".php">
+                            {% if session.danger is not empty %}
+                                <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
+                                    <p>You have not completed the form correctly :</p>
+                                    <ul>
+                                        {% for danger in session.danger %}
+                                            <li>{{ danger }}</li>  
+                                        {% endfor %}   
+                                    </ul>
+                                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
+                                </div>    
+                            {% endif %}
+                            <form method="post" action="">
                                 <fieldset class="form-group form-tag row g-0">
                                     <div class="form-field col-lg-12">
                                         <label for="nametag">Tag name</label>
-                                        <input type="text" name="title" id="title" required class="form-control">
+                                        <input type="text" name="name" id="name" class="form-control" value="{{ session.input.name is defined ? session.input.name : "" }}">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label>Description</label>
-                                        <div id="toolbar"></div>
-                                        <div id="editor">
-                                            <p>Hello World!</p>
-                                        </div>
+                                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                        <textarea name="description" id="content" class="form-control">{{ session.input.description is defined ? session.input.description : "" }}</textarea>
                                     </div>
                                     <div class="btn-tag d-flex justify-content-between">
-                                    <button type="submit" class="submit-tag submit-btn">Add tag</button>
-                                    <a class="btn" href="?page=indextag" role="button"><i class="fas fa-arrow-left"></i> back</a>
+                                    <button type="submit" name="submit" class="submit-tag submit-btn">Add tag</button>
+                                    <a class="submit-btn submit-tag" href="index.php?page=indextag" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
                                     </div>
                                 </fieldset>
                             </form>
