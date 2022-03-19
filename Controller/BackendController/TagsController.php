@@ -22,25 +22,25 @@ class TagsController extends BaseController {
             }
             
             if(isset($_POST['submit']) && empty($_POST['name'])) {
-                array_push($_SESSION['danger'], "Enter a name !");
+                $_SESSION['danger']['name'] = "Enter a name !";
             } else {
                 
                 $tagManager = new TagManager();
                 $getTagName = $tagManager->getTagName();
 
                 if($getTagName) {
-                    array_push($_SESSION['danger'], "Name already used !");
+                    $_SESSION['danger']['name_used'] =  "Name already used !";
                 } 
             }
             
             if(isset($_POST['submit']) && empty($_POST['description']) && $_POST['description'] == "") {
-                array_push($_SESSION['danger'], "Enter a description !");
+                $_SESSION['danger']['description'] = "Enter a description !";
             } else {
                 $tagManager = new TagManager();
                 $getTagDescription= $tagManager->getTagDescription();
 
                 if($getTagDescription) {
-                    array_push($_SESSION['danger'], "Description already used !");
+                    $_SESSION['danger']['description_used'] = "Description already used !";
                 } 
             }
             
@@ -50,7 +50,7 @@ class TagsController extends BaseController {
                 $insertTag = $tagManager->insertTag();
 
                 if($insertTag == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
             
                 $_SESSION['addtag'] = 'Creation success !'; 
@@ -81,7 +81,7 @@ class TagsController extends BaseController {
 
         } else {
 
-            array_push($_SESSION['danger'],"You need a tag id to change it !");
+            $_SESSION['danger']['id'] = "You need a tag id to change it !";
             
         }
             
@@ -91,13 +91,13 @@ class TagsController extends BaseController {
 
             if(isset($_POST['submit']) && empty($_POST['name']) && $_POST['name'] == '') {
                 
-                array_push($_SESSION['danger'],"Enter a name !");
+                $_SESSION['danger']['name'] = "Enter a name !";
                 
             }
 
             if(isset($_POST['submit']) && empty($_POST['description']) && $_POST['description'] == '') {
 
-                array_push($_SESSION['danger'], "Enter a description !");
+                $_SESSION['danger']['description'] = "Enter a description !";
 
             }
 
@@ -109,16 +109,12 @@ class TagsController extends BaseController {
                 $updateTag = $tagManager->updateTag($name,$description,$id);
 
                 if($updateTag == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
         
                 $_SESSION['updatetag'] = 'Update success !';
             
                 header('Location: index.php?page=indextag');
-
-                unset($_SESSION['danger']);
-                unset($_SESSION['input']);
-
             }
         }
 
@@ -126,5 +122,19 @@ class TagsController extends BaseController {
             'activemenu' => 'tagmenu',
             'tagid' => $tagId
         ]);
+    }
+
+    public function deletetag()
+    {
+        $id = $_GET['id'];
+
+        $tagManager = new TagManager();
+        $deleteTag = $tagManager->deleteTag($id);
+        
+        if($deleteTag == NULL) {
+            $_SESSION['danger'] = "There was a problem with a data processing !";
+        }
+
+        header('Location: index.php?page=indextag');
     }
 }

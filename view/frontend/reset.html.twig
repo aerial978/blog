@@ -6,22 +6,24 @@
             <div class="container">
                 <div class="row">
                     <div class="sign-form col-md-5 mx-auto">
-                    <?php if(isset($logout)):?>
+                    {#<?php if(isset($logout)):?>
                         <p class="h6 text-center"><?php echo $logout; ?></p>
-                        <?php endif; ?>
+                        <?php endif; ?>#}
                         <h3 class="sign-title text-center">Password reset</h3>
                         <!--<div class="message error text-light d-flex align-items-center justify-content-center">
                         <h5>Username required</h5>
                         </div>-->
-                        <?php if(!empty($_SESSION['danger'])): ?>
-                            <div class="alert alert-danger message">
+                        {% if session.danger is not empty %}
+                            <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                                 <p>You have not completed the form correctly :</p>
-                                <ul> 
-                                    <li><?= $_SESSION['danger']; ?></li>  
+                                <ul>
+                                    {% for danger in session.danger %}
+                                        <li> {{ danger }}</li>  
+                                    {% endfor %}   
                                 </ul>
-                            </div>     
-                        <?php endif; ?>
-                        <?php unset($_SESSION['danger']); ?>
+                                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
+                            </div>    
+                        {% endif %}
                         <form method="post" action="">
                             <fieldset class="form-group row">    
                             <div class="form-field col-md-12">

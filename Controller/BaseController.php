@@ -15,6 +15,7 @@ class BaseController
         $this->twig = new \Twig\Environment($loader,[
             'debug'=>true
        ]);
+
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
         $this->twig->addGlobal('session', $_SESSION);
 
@@ -44,13 +45,13 @@ class BaseController
     /*private function unset()
     {
         $filterUnset = new \Twig\TwigFilter('unset', function ($string) {
-
-            unset($string);
+            unset($_SESSION[$string]);
         });
-        $this->twig->addFilter($filterUnset);
-    }
 
-    public function number_words($string, $limit = 25, $fin = ' ...')
+        $this->twig->addFilter($filterUnset);
+    }*/
+    
+    /*public function number_words($string, $limit = 25, $fin = ' ...')
     {
         preg_match('/^\s*+(?:\S++\s*+){1,' .$limit. '}/u', $string, $matches);
         

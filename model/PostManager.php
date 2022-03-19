@@ -105,14 +105,24 @@ class PostManager extends Manager
         return $imageUpdate;
     }
 
-    public function updatePost($title,$headline,$content,$tag,$status_post,$id)
+    public function updatePost1($title,$headline,$content,$tag,$id)
     {
-        $req = $this->bdd->prepare('UPDATE posts SET title = :title, headline = :headline, content = :content, tag_id = :tag, status_post = :status_post, date_create = NOW() WHERE id = :id');
+        $req = $this->bdd->prepare('UPDATE posts SET title = :title, headline = :headline, content = :content, tag_id = :tag, date_create = NOW() WHERE id = :id');
         $updatePost = $req->execute([
         'title'=> $title,
         'headline'=> $headline,
         'content'=> $content,
         'tag'=> $tag,
+        'id' => $id
+        ]);
+        
+        return $updatePost;
+    }
+
+    public function updatePost2($status_post,$id)
+    {
+        $req = $this->bdd->prepare('UPDATE posts SET status_post = :status_post WHERE id = :id');
+        $updatePost = $req->execute([
         'status_post'=> $status_post,
         'id' => $id
         ]);
@@ -134,6 +144,14 @@ class PostManager extends Manager
         ]);
         
         return $insertPost;
+    }
+
+    public function deletePost($id)
+    {
+        $req = $this->bdd->query("DELETE FROM posts WHERE id = $id");
+        $deletePost = $req->execute();
+
+        return $deletePost;
     }
 
 }

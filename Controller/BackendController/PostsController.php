@@ -6,7 +6,8 @@ require_once 'model/TagManager.php';
 
 class PostsController extends BaseController{
 
-    public function indexpost(){
+    public function indexpost()
+    {
 
         if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 1) {
 
@@ -63,27 +64,27 @@ class PostsController extends BaseController{
             }
             
             if(isset($_POST['submit']) && empty($_POST['title'])) {
-                array_push($_SESSION['danger'], "Enter a title ! ");
+                $_SESSION['danger']['title'] = "Enter a title ! ";
             } 
             
             if(isset($_POST['submit']) && empty($_POST['headline'])) {
-                array_push($_SESSION['danger'], "Enter an headline !");
+                $_SESSION['danger']['headline'] = "Enter an headline !";
             }
             
             if(isset($_POST['submit']) && empty($_POST['content'])) {
-                array_push($_SESSION['danger'], "Enter a content !");
+                $_SESSION['danger']['content'] = "Enter a content !";
             }
             
             if(isset($_FILES['image']) && $_FILES['image']['size'] == 0) {
-                array_push($_SESSION['danger'], "Select an image !");
+                $_SESSION['danger']['image'] = "Select an image !";
             
             } else if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
             
-                if ($error = $_FILES['image']['error'] > 0) {
-                    array_push($_SESSION['danger'], "There was a problem with the transfer !");
+                if ($_FILES['image']['error'] > 0) {
+                    $_SESSION['danger']['transfer'] = "There was a problem with the transfer !";
                 }
             
-                $maxsize = 5000000;
+                $maxsize = 1000000;
             
                 $image = $_FILES['image']['name'];
                 $image_tmp_name = $_FILES['image']['tmp_name'];
@@ -91,7 +92,7 @@ class PostsController extends BaseController{
                 $upload_folder = "images/";
             
                 if ($image_size >= $maxsize) {
-                    array_push($_SESSION['danger'], "File too large !");
+                    $_SESSION['danger']['size'] = "$image is too large ( 1 Mo max ) !";
                 }
             
                 $image_ext = pathinfo($image,PATHINFO_EXTENSION);
@@ -99,12 +100,12 @@ class PostsController extends BaseController{
                 $allowed_ext = array('jpg','jpeg','png','gif');
             
                 if (!in_array($image_ext_min,$allowed_ext)) {
-                    array_push($_SESSION['danger'], 'file extension is not allowed !'); 
+                    $_SESSION['danger']['extension'] = "$image : extension is not allowed ( jpg, jpeg, png and gif only ) !"; 
                 }
             }
             
             if (isset($_POST['tag']) &&  $_POST['tag'] == 0) {
-                array_push($_SESSION['danger'], 'Select a tag !');
+                $_SESSION['danger']['tag'] = "Select a tag !";
             }
             
             if (empty($_SESSION['danger'])) {
@@ -125,14 +126,13 @@ class PostsController extends BaseController{
                 $insertPost = $postManager->insertPost($title,$headline,$content,$image,$tag,$status_post);
 
                 if($insertPost == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
-            
+
                 $_SESSION['addpost'] = 'Creation success !';
-                 
+     
                 header('Location: index.php?page=indexpost');   
             }
-            
         }
 
         $tagManager = new TagManager();
@@ -143,8 +143,20 @@ class PostsController extends BaseController{
             'selectags' => $selectTags 
         ]);
 
-        unset($_SESSION['input']);
-        unset($_SESSION['danger']);   
+        if(!empty($_SESSION['danger'])) {    
+        ?>
+        <script>
+            swal({
+            title: "You have not completed the post correctly :",
+            text: "<?php foreach($_SESSION['danger'] as $danger): ?>
+                    <?= $danger.'\n'; ?>
+                    <?php endforeach; ?>",
+            icon: "error",
+            });
+        </script>
+        <?php
+         unset($_SESSION['danger']); 
+        }        
     }
 
     public function editpost()
@@ -156,120 +168,152 @@ class PostsController extends BaseController{
             $id = $_GET['id'];
 
             $postManager = new PostManager();
-            $editPost = $postManager->editPost($id);
+            $editPost = $postManager->singlePost($id);
 
         } else {
 
-            array_push($_SESSION['danger'], "You need a post id to change it !");
+            array_push($_SESSION['danger']['id'], "You need a post id to change it !");
             
-        } 
-        
-        if (!empty($_POST) && isset($_POST)) {
-        
-            $_SESSION['input'] = $_POST;
-            
-            if(isset($_POST['submit']) && empty($_POST['title']) && $_POST['title'] == '') {
-            
-                array_push($_SESSION['danger'], "Enter a title !");
-            
-            }
-        
-            if(isset($_POST['submit']) && empty($_POST['headline']) && $_POST['headline'] == '') {
-        
-                array_push($_SESSION['danger'], "Enter an headline !");
-            
-            }
-        
-            if(isset($_POST['submit']) && empty($_POST['content']) && $_POST['content'] == '') {
-        
-                array_push($_SESSION['danger'], "Enter a content !");
-            
-            }
-        
-            if(!empty($_FILES['image']['name'])) {
-            
-                if ($error = $_FILES['image']['error'] > 0) {
-                    array_push($_SESSION['danger'], "There was a problem with the transfer !");
-                }
-                
-                $maxsize = 5000000;
-            
-                $image = $_FILES['image']['name'];
-                $image_tmp_name = $_FILES['image']['tmp_name'];
-                $image_size = $_FILES['image']['size'];
-                $upload_folder = "images/";
-            
-                if ($image_size >= $maxsize) {
-                    array_push($_SESSION['danger'], "'.$image.' is too large ( 5 Mo max ) !");
-                }
-                
-                $image_ext = pathinfo($image,PATHINFO_EXTENSION);
-                $image_ext_min = strtolower($image_ext);
-                $allowed_ext = array('jpg','jpeg','png','gif');
-                   
-                if (!in_array($image_ext_min,$allowed_ext)) {
-                    array_push($_SESSION['danger'], "'.$image.' extension is not allowed ( jpg, jpeg, png and gif only ) !");
-                }
-            
-                if(!isset($errors['size']) && !isset($errors['extension'])) {
-                    $_SESSION['pictures'] = $_FILES['image'];
-                }
-        
-                if (empty($errors)) {
-                    move_uploaded_file($image_tmp_name, $upload_folder);
-                    
-                    $postManager = new PostManager();
-                    $imageUpdate = $postManager->imagePost($image,$_GET['id']);
+        }
 
-                    if($imageUpdate == NULL) {
-                        array_push($_SESSION['danger'], "There was a problem with a data processing !");
+        if($_SESSION['auth_role'] == 1 || $_SESSION['id'] = $editPost['id']) {
+        
+            if (!empty($_POST) && isset($_POST)) {
+            
+                $_SESSION['input'] = $_POST;
+                
+                if(isset($_POST['submit']) && empty($_POST['title']) && $_POST['title'] == '') {
+                
+                    $_SESSION['danger']['title'] = "Enter a title !";
+                
+                }
+            
+                if(isset($_POST['submit']) && empty($_POST['headline']) && $_POST['headline'] == '') {
+            
+                    $_SESSION['danger']['headline'] = "Enter an headline !";
+                
+                }
+            
+                if(isset($_POST['submit']) && empty($_POST['content']) && $_POST['content'] == '') {
+            
+                    $_SESSION['danger']['content'] = "Enter a content !";
+                
+                }
+            
+                if(!empty($_FILES['image']['name'])) {
+
+                    if ($_FILES['image']['error'] > 0) {
+                        $_SESSION['danger']['transfer'] = "There was a problem with the transfer !";
+                    }
+                    
+                    $maxsize = 1000000;
+                
+                    $image = $_FILES['image']['name'];
+                    $image_tmp_name = $_FILES['image']['tmp_name'];
+                    $image_size = $_FILES['image']['size'];
+                    $upload_folder = "images/";
+                
+                    if ($image_size >= $maxsize) {
+                        $_SESSION['danger']['size'] = "$image is too large ( 1 Mo max ) !";
+                    }
+                    
+                    $image_ext = pathinfo($image,PATHINFO_EXTENSION);
+                    $image_ext_min = strtolower($image_ext);
+                    $allowed_ext = array('jpg','jpeg','png','gif');
+                    
+                    if (!in_array($image_ext_min,$allowed_ext)) {
+                        $_SESSION['danger']['extension'] = "$image : extension is not allowed ( jpg, jpeg, png and gif only ) !";
+                    }
+                
+                    if(!isset($_SESSION['danger']['size']) && !isset($_SESSION['danger']['extension'])) {
+                        $_SESSION['pictures'] = $_FILES['image'];
+                    }
+            
+                    if (empty($_SESSION['danger'])) {
+                        move_uploaded_file($image_tmp_name, $upload_folder);
+                        
+                        $postManager = new PostManager();
+                        $imageUpdate = $postManager->imagePost($image,$_GET['id']);
+
+                        if($imageUpdate == NULL) {
+                            $_SESSION['danger']['process'] = "There was a problem with a data processing !";
+                        }
                     }
                 }
-            }
-        
-            if(empty($_POST['tag'])) {
+            
+                if(empty($_POST['tag'])) {
+                    
+                    $_SESSION['danger']['tag'] = "Selected a tag !";          
+                }
+            
+                if(empty($_SESSION['danger'])) {
+                    if(isset($_POST['status_post']) && $_POST['status_post'] == 2) {
+                        $status_post = $_POST['status_post'];
+                    } else {
+                        $status_post = 1; 
+                    }
+            
+                    $title = $_POST['title'];
+                    $headline = $_POST['headline']; 
+                    $content = $_POST['content']; 
+                    $tag = $_POST['tag'];
+    
+                    $postManager = new PostManager();
+                    $updatePost = $postManager->updatePost1($title,$headline,$content,$tag,$_GET['id']);
+
+                    if($updatePost == NULL) {
+                        $_SESSION['danger']['process'] = "There was a problem with a data processing !";
+                    }
+            
+                    $_SESSION['editpost'] = 'Update success !';
+
+                    unset($_SESSION['input']);
                 
-                array_push($_SESSION['danger'], "Selected a tag !");          
+                    header('Location: index.php?page=indexpost');
+
+                } else {
+                    header('Location: index.php?page=editpost&id='.$_GET['id']);
+                }
             }
-        
-            if(empty($_SESSION['danger'])) {
+
+        } else {
+            if (!empty($_POST) && isset($_POST)) {
+
                 if(isset($_POST['status_post']) && $_POST['status_post'] == 2) {
                     $status_post = $_POST['status_post'];
                 } else {
                     $status_post = 1; 
                 }
-        
-                $title = $_POST['title'];
-                $headline = $_POST['headline']; 
-                $content = $_POST['content']; 
-                $tag = $_POST['tag'];
-  
+            
                 $postManager = new PostManager();
-                $updatePost = $postManager->updatePost($title,$headline,$content,$tag,$status_post,$_GET['id']);
-
-                if($updatePost == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
-                }
-        
-                $_SESSION['editpost'] = 'Update success !';
-
-                unset($_SESSION['input']);
-                unset($_SESSION['danger']);
-               
+                $updatePost = $postManager->updatePost2($status_post,$_GET['id']);
+            
+                $_SESSION['editpost'] = 'Update success !'; 
+                
                 header('Location: index.php?page=indexpost');
-
-            } else {
-                header('Location: index.php?page=editpost&id='.$_GET['id']);
+                }
             }
-        } 
+                
+        $tagManager = new TagManager();
+        $selectTags = $tagManager->selectTag($_GET['id']);
 
-                $tagManager = new TagManager();
-                $selectTags = $tagManager->selectTag($_GET['id']);
+        echo $this->twig->render("backend/posts/editpost.html.twig",[
+        'activemenu' => 'postmenu',
+        'editpost' => $editPost,
+        'selectags' => $selectTags 
+        ]);       
+    }
 
-                echo $this->twig->render("backend/posts/editpost.html.twig",[
-                    'activemenu' => 'postmenu',
-                    'editpost' => $editPost,
-                    'selectags' => $selectTags 
-                ]);
-    }                          
+    public function deletepost()
+    {
+        $postManager = new postManager();
+        $deletePost = $postManager->deletePost($_GET['id']);
+
+        if($deletePost == NULL) {
+            $_SESSION['danger']['process'] = "There was a problem with a data processing !";
+        }
+
+        header('Location: index.php?page=indexpost');
+
+    }   
 }

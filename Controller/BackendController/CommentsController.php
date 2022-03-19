@@ -51,7 +51,7 @@ class CommentsController extends BaseController{
             $statusComment = $commentManager->statusComment($status_comm,$id);
 
             if($statusComment == NULL) {
-                array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                $_SESSION['danger'] = "There was a problem with a data processing !";
             }
                  
             $_SESSION['editcomm'] = 'Your update successfully !';
@@ -64,5 +64,22 @@ class CommentsController extends BaseController{
             'activemenu' => 'commentmenu',
             'editcomment' => $editComment
         ]);
+    }
+
+    public function deletecomment()
+    {
+        if(isset($_GET['id']) && !empty($_GET['id'])) {
+            $id = $_GET['id'];
+            
+            $commentManager = new CommentManager();
+            $deleteComment = $commentManager->deleteComment($id);
+
+            if($deleteComment == NULL) {
+                $_SESSION['danger'] = "There was a problem with a data processing !";
+            }
+            
+            echo json_encode("true");
+
+        }
     }
 }

@@ -24,19 +24,19 @@
                                 <fieldset class="form-group form-post row g-0">
                                     <div class="form-field col-lg-12">
                                         <label for="author">Author</label>
-                                        <input type="text" name="username" id="username" class="form-control" value="{{ session.username }}">
+                                        <input type="text" name="username" id="username" class="form-control" disabled value="{{ session.username }}">
                                     </div>  
                                     <div class="form-field col-lg-12">
                                         <label for="title">Title</label>
-                                        <input type="text" name="title" id="title" class="form-control" value="{{ session.input.title is defined ? session.input.title : addpost.title }}">
+                                        <input type="text" name="title" id="title" class="form-control" value="{{ session.input.title is defined ? session.input.title : "" }}">
                                     </div>
                                     <div class="form-field col-lg-12">
-                                        <label for="headline">Catchy headline</label>
-                                        <input type="text" name="headline" id="headline" class="form-control" value="{{ session.input.headline is defined ? session.input.headline : addpost.headline }}">
+                                        <label for="headline">Headline</label>
+                                        <input type="text" name="headline" id="headline" class="form-control" value="{{ session.input.headline is defined ? session.input.headline : "" }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                     <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-                                    <textarea name="content" id="content" class="form-control">{{ session.input.content is defined ? session.input.content : addpost.content }}</textarea>      
+                                    <textarea name="content" id="content" class="form-control">{{ session.input.content is defined ? session.input.content : "" }}</textarea>      
                                     </div>
                                     
                                     <div class="form-field col-lg-12 file-input">
@@ -54,10 +54,12 @@
                                             {% endif %}  
                                         </select>
                                     </div>
+                                    {% if session.auth_role and session.auth_role == 2 %}
                                     <div class="form-check">
                                         <input type="checkbox" name="status_post" class="form-check-input" value="2" {% if editpost.status_post is defined and editpost.status_post == 2 %} checked {% endif %} id="checkbox">
                                         <label class="form-check-label" for="checkbox">Published</label>
-                                    </div> 
+                                    </div>
+                                    {% endif %}
                                     <div class="btn-post d-flex justify-content-between">
                                         <button type="submit" name="submit" class="submit-post submit-btn">Add post</button>
                                         <a class="submit-btn submit-post" href="index.php?page=indexpost" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>    

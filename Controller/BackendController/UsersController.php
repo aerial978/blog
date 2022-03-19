@@ -46,7 +46,7 @@ class UsersController extends BaseController{
 
             if(empty($_POST['username']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['username'])) {
 
-                array_push($_SESSION['danger'], "Invalid username !");
+                $_SESSION['danger']['username'] = "Invalid username !";
 
             } else {
                 
@@ -54,20 +54,20 @@ class UsersController extends BaseController{
                 $getUserId = $userManager->getUserId();
 
                 if($getUserId) {
-                    array_push($_SESSION['danger'], "Username already used !");
+                    $_SESSION['danger']['username_used'] = "Username already used !";
                 } 
             }
 
             if(isset($_FILES['picture']) && $_FILES['picture']['size'] == 0) {
-                array_push($_SESSION['danger'], "Select an image !");
+                $_SESSION['danger']['picture'] = "Select an image !";
             
             } else if (isset($_FILES['picture']) && $_FILES['picture']['size'] > 0) {
             
-                if ($error = $_FILES['picture']['error'] > 0) {
-                    array_push($_SESSION['danger'], "There was a problem with the transfer !");
+                if ($_FILES['picture']['error'] > 0) {
+                    $_SESSION['danger']['transfer'] = "There was a problem with the transfer !";
                 }
             
-                $maxsize = 5000000;
+                $maxsize = 1000000;
             
                 $picture = $_FILES['picture']['name'];
                 $picture_tmp_name = $_FILES['picture']['tmp_name'];
@@ -75,7 +75,7 @@ class UsersController extends BaseController{
                 $upload_folder = "images/";
             
                 if ($picture_size >= $maxsize) {
-                    array_push($_SESSION['danger'], "File too large !");
+                    $_SESSION['danger']['size'] = "$picture is too large ( 1 Mo max ) !";
                 }
             
                 $picture_ext = pathinfo($picture,PATHINFO_EXTENSION);
@@ -83,24 +83,24 @@ class UsersController extends BaseController{
                 $allowed_ext = array('jpg','jpeg','png','gif');
             
                 if (!in_array($picture_ext_min,$allowed_ext)) {
-                    array_push($_SESSION['danger'], "file extension is not allowed !"); 
+                    $_SESSION['danger']['extension'] = "$picture : extension is not allowed ( jpg, jpeg, png and gif only ) !"; 
                 }
             }
 
             if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                array_push($_SESSION['danger'], "Invalid email !");
+                $_SESSION['danger']['email'] = "Invalid email !";
             } else {
                 
                $userManager = new UserManager();
                $getUserEmail = $userManager->getUserEmail();
 
                 if($getUserEmail) {
-                    array_push($_SESSION['danger'], "Email already used !");
+                    $_SESSION['danger']['email_used'] = "Email already used !";
                 }
             }
 
             if(empty($_POST['password']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
-                array_push($_SESSION['danger'], "Invalid password !");
+                $_SESSION['danger']['password'] = "Invalid password !";
             }
 
             if(empty($_SESSION['danger'])){
@@ -117,15 +117,13 @@ class UsersController extends BaseController{
                 $insertUser = $userManager->insertUser($password,$role);
 
                 if ($insertUser == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
 
                 $_SESSION['adduser'] = 'Creation successfully !';
                 
                 header('Location: index.php?page=indexuser');
 
-                unset($_SESSION['danger']);
-                unset($_SESSION['input']);
             }        
 
         }
@@ -149,7 +147,7 @@ class UsersController extends BaseController{
 
             
         } else {
-            array_push($_SESSION['danger'], "You need a user id to change it !");       
+            $_SESSION['danger']['id'] = "You need a user id to change it !";       
         }
 
         if (!empty($_POST) && isset($_POST)) {
@@ -162,7 +160,7 @@ class UsersController extends BaseController{
             
             if(empty($_POST['username']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['username'])) {
                 
-                array_push($_SESSION['danger'], "Invalid username !");       
+                $_SESSION['danger']['username'] = "Invalid username !";       
 
             } else {
                     
@@ -171,14 +169,14 @@ class UsersController extends BaseController{
                 }
 
                 if($updateUsername == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
 
             if(!empty($_FILES['picture']['name'])) {
                 
                 if ($error = $_FILES['picture']['error'] > 0) {
             
-                    array_push($_SESSION['danger'], "There was a problem with the transfer !");
+                    $_SESSION['danger']['transfer'] = "There was a problem with the transfer !";
             }
                 
             $maxsize = 5000000;
@@ -191,7 +189,7 @@ class UsersController extends BaseController{
             
             if ($picture_size >= $maxsize) {
 
-                array_push($_SESSION['danger'], "'.$picture.' is too large ( 5 Mo max ) !");
+                $_SESSION['danger']['size'] = "$picture is too large ( 5 Mo max ) !";
             }
                 
             $picture_ext = pathinfo($picture,PATHINFO_EXTENSION);
@@ -199,10 +197,10 @@ class UsersController extends BaseController{
             $allowed_ext = array('jpg','jpeg','png','gif');
                 
             if (!in_array($picture_ext_min,$allowed_ext)) {
-                array_push($_SESSION['danger'], "'.$picture.' extension is not allowed ( jpg, jpeg, png and gif only) !");
+                $_SESSION['danger']['extension'] = "$picture : extension is not allowed ( jpg, jpeg, png and gif only) !";
             }
             
-            if(!isset($errors['size']) && !isset($errors['extension'])) {
+            if(!isset($_SESSION['danger']['size']) && !isset($_SESSION['danger']['extension'])) {
                 $_SESSION['picture'] = $_FILES['picture'];
             }
 
@@ -214,28 +212,28 @@ class UsersController extends BaseController{
                 }
 
                 if($updatePicture == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
         
             }
             
             if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
-                    $errors['email'] = "Email is not valid !";
+                $_SESSION['danger']['email'] = "Email is not valid !";
 
             } else {
                     $userManager = new UserManager();
                     $updateEmail = $userManager->updateEmail($email,$id);
 
                     if($updateEmail == NULL) {
-                        array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                        $_SESSION['danger']['process'] =  "There was a problem with a data processing !";
                     }    
                 }
 
             $password = $_POST['password'];
 
             if(!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
-                    $errors['password'] = "Invalid password !";
+                    $_SESSION['danger']['password'] = "Invalid password !";
             } 
             
             if (empty($_SESSION['danger'])) {
@@ -251,20 +249,34 @@ class UsersController extends BaseController{
                 $updatePasswordRole = $userManager->updatePasswordRole($password,$role,$id);
 
                 if($updatePasswordRole == NULL) {
-                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
-                }  
-
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
+                } 
+                
                 $_SESSION['updateuser'] = 'Your update successfully !';
 
+                
                 header('Location: index.php?page=indexuser');  
+                
             }   
-        }
+        } 
                 
         echo $this->twig->render("backend/users/edituser.html.twig",[
-            'activemenu' => 'usermenu',
-            'edituser' => $editUser
-            ]);
+        'activemenu' => 'usermenu',
+        'edituser' => $editUser
+        ]);   
+    }
 
-        unset($_SESSION['input']);
-        }      
+    public function deleteuser()
+    {
+        $id = $_GET['id'];
+
+        $userManager = new UserManager();
+        $deleteUser = $userManager->deleteUser($id);
+
+        if($deleteUser == NULL) {
+            $_SESSION['danger'] = "There was a problem with a data processing !";
+        }
+
+        header('Location: index.php?page=indexuser');
+    }
 }

@@ -96,6 +96,12 @@ switch ($_GET["page"]) {
         $editpostController->editpost();
         break;
 
+    case 'deletepost':
+        require "Controller/BackendController/PostsController.php";
+        $deletepostController = new PostsController();
+        $deletepostController->deletepost();
+        break;
+
     case 'indexcomment':
         require "Controller/BackendController/CommentsController.php";
         $indexcommentController = new CommentsController();
@@ -106,6 +112,12 @@ switch ($_GET["page"]) {
         require "Controller/BackendController/CommentsController.php";
         $editcommentController = new CommentsController();
         $editcommentController->editcomment();
+        break;
+
+    case 'deletecomment':
+        require "Controller/BackendController/CommentsController.php";
+        $deleteCommentController = new CommentsController();
+        $deleteCommentController->deletecomment();
         break;
 
     case 'indexuser':
@@ -126,6 +138,12 @@ switch ($_GET["page"]) {
         $edituserController->edituser();
         break;
 
+    case 'deleteuser':
+        require "Controller/BackendController/UsersController.php";
+        $deleteUserController = new UsersController();
+        $deleteUserController->deleteuser();
+        break;
+
     case 'indextag':
         require "Controller/BackendController/TagsController.php";
         $indextagController = new TagsController();
@@ -142,6 +160,12 @@ switch ($_GET["page"]) {
         require "Controller/BackendController/TagsController.php";
         $edittagController = new TagsController();
         $edittagController->edittag();
+        break;
+
+    case 'deletetag':
+        require "Controller/BackendController/TagsController.php";
+        $deleteTagController = new TagsController();
+        $deleteTagController->deletetag();
         break;
     
     default:

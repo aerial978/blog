@@ -54,17 +54,17 @@
                             </div>                      
                             <form method="post" action="">         
                                 <div class="row">
-                                    <?php if(!empty($errors)): ?>
-                                        <div class="alert alert-danger alert-dismissible show" role="alert">
-                                        <p>You have not completed the form correctly :</p>
+                                    {% if session.danger is not empty %}
+                                        <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
+                                            <p>You have not completed the form correctly :</p>
                                             <ul>
-                                                <?php foreach($errors as $error): ?>
-                                                    <li><?= $error; ?></li>  
-                                                <?php endforeach; ?>
+                                                {% for danger in session.danger %}
+                                                    <li> {{ danger }}</li>  
+                                                {% endfor %}   
                                             </ul>
                                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
                                         </div>    
-                                    <?php endif; ?>
+                                    {% endif %}
                                     <div class="form-group col-md-12">
                                         <label for="author">Name *</label>
                                         <input type="text" class="form-control" name="name_author" id="name_author">

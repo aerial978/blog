@@ -94,5 +94,11 @@ class TagManager extends Manager
         return $insertTag;
     }
 
+    public function deleteTag($id)
+    {
+        $req = $this->bdd->query("DELETE FROM tags WHERE id = $id");
+        $deleteTag = $req->execute();
 
+        return $deleteTag;
+    }
 }

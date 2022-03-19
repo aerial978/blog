@@ -45,6 +45,20 @@ class CommentManager extends Manager
         return $countComments;
     }
 
+    public function insertComment()
+    {
+        $req = $this->bdd->prepare('INSERT INTO comments(post_id, name_author, email_author, comment, date_comment) 
+        VALUES( :post_id, :name_author, :email_author, :comment, NOW())');
+        $insertComment = $req->execute(array(
+        'post_id'=> $_GET['id'],
+        'name_author'=> $_POST['name_author'],
+        'email_author'=> $_POST['email_author'],
+        'comment'=> $_POST['comment']
+        ));
+
+        return $insertComment;
+    }
+
     public function indexComment()
     {
         $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS date_comment, comments.id AS commentId FROM comments 
@@ -66,6 +80,14 @@ class CommentManager extends Manager
         return $editComment;
     }
 
+    public function deleteComment($id)
+    {
+        $req = $this->bdd->prepare('DELETE FROM comments WHERE id = ?');
+        $deleteComment = $req->execute(array($id));
+
+        return $deleteComment;
+    }
+
     public function statusComment($status_comm,$id)
     {
         $req = $this->bdd->prepare('UPDATE comments SET status_comm = :status_comm WHERE id = :id');
@@ -76,5 +98,4 @@ class CommentManager extends Manager
 
         return $statusComm;
     }
-
 }

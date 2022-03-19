@@ -235,7 +235,7 @@
 section .content {
     font-family: var(--secondaryFontFamily);
     padding: 30px;
-    margin-top: 60px;
+    margin-top: 80px;
     background: var(--secondaryColor);
     min-height: calc(100vh - 90px);
     z-index: 150;
@@ -449,6 +449,7 @@ section .content .cards .card .card-body img {
 
 section .content .edit-post {
     background: orange;
+    border: none;
 }
 
 section .content .edit-post:hover {
@@ -900,7 +901,7 @@ section .content .create .form-tag .btn-tag {
 
 section .content .create .form-tag .submit-tag {
     background: rgba(140,195,169,1);
-    width: 150px;
+    width: auto;
     
 }
 
@@ -919,6 +920,12 @@ section .content .create .form-tag .btn-tag .btn:hover {
     color: rgba(140,195,169,1);
     background: white;
 }
+
+
+
+
+
+
 
 
 

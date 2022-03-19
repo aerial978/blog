@@ -139,4 +139,14 @@ class UserManager extends Manager
         return $insertUser;
     }
 
+    public function deleteUser($id)
+    {
+
+    $req = $this->bdd->query("DELETE FROM users WHERE id = $id");
+    $deleteUser = $req->execute();
+
+    return $deleteUser;
+
+    }
+
 }    

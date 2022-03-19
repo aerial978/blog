@@ -9,35 +9,36 @@
                     </div>
                     <div class="edit">
                         <div class="container">
-                            <form method="post" action="index.php?page=editpost&id={{ editpost.id }}" enctype="multipart/form-data">
+                            {#{% if session.danger is not empty %}
+                                <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
+                                    <p>You have not completed the form correctly :</p>
+                                        <ul>
+                                            {% for danger in session.danger %}
+                                                <li>{{ danger }}</li>  
+                                            {% endfor %}   
+                                        </ul>
+                                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
+                                </div>    
+                            {% endif %}#}
+                            <form method="post" action="index.php?page=editpost&id={{ editpost.postId }}" enctype="multipart/form-data">
                                 <fieldset class="form-group form-post row g-0">
-                                    {% if session.danger is not empty %}
-                                        <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
-                                            <p>You have not completed the form correctly :</p>
-                                            <ul>
-                                                {% for danger in session.danger %}
-                                                    <li>{{ danger }}</li>  
-                                                {% endfor %}   
-                                            </ul>
-                                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
-                                        </div>    
-                                    {% endif %}
+                                    
                                     <div class="form-field col-lg-12">
                                         <label for="author">Author</label>
-                                        <input type="text" name="username" id="username" class="form-control" value="{{ session.username }}">
+                                        <input type="text" name="username" id="username" class="form-control"  value="{{ editpost.username }}" disabled>
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="title">Title</label>
-                                        <input type="text" name="title" id="title" class="form-control" value="{{ session.input.title is defined ? session.input.title : editpost.title }}">
+                                        <input type="text" name="title" id="title" class="form-control" {% if session.id != editpost.id %} disabled {% endif %} value="{{ session.input.title is defined and session.input.title is not empty ? session.input.title : editpost.title }}">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="headline">Headline</label>
-                                        <input type="text" name="headline" id="headline" class="form-control" value="{{ session.input.headline is defined ? session.input.headline : editpost.headline }}">
+                                        <input type="text" name="headline" id="headline" class="form-control" {% if session.id != editpost.id %} disabled {% endif %} value="{{ session.input.headline is defined and session.input.title is not empty ? session.input.headline : editpost.headline }}">
                                     </div>
-                                    {{ dump(session) }}
+                                    
                                     <div class="form-field col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-                                        <textarea name="content" id="content" class="form-control">{{ session.input.content is defined ? session.input.content : editpost.content }}</textarea>
+                                        <textarea name="content" {% if session.auth_role == 1 or session.id == editpost.id %} id="content" {% endif %} rows="8" class="form-control" {% if session.id != editpost.id %} disabled {% endif %}>{{ session.input.content is defined and session.input.title is not empty ? session.input.content : editpost.content }}</textarea>
                                     </div>
                                     <div class="form-field col-lg-12 d-flex flex-column">
                                         <label for="formFile" class="form-label">Image</label>
@@ -49,11 +50,11 @@
                                         {% endif %}
                                     </div>  
                                     <div class="form-field col-lg-12">  
-                                        <input type="file" name="image" id="image" class="form-control">
+                                        <input type="file" name="image" id="image" class="form-control" {% if session.id != editpost.id %} disabled {% endif %}>
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="tags">Tag category</label>
-                                        <select name="tag" id="tag" class="form-control">
+                                        <select name="tag" id="tag" class="form-control" {% if session.id != editpost.id %} disabled {% endif %}>
                                             <option value="0">Select option</option>
                                             {% if selectags %}
                                                 {% for tag in selectags %}
@@ -62,10 +63,12 @@
                                             {% endif %}     
                                         </select>
                                     </div>
+                                    {% if session.auth_role and session.auth_role == 2 %}
                                     <div class="form-check">
                                         <input type="checkbox" name="status_post" class="form-check-input" value="2" {% if editpost.status_post is defined and editpost.status_post == 2 %} checked {% endif %} id="checkbox">
                                         <label class="form-check-label" for="checkbox">Published</label>
-                                    </div> 
+                                    </div>
+                                    {% endif %}
                                     <div class="btn-post d-flex justify-content-between">
                                         <button type="submit" name="submit" class="submit-post submit-btn">Update post</button>
                                         <a class="submit-btn submit-post" href="?page=indexpost" role="button"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>    
@@ -77,5 +80,4 @@
                 </div>
             </section>
         </div>
-        {#{{ session | unset }} #}
 {% endblock %}

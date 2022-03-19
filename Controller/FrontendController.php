@@ -8,7 +8,7 @@ require_once 'model/CommentManager.php';
 require_once 'model/UserManager.php';
 
 
-class FrontendController extends BaseController{
+class FrontendController extends BaseController {
 
     public function home()
     {
@@ -113,6 +113,39 @@ class FrontendController extends BaseController{
             $commentManager = new CommentManager();
             $countcommentsPosts = $commentManager->countCommentsPost($_GET['id']);
 
+            if (!empty($_POST)) {
+
+                $_SESSION['danger'] = array();
+            
+                if(isset($_POST['submit']) && empty($_POST['name_author'])) {
+            
+                    $_SESSION['danger']['author'] = 'Your name is required !';
+                }
+            
+                if(isset($_POST['submit']) && empty($_POST['email_author']) || !filter_var($_POST['email_author'], FILTER_VALIDATE_EMAIL)) {
+            
+                    $_SESSION['danger']['email'] = 'Your email is required or invalid !';
+                }
+            
+                if(isset($_POST['submit']) && empty($_POST['comment'])) {
+            
+                    $_SESSION['danger']['comment'] = 'Your comment is required !';
+                }
+            
+                if(empty($_SESSION['danger'])) {
+            
+                $commentManager = new CommentManager();
+                $insertComment = $commentManager->insertComment();
+
+                if($insertComment == NULL) {
+                    $_SESSION['danger']['process'] = "There was a problem with a data processing !";
+                }
+            
+                $_SESSION['successcomment'] = 'Comment sent successfully !';
+            
+                }
+            }
+            
             echo $this->twig->render("frontend/postsingle.html.twig",[
                 'activemenu' => 'postslistmenu',
                 'post' => $post,
@@ -123,6 +156,18 @@ class FrontendController extends BaseController{
         } else {
             header('location: ?page=page404');
         }
+
+        if(isset($_SESSION['successcomment']) && $_SESSION['successcomment'] != "") { ?>
+            <script>
+                swal({
+                title: "<?= $_SESSION['successcomment'] ?>",
+                text: "",
+                icon: "success", 
+                });
+            </script>
+        <?php
+            unset($_SESSION['successcomment']);
+            } 
     }
 
     public function userposts()
@@ -287,7 +332,7 @@ class FrontendController extends BaseController{
                     header('Location: index.php?page=home');
 
                 } else {
-                    array_push($_SESSION['danger'],'Probleme !');
+                    $_SESSION['danger'] = "There was a problem with a data processing !";
                 }
                     
             } else {
@@ -330,14 +375,40 @@ class FrontendController extends BaseController{
             unset($_SESSION['danger']);
             echo $this->twig->render("frontend/login.html.twig",[
                 'activemenu' => 'signinmenu' 
-            ]);        
+            ]);  
+            
+            if(isset($_SESSION['successforget']) && $_SESSION['successforget'] != "") { ?>
+            
+                <script>
+                    swal({
+                    title: "<?= $_SESSION['successforget'] ?>",
+                    text: "",
+                    icon: "success", 
+                    });
+                </script>
+            <?php
+                unset($_SESSION['successforget']);
+                }
+
+            if(isset($_SESSION['logout']) && $_SESSION['logout'] != "") { ?>        
+                <script>
+                    Swal.fire({
+                        title: "<?= $_SESSION['logout'] ?>",
+                        imageUrl: 'assets/images/avatar.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        confirmButtonColor: '#1aBC9C',
+                    })
+                </script>
+            <?php
+            $_SESSION = array();
+            session_destroy();
+            }         
         }
-  
     }
 
     public function logout() 
     {   
-        session_destroy();
 
         $_SESSION['logout'] = 'See you soon !';
 
@@ -347,12 +418,102 @@ class FrontendController extends BaseController{
 
     public function forget()
     {
+        $_SESSION['danger'] = array();
+
+        if(!empty($_POST)) {
+
+            $email = $_POST['email'];
+        
+            $formManager = new FormManager();
+            $forgetUser = $formManager->forgetUser($email);
+
+            if($forgetUser) {
+        
+                $forget_token = bin2hex(random_bytes(60));
+        
+                $formManager = new FormManager();
+                $updateForget = $formManager->updateForget($forget_token,$forgetUser);
+
+                if($updateForget == NULL) {
+                    array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                }
+        
+                $user_id = $forgetUser['id'];
+        
+                $to         = $_POST['email'];
+                $subject    = 'Resetting your password';
+                $message    = "To reset your password, please <a href='http://localhost/blog/index.php?page=reset&id=$user_id&token=$forget_token'>click on this link</a>";
+                $headers    = 'MIME Version 1.0\r\n';
+                $headers    = 'From: Your name <info@address.com>' . "\r\n";
+                $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+                
+                mail($to, $subject, $message, $headers);
+        
+                $_SESSION['successforget'] = 'Check your inbox to reset password !';
+                header('Location: index.php?page=login');
+        
+            }  else 
+                 {
+                array_push($_SESSION['danger'], "No account corresponds to this email address !");        
+            }    
+        } 
+
         echo $this->twig->render("frontend/forget.html.twig");
     }
 
     public function reset()
-    {
+    { 
+        if(isset($_GET['id']) && isset($_GET['token'])) {
+
+            $formManager = new FormManager();
+            $resetUser = $formManager->resetUser();
+        
+            if($resetUser) {
+
+                if(!empty($_POST)) {
+
+                    $_SESSION['danger'] = array();
+
+                    if(!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']) {
+                        
+                        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+                        $formManager = new FormManager();
+                        $updateReset = $formManager->UpdateReset($password,$resetUser);
+
+                        if($updateReset == NULL) {
+                            array_push($_SESSION['danger'], "There was a problem with a data processing !");
+                        }
+
+                        $_SESSION['auth'] = $resetUser;
+                        $_SESSION['id'] = $resetUser['id'];
+                        $_SESSION['username'] = $resetUser['username'];
+                        $_SESSION['pictures'] = $resetUser['picture'];
+                        $_SESSION['auth_role'] = $resetUser['role'];
+        
+                        $_SESSION['successreset'] = 'Well done, your password has been reset !';
+                        header('Location: index.php?page=dashboard');
+                        
+                    } else {
+                        
+                        array_push($_SESSION['danger'], "Password invalid !");
+                    }
+                } 
+            } else {
+        
+                $_SESSION['erroreset'] = 'Link is no longer valid !';
+                header('Location: index.php?page=login');
+            }
+        
+        } else {
+        
+            header('Location: index.php?page=login');
+            exit();  
+        }
+
         echo $this->twig->render("frontend/reset.html.twig");
+
     }
+        
   
 };
