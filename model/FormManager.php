@@ -13,18 +13,18 @@ class FormManager extends Manager
     {
         $req = $this->bdd->prepare('SELECT * FROM users WHERE username = ?');
         $req->execute([$username]);
-        $user = $req->fetch();
+        $loginUser = $req->fetch();
         
-        return $user;
+        return $loginUser;
     }
 
     public function registerUsername($username)
     {
         $req = $this->bdd->prepare("SELECT id FROM users WHERE username = ?");
         $req->execute([$username]);
-        $user = $req->fetch();
+        $registerUsername = $req->fetch();
 
-        return $user;
+        return $registerUsername;
     }
 
     public function registerEmail($email)

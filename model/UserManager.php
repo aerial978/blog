@@ -68,17 +68,6 @@ class UserManager extends Manager
         return $editUser;
     }
 
-    public function updateUsername($username,$id)
-    {
-        $req = $this->bdd->prepare('UPDATE users SET username = :username WHERE id = :id');
-        $updateUsername = $req->execute([
-            'username'=> $username,
-            'id'=>$id,
-        ]);
-
-        return $updateUsername;
-    }
-
     public function updatePicture($picture,$id)
     {
         $req = $this->bdd->prepare('UPDATE users SET picture = :picture WHERE id = :id');

@@ -104,14 +104,14 @@ class FrontendController extends BaseController {
             $post = $postManager->singlePost($_GET['id']);
 
             $commentManager = new CommentManager();
+            $countcommentsPosts = $commentManager->countCommentsPost($_GET['id']);
+
+            $commentManager = new CommentManager();
             $listcomments = $commentManager->listComments($_GET['id']);
 
             if($post == NULL) {
                 header('location: ?page=page404');
             }
-
-            $commentManager = new CommentManager();
-            $countcommentsPosts = $commentManager->countCommentsPost($_GET['id']);
 
             if (!empty($_POST)) {
 
@@ -312,12 +312,12 @@ class FrontendController extends BaseController {
 
         if(isset($_GET['id']) && isset($_GET['token']) && !empty($_GET['id']) && !empty($_GET['token'])) {
 
-            $userManager = new UserManager();
+            $userManager = new userManager();
             $tokenUser = $userManager->tokenUser($_GET['id'],$_GET['token']);
 
             if($tokenUser && $tokenUser['token_confirm'] == $token) {
 
-                $userManager = new UserManager();
+                $userManager = new userManager();
                 $tokenConfirm = $userManager->tokenConfirm($_GET['id']);
 
                 if($tokenConfirm == true) {
@@ -336,7 +336,6 @@ class FrontendController extends BaseController {
                 }
                     
             } else {
-
                 $_SESSION['danger'] = 'Link is no longer valid !';
                 header('Location: index.php?page=login');            
             }
@@ -347,7 +346,7 @@ class FrontendController extends BaseController {
     {
         if(isset($_POST) && !empty($_POST)) {  
 
-            $formManager = new FormManager();
+            $formManager = new formManager();
             $user = $formManager->loginUser($_POST['username']);
             
             if($user != false) {
@@ -357,17 +356,17 @@ class FrontendController extends BaseController {
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['pictures'] = $user['picture'];
                 $_SESSION['auth_role'] = $user['role'];
-                $_SESSION['login'] = 'Welcome to the Dashboard !';
 
+                $_SESSION['login'] = 'Welcome to the Dashboard !';
                 header('Location: index.php?page=dashboard');
                 exit();
 
                 } else {
-                    $_SESSION['danger'] = 'Incorrect username or password';
+                    $_SESSION['danger'] = 'Incorrect username or password !';
                     header('Location: index.php?page=login');
                 }
             } else { 
-                $_SESSION['danger'] = 'Incorrect username or password';
+                $_SESSION['danger'] = 'Incorrect username or password !';
                 header('Location: index.php?page=login');
             }     
         } else {
@@ -409,11 +408,8 @@ class FrontendController extends BaseController {
 
     public function logout() 
     {   
-
         $_SESSION['logout'] = 'See you soon !';
-
         header('Location: index.php?page=login');
-
     }
 
     public function forget()
@@ -457,7 +453,6 @@ class FrontendController extends BaseController {
                 array_push($_SESSION['danger'], "No account corresponds to this email address !");        
             }    
         } 
-
         echo $this->twig->render("frontend/forget.html.twig");
     }
 

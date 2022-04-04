@@ -85,15 +85,6 @@ class PostManager extends Manager
         return $indexposts;         
     }
 
-    public function editPost($id)
-    {
-        $req = $this->bdd->prepare('SELECT * FROM posts LEFT JOIN tags ON posts.tag_id = tags.id WHERE posts.id = ?');
-	    $req->execute(array($id));
-	    $editpost = $req->fetch(PDO::FETCH_ASSOC);
-
-        return $editpost;
-    }
-
     public function imagePost($image,$id)
     {
         $req = $this->bdd->prepare('UPDATE posts SET image = :image WHERE id = :id');
@@ -105,24 +96,14 @@ class PostManager extends Manager
         return $imageUpdate;
     }
 
-    public function updatePost1($title,$headline,$content,$tag,$id)
+    public function updatePost($title,$headline,$content,$tag,$status_post,$id)
     {
-        $req = $this->bdd->prepare('UPDATE posts SET title = :title, headline = :headline, content = :content, tag_id = :tag, date_create = NOW() WHERE id = :id');
+        $req = $this->bdd->prepare('UPDATE posts SET title = :title, headline = :headline, content = :content, tag_id = :tag, status_post = :status_post, date_create = NOW() WHERE id = :id');
         $updatePost = $req->execute([
         'title'=> $title,
         'headline'=> $headline,
         'content'=> $content,
         'tag'=> $tag,
-        'id' => $id
-        ]);
-        
-        return $updatePost;
-    }
-
-    public function updatePost2($status_post,$id)
-    {
-        $req = $this->bdd->prepare('UPDATE posts SET status_post = :status_post WHERE id = :id');
-        $updatePost = $req->execute([
         'status_post'=> $status_post,
         'id' => $id
         ]);

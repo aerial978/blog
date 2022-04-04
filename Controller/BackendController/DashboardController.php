@@ -26,8 +26,7 @@ class DashboardController extends BaseController{
             'counttags' => $countTags
         ]);
 
-        if(isset($_SESSION['login']) && $_SESSION['login'] != "") { ?>
-                
+        if(isset($_SESSION['login']) && $_SESSION['login'] != "") { ?>        
             <script>
                 swal({
                 title: "<?= $_SESSION['login'] ?>",
@@ -39,4 +38,4 @@ class DashboardController extends BaseController{
             unset($_SESSION['login']);
         } 
     }
-};
+}

@@ -19,7 +19,6 @@ class TagManager extends Manager
         return $listtag;
     }
 
-
     public function getTag()
     {
         $req = $this->bdd->prepare('SELECT name FROM tags WHERE id = ?');
@@ -27,7 +26,6 @@ class TagManager extends Manager
         $tag = $req->fetch();
 
         return $tag;
-
     }
 
     public function selectTag($id)

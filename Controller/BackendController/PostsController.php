@@ -36,7 +36,7 @@ class PostsController extends BaseController{
                 });
             </script>
         <?php
-            unset($_SESSION['editpost']);
+        unset($_SESSION['editpost']);
         }
 
         if(isset($_SESSION['addpost']) && $_SESSION['addpost'] != "") { ?>
@@ -49,8 +49,8 @@ class PostsController extends BaseController{
                 });
             </script>
         <?php
-            unset($_SESSION['addpost']);
-            }
+        unset($_SESSION['addpost']);
+        }
     }
 
     public function addpost()
@@ -63,7 +63,7 @@ class PostsController extends BaseController{
                 $_SESSION['input'] = $_POST;
             }
             
-            if(isset($_POST['submit']) && empty($_POST['title'])) {
+            if(isset($_POST['submit']) && isset($_POST['title']) && empty($_POST['title'])) {
                 $_SESSION['danger']['title'] = "Enter a title ! ";
             } 
             
@@ -130,8 +130,9 @@ class PostsController extends BaseController{
                 }
 
                 $_SESSION['addpost'] = 'Creation success !';
-     
-                header('Location: index.php?page=indexpost');   
+
+                header('Location: index.php?page=indexpost');  
+
             }
         }
 
@@ -143,7 +144,7 @@ class PostsController extends BaseController{
             'selectags' => $selectTags 
         ]);
 
-        if(!empty($_SESSION['danger'])) {    
+        if(!empty($_SESSION['danger'])) {
         ?>
         <script>
             swal({
@@ -155,7 +156,9 @@ class PostsController extends BaseController{
             });
         </script>
         <?php
-         unset($_SESSION['danger']); 
+         unset($_SESSION['danger']);
+         unset($_SESSION['input']);
+         
         }        
     }
 
@@ -172,11 +175,8 @@ class PostsController extends BaseController{
 
         } else {
 
-            array_push($_SESSION['danger']['id'], "You need a post id to change it !");
-            
+            $_SESSION['danger']['id'] = "You need a post id to change it !";    
         }
-
-        if($_SESSION['auth_role'] == 1 || $_SESSION['id'] = $editPost['id']) {
         
             if (!empty($_POST) && isset($_POST)) {
             
@@ -259,40 +259,21 @@ class PostsController extends BaseController{
                     $tag = $_POST['tag'];
     
                     $postManager = new PostManager();
-                    $updatePost = $postManager->updatePost1($title,$headline,$content,$tag,$_GET['id']);
+                    $updatePost = $postManager->updatePost($title,$headline,$content,$tag,$status_post,$_GET['id']);
 
                     if($updatePost == NULL) {
                         $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                     }
             
                     $_SESSION['editpost'] = 'Update success !';
-
-                    unset($_SESSION['input']);
                 
                     header('Location: index.php?page=indexpost');
 
                 } else {
                     header('Location: index.php?page=editpost&id='.$_GET['id']);
                 }
-            }
 
-        } else {
-            if (!empty($_POST) && isset($_POST)) {
-
-                if(isset($_POST['status_post']) && $_POST['status_post'] == 2) {
-                    $status_post = $_POST['status_post'];
-                } else {
-                    $status_post = 1; 
-                }
-            
-                $postManager = new PostManager();
-                $updatePost = $postManager->updatePost2($status_post,$_GET['id']);
-            
-                $_SESSION['editpost'] = 'Update success !'; 
-                
-                header('Location: index.php?page=indexpost');
-                }
-            }
+            }   
                 
         $tagManager = new TagManager();
         $selectTags = $tagManager->selectTag($_GET['id']);
@@ -301,7 +282,23 @@ class PostsController extends BaseController{
         'activemenu' => 'postmenu',
         'editpost' => $editPost,
         'selectags' => $selectTags 
-        ]);       
+        ]);
+
+        if(!empty($_SESSION['danger'])) {
+            ?>
+            <script>
+                swal({
+                title: "You have not completed the post correctly :",
+                text: "<?php foreach($_SESSION['danger'] as $danger): ?>
+                        <?= $danger.'\n'; ?>
+                        <?php endforeach; ?>",
+                icon: "error",
+                });
+            </script>
+        <?php
+        unset($_SESSION['danger']);
+        unset($_SESSION['input']);
+        }        
     }
 
     public function deletepost()

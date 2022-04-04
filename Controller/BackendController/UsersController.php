@@ -22,18 +22,31 @@ class UsersController extends BaseController{
             'indexusers' => $indexUsers
         ]);
 
-        if(isset($_SESSION['updateuser']) && $_SESSION['updateuser'] != "") { ?>
+        if(isset($_SESSION['edituser']) && $_SESSION['edituser'] != "") { ?>
         
             <script>
                 swal({
-                title: "<?= $_SESSION['updateuser'] ?>",
+                title: "<?= $_SESSION['edituser'] ?>",
                 text: "",
                 icon: "success", 
                 });
             </script>
         <?php
-            unset($_SESSION['updateuser']);
-            }
+            unset($_SESSION['edituser']);
+        }
+
+        if(isset($_SESSION['adduser']) && $_SESSION['adduser'] != "") { ?>
+        
+            <script>
+                swal({
+                title: "<?= $_SESSION['adduser'] ?>",
+                text: "",
+                icon: "success", 
+                });
+            </script>
+        <?php
+            unset($_SESSION['adduser']);
+        }
     }
 
     public function adduser()
@@ -131,7 +144,22 @@ class UsersController extends BaseController{
         echo $this->twig->render("backend/users/adduser.html.twig",[
             'activemenu' => 'usermenu'
         ]);
-        
+
+        if(!empty($_SESSION['danger'])) {
+            ?>
+            <script>
+                swal({
+                title: "You have not completed the post correctly :",
+                text: "<?php foreach($_SESSION['danger'] as $danger): ?>
+                        <?= $danger.'\n'; ?>
+                        <?php endforeach; ?>",
+                icon: "error",
+                });
+            </script>
+        <?php
+        unset($_SESSION['danger']);
+        unset($_SESSION['input']);
+        }        
     }
 
     public function edituser()
@@ -152,13 +180,13 @@ class UsersController extends BaseController{
 
         if (!empty($_POST) && isset($_POST)) {
 
-            $username = $_POST['username'];
+            /*$username = $_POST['username'];*/
             $email = $_POST['email'];
             $password = $_POST['password'];
 
             $_SESSION['input'] = $_POST;
             
-            if(empty($_POST['username']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['username'])) {
+            /*if(empty($_POST['username']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['username'])) {
                 
                 $_SESSION['danger']['username'] = "Invalid username !";       
 
@@ -170,11 +198,11 @@ class UsersController extends BaseController{
 
                 if($updateUsername == NULL) {
                     $_SESSION['danger']['process'] = "There was a problem with a data processing !";
-                }
+                }*/
 
             if(!empty($_FILES['picture']['name'])) {
                 
-                if ($error = $_FILES['picture']['error'] > 0) {
+                if ($_FILES['picture']['error'] > 0) {
             
                     $_SESSION['danger']['transfer'] = "There was a problem with the transfer !";
             }
@@ -219,7 +247,7 @@ class UsersController extends BaseController{
             
             if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
-                $_SESSION['danger']['email'] = "Email is not valid !";
+                $_SESSION['danger']['email'] = "Invalid Email !";
 
             } else {
                     $userManager = new UserManager();
@@ -252,9 +280,8 @@ class UsersController extends BaseController{
                     $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 } 
                 
-                $_SESSION['updateuser'] = 'Your update successfully !';
-
-                
+                $_SESSION['edituser'] = 'Update successfully !';
+        
                 header('Location: index.php?page=indexuser');  
                 
             }   
@@ -263,7 +290,23 @@ class UsersController extends BaseController{
         echo $this->twig->render("backend/users/edituser.html.twig",[
         'activemenu' => 'usermenu',
         'edituser' => $editUser
-        ]);   
+        ]);  
+        
+        if(!empty($_SESSION['danger'])) {
+            ?>
+            <script>
+                swal({
+                title: "You have not completed the post correctly :",
+                text: "<?php foreach($_SESSION['danger'] as $danger): ?>
+                        <?= $danger.'\n'; ?>
+                        <?php endforeach; ?>",
+                icon: "error",
+                });
+            </script>
+        <?php
+        unset($_SESSION['danger']);
+        unset($_SESSION['input']);  
+        }    
     }
 
     public function deleteuser()

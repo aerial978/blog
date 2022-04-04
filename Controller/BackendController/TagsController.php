@@ -9,7 +9,34 @@ class TagsController extends BaseController {
         echo $this->twig->render("backend/tags/indextag.html.twig",[
             'activemenu' => 'tagmenu',
         ]);
+
+        if(isset($_SESSION['edittag']) && $_SESSION['edittag'] != "") { ?>
+        
+            <script>
+                swal({
+                title: "<?= $_SESSION['edittag'] ?>",
+                text: "",
+                icon: "success", 
+                });
+            </script>
+        <?php
+        unset($_SESSION['edittag']);
+        }
+
+        if(isset($_SESSION['addtag']) && $_SESSION['addtag'] != "") { ?>
+        
+            <script>
+                swal({
+                title: "<?= $_SESSION['addtag'] ?>",
+                text: "",
+                icon: "success", 
+                });
+            </script>
+        <?php
+        unset($_SESSION['addtag']);
+        }
     }
+    
 
     public function addtag()
     {
@@ -53,12 +80,12 @@ class TagsController extends BaseController {
                     $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
             
-                $_SESSION['addtag'] = 'Creation success !'; 
+                $_SESSION['addtag'] = 'Creation successfully !'; 
+
+                unset($_SESSION['input']);  
             
                 header('Location: index.php?page=indextag');
-
-                unset($_SESSION['danger']);
-                unset($_SESSION['input']);    
+  
             }
         }
 
@@ -66,6 +93,21 @@ class TagsController extends BaseController {
             'activemenu' => 'tagmenu'
         ]);
 
+        if(!empty($_SESSION['danger'])) {
+            ?>
+            <script>
+                swal({
+                title: "You have not completed the post correctly :",
+                text: "<?php foreach($_SESSION['danger'] as $danger): ?>
+                        <?= $danger.'\n'; ?>
+                        <?php endforeach; ?>",
+                icon: "error",
+                });
+            </script>
+        <?php
+        unset($_SESSION['danger']);
+        unset($_SESSION['input']);  
+        }    
     }
 
     public function edittag()
@@ -112,7 +154,9 @@ class TagsController extends BaseController {
                     $_SESSION['danger']['process'] = "There was a problem with a data processing !";
                 }
         
-                $_SESSION['updatetag'] = 'Update success !';
+                $_SESSION['edittag'] = 'Update successfully !';
+
+                unset($_SESSION['input']);  
             
                 header('Location: index.php?page=indextag');
             }
@@ -122,6 +166,22 @@ class TagsController extends BaseController {
             'activemenu' => 'tagmenu',
             'tagid' => $tagId
         ]);
+
+        if(!empty($_SESSION['danger'])) {
+            ?>
+            <script>
+                swal({
+                title: "You have not completed the post correctly :",
+                text: "<?php foreach($_SESSION['danger'] as $danger): ?>
+                        <?= $danger.'\n'; ?>
+                        <?php endforeach; ?>",
+                icon: "error",
+                });
+            </script>
+        <?php
+        unset($_SESSION['danger']);
+        unset($_SESSION['input']);  
+        }    
     }
 
     public function deletetag()
@@ -129,7 +189,7 @@ class TagsController extends BaseController {
         $id = $_GET['id'];
 
         $tagManager = new TagManager();
-        $deleteTag = $tagManager->deleteTag($id);
+        $deleteTag = $tagManager->deleteTag($_GET['id']);
         
         if($deleteTag == NULL) {
             $_SESSION['danger'] = "There was a problem with a data processing !";

@@ -21,7 +21,7 @@ class BaseController
 
         $this->globalVariables();
 
-        /*$this->unset();*/
+        $this->unset();
 
         /*$this->number_words($string, $limit = 25, $fin = ' ...');*/
 
@@ -42,14 +42,14 @@ class BaseController
         $this->twig->addGlobal('comments',$comments);
     }
 
-    /*private function unset()
+    private function unset()
     {
         $filterUnset = new \Twig\TwigFilter('unset', function ($string) {
             unset($_SESSION[$string]);
         });
 
         $this->twig->addFilter($filterUnset);
-    }*/
+    }
     
     /*public function number_words($string, $limit = 25, $fin = ' ...')
     {
