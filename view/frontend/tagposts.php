@@ -27,7 +27,7 @@
                                         <div class="card-content">
                                             <h6 class="card-title"><?= $tagPost['title'] ?></h6> 
                                             <p class="card-head"><?= $tagPost['headline'] ?></p>
-                                            <p class="card-text">*****</span></p>
+                                            <p class="card-text"><?= $this->number_words($tagPost['content']) ?></span></p>
                                         </div>
                                         <div class="card-meta d-flex justify-content-end">       
                                             <a class="btn btn-primary" href="?page=postsingle&id=<?= $tagPost['postId'] ?>" role="button">Read More</a>

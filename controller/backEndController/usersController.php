@@ -1,7 +1,5 @@
 <?php
 
-require_once 'model/userManager.php';
-
 class usersController
 {
     public function indexUser()

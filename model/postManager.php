@@ -1,7 +1,5 @@
 <?php
 
-require_once 'model/manager.php';
-
 class postManager extends manager
 {
     public function __construct()

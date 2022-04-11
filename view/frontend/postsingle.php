@@ -22,7 +22,7 @@
                 <figure class="mb-4"><img src="<?="assets/images/".$singlePost['image'] ?>" alt="image post" class="img-fluid rounded" ></figure>
                 <div class="mb-1">
                     <p class="card-text fw-bolder fs-4 mb-4"><?= $singlePost['headline'] ?></p>
-                    <p class="card-text fs-5 mb-4"><?= $singlePost['content'] ?></p>
+                    <p class="card-text fs-5 mb-4"><?= $this->number_words($singlePost['content']) ?></p>
                 </div>
     <!-- COMMENTS AREA -->
                 <div class="comment-area mt-5 mb-5" id="comments">

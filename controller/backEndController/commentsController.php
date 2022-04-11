@@ -1,7 +1,5 @@
 <?php
 
-require_once 'model/commentManager.php';
-
 class commentsController {
 
     public function indexcomment()

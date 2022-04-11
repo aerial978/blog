@@ -1,7 +1,5 @@
 <?php
 
-require_once 'model/tagManager.php';
-
 class tagsController
 {
     public function indexTag()

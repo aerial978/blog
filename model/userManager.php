@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Model/Manager.php';
-
 class UserManager extends Manager
 {
     public function __construct()

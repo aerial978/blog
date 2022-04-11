@@ -26,7 +26,7 @@
                                         <div class="card-content">
                                             <h6 class="card-title"><?= $userPost['title'] ?></h6>
                                             <p class="card-head"><?= $userPost['headline'] ?></p>
-                                            <p class="card-text"><span>*****</span></p>
+                                            <p class="card-text"><span><?= $this->number_words($userPost['content']) ?></span></p>
                                         </div>
                                         <div class="card-meta d-flex justify-content-end">       
                                             <a class="btn btn-primary" href="?page=postsingle&id=<?= $userPost['postId'] ?>" role="button">Read More</a>

@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Model/Manager.php';
-
 class commentManager extends manager
 {
     public function __construct()

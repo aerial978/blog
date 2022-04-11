@@ -1,8 +1,5 @@
 <?php
 
-require_once 'model/postManager.php';
-require_once 'model/tagManager.php';
-
 class postsController
 {
     public function indexPost()

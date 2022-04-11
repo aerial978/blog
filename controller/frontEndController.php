@@ -1,26 +1,25 @@
 <?php
 
-require_once 'model/postManager.php';
-require_once 'model/tagManager.php';
-require_once 'model/commentManager.php';
-require_once 'model/userManager.php';
-require_once 'model/formManager.php';
-
-class frontEndController
+class frontEndController extends baseController
 {
+    private $postManager;
+    private $tagManager;
+    private $commentManager;
 
+    public function __construct()
+    {
+        $this->postManager = new postManager(); 
+        $this->tagManager = new tagManager(); 
+        $this->commentManager = new commentManager();
+    }
+    
     public function home()
     {
         $activeMenu = 'homemenu';
         
-        $postManager = new postManager();
-        $posts = $postManager->getPosts();
-
-        $tagManager = new tagManager();
-        $listTags = $tagManager->listTags();
-
-        $commentManager = new commentManager();
-        $comments = $commentManager->getComments();
+        $posts = $this->postManager->getPosts();
+        $listTags = $this->tagManager->listTags();  
+        $comments = $this->commentManager->getComments();
 
         if (!empty($_POST)) {
 
@@ -98,14 +97,9 @@ class frontEndController
     {
         $activeMenu = 'postsmenu';
         
-        $postManager = new postManager();
-        $posts = $postManager->getPosts();
-
-        $tagManager = new tagManager();
-        $listTags = $tagManager->listTags();
-
-        $commentManager = new commentManager();
-        $comments = $commentManager->getComments();
+        $posts = $this->postManager->getPosts();
+        $listTags = $this->tagManager->listTags();  
+        $comments = $this->commentManager->getComments();
         
         require('view/frontend/postslist.php');
     }
@@ -181,14 +175,9 @@ class frontEndController
     {
         $activeMenu = 'postsmenu';
         
-        $postManager = new postManager();
-        $posts = $postManager->getPosts();
-        
-        $tagManager = new tagManager();
-        $listTags = $tagManager->listTags();
-
-        $commentManager = new commentManager();
-        $comments = $commentManager->getComments();
+        $posts = $this->postManager->getPosts();
+        $listTags = $this->tagManager->listTags();  
+        $comments = $this->commentManager->getComments();
 
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
@@ -209,14 +198,9 @@ class frontEndController
     {
         $activeMenu = 'postsmenu';
         
-        $postManager = new postManager();
-        $posts = $postManager->getPosts();
-        
-        $tagManager = new tagManager();
-        $listTags = $tagManager->listTags();
-
-        $commentManager = new commentManager();
-        $comments = $commentManager->getComments();
+        $posts = $this->postManager->getPosts();
+        $listTags = $this->tagManager->listTags();  
+        $comments = $this->commentManager->getComments();
         
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
