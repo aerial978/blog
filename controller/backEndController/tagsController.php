@@ -1,5 +1,7 @@
 <?php
 
+use blogmvc\model\tagManager;
+
 class tagsController
 {
     public function indexTag()

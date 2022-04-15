@@ -1,5 +1,11 @@
 <?php
 
+use blogmvc\model\postManager;
+use blogmvc\model\tagManager;
+use blogmvc\model\commentManager;
+use blogmvc\model\UserManager;
+use blogmvc\model\formManager;
+
 class frontEndController extends baseController
 {
     private $postManager;
@@ -8,7 +14,7 @@ class frontEndController extends baseController
 
     public function __construct()
     {
-        $this->postManager = new postManager(); 
+        $this->postManager = new PostManager();
         $this->tagManager = new tagManager(); 
         $this->commentManager = new commentManager();
     }
@@ -119,13 +125,13 @@ class frontEndController extends baseController
 
         if(isset($_GET['id']) && !empty($_GET['id'])) {
 
-            $postManager = new PostManager();
+            $postManager = new postManager();
             $singlePost = $postManager->singlePost($_GET['id']);
 
-            $commentManager = new CommentManager();
+            $commentManager = new commentManager();
             $countCommentsPosts = $commentManager->countCommentsPost($_GET['id']);
 
-            $commentManager = new CommentManager();
+            $commentManager = new commentManager();
             $listComments = $commentManager->listComments($_GET['id']);
         
         } else {

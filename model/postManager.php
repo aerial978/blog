@@ -1,5 +1,7 @@
 <?php
 
+namespace blogmvc\model;
+
 class postManager extends manager
 {
     public function __construct()
@@ -25,7 +27,7 @@ class postManager extends manager
         LEFT JOIN users ON posts.user_id = users.id 
         WHERE posts.id = ?'); 
         $req->execute(array($id));
-        $singlePost = $req->fetch(PDO::FETCH_ASSOC);
+        $singlePost = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $singlePost;
     }
@@ -90,7 +92,7 @@ class postManager extends manager
         LEFT JOIN users ON posts.user_id = users.id 
         WHERE posts.id = ?'); 
         $req->execute(array($id));
-        $editPost = $req->fetch(PDO::FETCH_ASSOC);
+        $editPost = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $editPost;
     }

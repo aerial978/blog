@@ -1,5 +1,7 @@
 <?php
 
+namespace blogmvc\model;
+
 class formManager extends manager
 {
     public function __construct()

@@ -1,5 +1,7 @@
 <?php
 
+namespace blogmvc\model;
+
 class UserManager extends Manager
 {
     public function __construct()
@@ -44,7 +46,7 @@ class UserManager extends Manager
     {
         $req = $this->bdd->prepare('SELECT * FROM users WHERE id = ?');
         $req->execute(array($id));
-        $editUser = $req->fetch(PDO::FETCH_ASSOC);
+        $editUser = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $editUser;
     }

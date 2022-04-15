@@ -4,7 +4,7 @@
 <!-- POSTS LIST BY USER -->
 <section class="user-section">
     <div class="container">
-        <div class="title_tag mb-4 h4"><?= $getUsername['username']; ?></div> 
+        <div class="title_tag mb-4 h4"><?= $getUsername['username'] ?></div> 
         <div class="row">
             <div class="col-xl-9">
                 <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">

@@ -1,5 +1,7 @@
 <?php
 
+use blogmvc\model\commentManager;
+
 class commentsController {
 
     public function indexcomment()

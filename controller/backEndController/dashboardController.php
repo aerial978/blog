@@ -1,5 +1,10 @@
 <?php
 
+use blogmvc\model\postManager;
+use blogmvc\model\tagManager;
+use blogmvc\model\commentManager;
+use blogmvc\model\UserManager;
+
 class dashboardController
 {
     public function dashboard()

@@ -3,14 +3,20 @@
 session_start();
 
 spl_autoload_register(function($class){
-    if(file_exists('controller/' . $class . '.php'))
+    $parts = explode('\\', $class);
+    if(file_exists('controller/' . end($parts) . '.php'))
     {
-        require_once('controller/' . $class . '.php');
+        require_once('controller/' . end($parts) . '.php');
+
     }
-    if(file_exists('model/' . $class . '.php'))
+    if(file_exists('model/' . end($parts) . '.php'))
     {
-        require_once('model/' . $class . '.php');
+        $parts = explode('\\', $class);
+
+        require_once('model/' . end($parts) . '.php');
     }
+
+   
 });
 
 $_GET["page"] == "home";
@@ -18,7 +24,6 @@ $_GET["page"] == "home";
 switch ($_GET["page"]) {
 
     case 'home':
-        require "controller/frontEndController.php";
         $homeController = new frontEndController();
         $homeController->home();
         break;
@@ -183,8 +188,7 @@ switch ($_GET["page"]) {
         require "controller/frontEndController.php";
         $page404Controller = new frontEndController();
         $page404Controller->page404();
-        break;
-            
+        break;          
 }
 
 ?>

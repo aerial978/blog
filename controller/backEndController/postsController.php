@@ -1,5 +1,8 @@
 <?php
 
+use blogmvc\model\postManager;
+use blogmvc\model\tagManager;
+
 class postsController
 {
     public function indexPost()

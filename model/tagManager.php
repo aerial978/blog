@@ -1,8 +1,10 @@
 <?php
+namespace blogmvc\model;
+
+use blogmvc\model\manager;
 
 class tagManager extends manager
 {
-
     public function __construct()
     {
         $this->bdd = $this->dbConnect();
@@ -38,7 +40,7 @@ class tagManager extends manager
     {
         $req = $this->bdd->prepare('SELECT * FROM tags');
         $req->execute(array($id));
-        $selectTag = $req->fetchAll(PDO::FETCH_ASSOC);
+        $selectTag = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $selectTag;
     }
@@ -47,7 +49,7 @@ class tagManager extends manager
     {
         $req = $this->bdd->prepare('SELECT * FROM tags WHERE id = ?');
         $req->execute(array($id));
-        $tagId = $req->fetch(PDO::FETCH_ASSOC);
+        $tagId = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $tagId;
     }

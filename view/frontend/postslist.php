@@ -14,7 +14,7 @@
                                 <div class="card-body">    
                                     <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
                                         <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
-                                        <a href="?page=userposts&id="<?= $post['user_id'] ?>>
+                                        <a href="?page=userposts&id=<?= $post['user_id'] ?>">
                                         <?= $post['username'] ?></a></span>
                                         <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span><?= $post['date_create']?></span></div>
                                         <span class="badge"><a href="?page=tagposts&id=<?=$post['tag_id']?>"><?=$post['name']; ?></a></span>

@@ -1,5 +1,7 @@
 <?php
 
+namespace blogmvc\model;
+
 class commentManager extends manager
 {
     public function __construct()
@@ -73,7 +75,7 @@ class commentManager extends manager
     {
         $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS date_comment FROM comments LEFT JOIN posts ON comments.post_id = posts.id WHERE comments.id = ?');
         $req->execute(array($id));
-        $editComment = $req->fetch(PDO::FETCH_ASSOC);
+        $editComment = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $editComment;
     }

@@ -1,5 +1,7 @@
 <?php
 
+use blogmvc\model\UserManager;
+
 class usersController
 {
     public function indexUser()
