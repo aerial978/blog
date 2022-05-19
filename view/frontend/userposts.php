@@ -28,7 +28,8 @@
                                             <p class="card-head"><?= $userPost['headline'] ?></p>
                                             <p class="card-text"><span><?= $this->number_words($userPost['content']) ?></span></p>
                                         </div>
-                                        <div class="card-meta d-flex justify-content-end">       
+                                        <div class="card-meta d-flex justify-content-between">
+                                            <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $userPost['comment_count'] ?></span>       
                                             <a class="btn btn-primary" href="?page=postsingle&id=<?= $userPost['postId'] ?>" role="button">Read More</a>
                                         </div>
                                     </div>        
@@ -46,4 +47,4 @@
 </section>     
 <?php $content = ob_get_clean(); ?>
 
-<?php require('basefrontend.php'); ?>  
+<?php require('view/headers/headerfrontend.php'); ?>

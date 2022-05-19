@@ -27,11 +27,11 @@
     <!-- COMMENTS AREA -->
                 <div class="comment-area mt-5 mb-5" id="comments">
                     <div class="mb-4">
-                        <h4 class="fw-bolder">
+                        <div class="fw-bolder">
                             <?php foreach($countCommentsPosts as $countCommentsPost): ?>
                                 <h5 class="comment-number"><?= $countCommentsPost['total'] ?> comment(s)</h5>
                             <?php endforeach; ?>
-                        </h4>
+                        </div>
                     </div>
                     <?php foreach($listComments as $listComment): ?>            
                         <div class="comment-list" style="background-color: #e5e5e5;">
@@ -90,5 +90,4 @@
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('basefrontend.php'); ?>     
-                        
+<?php require('view/headers/headerfrontend.php'); ?>                        

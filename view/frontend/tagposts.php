@@ -22,14 +22,15 @@
                                             <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
                                             <a href="?page=userposts&id=<?= $tagPost['user_id'] ?>"><?= $tagPost['username'] ?></a></span>
                                             <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span><?= $tagPost['date_create'] ?></span></div>
-                                            <span class="badge"><a href="?page=tagposts&id=<?= $tagPost['tag_id'] ?>"><?= $tagPost['name'] ?></a></span>
+                                            <span class="badge"><?= $tagPost['name'] ?></span>
                                         </div>
                                         <div class="card-content">
                                             <h6 class="card-title"><?= $tagPost['title'] ?></h6> 
                                             <p class="card-head"><?= $tagPost['headline'] ?></p>
                                             <p class="card-text"><?= $this->number_words($tagPost['content']) ?></span></p>
                                         </div>
-                                        <div class="card-meta d-flex justify-content-end">       
+                                        <div class="card-meta d-flex justify-content-between">
+                                            <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $tagPost['comment_count'] ?></span>     
                                             <a class="btn btn-primary" href="?page=postsingle&id=<?= $tagPost['postId'] ?>" role="button">Read More</a>
                                         </div>
                                     </div>        
@@ -48,4 +49,4 @@
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('basefrontend.php'); ?> 
+<?php require('view/headers/headerfrontend.php'); ?>

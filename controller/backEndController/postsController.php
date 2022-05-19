@@ -3,13 +3,18 @@
 use blogmvc\model\postManager;
 use blogmvc\model\tagManager;
 
-class postsController
+class postsController extends baseController
 {
+    public function __construct()
+    {
+        $this->authentification();
+    }
+    
     public function indexPost()
     {
         $activeMenu = 'postmenu';
 
-        if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 1) {
+        if($this->issetSession('auth_role') && $this->getSession('auth_role') == 1) {
 
             $postManager = new postManager();
             $indexPosts = $postManager->indexPost1();
@@ -23,40 +28,40 @@ class postsController
         
         require('view/backend/posts/indexpost.php');
 
-        if(isset($_SESSION['create']) && $_SESSION['create'] != "") { ?>
+        if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['create'] ?>",
+                    title: "<?= $this->getSession('create') ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['create']);
+        $this->unsetSession('create');
         }
 
-        if(isset($_SESSION['update']) && $_SESSION['update'] != "") { ?>
+        if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['update'] ?>",
+                    title: "<?= $this->getSession('update') ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['update']);
+        $this->unsetSession('update');
         }
 
-        if(isset($_SESSION['process']) && $_SESSION['process'] != "") { ?>
+        if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['process'] ?>",
+                    title: "<?= $this->getSession('process') ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['process']);
+        $this->unsetSession('process');
         }
     }
 
@@ -66,13 +71,13 @@ class postsController
         
         $errors = array();
 
-        if(isset($_GET['id'])) {
+        if($this->issetGet('id')) {
         
         $postManager = new postManager();
-        $editPost = $postManager->editPost($_GET['id']);
+        $editPost = $postManager->editPost($this->getGet('id'));
 
         $tagManager = new tagManager();
-        $selectTag = $tagManager->selectTag($_GET['id']);
+        $selectTag = $tagManager->selectTag($this->getGet('id'));
 
         } else {
 
@@ -80,33 +85,36 @@ class postsController
         
         } 
         
-        if (!empty($_POST) && isset($_POST)) {
+        if ($this->issetPost()) {
 
-            
-            if(isset($_POST['submit']) && empty($_POST['title']) && $_POST['title'] == '') {
+            /*if(isset($_POST['submit']) && empty($_POST['title']) && $_POST['title'] == '') {
                 $errors['title'] = "Enter a title !"; 
+            }*/
+
+            if($this->issePost('submit') && empty($this->getPost('title')) && $this->getPost('title') == '') {
+                $errors['title'] = "Enter a title !";
             }
 
-            if(isset($_POST['submit']) && empty($_POST['headline']) && $_POST['headline'] == '') {
+            if($this->issePost('submit') && empty($this->getPost('headline')) && $this->getPost('headline') == '') {
                 $errors['headline'] = "Enter an headline !";
         
             }
 
-            if(isset($_POST['submit']) && empty($_POST['content']) && $_POST['content'] == '') {
+            if($this->issePost('submit') && empty($this->getPost('content')) && $this->getPost('content') == '') {
                 $errors['content'] = "Enter a content !";    
             }
 
-            if(!empty($_FILES['image']['name'])) {
+            if(!empty($this->getFiles('image','name'))) {
             
-                if ($_FILES['image']['error'] > 0) {
+                if ($this->getFiles('image','error') > 0) {
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
                 
                 $maxsize = 1000000;
             
-                $image = $_FILES['image']['name'];
-                $image_tmp_name = $_FILES['image']['tmp_name'];
-                $image_size = $_FILES['image']['size'];
+                $image = $this->getFiles('image','name');
+                $image_tmp_name = $this->getFiles('image','tmp_name');
+                $image_size = $this->getFiles('image','size');
                 $upload_folder = "images/";
             
                 if ($image_size >= $maxsize) {
@@ -122,89 +130,85 @@ class postsController
                 }
             
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
-                    $_SESSION['picture'] = $_FILES['image'];
+                    $this->setSession('picture', $this->getFiles('image'));
                 }
 
                 if (empty($errors)) {
                     move_uploaded_file($image_tmp_name, $upload_folder);
 
                     $postManager = new postManager();
-                    $imageUpdate = $postManager->imagePost($image,$_GET['id']);
+                    $imageUpdate = $postManager->imagePost($image,$this->getGet('id'));
 
                 }
             }
         
-            if(empty($_POST['tag'])) {           
+            if(empty($this->getPost('tag'))) {           
                 $errors['tag'] = "Selected a tag !";          
             }
 
-            $_SESSION['errors'] = $errors;
+            $this->setSession('errors',$errors);
 
             if(empty($errors)) {
-                if(isset($_POST['status_post']) && $_POST['status_post'] == 2) {
-                    $status_post = $_POST['status_post'];
+                if($this->issetPost('status_post') && $this->getPost('status_post') == 2) {
+                    $status_post = $this->getPost('status_post');
                 } else {
                     $status_post = 1; 
                 }
 
-                $title = $_POST['title'];
-                $headline = $_POST['headline']; 
-                $content = $_POST['content']; 
-                $tag = $_POST['tag'];
+                $title = $this->getPost('title');
+                $headline = $this->getPost('headline'); 
+                $content = $this->getPost('content'); 
+                $tag = $this->getPost('tag');
                 
                 $postManager = new postManager();
-                $updatePost = $postManager->updatePost($title,$headline,$content,$tag,$status_post,$_GET['id']);
+                $updatePost = $postManager->updatePost($title,$headline,$content,$tag,$status_post,$this->getGet('id'));
 
-                $_SESSION['update'] = 'Update successfully !';             
+                $this->setSession('update','Update successfully !');             
                 header('Location: index.php?page=indexpost');   
             }
         }
         require('view/backend/posts/editpost.php');
-        unset($_SESSION['input']);
-        unset($_SESSION['errors']);
-        unset($_SESSION['picture']);
-        
+        $this->unsetSession('input');
+        $this->unsetSession('errors');
+        $this->unsetSession('picture');
     }
 
     public function addPost()
     {
-        $tagManager = new tagManager();
-        $selectTag = $tagManager->selectTag($_GET['id']);
-
         if($_POST) {  
 
             $errors = array();
 
-            if(isset($_POST)) {
-                $_SESSION['input'] = $_POST;
+            if($this->issetPost()) {
+                $this->setSession('input',$_POST);
             }
 
-            if(isset($_POST['submit']) && empty($_POST['title'])) {
+            if($this->issePost('submit') && empty($this->getPost('title'))) {
                 $errors['title'] = 'Enter a title ! ';
             } 
 
-            if(isset($_POST['submit']) && empty($_POST['headline'])) {
+            if($this->issePost('submit') && empty($this->getPost('headline'))) {
                 $errors['headline'] = 'Enter an headline !';
             }
 
-            if(isset($_POST['submit']) && empty($_POST['content'])) {
+            if($this->issePost('submit') && empty($this->getPost('content'))) {
                 $errors['content'] = 'Enter a content !';
             }
 
-            if(isset($_FILES['image']) && $_FILES['image']['size'] == 0) {
+            if($this->issetFiles('image') && $this->getFiles('image','size') == 0) {
                 $errors['image'] = 'Select an image !';
 
-            } else if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
+            } else if ($this->issetFiles('image') && $this->getFiles('image','size') > 0) {
 
-                if ($error = $_FILES['image']['error'] > 0) {
+                if ($error = $this->getFiles('image','error') > 0) {
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
 
                 $maxsize = 5000000;
 
-                $image = $_FILES['image']['name'];
-                $image_tmp_name = $_FILES['image']['tmp_name'];
-                $image_size = $_FILES['image']['size'];
+                $image = $this->getFiles('image','name');
+                $image_tmp_name = $this->getFiles('image','tmp_name');
+                $image_size = $this->getFiles('image','size');
                 $upload_folder = "images/";
 
                 if ($image_size >= $maxsize) {
@@ -220,20 +224,20 @@ class postsController
                 }
             }
 
-            if (isset($_POST['tag']) &&  $_POST['tag'] == 0) {
+            if ($this->issePost('tag') &&  $this->getPost('tag') == 0) {
                 $errors['tag'] = 'Select a tag !';
             }
 
-            $_SESSION['errors'] = $errors;
+            $this->setSession('errors',$errors);
 
             if (empty($errors)) {
-                $title = $_POST['title'];
-                $headline = $_POST['headline']; 
-                $content = $_POST['content'];
-                $tag = $_POST['tag'];
+                $title = $this->getPost('title');
+                $headline = $this->getPost('headline'); 
+                $content = $this->getPost('content'); 
+                $tag = $this->getPost('tag');
 
-                if(isset($_POST['status_post']) && $_POST['status_post'] == 2) {
-                    $status_post = $_POST['status_post'];
+                if($this->issetPost('status_post') && $this->getPost('status_post') == 2) {
+                    $status_post = $this->getPost('status_post');
                 } else {
                     $status_post = 1; 
                 }
@@ -243,22 +247,26 @@ class postsController
                 $postManager = new postManager();
                 $insertPost = $postManager->insertPost($title,$headline,$content,$image,$tag,$status_post);
 
-                $_SESSION['create'] = 'Creation successfully !';       
+                $this->setSession('create','Creation successfully !');      
                 header('Location: index.php?page=indexpost');   
             }
-        }            
-        require('view/backend/posts/addpost.php');
-        unset($_SESSION['errors']);
-        unset($_SESSION['input']);
+        }
+
+        $tagManager = new tagManager();
+        $selectTag = $tagManager->selectTag($this->getGet('id'));//////////////////////////////////
+        
+        require('view/backend/posts/addpost.php');    
+        $this->unsetSession('errors');
+        $this->unsetSession('input');
     }
 
     public function deletepost()
     {
         $postManager = new postManager();
-        $deletePost = $postManager->deletePost($_GET['id']);
+        $deletePost = $postManager->deletePost($this->getGet('id'));
 
         if($deletePost == NULL) {
-            $_SESSION['danger']['process'] = "There was a problem with a data processing !";
+            $this->setSession('process','There was a problem with a data processing !');       
         }
 
         header('Location: index.php?page=indexpost');

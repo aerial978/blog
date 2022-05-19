@@ -24,7 +24,7 @@
                                 <fieldset class="form-group form-user row g-0">
                                     <div class="form-field col-lg-12">
                                         <label for="username">Username</label>
-                                        <input type="text" name="username" id="username" class="form-control" readonly value="<?= $editUser['username'] ?>">
+                                        <input type="text" name="username" id="username" class="form-control" value="<?= $editUser['username'] ?>">
                                     </div>
                                     <div class="form-field col-lg-12 d-flex flex-column">
                                         <label for="formFile" class="form-label">Image</label>
@@ -69,4 +69,4 @@
         </div>
 <?php $bodyAdmin = ob_get_clean(); ?>
 
-<?php require('view/backend/basebackend.php'); ?>        
+<?php require('view/headers/headerbackend.php'); ?>

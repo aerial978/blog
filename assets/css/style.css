@@ -287,7 +287,7 @@ body {
 }
 
 .recent-posts .postcards .card-body .card-date span {
-    color: var(--thirdColor);
+    color: var(--primaryColor);
 }
 
 .recent-posts .postcards .card-body .card-top span a:hover {
@@ -302,6 +302,10 @@ body {
 .recent-posts .postcards .card-body .card-title, p {
     font-size: 15px;
     font-family: var(--secondaryFontFamily);
+}
+
+.recent-posts .postcards .card-body .card-meta span {
+    text-align: center;
 }
 
 .recent-posts .postcards .card-body .btn {
@@ -616,7 +620,6 @@ body {
     .footer .social-network a {
         font-size: 50px;
     }
-
 }
 
 /* -- LIST, SINGLE & BY TAG POST PAGE -- */
@@ -680,7 +683,7 @@ body {
 }
 
 .list-section .card-body .card-date span {
-    color: var(--thirdColor);
+    color: var(--primaryColor);
 }
 
 .list-section .card .card-body .card-title {
@@ -710,7 +713,10 @@ body {
     .list-section .card .card-body .card-content {
         height: 210px;
     }
+}
 
+.list-section .card .card-body .card-meta {
+    text-align: center;
 }
 
 .list-section .card-body .btn {
@@ -755,6 +761,9 @@ body {
 
 .comment-number {
     font-weight: bolder;
+    color: var(--primaryColor)!important;
+    border-bottom: 1px solid var(--primaryColor);
+    padding-bottom: 8px;
 }
 
 .comment-list {
@@ -774,12 +783,6 @@ body {
 
 .comment-area {
     font-family: var(--secondaryFontFamily);
-}
-
-.comment-area .comment-number {
-    color: var(--thirdColor);
-    border-bottom: 1px solid var(--primaryColor);
-    padding-bottom: 8px;
 }
 
 .comment-area .comment-list .comment-datetime {
@@ -935,7 +938,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
     background: var(--secondaryColor);
     border-radius: 10px 10px 10px 10px;
-
 }
 
 .user-section .card .card-img-top { 
@@ -944,16 +946,11 @@ body {
     height: 100%;
 }
 
-.user-section .card .card-body .card-top .card-user a {
-    text-decoration: none;
-    color: var(--thirdColor);
-}
-
-.user-section .card .card-body .card-top .card-user a:hover {
+.user-section .card .card-body .card-top .card-user {
     color: var(--primaryColor);
 }
 
-.user-section .card-body .card-top span a {
+.user-section .card-body .card-top span {
     font-size: 13px;
 }
 
@@ -983,7 +980,7 @@ body {
 }
 
 .user-section .card-body .card-date span {
-    color: var(--thirdColor);
+    color: var(--primaryColor);
 }
 
 .user-section .card .card-body .card-title {
@@ -999,21 +996,22 @@ body {
     .user-section .card .card-body .card-content {
         height: 220px;
     }
-
 }
 
 @media(max-width: 768px) {
     .user-section .card .card-body .card-content {
         height: 180px;
     }
-
 }
 
 @media(max-width: 576px) {
     .user-section .card .card-body .card-content {
         height: 210px;
     }
+}
 
+.user-section .card-body .card-meta span {
+    text-align: center;
 }
 
 .user-section .card-body .btn {
@@ -1027,7 +1025,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
     background: var(--secondaryColor);
     border-radius: 10px 10px 10px 10px;
-
 }
 
 .tag-section .card .card-img-top { 
@@ -1051,14 +1048,9 @@ body {
 
 .tag-section .card .card-body .card-top .badge {
     font-family: var(--secondaryFontFamily);
-    background: var(--thirdColor);
+    background: var(--primaryColor);
     padding: 2px;
     font-size: 10px;
-}
-
-.tag-section .card .card-body .card-top .badge:hover {
-    background: var(--secondaryColor);
-    border: 1px solid var(--thirdColor);
 }
 
 .tag-section .card .card-body .badge a {
@@ -1075,7 +1067,7 @@ body {
 }
 
 .tag-section .card-body .card-date span {
-    color: var(--thirdColor);
+    color: var(--primaryColor);
 }
 
 .tag-section .card .card-body .card-title {
@@ -1098,7 +1090,6 @@ body {
     .tag-section .card .card-body .card-content {
         height: 180px;
     }
-
 }
 
 @media(max-width: 576px) {
@@ -1106,6 +1097,10 @@ body {
         height: 210px;
     }
 
+}
+
+.tag-section .card-body .card-meta span {
+    text-align: center;
 }
 
 .tag-section .card-body .btn {

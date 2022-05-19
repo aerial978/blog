@@ -487,8 +487,7 @@ section .content .cards-post {
 
     section .content .cards-post .card-text {
         font-size: 14px;
-    }
-    
+    }  
 }
 
 @media(max-width: 992px) {

@@ -19,7 +19,8 @@
                     </div>    
                 <?php endif; ?>
                 <form method="post" action="index.php?page=login">
-                    <fieldset class="form-group row">    
+                    <fieldset class="form-group row">
+                    <input type="hidden" name="csrf_token" value="<?= $token ?>">  
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
                             <input type="text" class="form-control" name="username" id="username"/>  
@@ -32,7 +33,7 @@
                         <a href="?page=forget">Forgot password ?</a>
                         </div>
                     </fieldset>
-                        <button type="submit" class="submit-btn">Sign in</button>  
+                    <button type="submit" class="submit-btn">Sign in</button>  
                 </form>
                 <div class="sign-link">
                     <h5>Not a member ?<a href="?page=register"> Sign up</a></h5>
@@ -43,6 +44,6 @@
 </section>
 <?php $form = ob_get_clean(); ?>
 
-<?php require('baseform.php'); ?>
+<?php require('view/headers/headerform.php'); ?>
 
                         

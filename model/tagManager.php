@@ -1,4 +1,5 @@
 <?php
+
 namespace blogmvc\model;
 
 use blogmvc\model\manager;

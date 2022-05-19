@@ -49,8 +49,8 @@
                             <?php if (isset($_SESSION['auth'])): ?>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php if(!empty($_SESSION['pictures'])): ?>
-                                            <img src="assets/images/<?= $_SESSION['pictures'] ?>" alt="user-pic" width="70px;">
+                                        <?php if(!empty($this->getSession('pictures'))): ?>
+                                            <img src="assets/images/<?= $this->getSession('pictures') ?>" alt="user-pic" width="70px;">
                                         <?php else: ?>
                                             <img src="assets/images/default.png" alt="user-pic" width="70px;">
                                         <?php endif; ?>

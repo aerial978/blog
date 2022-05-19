@@ -9,12 +9,14 @@ class postManager extends manager
         $this->bdd = $this->dbConnect();
     }
 
-    public function getPosts()
+    public function getPosts($limit)
     {
-        $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
+        $req = $this->bdd->query("SELECT *, COUNT(comments.id) AS comment_count, DATE_FORMAT(date_create, '%d/%m/%Y') AS date_create, posts.id AS postId FROM posts 
         LEFT JOIN tags ON posts.tag_id = tags.id 
-        LEFT JOIN users ON posts.user_id = users.id 
-        WHERE status_post = 2 ORDER BY date_create DESC LIMIT 5');
+        LEFT JOIN users ON posts.user_id = users.id
+        LEFT JOIN comments ON comments.post_id = posts.id AND comments.status_comm = 2 
+        WHERE status_post = 2 
+        GROUP BY posts.id ORDER BY date_create DESC LIMIT ". $limit);
         $posts = $req->fetchAll();
 
         return $posts;
@@ -34,10 +36,11 @@ class postManager extends manager
 
     public function userPost()
     {
-        $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
+        $req = $this->bdd->query('SELECT *, COUNT(comments.id) AS comment_count, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
         LEFT JOIN tags ON posts.tag_id = tags.id 
-        LEFT JOIN users ON posts.user_id = users.id 
-        WHERE users.id = '.$_GET['id'].' AND status_post = 2 ORDER BY date_create');
+        LEFT JOIN users ON posts.user_id = users.id
+        LEFT JOIN comments ON comments.post_id = posts.id
+        WHERE users.id = '.$_GET['id'].' AND status_post = 2 GROUP BY posts.id ORDER BY date_create');
         $userPosts = $req->fetchAll();
 
         return $userPosts;
@@ -45,10 +48,11 @@ class postManager extends manager
 
     public function tagPost()
     {
-        $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
+        $req = $this->bdd->query('SELECT *, COUNT(comments.id) AS comment_count, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, posts.id AS postId FROM posts 
         LEFT JOIN tags ON posts.tag_id = tags.id
-        LEFT JOIN users ON posts.user_id = users.id 
-        WHERE tags.id = '.$_GET['id'].' AND status_post = 2 ORDER BY date_create');
+        LEFT JOIN users ON posts.user_id = users.id
+        LEFT JOIN comments ON comments.post_id = posts.id
+        WHERE tags.id = '.$_GET['id'].' AND status_post = 2 GROUP BY posts.id ORDER BY date_create');
         $tagPosts = $req->fetchAll();
 
         return $tagPosts;
@@ -78,7 +82,7 @@ class postManager extends manager
     {
         $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, COUNT(comments.id) AS total, posts.id AS postId FROM posts 
         LEFT JOIN users ON posts.user_id = users.id 
-        LEFT JOIN comments ON comments.post_id = posts.id 
+        LEFT JOIN comments ON comments.post_id = posts.id
         GROUP BY posts.id ORDER BY date_create DESC');
         $indexPosts = $req->fetchAll();
         
@@ -146,5 +150,5 @@ class postManager extends manager
 
         return $deletePost;
     }
-
 }
+

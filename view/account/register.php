@@ -19,7 +19,8 @@
                     </div>    
                 <?php endif; ?>
                 <form method="post" action="">
-                    <fieldset class="form-group row">    
+                    <fieldset class="form-group row">
+                    <input type="hidden" name="csrf_token" value="<?= $token ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
                             <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="<?= isset($_SESSION['input']['username']) ? $_SESSION['input']['username'] : "" ?>"/>  
@@ -51,4 +52,4 @@
 </section>
 <?php $form = ob_get_clean(); ?>
 
-<?php require('baseform.php'); ?>
+<?php require('view/headers/headerform.php'); ?>

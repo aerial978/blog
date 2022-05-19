@@ -1,6 +1,8 @@
 <?php
 
-class baseController 
+require 'core/superglobal.php';
+
+class baseController extends Superglobal
 {
     public function number_words($string, $limit = 25, $fin = ' ...')
     {
@@ -12,6 +14,14 @@ class baseController
         echo rtrim($matches[0]).$fin;
     }
 
+    public function authentification() 
+    {
+        if(!isset($_SESSION['auth'])) {
+            $this->setSession('authentification','Login to access admin area !');
+            header("Location: index.php?page=login");
+            exit();
+        }
+    }
 }
 
 ?>

@@ -13,13 +13,13 @@
 <aside class="aside-posts mb-4">
     <h5 class="posts-title">Recent posts</h5> 
     <ul>
-        <?php foreach ($posts as $post) { ?>
+        <?php for($i=0;$i<5;$i++) {?>
             <li>
                 <div class="recent-post">
-                    <img src="<?= "assets/images/".$post['image']; ?>" class="img-recent img-fluid">
+                    <img src="<?= "assets/images/".$posts[$i]['image']; ?>" class="img-recent img-fluid">
                     <div class="title-recents">
-                        <h6><a href="?page=postsingle&id=<?= $post['postId'] ?>"><?= $post['title'] ?></a></h6>
-                        <p><a href="?page=userposts&id=<?= $post['user_id'] ?>"><?= $post['username'] ?></a></p>
+                        <h6><a href="?page=postsingle&id=<?= $posts[$i]['postId'] ?>"><?= $posts[$i]['title'] ?></a></h6>
+                        <p><a href="?page=userposts&id=<?= $posts[$i]['user_id'] ?>"><?= $posts[$i]['username'] ?></a></p>
                     </div>
                 </div>
             </li>
