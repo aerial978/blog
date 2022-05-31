@@ -4,6 +4,11 @@ use blogmvc\model\formManager;
 
 class registerController extends baseController
 {
+    public function __construct()
+    {
+        $this->alreadyLog();
+    }
+    
     public function register()
     {
         $activeMenu = 'signupmenu';

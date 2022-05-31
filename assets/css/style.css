@@ -13,133 +13,14 @@ body {
     font-family: var(--primaryFontFamily);
     text-decoration: none;
 }
-/*
-.message {
-    padding: 8px;
-    border-radius: 5px;
-    font-family: var(--secondaryFontFamily);
-}*/
 
-@media(max-width: 576px) {
-    .message h4 {
-        font-size: 15px;
-    }
-}
-  
-.section-heading {
-    font-size: 48px;
-}
-
-@media(max-width: 992px) {
-    .section-heading {
-        font-size: 36px;
-    }
-}
+/*-- HOME --*/
 
 .section .container {
     padding: 80px 20px;
 }
 
-.section .divider-custom.divider-light .divider-custom-line {
-    background-color: var(--primaryColor);
-}
-
-.section .divider-custom.divider-light .divider-custom-icon {
-    color: var(--primaryColor);
-}
-
-/*-- NAVBAR --*/
-
-.navbar {
-    background-color: var(--primaryColor);
-    height: 10vh;
-    position: fixed;
-    width: 100%;
-}
-
-.navbar .navbar-brand {
-    color: var(--secondaryColor);
-}
-
-.navbar-brand {
-    font-size: 30px;
-}
-
-.navbar-brand:hover {
-    color: var(--thirdColor) !important;
-}
-
-.nav-link {
-    font-size: 20px;
-    color: var(--secondaryColor) !important;
-}
-
-.nav-link:hover {
-    color: var(--thirdColor) !important;
-}
-
-.nav-link.active {
-    color: var(--thirdColor) !important;
-}
-
-.navbar img {
-    border-radius: 50%;
-}
-
-.dropdown-menu {
-    width: 100%;
-}
-
-.dropdown-menu .dropdown-item {
-    color: var(--thirdColor);
-}
-
-.dropdown-menu .dropdown-item:hover {
-    color: var(--thirdColor);
-}
-
-@media(max-width: 992px) {
-
-    .navbar .container {
-        max-width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .navbar-brand {
-        font-size: 22px;
-        margin: 15px;
-    }
-
-    .navbar-toggler {
-        margin-right: 15px;
-    }
-
-    .navbar-toggler:hover {
-        color: white!important;
-    }
-    
-    .navbar-collapse {
-        background : var(--primaryColor);
-    }
-
-    .navbar-nav .nav-link {
-        width: 100%;
-        padding-left: 25px;
-        font-size: 17px;
-    }
-
-    .navbar-nav .nav-link:hover {
-        background: var(--thirdColor);
-        color: var(--primaryColor)!important;
-    }
-
-    .dropdown-menu .dropdown-item {
-        padding-left: 45px;
-    }
-}
-
-/*-- HERO --*/
+/*-- HOME HERO --*/
 
 .jumbotron {
     height: 100vh;
@@ -178,31 +59,31 @@ body {
     align-items: center;
 }
 
-  .divider-custom .divider-custom-line {
+.divider-custom .divider-custom-line {
     width: 100%;
     max-width: 7rem;
     height: 0.25rem;
     border-radius: 1rem;
 }
 
-  .divider-custom .divider-custom-line:first-child {
+.divider-custom .divider-custom-line:first-child {
     margin-right: 1rem;
 }
 
-  .divider-custom .divider-custom-line:last-child {
+.divider-custom .divider-custom-line:last-child {
     margin-left: 1rem;
 }
 
-  .divider-custom .divider-custom-icon {
+.divider-custom .divider-custom-icon {
     color: var(--secondaryColor);
     font-size: 2rem;
 }
 
-  .divider-custom.divider-light .divider-custom-line {
+.divider-custom.divider-light .divider-custom-line {
     background-color: var(--secondaryColor);
 }
 
-  .divider-custom.divider-light .divider-custom-icon {
+.divider-custom.divider-light .divider-custom-icon {
     color: var(--secondaryColor);
 }
 
@@ -228,7 +109,6 @@ body {
         font-size: 50px;
         margin: 5px;
     }
-
 }
 
 @media(max-width: 992px) {
@@ -241,7 +121,15 @@ body {
     }
 }
 
-/*-- RECENT POSTS SECTION --*/
+/*-- HOME RECENT POSTS SECTION --*/
+
+.section .divider-custom.divider-light .divider-custom-line {
+    background-color: var(--primaryColor);
+}
+
+.section .divider-custom.divider-light .divider-custom-icon {
+    color: var(--primaryColor);
+}
 
 .recent-posts .postcards {
     border-radius: 10px;
@@ -332,6 +220,8 @@ body {
 .recent-posts .postcards .card-body .badge {
     font-family: var(--secondaryFontFamily);
 }
+
+/* ASIDES FRONT-END */
 
 .aside-tags,
 .aside-comments {
@@ -470,7 +360,7 @@ body {
     font-weight: bolder;
 }
 
-/*-- ABOUT SECTION --*/
+/*-- HOME ABOUT SECTION --*/
 
 .about {
     background: var(--thirdColor);
@@ -515,7 +405,7 @@ body {
     color: var(--primaryColor);
 }
 
-/*-- CONTACT SECTION --*/
+/*-- HOME CONTACT SECTION --*/
 
 .contact .alert {
     max-width: 700px;
@@ -596,7 +486,7 @@ body {
     background: var(--primaryColor);
 }
 
-/*-- FOOTER --*/
+/*-- FOOTER FRONT-END --*/
 
 .footer {
     padding-top: 5rem;
@@ -622,7 +512,7 @@ body {
     }
 }
 
-/* -- LIST, SINGLE & BY TAG POST PAGE -- */
+/* -- LIST, SINGLE, SORT POSTS BY USER & BY TAG PAGES -- */
 
 .single-section,
 .list-section,
@@ -630,6 +520,8 @@ body {
 .user-section {
     margin-top: 140px;
 }
+
+/* LIST POSTS PAGE */
 
 .list-section .card {
     box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
@@ -724,6 +616,8 @@ body {
     font-size: 15px;
 }
 
+/* SINGLE POST PAGE */
+
 .single-section .badge {
     font-family: var(--secondaryFontFamily);
     background: var(--thirdColor);
@@ -810,129 +704,7 @@ body {
     margin-bottom: 30px;
 }
 
-/*-- SIGN PAGE --*/
-
-.sign {
-    width: 100%;
-    height: 90vh;
-}
-
-.sign-form {
-    background: white;
-    margin-top: 75px;
-    padding: 25px;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
-}
-
-.sign-title {
-    border: 3px solid var(--thirdColor);
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    color: var(--primaryColor);
-}
-
-.sign label {
-    margin-bottom: 5px;
-    font-family: var(--secondaryFontFamily);
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.sign input {
-    font-family: var(--secondaryFontFamily);
-}
-
-.form-field {
-    margin-bottom: 20px;
-}
-
-.sign-form small {
-    font-family: var(--secondaryFontFamily);
-}
-
-.sign-form small span {
-    font-weight: bold;
-}
-
-.sign-form .pass-link {
-    font-family: var(--secondaryFontFamily);
-    font-size: 18px;
-    font-weight: bold;
-    text-align: right;
-}
-
-.sign-form .pass-link a {
-    text-decoration: none;
-}
-
-.sign .submit-btn {
-    width: 100%;
-    margin: 20px 0;
-    padding: 16px 16px;
-    font-size: 22px;
-    background: var(--thirdColor);
-    color: var(--secondaryColor);
-    border: none;
-    border-radius: 8px;
-    font-family: var(--secondaryFontFamily);
-}
-
-.sign-form .sign-link {
-    font-family: var(--secondaryFontFamily);
-    text-align: center;
-}
-
-.sign-form .sign-link a {
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-/*-- 404 PAGE --*/
-
-.error-section .wrapper {
-    background: var(--secondaryColor);
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-}
-
-.error-section .wrapper h1 {
-    font-size: 100px;
-    color: var(--thirdColor);
-}
-
-.error-section .wrapper h2 {
-    color: var(--primaryColor);
-}
-
-.error-section .wrapper img {
-    width: 450px;
-}
-
-.error-section .wrapper h3 {
-    color: var(--primaryColor);
-}
-
-.error-section .wrapper button {
-    font-size: 25px;
-    width: 250px;
-    height: 50px;
-    background: var(--thirdColor);
-    border-radius: 8px;
-    border: none;
-}
-
-.error-section .wrapper button a {
-    text-decoration: none;
-    color: var(--secondaryColor);
-}
-
-/*-- USER POSTS PAGE --*/
+/*-- SORT POSTS BY USER POSTS PAGE --*/
 
 .user-section .card {
     box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
@@ -1019,7 +791,7 @@ body {
     font-size: 15px;
 }
 
-/*-- TAGS POSTS PAGE --*/
+/*-- SORT POSTS BY TAGS PAGE --*/
 
 .tag-section .card {
     box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
@@ -1106,6 +878,48 @@ body {
 .tag-section .card-body .btn {
     padding: 5px;
     font-size: 15px;
+}
+
+/*-- 404 PAGE --*/
+
+.error-section .wrapper {
+    background: var(--secondaryColor);
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.error-section .wrapper h1 {
+    font-size: 100px;
+    color: var(--thirdColor);
+}
+
+.error-section .wrapper h2 {
+    color: var(--primaryColor);
+}
+
+.error-section .wrapper img {
+    width: 450px;
+}
+
+.error-section .wrapper h3 {
+    color: var(--primaryColor);
+}
+
+.error-section .wrapper button {
+    font-size: 25px;
+    width: 250px;
+    height: 50px;
+    background: var(--thirdColor);
+    border-radius: 8px;
+    border: none;
+}
+
+.error-section .wrapper button a {
+    text-decoration: none;
+    color: var(--secondaryColor);
 }
 
 

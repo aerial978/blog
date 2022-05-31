@@ -22,6 +22,15 @@ class baseController extends Superglobal
             exit();
         }
     }
+
+    public function alreadyLog() 
+    {
+        if(isset($_SESSION['auth'])) {
+            $this->setSession('alreadylog','You are already logged in !');
+            header("Location: index.php?page=dashboard");
+            exit();
+        }
+    }
 }
 
 ?>

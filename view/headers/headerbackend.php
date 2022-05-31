@@ -15,12 +15,11 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Candal&family=Lato&display=swap" rel="stylesheet">
         
-        <!-- Include stylesheet Quill -->
-        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
         <!-- CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/admin.css">
+        <link rel="stylesheet" href="assets/css/navbar.css">
+
     </head>
     <body>
     <!-- SIDEBAR -->
@@ -36,7 +35,7 @@
                 <ul>
                     <li><a href="?page=dashboard" class="nav-link <?php if($activeMenu == 'dashboardmenu'): ?> active <?php endif; ?>"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
                     <li><a href="?page=indexpost" class="nav-link <?php if($activeMenu == 'postmenu'): ?> active <?php endif; ?>"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
-                    <?php if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 2): ?>
+                    <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2): ?>
                         <li><a href="?page=indexcomment" class="nav-link <?php if($activeMenu == 'commentmenu'): ?> active <?php endif; ?>"><span class="fas fa-comments"></span><span>Comments</span></a></li>
                     <?php endif; ?>
                     <li><a href="?page=indexuser" class="nav-link <?php if($activeMenu == 'usermenu'): ?> active <?php endif; ?>"><span class="fas fa-user"></span><span>Users</span></a></li>
@@ -53,16 +52,16 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-            <?php if (isset($_SESSION['auth'])): ?>}
+            <?php if ($this->issetSession('auth')): ?>}
                 <ul class="user-wrapper">
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php if(!empty($_SESSION['pictures'])): ?>
-                                <img src="assets/images/<?= $_SESSION['pictures'] ?>" alt="user-pic" width="60px;">
+                            <?php if($this->issetSession('auth','picture')): ?>
+                                <img src="assets/images/<?= $this->getSession('auth','picture') ?>" alt="user-pic" width="60px;">
                             <?php else: ?>
                                 <img src="assets/images/default.png" alt="user-pic" width="60px;">
                             <?php endif; ?>
-                            <?= $_SESSION['username'] ?>
+                            <?= $this->getSession('auth','username') ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="index.php?page=home">Home</a>

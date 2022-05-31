@@ -43,7 +43,7 @@
                                         <img src="assets/images/land-default.png" alt="img-post">
                                     <?php endif; ?>
                                 </td>
-                                <td class="comments"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $indexPost['total']; ?></span></td>
+                                <td class="comments"><?= $indexPost['total']; ?></td>
                                 <td class="status">
                                 <?php if($indexPost['status_post'] == 2): ?>
                                     <h6 style="color: green;"><?php echo 'published'; ?></h6>

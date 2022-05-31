@@ -42,5 +42,17 @@ class dashboardController extends baseController
         <?php
             $this->unsetSession('login');
         } 
+
+        if($this->issetSession('alreadylog') && $this->getSession('alreadylog') != "") { ?>
+            <script>
+                Swal.fire({
+                title: "<?= $this->getSession('alreadylog') ?>",
+                icon: "error",
+                confirmButtonColor: '#1aBC9C',
+                })
+            </script>
+        <?php
+        $this->unsetSession('alreadylog');
+        }
     }
 }

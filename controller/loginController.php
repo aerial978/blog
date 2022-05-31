@@ -2,10 +2,15 @@
 
 use blogmvc\model\formManager;
 
-class logController extends baseController
+class loginController extends baseController
 {
-    public function login()
+    public function __construct()
     {
+        $this->alreadyLog();
+    }
+
+    public function login()
+    {    
         $activeMenu = 'signinmenu';
 
         if($this->issetPost()) {
@@ -31,11 +36,7 @@ class logController extends baseController
                     if(password_verify(htmlspecialchars($this->getPost('password')), $user['password'])) {
                         session_start();
                         $this->setSession('auth',$user);
-                        $this->setSession('id',$user['id']);
-                        $this->setSession('username',$_POST['username']);
-                        $this->setSession('pictures',$user['picture']);
-                        $this->setSession('auth_role',$user['role']);
-
+                        
                         $this->setSession('login','Welcome to the Dashboard !');
                         header('Location: index.php?page=dashboard');
                     }  else {
@@ -119,9 +120,8 @@ class logController extends baseController
         $this->unsetSession('authentification');
         }
 
-
-
-        if($this->issetSession('logout') && $this->getSession('logout') != "") { ?>        
+        if($this->issetSession('logout') && $this->getSession('logout') != "") { 
+            ?>        
             <script>
                 Swal.fire({
                     title: "<?= $this->getSession('logout') ?>",
@@ -132,15 +132,9 @@ class logController extends baseController
                 })
             </script>
         <?php
-        $_SESSION = array();
-        session_destroy();
+        $this->unsetSession('logout');
         }         
-    }
 
-    public function logout()
-    {
-        $this->setSession('logout','Thank you for your visit !');
-        header('Location: index.php?page=login');
     }
 
     public function forget()

@@ -233,7 +233,7 @@ class usersController extends baseController
 
             if(empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
 
-                $errors['email'] = "Invalid Email !";
+                $errors['email'] = "Invalid email !";
 
             } else {    
                 $userManager = new UserManager();

@@ -23,7 +23,8 @@
 <!-- RECENTS POSTS -->
 <section class="recent-posts section">
     <div class="container">
-        <h2 class="section-heading text-center text-uppercase">Recent Posts</h2>
+        <h2 class="text-center text-uppercase">Recent Posts</h2>
+        <!--<h2 class="section-heading text-center text-uppercase">Recent Posts</h2>-->
         <div class="divider-custom divider-light mb-5">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon">
@@ -118,8 +119,6 @@
     </div>
 </section>
 <!-- CONTACT SECTION -->
-
-
 <section class="contact section" id="contact">
     <div class="container">
         <h2 class="section-heading text-center text-uppercase">Contact Me</h2>
@@ -145,15 +144,15 @@
             <fieldset class="form-group row">
                 <input type="hidden" name="csrf_token" value="<?= $token ?>">
                 <div class="form-field col-lg-12">
-                    <input type="text" name="name" id="name" class="input-text" value="<?= isset($_SESSION['input']['name']) ? $_SESSION['input']['name'] : ""; ?>"/>        
+                    <input type="text" name="name" id="name" class="input-text" value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>"/>        
                     <label for="name" class="label">Name</label>
                 </div>
                 <div class="form-field col-lg-12">
-                    <input type="email" name="email" id="email" class="input-text" value="<?= isset($_SESSION['input']['email']) ? $_SESSION['input']['email'] : ""; ?>"/> 
+                    <input type="email" name="email" id="email" class="input-text" value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : ""; ?>"/> 
                     <label for="email" class="label">Email address</label>
                 </div>
                 <div class="form-field col-lg-12">
-                    <textarea id="textarea" name="message" class="input-text" rows="5" cols="50"><?= isset($_SESSION['input']['message']) ? $_SESSION['input']['message'] : ""; ?></textarea>
+                    <textarea id="textarea" name="message" class="input-text" rows="5" cols="50"><?= $this->issetSession('input','message') ? $this->getSession('input','message') : ""; ?></textarea>
                     <label for="textarea" class="label">Message</label>
                 </div>
                 <div class="form-check">

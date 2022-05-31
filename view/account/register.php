@@ -23,11 +23,11 @@
                     <input type="hidden" name="csrf_token" value="<?= $token ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="<?= isset($_SESSION['input']['username']) ? $_SESSION['input']['username'] : "" ?>"/>  
+                            <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : "" ?>"/>  
                         </div>
                         <div class="form-field col-md-12">
                             <label for="email" class="label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= isset($_SESSION['input']['email']) ? $_SESSION['input']['email'] : "" ?>"/>        
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : "" ?>"/>        
                         </div>
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Password</label>

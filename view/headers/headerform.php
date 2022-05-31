@@ -17,6 +17,8 @@
         
         <!-- CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/navbar.css">
+        <link rel="stylesheet" href="assets/css/account.css">
     </head>
     <body>
     <!-- NAVBAR -->

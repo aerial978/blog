@@ -78,9 +78,15 @@ abstract class Superglobal {
         }
     }
 
-    public function issetSession($key = NULL) {
-        if($key) {
-            if(isset($_SESSION[$key]) && !empty($_SESSION[$key])) {
+    public function issetSession($key1,$key2 = NULL) {
+        if($key1 && $key2) {
+            if(isset($_SESSION[$key1][$key2]) && !empty($_SESSION[$key1][$key2])) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+            if(isset($_SESSION[$key1]) && !empty($_SESSION[$key1])) {
                 return TRUE;
             } else {
                 return FALSE;
@@ -88,19 +94,31 @@ abstract class Superglobal {
         }
     }
 
-    public function setSession($key,$value) {
-        $_SESSION[$key] = $value;      
+    public function issetSession2($key = NULL) {
+        if($key) {
+            if(!isset($_SESSION[$key])) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        }
     }
 
-    public function getSession($key) {
-        return $_SESSION[$key];
+    public function getSession($key1,$key2 = NULL) {
+        if($key1 && $key2) {
+        return $_SESSION[$key1][$key2];
+        } else {
+            return $_SESSION[$key1];
+        }
+    }
+
+    public function setSession($key,$value) {
+        $_SESSION[$key] = $value;      
     }
 
     public function unsetSession($key) {
         unset($_SESSION[$key]);    
     }
-
-  
 }
 
 ?>

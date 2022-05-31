@@ -58,22 +58,22 @@ switch ($_GET["page"]) {
         break;
     
     case 'login':
-        $loginController = new logController();
+        $loginController = new loginController();
         $loginController->login();
         break;
 
     case 'logout':
-        $logoutController = new logController();
+        $logoutController = new logoutController();
         $logoutController->logout();
         break;
 
     case 'forget':
-        $forgetController = new logController();
+        $forgetController = new loginController();
         $forgetController->forget();
         break;
 
     case 'reset':
-        $resetController = new logController();
+        $resetController = new loginController();
         $resetController->reset();
         break;
     

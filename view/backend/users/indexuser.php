@@ -6,7 +6,7 @@
     <div class="content">
         <div class="content-header">
             <h4 class="title title-user">Manage Users</h4>
-            <?php if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 2): ?>
+            <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2): ?>
                 <div class="link-btn">
                 <a href="?page=adduser" class="user-btn add-btn btn"><i class="fas fa-plus"></i> User</a>
                 </div>

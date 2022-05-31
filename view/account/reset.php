@@ -20,9 +20,7 @@
                 <?php endif; ?>
                 <form method="post" action="">
                     <fieldset class="form-group row">
-                    <input type="text" name="csrf_token" value="<?= $token ?>">
-                    <?php var_dump($token); ?>
-                    <?php var_dump($_SESSION['csrf_token']); ?>     
+                    <input type="text" name="csrf_token" value="<?= $token ?>">     
                     <div class="form-field col-md-12">
                             <label for="password" class="label">New password</label>
                             <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters"/>        

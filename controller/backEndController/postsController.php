@@ -77,7 +77,7 @@ class postsController extends baseController
         $editPost = $postManager->editPost($this->getGet('id'));
 
         $tagManager = new tagManager();
-        $selectTag = $tagManager->selectTag($this->getGet('id'));
+        $selectTag = $tagManager->selectTag();
 
         } else {
 
@@ -86,10 +86,6 @@ class postsController extends baseController
         } 
         
         if ($this->issetPost()) {
-
-            /*if(isset($_POST['submit']) && empty($_POST['title']) && $_POST['title'] == '') {
-                $errors['title'] = "Enter a title !"; 
-            }*/
 
             if($this->issePost('submit') && empty($this->getPost('title')) && $this->getPost('title') == '') {
                 $errors['title'] = "Enter a title !";
@@ -130,7 +126,8 @@ class postsController extends baseController
                 }
             
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
-                    $this->setSession('picture', $this->getFiles('image'));
+                    /*$this->setSession('picture', $this->getFiles('image'));*/
+                    $_SESSION['picture'] = $_FILES['image'];
                 }
 
                 if (empty($errors)) {
