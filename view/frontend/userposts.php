@@ -4,7 +4,7 @@
 <!-- POSTS LIST BY USER -->
 <section class="user-section">
     <div class="container">
-        <div class="title_tag mb-4 h4"><?= $getUsername['username'] ?></div> 
+        <div class="title_tag mb-4 h4"><?= $getUsername['name'] ?></div> 
         <div class="row">
             <div class="col-xl-9">
                 <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
@@ -19,9 +19,9 @@
                                     <img src="<?="assets/images/".$userPost['image'] ?>" alt="img post" class="card-img-top">
                                     <div class="card-body">    
                                         <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
-                                            <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>&nbsp;<?= $userPost['username'] ?></span>
+                                            <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>&nbsp;<?= $userPost['name'] ?></span>
                                             <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span><?= $userPost['date_create'] ?></span></div>
-                                            <span class="badge"><a href="?page=tagposts&id=<?= $userPost['tag_id'] ?>"><?= $userPost['name'] ?></a></span>
+                                            <span class="badge"><a href="?page=tagposts&id=<?= $userPost['tag_id'] ?>"><?= $userPost['tagname'] ?></a></span>
                                         </div>
                                         <div class="card-content">
                                             <h6 class="card-title"><?= $userPost['title'] ?></h6>

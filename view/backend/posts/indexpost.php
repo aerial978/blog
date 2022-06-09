@@ -33,7 +33,7 @@
                         <?php foreach ($indexPosts as $indexPost): ?>
                             <tr data-id="<?= $indexPost['postId']; ?>">
                                 <th scope="row"><?= $indexPost['postId']; ?></th>
-                                <td><?= $indexPost['username']; ?></td>
+                                <td><?= $indexPost['name']; ?></td>
                                 <td class="date_create"><?= $indexPost['date_create'] ?></td>
                                 <td class="table-bold"><?= $indexPost['title']; ?></td>
                                 <td class="status-image">

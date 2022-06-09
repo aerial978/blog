@@ -44,9 +44,9 @@
                                 <div class="card-top d-flex justify-content-between align-items-center mb-4">
                                     <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
                                     <a href="?page=userposts&id=<?=$post['user_id'] ?>">
-                                    <?= " ".$post['username'] ?></a></span>
+                                    <?= " ".$post['name'] ?></a></span>
                                     <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span><?= $post['date_create'] ?></span></div>
-                                    <span class="badge"><a href="?page=tagposts&id=<?=$post['tag_id']?>"><?=$post['name'] ?></a></span>
+                                    <span class="badge"><a href="?page=tagposts&id=<?=$post['tag_id']?>"><?= $post['tagname'] ?></a></span>
                                 </div>
                                 <h6 class="card-title fw-bold"><?= $post['title'] ?></h6>
                                 <p class="card-text fs-5"><?= $this->number_words($post['content']) ?></p>
@@ -66,7 +66,7 @@
                     <ul>
                         <?php foreach($listTags as $listTag): ?>
                             <li>
-                                <a href="?page=tagposts&id=<?= $listTag['id'] ?>"><?= $listTag['name']; ?></a>
+                                <a href="?page=tagposts&id=<?= $listTag['id'] ?>"><?= $listTag['tagname']; ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>   

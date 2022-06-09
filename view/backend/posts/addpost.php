@@ -24,7 +24,7 @@
                         <fieldset class="form-group form-post row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="author">Author</label>
-                                <input type="text" name="username" id="username" class="form-control" disabled value="<?= $this->getSession('auth','username') ?>">
+                                <input type="text" name="name" id="name" class="form-control" disabled value="<?= $this->getSession('auth','name') ?>">
                             </div>  
                             <div class="form-field col-lg-12">
                                 <label for="title">Title</label>
@@ -45,11 +45,11 @@
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="tags">Tag category</label>
-                                <select name="tag" id="tag" class="form-control">
+                                <select name="tagname" id="tagname" class="form-control">
                                     <option value="0">Select option</option>
                                     <?php if(count($selectTag)>0) : ?>
                                         <?php for ($i=0; $i<count($selectTag); $i++) : ?>
-                                            <option <?= $this->issetSession('input','tag') && $this->getSession('input','tag') == $selectTag[$i]['id'] ? "selected" : "" ; ?> value="<?= $selectTag[$i]['id'];?>"><?= $selectTag[$i]['name'];?></option>
+                                            <option <?= $this->issetSession('input','tagname') && $this->getSession('input','tagname') == $selectTag[$i]['id'] ? "selected" : "" ; ?> value="<?= $selectTag[$i]['id'];?>"><?= $selectTag[$i]['tagname'];?></option>
                                         <?php endfor; ?>    
                                     <?php endif; ?> 
                                 </select>

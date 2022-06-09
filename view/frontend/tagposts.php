@@ -4,7 +4,7 @@
 <!-- POSTS LIST BY TAG -->
 <section class="tag-section">
     <div class="container">
-        <div class="title_tag mb-4 h4"><?= $tag['name'] ?></div> 
+        <div class="title_tag mb-4 h4"><?= $tag['tagname'] ?></div> 
         <div class="row">
             <div class="col-xl-9">
                 <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
@@ -20,9 +20,9 @@
                                     <div class="card-body">    
                                         <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
                                             <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
-                                            <a href="?page=userposts&id=<?= $tagPost['user_id'] ?>"><?= $tagPost['username'] ?></a></span>
+                                            <a href="?page=userposts&id=<?= $tagPost['user_id'] ?>"><?= $tagPost['name'] ?></a></span>
                                             <div class="card-date"><i class="far fa-calendar"></i>&nbsp;<span><?= $tagPost['date_create'] ?></span></div>
-                                            <span class="badge"><?= $tagPost['name'] ?></span>
+                                            <span class="badge"><?= $tagPost['tagname'] ?></span>
                                         </div>
                                         <div class="card-content">
                                             <h6 class="card-title"><?= $tagPost['title'] ?></h6> 

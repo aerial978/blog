@@ -66,6 +66,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2) : ?>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-tags mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
@@ -84,6 +85,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>       

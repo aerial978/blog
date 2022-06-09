@@ -27,6 +27,15 @@ class formManager extends manager
         return $registerUsername;
     }
 
+    public function registerName($name)
+    {
+        $req = $this->bdd->prepare("SELECT id FROM users WHERE name = ?");
+        $req->execute([$name]);
+        $registerName = $req->fetch();
+
+        return $registerName;
+    }
+
     public function registerEmail($email)
     {
         $req = $this->bdd->prepare("SELECT id FROM users WHERE email = ?");
@@ -36,11 +45,12 @@ class formManager extends manager
         return $registerEmail;
     }
 
-    public function registerUser($username,$email,$password,$token)
+    public function registerUser($username,$name,$email,$password,$token)
     {
-        $req = $this->bdd->prepare("INSERT INTO users SET username = ?, email = ?, password = ?, token_confirm = ?, token_date = NOW()");  
-        $req->execute([$username, $email, $password, $token]);
+        $req = $this->bdd->prepare("INSERT INTO users SET username = ?, name = ?, email = ?, password = ?, token_confirm = ?, token_date = NOW()");  
+        $req->execute([$username, $name, $email, $password, $token]);
         $user_id = $this->bdd->lastInsertId();
+        
         return $user_id;
     }
 

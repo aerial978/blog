@@ -55,7 +55,7 @@ class tagsController extends baseController
                 $this->setSession('input',$_POST);
             }
             
-            if($this->issePost('submit') && empty($this->getPost('name'))) {
+            if($this->issePost('submit') && empty($this->getPost('tagname'))) {
                 $errors['name'] = 'Enter a name ! ';
             } else {
 
@@ -119,7 +119,7 @@ class tagsController extends baseController
 
             $this->setSession('input',$_POST);
 
-            if($this->issePost('submit') && empty($this->getPost('name')) && $this->getPost('name') == '') {        
+            if($this->issePost('submit') && empty($this->getPost('name')) && $this->getPost('tagname') == '') {        
                 $errors['name'] = "Enter a name !";    
             }
 
@@ -130,7 +130,7 @@ class tagsController extends baseController
             $_SESSION['errors'] = $errors;
 
             if(empty($errors)) {
-                $name = $this->getPost('name');
+                $name = $this->getPost('tagname');
                 $description = $this->getPost('description');
 
                 $tagManager = new TagManager();

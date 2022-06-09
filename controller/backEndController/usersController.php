@@ -13,7 +13,7 @@ class usersController extends baseController
     {
         $activeMenu = 'usermenu';
 
-        if($this->issetSession('auth_role') && $this->getSession('auth_role') == 1) {
+        if($this->issetSession('auth','role') && $this->getSession('auth','role') == 1) {
 
             $userManager = new userManager();
             $indexUsers = $userManager->indexUser1();
@@ -87,6 +87,20 @@ class usersController extends baseController
                 } 
             }
 
+            if(empty($this->getPost('name')) || !preg_match('(^[A-Z][a-z]*$)',$this->getPost('name'))) {
+
+                $errors['username'] = "Invalid name !";
+
+            } else {
+                
+                $userManager = new UserManager();
+                $getUserIdName = $userManager->getUserIdName();
+
+                if($getUserIdName) {
+                    $errors['name'] = 'Name already used !';
+                } 
+            }
+
             if($this->issetFiles('picture') && $this->getFiles('picture','size') == 0) {
                 $errors['picture'] = 'Select an image !';    
             
@@ -149,8 +163,10 @@ class usersController extends baseController
                 
                 $this->setSession('create','Creation successfully !');   
                 header('Location: index.php?page=indexuser');
-            }        
-        }           
+                
+            }    
+        }  
+        
         require('view/backend/users/adduser.php');
 
         $this->unsetSession('errors');
@@ -178,6 +194,7 @@ class usersController extends baseController
             if ($this->issetPost()) {
 
                 $username = $this->getPost('username');
+                $name = $this->getPost('name');
                 $email = $this->getPost('email');
                 $password = $this->getPost('password');
 
@@ -191,6 +208,15 @@ class usersController extends baseController
                     $userManager = new userManager();
                     $updateUsername = $userManager->updateUsername($username,$id);
                 }
+
+                if(empty($this->getPost('name')) || !preg_match('(^[A-Z][a-z]*$)',$this->getPost('name'))) {
+
+                    $errors['name'] = "Name is not valid !";
+    
+                    } else {
+                        $userManager = new userManager();
+                        $updateName = $userManager->updateName($name,$id);
+                    }
 
                 if(!empty($_FILES['picture']['name'])) {
 

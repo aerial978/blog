@@ -11,7 +11,7 @@ class UserManager extends Manager
 
     public function getUsername()
     {
-        $req = $this->bdd->prepare('SELECT username FROM users WHERE id = ?');
+        $req = $this->bdd->prepare('SELECT name FROM users WHERE id = ?');
         $req->execute([$_GET['id']]);
         $getUsername = $req->fetch();
 
@@ -28,7 +28,7 @@ class UserManager extends Manager
 
     public function indexUser1()
     {
-        $req = $this->bdd->query('SELECT * FROM users WHERE username ="'.$_SESSION['username'].'"');
+        $req = $this->bdd->query('SELECT * FROM users WHERE username ="'.$_SESSION['auth']['username'].'"');
         $indexUsers = $req->fetchAll();
 
         return $indexUsers;
@@ -57,10 +57,21 @@ class UserManager extends Manager
         $req=$this->bdd->prepare('UPDATE users SET username = :username WHERE id = :id');
         $updateUsername = $req->execute([
         'username'=> $username,
-        'id'=>$id,
+        'id'=>$id
         ]);
 
         return $updateUsername;
+    }
+
+    public function updateName($name,$id)
+    {
+        $req=$this->bdd->prepare('UPDATE users SET name = :name WHERE id = :id');
+        $updateName = $req->execute([
+        'name'=> $name,
+        'id'=>$id
+        ]);
+
+        return $updateName;
     }
 
     public function updatePicture($picture,$id)
@@ -106,6 +117,15 @@ class UserManager extends Manager
         return $getUserId;
     }
 
+    public function getUserIdName()
+    {
+        $req = $this->bdd->prepare("SELECT id FROM users WHERE name = ?");
+        $req->execute([$_POST['name']]);
+        $getUserIdName = $req->fetch();
+
+        return $getUserIdName;
+    }
+
     public function getUserEmail()
     {
         $req = $this->bdd->prepare("SELECT ID FROM users WHERE email = ?");
@@ -117,8 +137,8 @@ class UserManager extends Manager
 
     public function insertUser($password,$role)
     {
-        $req = $this->bdd->prepare("INSERT INTO users (username, picture, email, password, role) VALUES (?,?,?,?,?)");    
-        $insertUser = $req->execute([$_POST['username'], $_POST['picture'],$_POST['email'], $password, $role]);
+        $req = $this->bdd->prepare("INSERT INTO users (username,name,picture,email,password,role,activation) VALUES (?,?,?,?,?,?,1)");    
+        $insertUser = $req->execute([$_POST['username'],$_POST['name'],$_POST['picture'],$_POST['email'],$password,$role]);
 
         return $insertUser;
     }

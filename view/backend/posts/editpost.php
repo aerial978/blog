@@ -24,20 +24,20 @@
                         <fieldset class="form-group form-post row g-0">                
                             <div class="form-field col-lg-12">
                                 <label for="author">Author</label>
-                                <input type="text" name="username" id="username" class="form-control" disabled value="<?= $editPost['username'] ?>">
+                                <input type="text" name="name" id="name" class="form-control" disabled value="<?= $editPost['name'] ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> <?php endif; ?> value="<?= $this->issetSession('input','title') ? $this->getSession('input','title') : $editPost['title'] ?>">
+                                <input type="text" name="title" id="title" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> disabled <?php endif; ?> value="<?= $this->issetSession('input','title') ? $this->getSession('input','title') : $editPost['title'] ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="headline">Headline</label>
-                                <input type="text" name="headline" id="headline" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> <?php endif; ?> value="<?= $this->issetSession('input','headline') ? $this->getSession('input','headline') : $editPost['headline'] ?>">
+                                <input type="text" name="headline" id="headline" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> disabled <?php endif; ?> value="<?= $this->issetSession('input','headline') ? $this->getSession('input','headline') : $editPost['headline'] ?>">
                             </div>
                             
                             <div class="form-field col-lg-12">
                                 <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-                                <textarea name="content" <?php if($this->getSession('auth','id') == $editPost['id']) : ?> id="content" <?php endif; ?> rows="8" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> <?php endif; ?>><?= $this->issetSession('input','content') ?  $this->getSession('input','content') : $editPost['content'] ?></textarea>
+                                <textarea name="content" <?php if($this->getSession('auth','id') == $editPost['id']) : ?> id="content" <?php endif; ?> rows="8" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> readonly <?php endif; ?>><?= $this->issetSession('input','content') ?  $this->getSession('input','content') : $editPost['content'] ?></textarea>
                             </div>
                             <div class="form-field col-lg-12 d-flex flex-column mb-3">
                                 <label for="formFile" class="form-label">Image</label>
@@ -49,15 +49,15 @@
                                 <?php endif; ?>
                             </div>
                             <div class="form-field col-lg-12">  
-                                <input type="file" name="image" id="image" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) { ?> <?php } ?>>
+                                <input type="file" name="image" id="image" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> disabled <?php endif; ?>>
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="tags">Tag category</label>
-                                <select name="tag" id="tag" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) { ?> <?php } ?>>
+                                <select name="tagname" id="tagname" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> disabled <?php endif; ?>>
                                     <option value="0">Select option</option>
                                         <?php if(count($selectTag)>0) : ?>
                                             <?php for ($i=0; $i<count($selectTag); $i++) : ?>
-                                                <option value="<?= $selectTag[$i]['id']?>"<?= isset($editPost['tag_id']) && $selectTag[$i]['id'] == $editPost['tag_id'] ? "selected" : "" ?>><?= $selectTag[$i]['name']?></option>
+                                                <option value="<?= $selectTag[$i]['id']?>"<?= isset($editPost['tag_id']) && $selectTag[$i]['id'] == $editPost['tag_id'] ? "selected" : "" ?>><?= $selectTag[$i]['tagname']?></option>
                                             <?php endfor; ?>    
                                     <?php endif; ?>    
                                 </select>

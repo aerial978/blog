@@ -21,7 +21,7 @@
                         <thead>
                             <tr class="table-title table-primary">   
                                 <th class="col-2">#</th>
-                                <th class="col-6">Name</th>
+                                <th class="col-6">Tag name</th>
                                 <th class="col-4">Action</th>
                             </tr>
                         </thead>
@@ -29,7 +29,7 @@
                             <?php foreach($listTags as $listTag): ?>
                                 <tr data-id="<?= $listTag['id']; ?>">
                                     <th scope="row"><?= $listTag['id'] ?></th>
-                                    <td class="tagname"><?= $listTag['name'] ?></td>
+                                    <td class="tagname"><?= $listTag['tagname'] ?></td>
                                     <td>
                                         <div class="action-button">
                                         <a href="?page=edittag&id=<?= $listTag['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>

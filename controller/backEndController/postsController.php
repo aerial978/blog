@@ -14,7 +14,7 @@ class postsController extends baseController
     {
         $activeMenu = 'postmenu';
 
-        if($this->issetSession('auth_role') && $this->getSession('auth_role') == 1) {
+        if($this->issetSession('auth','role') && $this->getSession('auth','role') == 1) {
 
             $postManager = new postManager();
             $indexPosts = $postManager->indexPost1();
@@ -250,7 +250,7 @@ class postsController extends baseController
         }
 
         $tagManager = new tagManager();
-        $selectTag = $tagManager->selectTag($this->getGet('id'));//////////////////////////////////
+        $selectTag = $tagManager->selectTag();
         
         require('view/backend/posts/addpost.php');    
         $this->unsetSession('errors');

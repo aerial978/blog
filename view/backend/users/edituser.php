@@ -24,7 +24,11 @@
                         <fieldset class="form-group form-user row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" class="form-control" value="<?= $editUser['username'] ?>">
+                                <input type="text" name="username" id="username" class="form-control" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> disabled <?php endif; ?> value="<?= $editUser['username'] ?>">
+                            </div>
+                            <div class="form-field col-lg-12">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control" readonly value="<?= $editUser['name'] ?>">
                             </div>
                             <div class="form-field col-lg-12 d-flex flex-column mb-3">
                                 <label for="formFile" class="form-label">Image</label>

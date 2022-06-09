@@ -4,7 +4,7 @@
     <ul>
         <?php foreach ($listTags as $listTag) { ?>
             <li>
-                <a href="?page=tagposts&id=<?= $listTag['id'] ?>"><?= $listTag['name']; ?></a>
+                <a href="?page=tagposts&id=<?= $listTag['id'] ?>"><?= $listTag['tagname']; ?></a>
             </li>
         <?php } ?>
     </ul>
@@ -20,7 +20,7 @@
                         <img src="<?= "assets/images/" . $posts[$i]['image']; ?>" class="img-recent img-fluid">
                         <div class="title-recents">
                             <h6><a href="?page=postsingle&id=<?= $posts[$i]['postId'] ?>"><?= $posts[$i]['title'] ?></a></h6>
-                            <p><a href="?page=userposts&id=<?= $posts[$i]['user_id'] ?>"><?= $posts[$i]['username'] ?></a></p>
+                            <p><a href="?page=userposts&id=<?= $posts[$i]['user_id'] ?>"><?= $posts[$i]['name'] ?></a></p>
                         </div>
                     </div>
                 </li>

@@ -56,7 +56,7 @@
                                         <?php else: ?>
                                             <img src="assets/images/default.png" alt="user-pic" width="70px;">
                                         <?php endif; ?>
-                                        <?= $this->getSession('auth','username') ?>
+                                        <?= $this->getSession('auth','name') ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="?page=dashboard">Dashboard</a>

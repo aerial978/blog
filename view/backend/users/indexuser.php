@@ -6,7 +6,7 @@
     <div class="content">
         <div class="content-header">
             <h4 class="title title-user">Manage Users</h4>
-            <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2): ?>
+            <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2) : ?>
                 <div class="link-btn">
                 <a href="?page=adduser" class="user-btn add-btn btn"><i class="fas fa-plus"></i> User</a>
                 </div>
@@ -24,9 +24,10 @@
                         <tr class="table-title table-primary">   
                             <th class="col-1">#</th>
                             <th class="col-1">User</th>
+                            <th class="col-2">Name</th>
                             <th class="col-2">Username</th>
-                            <th class="col-3">Email</th>
-                            <th class="col-2">Status</th>
+                            <th class="col-2">Email</th>
+                            <th class="col-1">Status</th>
                             <th class="col-3">Action</th>
                         </tr>
                     </thead>
@@ -40,8 +41,9 @@
                                 <?php else: ?>
                                     <img src="assets/images/default.png" alt="user-pic">
                                 <?php endif; ?>
-                                </td>            
-                                <td class="table-bold"><?= $indexUser['username']; ?></td>
+                                </td>
+                                <td class="table-bold"><?= $indexUser['name']; ?></td>           
+                                <td><?= $indexUser['username']; ?></td>
                                 <td><?= $indexUser['email']; ?></td>
                                 <td><?= $indexUser['role'] == 2 ? 'super admin' : 'admin' ?></td>
                                 <td>
@@ -75,13 +77,13 @@
                                     <?php endif; ?>
                                 </div>
                                 <div class="card-userdetail text-dark">
-                                    <h5 class="card-username"><?= $indexUser['username']; ?></h5>
+                                    <h5 class="card-name"><?= $indexUser['name']; ?></h5>
                                     <h6 class="card-email"><?= $indexUser['email']; ?></h6>
                                 </div>
                                 <div class="card-footer card-user border-success">
                                     <div class="action-button">
                                     <a href="?page=edituser&id=<?= $indexUser['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                    <a data-id="<?= $indexUser['id']; ?>" href="index.php?page=deleteuser&id=<?= $indexUser['id'] ?>" class="delete-btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
+                                    <a data-id="<?= $indexUser['id']; ?>" href="index.php?page=deleteuser&id=<?= $indexUser['id'] ?>" class="delete-btn btn-danger p-2" style="text-decoration:none; border-radius:3px"><i class="fas fa-times"></i><span> delete</span></a>
                                     </div>
                                 </div>
                             </div>

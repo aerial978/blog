@@ -8,9 +8,9 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="mb-4">
-                    <span class="badge mb-3"><a href="?page=tagposts&id=<?= $singlePost['tag_id'] ?>"><?= $singlePost['name'] ?></a></span>
+                    <span class="badge mb-3"><a href="?page=tagposts&id=<?= $singlePost['tag_id'] ?>"><?= $singlePost['tagname'] ?></a></span>
                     <h4 class="fw-bolder mb-2"><?= $singlePost['title'] ?></h4>
-                    <h6 class="mb-2 fst-italic">By <a href="?page=userposts&id=<?= $singlePost['user_id'] ?>"><?= $singlePost['username'] ?></a></h6>
+                    <h6 class="mb-2 fst-italic">By <a href="?page=userposts&id=<?= $singlePost['user_id'] ?>"><?= $singlePost['name'] ?></a></h6>
                     <div class="text-muted fst-italic mb-2">Posted on <?= $singlePost['date_create'] ?></div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <figure class="mb-4"><img src="<?="assets/images/".$singlePost['image'] ?>" alt="image post" class="img-fluid rounded" ></figure>
                 <div class="mb-1">
                     <p class="card-text fw-bolder fs-4 mb-4"><?= $singlePost['headline'] ?></p>
-                    <p class="card-text fs-5 mb-4"><?= $this->number_words($singlePost['content']) ?></p>
+                    <p class="card-text fs-5 mb-4"><?= $singlePost['content'] ?></p>
                 </div>
     <!-- COMMENTS AREA -->
                 <div class="comment-area mt-5 mb-5" id="comments">

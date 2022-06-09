@@ -39,7 +39,9 @@
                         <li><a href="?page=indexcomment" class="nav-link <?php if($activeMenu == 'commentmenu'): ?> active <?php endif; ?>"><span class="fas fa-comments"></span><span>Comments</span></a></li>
                     <?php endif; ?>
                     <li><a href="?page=indexuser" class="nav-link <?php if($activeMenu == 'usermenu'): ?> active <?php endif; ?>"><span class="fas fa-user"></span><span>Users</span></a></li>
-                    <li><a href="?page=indextag" class="nav-link <?php if($activeMenu == 'tagmenu'): ?> active <?php endif; ?>"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
+                    <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2): ?>
+                        <li><a href="?page=indextag" class="nav-link <?php if($activeMenu == 'tagmenu'): ?> active <?php endif; ?>"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -52,7 +54,7 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-            <?php if ($this->issetSession('auth')): ?>}
+            <?php if($this->issetSession('auth')): ?>
                 <ul class="user-wrapper">
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,7 +63,7 @@
                             <?php else: ?>
                                 <img src="assets/images/default.png" alt="user-pic" width="60px;">
                             <?php endif; ?>
-                            <?= $this->getSession('auth','username') ?>
+                            <?= $this->getSession('auth','name') ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="index.php?page=home">Home</a>
@@ -70,6 +72,7 @@
                     </li>
                 </ul>
             <?php endif; ?>
+
         </header>
     
     <?= $bodyAdmin ?>

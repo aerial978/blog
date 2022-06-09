@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="" class="form-label">Content</label>
-                                        <textarea name="comment" id="comment" class="form-control" disabled id="exampleFormControlTextarea1" rows="5"><?= $editComment['comment'] ?></textarea>
+                                        <textarea name="comment" id="comment" class="form-control" readonly id="exampleFormControlTextarea1" rows="5"><?= $editComment['comment'] ?></textarea>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" name="status_comm" class="form-check-input" value="2" <?php if(isset($editComment['status_comm']) && $editComment['status_comm'] == 2) {echo "checked='checked'";} ?> id="checkbox">

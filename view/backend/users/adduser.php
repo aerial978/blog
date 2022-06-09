@@ -20,11 +20,15 @@
                                     <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
                                 </div>    
                             <?php endif; ?>
-                            <form method="post" action="">
+                            <form method="post" action="" enctype="multipart/form-data">
                                 <fieldset class="form-group form-user row g-0">
                                     <div class="form-field col-lg-12">
                                         <label for="username">Username</label>
                                         <input type="text" name="username" id="username" class="form-control" placeholder="At least 8 characters, one lowercase letter, one uppercase letter, one number & one special character." value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : "" ?>">
+                                    </div>
+                                    <div class="form-field col-lg-12">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="First character uppercase, the rest lowercase." value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : "" ?>">
                                     </div>
                                     <div class="form-field col-lg-12 file-input">
                                         <label for="formFile" class="form-label">Image</label>

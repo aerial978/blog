@@ -22,7 +22,7 @@ class tagManager extends manager
 
     public function getTag()
     {
-        $req = $this->bdd->prepare('SELECT name FROM tags WHERE id = ?');
+        $req = $this->bdd->prepare('SELECT tagname FROM tags WHERE id = ?');
         $req->execute([$_GET['id']]);
         $tag = $req->fetch();
 
@@ -55,11 +55,11 @@ class tagManager extends manager
         return $tagId;
     }
 
-    public function updateTag($name,$description,$id)
+    public function updateTag($tagname,$description,$id)
     {
-        $req = $this->bdd->prepare("UPDATE tags SET name = :name, description = :description WHERE id = :id");
+        $req = $this->bdd->prepare("UPDATE tags SET tagname = :tagname, description = :description WHERE id = :id");
         $updateTag = $req->execute([
-        'name'=> $name,
+        'tagname'=> $tagname,
         'description' => $description,
         'id' => $id
         ]);
@@ -69,8 +69,8 @@ class tagManager extends manager
 
     public function getTagName()
     {
-        $req = $this->bdd->prepare("SELECT id FROM tags WHERE name = ?");
-        $req->execute([$_POST['name']]);
+        $req = $this->bdd->prepare("SELECT id FROM tags WHERE tagname = ?");
+        $req->execute([$_POST['tagname']]);
         $getTagName = $req->fetch();
 
         return $getTagName;
@@ -87,8 +87,8 @@ class tagManager extends manager
 
     public function insertTag()
     {
-        $req = $this->bdd->prepare("INSERT INTO tags SET name = ?, description = ?");
-        $insertTag = $req->execute([$_POST['name'], $_POST['description']]);
+        $req = $this->bdd->prepare("INSERT INTO tags SET tagname = ?, description = ?");
+        $insertTag = $req->execute([$_POST['tagname'], $_POST['description']]);
 
         return $insertTag;
     }

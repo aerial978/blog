@@ -23,8 +23,8 @@
                     <form method="post" action="">
                         <fieldset class="form-group form-tag row g-0">
                             <div class="form-field col-lg-12">
-                                <label for="nametag">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : "" ?>">
+                                <label for="tagname">Name</label>
+                                <input type="text" name="tagname" id="tagname" class="form-control" value="<?= $this->issetSession('input','tagname') ? $this->getSession('input','tagname') : "" ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>

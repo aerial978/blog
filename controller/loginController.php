@@ -35,8 +35,7 @@ class loginController extends baseController
                 if($user['activation'] != 0) {
                     if(password_verify(htmlspecialchars($this->getPost('password')), $user['password'])) {
                         session_start();
-                        $this->setSession('auth',$user);
-                        
+                        $this->setSession('auth',$user);    
                         $this->setSession('login','Welcome to the Dashboard !');
                         header('Location: index.php?page=dashboard');
                     }  else {
@@ -243,11 +242,6 @@ class loginController extends baseController
                             $errors['danger'] = "There was a problem with a data processing !";
                         }
                         $this->setSession('auth',$resetUser);
-                        $this->setSession('id',$resetUser['id']);
-                        $this->setSession('username',$resetUser['username']);
-                        $this->setSession('pictures',$resetUser['picture']);
-                        $this->setSession('auth_role',$resetUser['role']);
-        
                         $this->setSession('reset','Well done, your password has been reset !');
                         header('Location: index.php?page=login');                     
                     } else {
