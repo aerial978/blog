@@ -49,7 +49,7 @@
                                     <option value="0">Select option</option>
                                     <?php if(count($selectTag)>0) : ?>
                                         <?php for ($i=0; $i<count($selectTag); $i++) : ?>
-                                            <option <?= $this->issetSession('input','tagname') && $this->getSession('input','tagname') == $selectTag[$i]['id'] ? "selected" : "" ; ?> value="<?= $selectTag[$i]['id'];?>"><?= $selectTag[$i]['tagname'];?></option>
+                                            <option <?= $this->issetSession('input','tagname') && $this->getSession('input','tagname') == $selectTag[$i]['id'] ? "selected" : "" ; ?> value="<?= htmlentities($selectTag[$i]['id']);?>"><?= $selectTag[$i]['tagname'];?></option>
                                         <?php endfor; ?>    
                                     <?php endif; ?> 
                                 </select>

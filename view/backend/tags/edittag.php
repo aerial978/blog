@@ -14,7 +14,7 @@
                             <p>You have not completed the form correctly :</p>
                             <ul>
                                 <?php foreach($this->getSession('errors') as $error) : ?>
-                                    <li><?= $error; ?></li>  
+                                    <li><?= htmlentities($error); ?></li>  
                                 <?php endforeach; ?>
                             </ul>
                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
