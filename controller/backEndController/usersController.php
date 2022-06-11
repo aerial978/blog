@@ -69,7 +69,7 @@ class usersController extends baseController
 
         $errors = array();
 
-        $this->setSession('input',$_POST);
+        $this->setSession('input','');
 
         if ($this->issetPost()) {
 
