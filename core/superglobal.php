@@ -39,7 +39,7 @@ abstract class Superglobal {
     }
 
     public function getPost($key) {
-        return $_POST[$key];
+        return htmlentities($_POST[$key]);
     }
 
     public function issetGet($key = NULL) {
@@ -57,7 +57,7 @@ abstract class Superglobal {
     }
 
     public function getGet($key) {
-        return $_GET[$key];
+        return htmlentities($_GET[$key]);
     }
 
     public function issetFiles($key = NULL) {
@@ -106,9 +106,9 @@ abstract class Superglobal {
 
     public function getSession($key1,$key2 = NULL) {
         if($key1 && $key2) {
-        return $_SESSION[$key1][$key2];
+        return htmlentities($_SESSION[$key1][$key2]);
         } else {
-            return $_SESSION[$key1];
+            return htmlentities($_SESSION[$key1]);
         }
     }
 
