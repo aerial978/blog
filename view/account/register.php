@@ -23,7 +23,7 @@
                     <input type="hidden" name="csrf_token" value="<?= htmlentities($token) ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : "" ?>"/>  
+                            <input type="text" class="form-control" name="username" id="username" value="<?= $this->issetSession('input','username') ? htmlentities($this->getSession('input','username')) : "" ?>"/>  
                             <a style="font-size:9.5px">At least 8 characters, one lowercase letter, one uppercase letter, one number & one special</a>
                         </div>
                         <div class="form-field col-md-12">

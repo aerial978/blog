@@ -66,7 +66,7 @@
                         <div data-id="<?= $indexUser['id']; ?>" class="col-lg-4 col-sm-4 col-6">
                             <div class="card border-dark mb-3">
                                 <div class="card-header card-user"> 
-                                    <div class="id"><span># <?= htmlentities($indexUser['id']); ?></span></div>
+                                    <div class="id"><span># <?= $indexUser['id']; ?></span></div>
                                     <div class="status"><span><?= $indexUser['role'] == 2 ? 'super admin' : 'admin' ?></span></div>
                                 </div>    
                                 <div class="card-body h-75">

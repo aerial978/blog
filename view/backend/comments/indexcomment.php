@@ -80,7 +80,7 @@
                                         <?php endif; ?>
                                     </div>
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId'] ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?= htmlentities($indexComment['commentId']); ?>" href="index.php?page=deletecomment&id=<?= htmlentities($indexComment['commentId']) ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= htmlentities($indexComment['commentId']) ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                 </div>
                             </div>        
                         </div>          

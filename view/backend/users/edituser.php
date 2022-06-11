@@ -33,7 +33,7 @@
                             <div class="form-field col-lg-12 d-flex flex-column mb-3">
                                 <label for="formFile" class="form-label">Image</label>
                                 <?php if (!empty($editUser['picture']) && $editUser['picture'] != NULL) : ?>
-                                    <img src="assets/images/<?= $this->issetSession('picture','name') ? $this->getSession('picture','name') : $editUser['picture']; ?>" alt="" width="115px;">
+                                    <img src="assets/images/<?= $this->issetSession('picture','name') ? htmlentities($this->getSession('picture','name')) : $editUser['picture']; ?>" alt="" width="115px;">
                                     <?= $this->issetSession('picture','name') ? basename($this->getSession('picture','name')) : basename($editUser['picture']); ?>
                                 <?php else :  ?>
                                     <img src="assets/images/default.png" alt="pic-user" width="115px;">

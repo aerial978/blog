@@ -24,7 +24,7 @@
                         <fieldset class="form-group form-post row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="author">Author</label>
-                                <input type="text" name="name" id="name" class="form-control" disabled value="<?= $this->getSession('auth','name') ?>">
+                                <input type="text" name="name" id="name" class="form-control" disabled value="<?= htmlentities($this->getSession('auth','name')) ?>">
                             </div>  
                             <div class="form-field col-lg-12">
                                 <label for="title">Title</label>
