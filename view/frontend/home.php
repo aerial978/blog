@@ -46,12 +46,12 @@
                                     <a href="?page=userposts&id=<?=$post['user_id'] ?>">
                                     <?= " ".$post['name'] ?></a></span>
                                     <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span><?= $post['date_create'] ?></span></div>
-                                    <span class="badge"><a href="?page=tagposts&id=<?=$post['tag_id']?>"><?= $post['tagname'] ?></a></span>
+                                    <span class="badge"><a href="?page=tagposts&id=<?= htmlentities($post['tag_id'])?>"><?= $post['tagname'] ?></a></span>
                                 </div>
                                 <h6 class="card-title fw-bold"><?= $post['title'] ?></h6>
                                 <p class="card-text fs-5"><?= $this->number_words($post['content']) ?></p>
                                 <div class="card-meta d-flex justify-content-between">
-                                    <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $post['comment_count'] ?></span>
+                                    <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= htmlentities($post['comment_count']) ?></span>
                                     <a href="?page=postsingle&id=<?= $post['postId'] ?>"class="btn btn-primary">Read more</a>
                                 </div>
                             </div>
