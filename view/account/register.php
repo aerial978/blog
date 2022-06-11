@@ -20,7 +20,7 @@
                 <?php endif; ?>
                 <form method="post" action="">
                     <fieldset class="form-group row">
-                    <input type="hidden" name="csrf_token" value="<?= $token ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlentities($token) ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
                             <input type="text" class="form-control" name="username" id="username" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : "" ?>"/>  
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-field col-md-12">
                             <label for="email" class="label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : "" ?>"/>        
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= htmlentities($this->issetSession('input','email')) ? htmlentities($this->getSession('input','email')) : "" ?>"/>        
                         </div>
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Password</label>

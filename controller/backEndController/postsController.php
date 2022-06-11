@@ -31,7 +31,7 @@ class postsController extends baseController
         if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('create') ?>",
+                    title: "<?= htmlentities($this->getSession('create')) ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })

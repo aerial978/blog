@@ -41,7 +41,7 @@ class usersController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('update') ?>",
+                    title: "<?= htmlentities($this->getSession('update')) ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
