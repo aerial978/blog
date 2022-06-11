@@ -16,12 +16,12 @@ class commentsController extends baseController
         $commentManager = new commentManager();
         $indexComments = $commentManager->indexComment();
         
-        require 'view/backend/comments/indexcomment.php';
+        require ("view/backend/comments/indexcomment.php");
 
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= htmlentities($this->getSession('update')) ?>",
+                    title: "<?= $this->getSession('update') ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -33,7 +33,7 @@ class commentsController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= htmlentities($this->getSession('process')) ?>",
+                    title: "<?= $this->getSession('process') ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -68,9 +68,10 @@ class commentsController extends baseController
             
             $this->setSession('update','Update successfully !');
             header("Location: index.php?page=indexcomment");
+            die();
             }
         
-        require 'view/backend/comments/editcomment.php';   
+        require ("view/backend/comments/editcomment.php");   
     }
 
     public function deletecomment()
@@ -85,6 +86,7 @@ class commentsController extends baseController
                 $this->setSession('danger',"There was a problem with a data processing !");
             }
             header('Location: index.php?page=indexcomment');
+            exit();
         }
     }
 }
