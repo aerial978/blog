@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> disabled <?php endif; ?> value="<?= $this->issetSession('input','title') ? $this->getSession('input','title') : $editPost['title'] ?>">
+                                <input type="text" name="title" id="title" class="form-control" <?php if($this->getSession('auth','id') != $editPost['id']) : ?> disabled <?php endif; ?> value="<?= $this->issetSession('input','title') ? htmlentities($this->getSession('input','title')) : $editPost['title'] ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="headline">Headline</label>

@@ -13,7 +13,7 @@
                                 <fieldset class="form-group form-comment row g-0">   
                                     <div class="form-field col-lg-12">
                                         <label for="name_author">Author</label>
-                                        <input type="text" name="name_author" id="name_author" disabled class="form-control" value="<?= htmlentities($editComment['name_author']) ?>">
+                                        <input type="text" name="name_author" id="name_author" disabled class="form-control" value="<?= $editComment['name_author'] ?>">
                                     </div>
                                     <div class="form-field col-lg-12">
                                         <label for="date_comment">Date</label>
