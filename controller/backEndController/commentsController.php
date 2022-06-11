@@ -33,7 +33,7 @@ class commentsController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('process') ?>",
+                    title: "<?= htmlentities($this->getSession('process')) ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
