@@ -15,7 +15,7 @@ class formManager extends manager
         $req->execute([$username]);
         $user = $req->fetch();
         
-        return htmlentities($user);
+        return htmlspecialchars($user);
     }
 
     public function registerUsername($username)
