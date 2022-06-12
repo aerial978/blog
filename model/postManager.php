@@ -75,7 +75,7 @@ class postManager extends manager
         GROUP BY posts.id ORDER BY date_create DESC');
         $indexPosts = $req->fetchAll();
 
-        return htmlentities($indexPosts);            
+        return htmlspecialchars($indexPosts);            
     }
 
     public function indexPost2()
