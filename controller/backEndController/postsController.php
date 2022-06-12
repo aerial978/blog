@@ -31,7 +31,7 @@ class postsController extends baseController
         if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('create') ?>",
+                    title: "<?php $this->getSession('create'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -43,7 +43,7 @@ class postsController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('update') ?>",
+                    title: "<?php $this->getSession('update'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -55,7 +55,7 @@ class postsController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('process') ?>",
+                    title: "<?php $this->getSession('process'); ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
