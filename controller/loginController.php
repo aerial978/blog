@@ -60,7 +60,7 @@ class loginController extends baseController
         if($this->issetSession('invalid') && $this->getSession('invalid') != "") { ?>    
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('invalid') ?>",
+                title: "<?php $this->getSession('invalid'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C', 
                 })
@@ -72,7 +72,7 @@ class loginController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>    
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('process') ?>",
+                title: "<?php $this->getSession('process'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C', 
                 })
@@ -84,7 +84,7 @@ class loginController extends baseController
         if(isset($danger['activation']) && $danger['activation'] != "") { ?>        
             <script>
                 Swal.fire({
-                title: "<?= $danger['activation'] ?>",
+                title: "<?php $danger['activation']; ?>",
                 text: "Please follow instructions sent by email !",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C',
@@ -97,7 +97,7 @@ class loginController extends baseController
         if($this->issetSession('reset') && $this->getSession('reset') != "") { ?>
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('reset') ?>",
+                title: "<?php $this->getSession('reset'); ?>",
                 text: "Login please !",
                 icon: "success",
                 confirmButtonColor: '#1aBC9C',
@@ -110,7 +110,7 @@ class loginController extends baseController
         if($this->issetSession('authentification') && $this->getSession('authentification') != "") { ?>
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('authentification') ?>",
+                title: "<?php $this->getSession('authentification'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C',
                 })
@@ -123,7 +123,7 @@ class loginController extends baseController
             ?>        
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('logout') ?>",
+                    title: "<?php $this->getSession('logout'); ?>",
                     imageUrl: 'assets/images/avatar.png',
                     imageWidth: 200,
                     imageHeight: 200,
@@ -196,7 +196,7 @@ class loginController extends baseController
         if($this->issetSession('forget') && $this->getSession('forget') != "") { ?>    
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('forget') ?>",
+                title: "<?php $this->getSession('forget'); ?>",
                 imageUrl: 'assets/images/letter_red.png',
                 imageWidth: 100,
                 imageHeight: 100,
