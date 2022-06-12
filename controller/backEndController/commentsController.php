@@ -16,7 +16,7 @@ class commentsController extends baseController
         $commentManager = new commentManager();
         $indexComments = $commentManager->indexComment();
         
-        require "view/backend/comments/indexcomment.php";
+        require 'view/backend/comments/indexcomment.php';
 
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
@@ -68,10 +68,9 @@ class commentsController extends baseController
             
             $this->setSession('update','Update successfully !');
             header("Location: index.php?page=indexcomment");
-            die();
             }
         
-        require "view/backend/comments/editcomment.php";   
+        require 'view/backend/comments/editcomment.php';   
     }
 
     public function deletecomment()
