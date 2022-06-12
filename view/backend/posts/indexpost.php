@@ -70,7 +70,7 @@
                         <div data-id="<?= htmlentities($indexPost['postId']) ?>" class="col-lg-4 col-sm-6"> 
                             <div class="card border-dark mb-3" style="max-width: 20rem;">     
                                 <div class="card-header card-post">
-                                    <div class="id"><span><?= $indexPost['postId'] ?></span></div>
+                                    <div class="id"><span><?php $indexPost['postId']; ?></span></div>
                                     <div class="status">
                                     <?php if($indexPost['status_post'] == 2): ?>
                                         <h6 style="color: green;"><?php echo 'published'; ?></h6>
@@ -78,10 +78,10 @@
                                         <h6 style="color: red;"><?php echo 'unpublished'; ?></h6>
                                     <?php endif; ?>
                                     </div>
-                                    <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $indexPost['total']; ?></span></div>
+                                    <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?php $indexPost['total']; ?></span></div>
                                 </div>
                                 <div class="card-body image">
-                                    <img src="<?= "assets/images/".$indexPost['image']; ?>" alt="img-post">
+                                    <img src="<?php "assets/images/".$indexPost['image']; ?>" alt="img-post">
                                 </div>    
                                 <div class="card-body h-50 text-dark">
                                     <h5 class="card-title h-50"><?php $indexPost['title']; ?></h5>
