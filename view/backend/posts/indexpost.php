@@ -67,7 +67,7 @@
                 <div class="container">
                     <div class="row">
                     <?php foreach($indexPosts as $indexPost): ?>
-                        <div data-id="<?= htmlentities($indexPost['postId']) ?>" class="col-lg-4 col-sm-6"> 
+                        <div data-id="<?php $indexPost['postId']; ?>" class="col-lg-4 col-sm-6"> 
                             <div class="card border-dark mb-3" style="max-width: 20rem;">     
                                 <div class="card-header card-post">
                                     <div class="id"><span><?php $indexPost['postId']; ?></span></div>
@@ -89,7 +89,7 @@
                                 <div class="card-footer card-post border-success">    
                                     <div class="action-button">
                                         <a href="?page=editpost&id=<?php $indexPost['postId']; ?>"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <a data-id="<?= $indexPost['postId'] ?>" href="?page=deletepost&id=<?= $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
+                                        <a data-id="<?php $indexPost['postId'] ?>" href="?page=deletepost&id=<?php $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
                                     </div>
                                 </div>   
                             </div>
