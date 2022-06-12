@@ -106,9 +106,9 @@ abstract class Superglobal {
 
     public function getSession($key1,$key2 = NULL) {
         if($key1 && $key2) {
-        return $_SESSION[$key1][$key2];
+        return htmlspecialchars($_SESSION[$key1][$key2]);
         } else {
-            return $_SESSION[$key1];
+            return htmlspecialchars($_SESSION[$key1]);
         }
     }
 
