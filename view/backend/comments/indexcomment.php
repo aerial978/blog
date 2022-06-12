@@ -27,7 +27,7 @@
                     </thead>
                     <tbody class="table-body">
                     <?php foreach($indexComments as $indexComment): ?>
-                        <tr data-id="<?= $indexComment['commentId']; ?>">
+                        <tr data-id="<?= htmlspecialchars($indexComment['commentId']); ?>">
                             <th scope="row"><?= $indexComment['post_id'] ?></th>
                             <th class="name_author"><?= $indexComment['name_author'] ?></th>
                             <td class="email_author"><?= $indexComment['email_author'] ?></td>
