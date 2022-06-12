@@ -71,7 +71,7 @@ class commentsController extends baseController
             die();
             }
         
-        require ("view/backend/comments/editcomment.php");   
+        require "view/backend/comments/editcomment.php";   
     }
 
     public function deletecomment()
