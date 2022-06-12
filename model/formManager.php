@@ -15,7 +15,7 @@ class formManager extends manager
         $req->execute([$username]);
         $user = $req->fetch();
         
-        return htmlspecialchars($user);
+        return $user;
     }
 
     public function registerUsername($username)
@@ -51,7 +51,7 @@ class formManager extends manager
         $req->execute([$username, $name, $email, $password, $token]);
         $user_id = $this->bdd->lastInsertId();
         
-        return $user_id;
+        return htmlentities($user_id);
     }
 
     public function tokenUser($user_id,$token)
