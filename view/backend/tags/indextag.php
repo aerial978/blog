@@ -27,13 +27,13 @@
                         </thead>
                         <tbody class="table-body">
                             <?php foreach($listTags as $listTag): ?>
-                                <tr data-id="<?= $listTag['id']; ?>">
-                                    <th scope="row"><?= $listTag['id'] ?></th>
-                                    <td class="tagname"><?= $listTag['tagname'] ?></td>
+                                <tr data-id="<?php $listTag['id']; ?>">
+                                    <th scope="row"><?php $listTag['id']; ?></th>
+                                    <td class="tagname"><?php $listTag['tagname']; ?></td>
                                     <td>
                                         <div class="action-button">
-                                        <a href="?page=edittag&id=<?= $listTag['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                        <a data-id="<?= $listTag['id'] ?>" href="?page=deletetag&id=<?= $listTag['id'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
+                                        <a href="?page=edittag&id=<?php $listTag['id']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                        <a data-id="<?php $listTag['id'] ?>" href="?page=deletetag&id=<?php $listTag['id'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
                                         </div>
                                     </td>
                                 </tr>

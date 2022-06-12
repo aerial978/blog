@@ -14,27 +14,27 @@
                             <p>You have not completed the form correctly :</p>
                             <ul>
                                 <?php foreach ($this->getSession('errors') as $error) : ?>
-                                    <li><?= $error; ?></li>
+                                    <li><?php $error; ?></li>
                                 <?php endforeach; ?>
                             </ul>
                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php endif; ?>
-                    <form method="post" action="index.php?page=edituser&id=<?= $editUser['id'] ?>" enctype="multipart/form-data">
+                    <form method="post" action="index.php?page=edituser&id=<?php $editUser['id'] ?>" enctype="multipart/form-data">
                         <fieldset class="form-group form-user row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" class="form-control" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> disabled <?php endif; ?> value="<?= $editUser['username'] ?>">
+                                <input type="text" name="username" id="username" class="form-control" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> disabled <?php endif; ?> value="<?php $editUser['username']; ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" readonly value="<?= $editUser['name'] ?>">
+                                <input type="text" name="name" id="name" class="form-control" readonly value="<?php $editUser['name']; ?>">
                             </div>
                             <div class="form-field col-lg-12 d-flex flex-column mb-3">
                                 <label for="formFile" class="form-label">Image</label>
                                 <?php if (!empty($editUser['picture']) && $editUser['picture'] != NULL) : ?>
                                     <img src="assets/images/<?= $this->issetSession('picture','name') ? $this->getSession('picture','name') : $editUser['picture']; ?>" alt="" width="115px;">
-                                    <?= $this->issetSession('picture','name') ? basename($this->getSession('picture','name')) : basename($editUser['picture']); ?>
+                                    <?php $this->issetSession('picture','name') ? basename($this->getSession('picture','name')) : basename($editUser['picture']); ?>
                                 <?php else :  ?>
                                     <img src="assets/images/default.png" alt="pic-user" width="115px;">
                                 <?php endif; ?>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> disabled <?php endif; ?> value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : $editUser['email'] ?>">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> disabled <?php endif; ?> value="<?php $this->issetSession('input','email') ? $this->getSession('input','email') : $editUser['email'] ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="password" class="col-sm-2 col-form-label">Password</label>

@@ -14,7 +14,7 @@
                             <p>You have not completed the form correctly :</p>
                             <ul>
                                 <?php foreach($this->getSession('errors') as $error) : ?>
-                                    <li><?= $error; ?></li>  
+                                    <li><?php $error; ?></li>  
                                 <?php endforeach; ?>
                             </ul>
                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
@@ -24,11 +24,11 @@
                         <fieldset class="form-group form-tag row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="nametag">Name</label>
-                                <input type="text" name="tagname" id="tagname" class="form-control" value="<?= $this->issetSession('input','tagname') ? $this->getSession('input','tagname') : $tagId['tagname'] ?>">
+                                <input type="text" name="tagname" id="tagname" class="form-control" value="<?php $this->issetSession('input','tagname') ? $this->getSession('input','tagname') : $tagId['tagname'] ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea name="description" id="content" class="form-control"><?= $this->issetSession('input','description') ? $this->getSession('input','description') : $tagId['description'] ?></textarea>
+                                <textarea name="description" id="content" class="form-control"><?php $this->issetSession('input','description') ? $this->getSession('input','description') : $tagId['description'] ?></textarea>
                             </div>
                             <div class="btn-tag d-flex justify-content-between">
                             <button type="submit" name="submit" class="submit-tag submit-btn">Update tag</button>
