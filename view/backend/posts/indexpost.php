@@ -31,19 +31,19 @@
                         </thead>
                         <tbody class="table-body">
                         <?php foreach ($indexPosts as $indexPost): ?>
-                            <tr data-id="<?= $indexPost['postId']; ?>">
-                                <th scope="row"><?= $indexPost['postId']; ?></th>
+                            <tr data-id="<?php $indexPost['postId']; ?>">
+                                <th scope="row"><?php $indexPost['postId']; ?></th>
                                 <td><?= $indexPost['name']; ?></td>
-                                <td class="date_create"><?= $indexPost['date_create'] ?></td>
-                                <td class="table-bold"><?= $indexPost['title']; ?></td>
+                                <td class="date_create"><?php $indexPost['date_create'] ?></td>
+                                <td class="table-bold"><?php $indexPost['title']; ?></td>
                                 <td class="status-image">
                                     <?php if(!empty($indexPost['image']) && $indexPost['image'] != NULL): ?>
-                                        <img src="<?="assets/images/".$indexPost['image']; ?>" alt="post-pic" width="100px;"></td>
+                                        <img src="<?php "assets/images/".$indexPost['image']; ?>" alt="post-pic" width="100px;"></td>
                                     <?php else: ?>
                                         <img src="assets/images/land-default.png" alt="img-post">
                                     <?php endif; ?>
                                 </td>
-                                <td class="comments"><?= $indexPost['total']; ?></td>
+                                <td class="comments"><?php $indexPost['total']; ?></td>
                                 <td class="status">
                                 <?php if($indexPost['status_post'] == 2): ?>
                                     <h6 style="color: green;"><?php echo 'published'; ?></h6>
@@ -53,8 +53,8 @@
                                 </td>
                                 <td>
                                     <div class="action-button">
-                                        <a href="index.php?page=editpost&id=<?= $indexPost['postId'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                        <a data-id="<?= $indexPost['postId'] ?>" href="index.php?page=deletepost&id=<?= $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
+                                        <a href="index.php?page=editpost&id=<?php $indexPost['postId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                        <a data-id="<?php $indexPost['postId']; ?>" href="index.php?page=deletepost&id=<?php $indexPost['postId']; ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
                                     </div>
                                 </td>
                             </tr>      
