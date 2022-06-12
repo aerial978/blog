@@ -15,8 +15,6 @@ class commentsController extends baseController
 
         $commentManager = new commentManager();
         $indexComments = $commentManager->indexComment();
-        
-        require 'view/backend/comments/indexcomment.php';
 
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
@@ -41,6 +39,8 @@ class commentsController extends baseController
         <?php
         $this->unsetSession('process');
         }
+
+        require 'view/backend/comments/indexcomment.php';
     }
 
     public function editcomment()
