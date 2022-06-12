@@ -24,11 +24,11 @@
                         <fieldset class="form-group form-tag row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="nametag">Name</label>
-                                <input type="text" name="tagname" id="tagname" class="form-control" value="<?= $this->issetSession('input','tagname') ? htmlentities($this->getSession('input','tagname')) : $tagId['tagname'] ?>">
+                                <input type="text" name="tagname" id="tagname" class="form-control" value="<?= $this->issetSession('input','tagname') ? htmlspecialchars($this->getSession('input','tagname')) : $tagId['tagname'] ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea name="description" id="content" class="form-control"><?= $this->issetSession('input','description') ? htmlentities($this->getSession('input','description')) : $tagId['description'] ?></textarea>
+                                <textarea name="description" id="content" class="form-control"><?= $this->issetSession('input','description') ? htmlspecialchars($this->getSession('input','description')) : $tagId['description'] ?></textarea>
                             </div>
                             <div class="btn-tag d-flex justify-content-between">
                             <button type="submit" name="submit" class="submit-tag submit-btn">Update tag</button>
