@@ -51,7 +51,7 @@ class formManager extends manager
         $req->execute([$username, $name, $email, $password, $token]);
         $user_id = $this->bdd->lastInsertId();
         
-        return htmlentities($user_id);
+        return $user_id;
     }
 
     public function tokenUser($user_id,$token)
@@ -60,7 +60,7 @@ class formManager extends manager
         $req->execute([$user_id,$token]);
         $tokenUser = $req->fetch();
 
-        return htmlentities($tokenUser);
+        return $tokenUser;
     }
 
     public function tokenConfirm($user_id)
