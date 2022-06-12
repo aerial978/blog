@@ -83,7 +83,7 @@ class frontEndController extends baseController
         if ($this->issetSession('message') && $this->getSession('message') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('message') ?>",
+                    title: "<?php $this->getSession('message'); ?>",
                     imageUrl: 'assets/images/letter_red.png',
                     imageWidth: 100,
                     imageHeight: 100,
@@ -97,7 +97,7 @@ class frontEndController extends baseController
         if ($this->issetSession('register') && $this->getSession('register') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('register') ?>",
+                    title: "<?php $this->getSession('register'); ?>",
                     text: "Check your inbox for a confirmation email !",
                     imageUrl: 'assets/images/letter_red.png',
                     imageWidth: 100,
@@ -112,7 +112,7 @@ class frontEndController extends baseController
         if ($this->issetSession('confirmation') && $this->getSession('confirmation') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('confirmation') ?>",
+                    title: "<?php $this->getSession('confirmation'); ?>",
                     text: "You are indentified now !",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
@@ -185,7 +185,7 @@ class frontEndController extends baseController
         if ($this->issetSession('comment') && $this->getSession('comment') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('comment') ?>",
+                    title: "<?php $this->getSession('comment'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })

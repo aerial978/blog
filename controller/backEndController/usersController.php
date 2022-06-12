@@ -29,7 +29,7 @@ class usersController extends baseController
         if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('create') ?>",
+                    title: "<?php $this->getSession('create'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -41,7 +41,7 @@ class usersController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= htmlentities($this->getSession('update')) ?>",
+                    title: "<?php $this->getSession('update'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
