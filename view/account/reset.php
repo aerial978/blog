@@ -12,7 +12,7 @@
                         <p>You have not completed the form correctly :</p>
                         <ul>
                             <?php foreach($errors as $error): ?>
-                                <li><?= $error; ?></li>  
+                                <li><?php $error; ?></li>  
                             <?php endforeach; ?>
                         </ul>
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
