@@ -74,9 +74,9 @@
                                 <div class="card-footer card-com border-success d-flex justify-content-around">
                                     <div class="status status-red d-flex align-items-center">
                                         <?php if($indexComment['status_comm'] == 2): ?>
-                                            <h6 style="color: green;"><?php echo 'published'; ?></h6>
+                                            <h6 style="color: green;"><?php 'published'; ?></h6>
                                             <?php else: ?>
-                                            <h6 style="color: red;"><?php echo 'unpublished'; ?></h6>
+                                            <h6 style="color: red;"><?php 'unpublished'; ?></h6>
                                         <?php endif; ?>
                                     </div>
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId'] ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>

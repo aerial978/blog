@@ -86,7 +86,6 @@ class commentsController extends baseController
                 $this->setSession('danger',"There was a problem with a data processing !");
             }
             header('Location: index.php?page=indexcomment');
-            exit();
         }
     }
 }

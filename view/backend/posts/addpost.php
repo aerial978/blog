@@ -14,7 +14,7 @@
                             <p>You have not completed the form correctly :</p>
                             <ul>
                                 <?php foreach($this->getSession('errors') as $error) : ?>
-                                    <li><?= $error; ?></li>  
+                                    <li><?php $error; ?></li>  
                                 <?php endforeach; ?>
                             </ul>
                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
@@ -24,24 +24,24 @@
                         <fieldset class="form-group form-post row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="author">Author</label>
-                                <input type="text" name="name" id="name" class="form-control" disabled value="<?= $this->getSession('auth','name') ?>">
+                                <input type="text" name="name" id="name" class="form-control" disabled value="<?php $this->getSession('auth','name'); ?>">
                             </div>  
                             <div class="form-field col-lg-12">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control" value="<?= $this->issetSession('input','title') ? $this->getSession('input','title') : "" ; ?>">
+                                <input type="text" name="title" id="title" class="form-control" value="<?php $this->issetSession('input','title') ? $this->getSession('input','title') : "" ; ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="headline">Headline</label>
-                                <input type="text" name="headline" id="headline" class="form-control" value="<?= $this->issetSession('input','headline') ? $this->getSession('input','headline') : "" ; ?>">
+                                <input type="text" name="headline" id="headline" class="form-control" value="<?php $this->issetSession('input','headline') ? $this->getSession('input','headline') : "" ; ?>">
                             </div>
                             <div class="form-field col-lg-12">
                             <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-                            <textarea name="content" id="content" class="form-control"><?= $this->issetSession('input','content') ? $this->getSession('input','content'): "" ; ?></textarea>      
+                            <textarea name="content" id="content" class="form-control"><?php $this->issetSession('input','content') ? $this->getSession('input','content'): "" ; ?></textarea>      
                             </div>
                             
                             <div class="form-field col-lg-12 file-input">
                                 <label for="formFile" class="form-label">Image</label>
-                                <input type="file" name="image" id="image" class="form-control" value="<?= $this->issetSession('input','image') ? $this->getSession('input','image') : "" ; ?>">
+                                <input type="file" name="image" id="image" class="form-control" value="<?php $this->issetSession('input','image') ? $this->getSession('input','image') : "" ; ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="tags">Tag category</label>
@@ -49,7 +49,7 @@
                                     <option value="0">Select option</option>
                                     <?php if(count($selectTag)>0) : ?>
                                         <?php for ($i=0; $i<count($selectTag); $i++) : ?>
-                                            <option <?= $this->issetSession('input','tagname') && $this->getSession('input','tagname') == $selectTag[$i]['id'] ? "selected" : "" ; ?> value="<?= $selectTag[$i]['id'];?>"><?= $selectTag[$i]['tagname'];?></option>
+                                            <option <?php $this->issetSession('input','tagname') && $this->getSession('input','tagname') == $selectTag[$i]['id'] ? "selected" : "" ; ?> value="<?php $selectTag[$i]['id'];?>"><?php $selectTag[$i]['tagname'];?></option>
                                         <?php endfor; ?>    
                                     <?php endif; ?> 
                                 </select>
