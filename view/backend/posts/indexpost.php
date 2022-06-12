@@ -38,7 +38,7 @@
                                 <td class="table-bold"><?= $indexPost['title']; ?></td>
                                 <td class="status-image">
                                     <?php if(!empty($indexPost['image']) && $indexPost['image'] != NULL): ?>
-                                        <img src="<?="assets/images/".htmlentities($indexPost['image']); ?>" alt="post-pic" width="100px;"></td>
+                                        <img src="<?="assets/images/".$indexPost['image']; ?>" alt="post-pic" width="100px;"></td>
                                     <?php else: ?>
                                         <img src="assets/images/land-default.png" alt="img-post">
                                     <?php endif; ?>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="card-footer card-post border-success">    
                                     <div class="action-button">
-                                        <a href="?page=editpost&id=<?= htmlentities($indexPost['postId']) ?>"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <a href="?page=editpost&id=<?= $indexPost['postId'] ?>"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
                                         <a data-id="<?= $indexPost['postId'] ?>" href="?page=deletepost&id=<?= $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
                                     </div>
                                 </div>   
