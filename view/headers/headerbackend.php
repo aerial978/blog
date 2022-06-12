@@ -59,11 +59,11 @@
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php if($this->issetSession('auth','picture')): ?>
-                                <img src="assets/images/<?= $this->getSession('auth','picture') ?>" alt="user-pic" width="60px;">
+                                <img src="assets/images/<?php $this->getSession('auth','picture'); ?>" alt="user-pic" width="60px;">
                             <?php else: ?>
                                 <img src="assets/images/default.png" alt="user-pic" width="60px;">
                             <?php endif; ?>
-                            <?= $this->getSession('auth','name') ?>
+                            <?php $this->getSession('auth','name'); ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="index.php?page=home">Home</a>
@@ -75,7 +75,7 @@
 
         </header>
     
-    <?= $bodyAdmin ?>
+    <?php $bodyAdmin; ?>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     
