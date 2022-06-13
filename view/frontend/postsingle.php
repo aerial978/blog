@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="mb-4">
-                    <span class="badge mb-3"><a href="?page=tagposts&id=<?= $singlePost['tag_id']; ?>"><?= $singlePost['tagname']; ?></a></span>
+                    <span class="badge mb-3"><a href="?page=tagposts&id=<?= $singlePost['tag_id']; ?>"><?= htmlentities($singlePost['tagname']); ?></a></span>
                     <h4 class="fw-bolder mb-2"><?= $singlePost['title']; ?></h4>
                     <h6 class="mb-2 fst-italic">By <a href="?page=userposts&id=<?= $singlePost['user_id']; ?>"><?= $singlePost['name']; ?></a></h6>
                     <div class="text-muted fst-italic mb-2">Posted on <?= $singlePost['date_create']; ?></div>
