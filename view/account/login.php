@@ -12,7 +12,7 @@
                         <p>You have not completed the form correctly :</p>
                         <ul>
                             <?php foreach ($errors as $error) : ?>
-                                <li><?php $error; ?></li>
+                                <li><?= $error; ?></li>
                             <?php endforeach; ?>
                         </ul>
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
@@ -20,7 +20,7 @@
                 <?php endif; ?>
                 <form method="post" action="index.php?page=login">
                     <fieldset class="form-group row">
-                        <input type="hidden" name="csrf_token" value="<?php $token; ?>">
+                        <input type="hidden" name="csrf_token" value="<?= $token; ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
                             <input type="text" class="form-control" name="username" id="username" />
