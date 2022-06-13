@@ -71,7 +71,7 @@
                             <div class="card card-tags mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= $countTags; ?></h2>
+                                        <h2><?= htmlentities($countTags); ?></h2>
                                         <h4>Tags</h4>
                                     </div>
                                     <div class="card-icon">
