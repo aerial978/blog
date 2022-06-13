@@ -21,7 +21,7 @@ class commentsController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('update'); ?>",
+                    title: "<?= print_r($this->getSession('update')); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
