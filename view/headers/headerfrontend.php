@@ -52,11 +52,11 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <?php if($this->issetSession('auth','picture')): ?>
-                                            <img src="assets/images/<?php $this->getSession('auth','picture'); ?>" alt="user-pic" width="70px;">
+                                            <img src="assets/images/<?= $this->getSession('auth','picture'); ?>" alt="user-pic" width="70px;">
                                         <?php else: ?>
                                             <img src="assets/images/default.png" alt="user-pic" width="70px;">
                                         <?php endif; ?>
-                                        <?php $this->getSession('auth','name'); ?>
+                                        <?= $this->getSession('auth','name'); ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="?page=dashboard">Dashboard</a>
@@ -70,7 +70,7 @@
                 </div> 
             </nav>
                                          
-            <?= $content ?>
+            <?= $content; ?>
     
             <footer class="footer text-center mt-5">
             <div class="container">

@@ -32,29 +32,29 @@
                         <tbody class="table-body">
                         <?php foreach ($indexPosts as $indexPost): ?>
                             <tr data-id="<?php $indexPost['postId']; ?>">
-                                <th scope="row"><?php $indexPost['postId']; ?></th>
+                                <th scope="row"><?= $indexPost['postId']; ?></th>
                                 <td><?= $indexPost['name']; ?></td>
-                                <td class="date_create"><?php $indexPost['date_create'] ?></td>
-                                <td class="table-bold"><?php $indexPost['title']; ?></td>
+                                <td class="date_create"><?= $indexPost['date_create'] ?></td>
+                                <td class="table-bold"><?= $indexPost['title']; ?></td>
                                 <td class="status-image">
                                     <?php if(!empty($indexPost['image']) && $indexPost['image'] != NULL): ?>
-                                        <img src="<?php "assets/images/".$indexPost['image']; ?>" alt="post-pic" width="100px;"></td>
+                                        <img src="<?= "assets/images/".$indexPost['image']; ?>" alt="post-pic" width="100px;"></td>
                                     <?php else: ?>
                                         <img src="assets/images/land-default.png" alt="img-post">
                                     <?php endif; ?>
                                 </td>
-                                <td class="comments"><?php $indexPost['total']; ?></td>
+                                <td class="comments"><?= $indexPost['total']; ?></td>
                                 <td class="status">
                                 <?php if($indexPost['status_post'] == 2): ?>
-                                    <h6 style="color: green;"><?php echo 'published'; ?></h6>
+                                    <h6 style="color: green;"><?= 'published'; ?></h6>
                                 <?php else: ?>
                                     <h6 style="color: red;"><?= 'unpublished' ?></h6>
                                 <?php endif; ?>
                                 </td>
                                 <td>
                                     <div class="action-button">
-                                        <a href="index.php?page=editpost&id=<?php $indexPost['postId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                        <a data-id="<?php $indexPost['postId']; ?>" href="index.php?page=deletepost&id=<?php $indexPost['postId']; ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
+                                        <a href="index.php?page=editpost&id=<?= $indexPost['postId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                        <a data-id="<?= $indexPost['postId']; ?>" href="index.php?page=deletepost&id=<?= $indexPost['postId']; ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
                                     </div>
                                 </td>
                             </tr>      
@@ -67,10 +67,10 @@
                 <div class="container">
                     <div class="row">
                     <?php foreach($indexPosts as $indexPost): ?>
-                        <div data-id="<?php $indexPost['postId']; ?>" class="col-lg-4 col-sm-6"> 
+                        <div data-id="<?= $indexPost['postId']; ?>" class="col-lg-4 col-sm-6"> 
                             <div class="card border-dark mb-3" style="max-width: 20rem;">     
                                 <div class="card-header card-post">
-                                    <div class="id"><span><?php $indexPost['postId']; ?></span></div>
+                                    <div class="id"><span><?= $indexPost['postId']; ?></span></div>
                                     <div class="status">
                                     <?php if($indexPost['status_post'] == 2): ?>
                                         <h6 style="color: green;"><?php echo 'published'; ?></h6>
@@ -78,18 +78,18 @@
                                         <h6 style="color: red;"><?php echo 'unpublished'; ?></h6>
                                     <?php endif; ?>
                                     </div>
-                                    <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?php $indexPost['total']; ?></span></div>
+                                    <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $indexPost['total']; ?></span></div>
                                 </div>
                                 <div class="card-body image">
-                                    <img src="<?php "assets/images/".$indexPost['image']; ?>" alt="img-post">
+                                    <img src="<?= "assets/images/".$indexPost['image']; ?>" alt="img-post">
                                 </div>    
                                 <div class="card-body h-50 text-dark">
-                                    <h5 class="card-title h-50"><?php $indexPost['title']; ?></h5>
+                                    <h5 class="card-title h-50"><?= $indexPost['title']; ?></h5>
                                 </div>
                                 <div class="card-footer card-post border-success">    
                                     <div class="action-button">
-                                        <a href="?page=editpost&id=<?php $indexPost['postId']; ?>"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <a data-id="<?php $indexPost['postId'] ?>" href="?page=deletepost&id=<?php $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
+                                        <a href="?page=editpost&id=<?= $indexPost['postId']; ?>"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <a data-id="<?= $indexPost['postId'] ?>" href="?page=deletepost&id=<?= $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
                                     </div>
                                 </div>   
                             </div>

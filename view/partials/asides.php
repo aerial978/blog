@@ -4,7 +4,7 @@
     <ul>
         <?php foreach ($listTags as $listTag) { ?>
             <li>
-                <a href="?page=tagposts&id=<?php $listTag['id']; ?>"><?php $listTag['tagname']; ?></a>
+                <a href="?page=tagposts&id=<?= $listTag['id']; ?>"><?= $listTag['tagname']; ?></a>
             </li>
         <?php } ?>
     </ul>
@@ -17,10 +17,10 @@
             <?php if (isset($posts[$i])) : ?>
                 <li>
                     <div class="recent-post">
-                        <img src="<?php "assets/images/" . $posts[$i]['image']; ?>" class="img-recent img-fluid">
+                        <img src="<?= "assets/images/" . $posts[$i]['image']; ?>" class="img-recent img-fluid">
                         <div class="title-recents">
-                            <h6><a href="?page=postsingle&id=<?php $posts[$i]['postId']; ?>"><?php $posts[$i]['title']; ?></a></h6>
-                            <p><a href="?page=userposts&id=<?php $posts[$i]['user_id']; ?>"><?php $posts[$i]['name']; ?></a></p>
+                            <h6><a href="?page=postsingle&id=<?= $posts[$i]['postId']; ?>"><?= $posts[$i]['title']; ?></a></h6>
+                            <p><a href="?page=userposts&id=<?= $posts[$i]['user_id']; ?>"><?= $posts[$i]['name']; ?></a></p>
                         </div>
                     </div>
                 </li>
@@ -35,7 +35,7 @@
         <?php foreach ($comments as $comment) { ?>
             <li>
             <li>
-                <a href="?page=postsingle&id=<?php $comment['post_id']; ?>"><?php $comment['name_author']; ?><span> sur </span><?php $comment['title']; ?></a>
+                <a href="?page=postsingle&id=<?= $comment['post_id']; ?>"><?= $comment['name_author']; ?><span> sur </span><?= $comment['title']; ?></a>
             </li>
             </li>
         <?php } ?>

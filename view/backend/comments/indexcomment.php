@@ -27,20 +27,20 @@
                     </thead>
                     <tbody class="table-body">
                     <?php foreach($indexComments as $indexComment): ?>
-                        <tr data-id="<?php $indexComment['commentId']; ?>">
-                            <th scope="row"><?php $indexComment['post_id']; ?></th>
-                            <th class="name_author"><?php $indexComment['name_author']; ?></th>
-                            <td class="email_author"><?php $indexComment['email_author']; ?></td>
-                            <td class="date_comment"><?php $indexComment['date_comment']; ?></td>
-                            <td class="post-title"><small><?php $indexComment['title']; ?></small></td>
+                        <tr data-id="<?= $indexComment['commentId']; ?>">
+                            <th scope="row"><?= $indexComment['post_id']; ?></th>
+                            <th class="name_author"><?= $indexComment['name_author']; ?></th>
+                            <td class="email_author"><?= $indexComment['email_author']; ?></td>
+                            <td class="date_comment"><?= $indexComment['date_comment']; ?></td>
+                            <td class="post-title"><small><?= $indexComment['title']; ?></small></td>
                             <td class="status"><?php if($indexComment['status_comm'] == 2) { ?>
                                 <h6 style="color: green;"><?php echo 'published'; ?></h6>
                                 <?php } else { ?><h6 style="color: red;"><?php echo 'unpublished'; } ?></h6></td>
                             </td>
                             <td>
                                 <div class="action-button">
-                                    <a href="?page=editcomment&id=<?php $indexComment['commentId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?php $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?php $indexComment['commentId']; ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a href="?page=editcomment&id=<?= $indexComment['commentId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                 </div>
                             </td>
                         </tr>
@@ -74,13 +74,13 @@
                                 <div class="card-footer card-com border-success d-flex justify-content-around">
                                     <div class="status status-red d-flex align-items-center">
                                         <?php if($indexComment['status_comm'] == 2): ?>
-                                            <h6 style="color: green;"><?php 'published'; ?></h6>
+                                            <h6 style="color: green;"><?= 'published'; ?></h6>
                                             <?php else: ?>
-                                            <h6 style="color: red;"><?php 'unpublished'; ?></h6>
+                                            <h6 style="color: red;"><?= 'unpublished'; ?></h6>
                                         <?php endif; ?>
                                     </div>
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId'] ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= htmlentities($indexComment['commentId']) ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= $indexComment['commentId'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                 </div>
                             </div>        
                         </div>          

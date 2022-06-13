@@ -12,7 +12,7 @@
                         <p>You have not completed the form correctly :</p>
                         <ul>
                             <?php foreach($errors as $error): ?>
-                                <li><?php $error; ?></li>  
+                                <li><?= $error; ?></li>  
                             <?php endforeach; ?>
                         </ul>
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>     
@@ -20,20 +20,20 @@
                 <?php endif; ?>
                 <form method="post" action="">
                     <fieldset class="form-group row">
-                    <input type="hidden" name="csrf_token" value="<?php $token; ?>">
+                    <input type="hidden" name="csrf_token" value="<?= $token; ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" value="<?php $this->issetSession('input','username') ? $this->getSession('input','username') : ""; ?>"/>  
+                            <input type="text" class="form-control" name="username" id="username" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : ""; ?>"/>  
                             <a style="font-size:9.5px">At least 8 characters, one lowercase letter, one uppercase letter, one number & one special</a>
                         </div>
                         <div class="form-field col-md-12">
                             <label for="name" class="label">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="<?php $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>"/>  
+                            <input type="text" class="form-control" name="name" id="name" value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>"/>  
                             <a style="font-size:9.5px">First letter uppercase and the rest lowercase</a>
                         </div>
                         <div class="form-field col-md-12">
                             <label for="email" class="label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?php $this->issetSession('input','email') ? $this->getSession('input','email') : ""; ?>"/>        
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : ""; ?>"/>        
                         </div>
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Password</label>

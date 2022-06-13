@@ -33,23 +33,23 @@
                     </thead>
                     <tbody class="table-body">
                         <?php foreach ($indexUsers as $indexUser): ?> 
-                            <tr data-id="<?php $indexUser['id']; ?>">
-                                <th scope="row"><?php $indexUser['id']; ?></th>
+                            <tr data-id="<?= $indexUser['id']; ?>">
+                                <th scope="row"><?= $indexUser['id']; ?></th>
                                 <td class="user-img">
                                 <?php if(!empty($indexUser['picture']) && $indexUser['picture'] != NULL): ?>
-                                    <img src="assets/images/<?php $indexUser['picture']; ?>" alt="user-pic"></td>
+                                    <img src="assets/images/<?= $indexUser['picture']; ?>" alt="user-pic"></td>
                                 <?php else: ?>
                                     <img src="assets/images/default.png" alt="user-pic">
                                 <?php endif; ?>
                                 </td>
-                                <td class="table-bold"><?php $indexUser['name']; ?></td>           
-                                <td><?php $indexUser['username']; ?></td>
-                                <td><?php $indexUser['email']; ?></td>
-                                <td><?php $indexUser['role'] == 2 ? 'super admin' : 'admin' ?></td>
+                                <td class="table-bold"><?= $indexUser['name']; ?></td>           
+                                <td><?= $indexUser['username']; ?></td>
+                                <td><?= $indexUser['email']; ?></td>
+                                <td><?= $indexUser['role'] == 2 ? 'super admin' : 'admin' ?></td>
                                 <td>
                                     <div class="action-button">
-                                        <a href="?page=edituser&id=<?php $indexUser['id']; ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <a data-id="<?php $indexUser['id']; ?>" href="?page=deleteuser&id=<?php $indexUser['id'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                        <a href="?page=edituser&id=<?= $indexUser['id']; ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <a data-id="<?= $indexUser['id']; ?>" href="?page=deleteuser&id=<?= $indexUser['id'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                     </div>
                                 </td>
                             </tr>
@@ -63,27 +63,27 @@
             <div class="container">
                 <div class="row">
                     <?php foreach($indexUsers as $indexUser): ?> 
-                        <div data-id="<?php $indexUser['id']; ?>" class="col-lg-4 col-sm-4 col-6">
+                        <div data-id="<?= $indexUser['id']; ?>" class="col-lg-4 col-sm-4 col-6">
                             <div class="card border-dark mb-3">
                                 <div class="card-header card-user"> 
-                                    <div class="id"><span># <?php $indexUser['id']; ?></span></div>
-                                    <div class="status"><span><?php $indexUser['role'] == 2 ? 'super admin' : 'admin' ?></span></div>
+                                    <div class="id"><span># <?= $indexUser['id']; ?></span></div>
+                                    <div class="status"><span><?= $indexUser['role'] == 2 ? 'super admin' : 'admin' ?></span></div>
                                 </div>    
                                 <div class="card-body h-75">
                                     <?php if(!empty($indexUser['picture']) && $indexUser['picture'] != NULL): ?>
-                                        <img src="assets/images/<?php $indexUser['picture']; ?>" alt="user-pic"></td>
+                                        <img src="assets/images/<?= $indexUser['picture']; ?>" alt="user-pic"></td>
                                     <?php else: ?>
                                         <img src="assets/images/default.png" alt="user-pic">
                                     <?php endif; ?>
                                 </div>
                                 <div class="card-userdetail text-dark">
-                                    <h5 class="card-name"><?php $indexUser['name']; ?></h5>
-                                    <h6 class="card-email"><?php $indexUser['email']; ?></h6>
+                                    <h5 class="card-name"><?=$indexUser['name']; ?></h5>
+                                    <h6 class="card-email"><?= $indexUser['email']; ?></h6>
                                 </div>
                                 <div class="card-footer card-user border-success">
                                     <div class="action-button">
-                                    <a href="?page=edituser&id=<?php $indexUser['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                    <a data-id="<?php $indexUser['id']; ?>" href="index.php?page=deleteuser&id=<?php $indexUser['id'] ?>" class="delete-btn btn-danger p-2" style="text-decoration:none; border-radius:3px"><i class="fas fa-times"></i><span> delete</span></a>
+                                    <a href="?page=edituser&id=<?= $indexUser['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                    <a data-id="<?= $indexUser['id']; ?>" href="index.php?page=deleteuser&id=<?= $indexUser['id'] ?>" class="delete-btn btn-danger p-2" style="text-decoration:none; border-radius:3px"><i class="fas fa-times"></i><span> delete</span></a>
                                     </div>
                                 </div>
                             </div>
