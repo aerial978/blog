@@ -84,7 +84,7 @@ class loginController extends baseController
         if(isset($danger['activation']) && $danger['activation'] != "") { ?>        
             <script>
                 Swal.fire({
-                title: "<?php $danger['activation']; ?>",
+                title: "<?= $danger['activation']; ?>",
                 text: "Please follow instructions sent by email !",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C',
@@ -110,7 +110,7 @@ class loginController extends baseController
         if($this->issetSession('authentification') && $this->getSession('authentification') != "") { ?>
             <script>
                 Swal.fire({
-                title: "<?php $this->getSession('authentification'); ?>",
+                title: "<?php echo $this->getSession('authentification'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C',
                 })
