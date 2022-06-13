@@ -19,7 +19,6 @@ class baseController extends Superglobal
         if(!isset($_SESSION['auth'])) {
             $this->setSession('authentification','Login to access admin area !');
             header("Location: index.php?page=login");
-            exit();
         }
     }
 
@@ -28,7 +27,6 @@ class baseController extends Superglobal
         if(isset($_SESSION['auth'])) {
             $this->setSession('alreadylog','You are already logged in !');
             header("Location: index.php?page=dashboard");
-            exit();
         }
     }
 }

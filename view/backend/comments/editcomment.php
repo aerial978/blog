@@ -28,7 +28,7 @@
                                         <textarea name="comment" id="comment" class="form-control" readonly id="exampleFormControlTextarea1" rows="5"><?= $editComment['comment']; ?></textarea>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" name="status_comm" class="form-check-input" value="2" <?php if(isset($editComment['status_comm']) && $editComment['status_comm'] == 2) {echo "checked='checked'";} ?> id="checkbox">
+                                        <input type="checkbox" name="status_comm" class="form-check-input" value="2" <?php if(isset($editComment['status_comm']) && $editComment['status_comm'] == 2) { ?><?= "checked='checked'";} ?> id="checkbox">
                                         <label class="form-check-label" for="checkbox">Published</label>
                                     </div>
                                     <div class="btn-comment d-flex justify-content-between">
