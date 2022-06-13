@@ -33,7 +33,7 @@
                             <div class="card card-com mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= htmlentities($countComments); ?></h2>
+                                        <h2><?= $countComments; ?></h2>
                                         <h4>Comments</h4>
                                     </div>
                                     <div class="card-icon">
@@ -52,7 +52,7 @@
                             <div class="card card-users mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= htmlentities($countUsers); ?></h2>
+                                        <h2><?= $countUsers; ?></h2>
                                         <h4>Users</h4>
                                     </div>
                                     <div class="card-icon">
@@ -71,7 +71,7 @@
                             <div class="card card-tags mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= htmlentities($countTags); ?></h2>
+                                        <h2><?= $countTags; ?></h2>
                                         <h4>Tags</h4>
                                     </div>
                                     <div class="card-icon">
