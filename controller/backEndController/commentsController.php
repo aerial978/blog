@@ -21,7 +21,7 @@ class commentsController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?php print_r($this->getSession('update')); ?>",
+                    title: "<?= htmlentities($this->getSession('update')); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -33,7 +33,7 @@ class commentsController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?php print_r($this->getSession('process')); ?>",
+                    title: "<?= $this->getSession('process'); ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
