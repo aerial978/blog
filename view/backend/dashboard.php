@@ -33,7 +33,7 @@
                             <div class="card card-com mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= $countComments; ?></h2>
+                                        <h2><?= htmlentities($countComments); ?></h2>
                                         <h4>Comments</h4>
                                     </div>
                                     <div class="card-icon">
