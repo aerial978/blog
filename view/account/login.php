@@ -20,7 +20,7 @@
                 <?php endif; ?>
                 <form method="post" action="index.php?page=login">
                     <fieldset class="form-group row">
-                        <input type="hidden" name="csrf_token" value="<?php echo $token, "/n" ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo $token,"/n" ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
                             <input type="text" class="form-control" name="username" id="username" />
