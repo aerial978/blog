@@ -20,7 +20,7 @@ spl_autoload_register(function($class){
 
 $_GET["page"] == "home";
 
-switch ($_GET["page"]) {
+switch ($this->getPost('page')) {
 
     case 'home':
         $homeController = new frontEndController();
