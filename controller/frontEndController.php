@@ -76,7 +76,7 @@ class frontEndController extends baseController
         $this->setSession('csrf_token', $token);
         $this->setSession('csrf_token_time', time() + 3600);
 
-        require 'view/frontend/home.php';
+        require ('view/frontend/home.php');
         unset($errors);
         $this->unsetSession('input');
 

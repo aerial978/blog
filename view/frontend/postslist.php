@@ -35,7 +35,7 @@
                 </div>                
             </div>
             <div class="col-xl-3">
-                <?php include 'view/partials/asides.php'; ?>
+                <?php include ('view/partials/asides.php'); ?>
             </div>
         </div>
     </div>       

@@ -1,6 +1,6 @@
 <?php
 
-require 'core/superglobal.php';
+require ('core/superglobal.php');
 
 class baseController extends Superglobal
 {
