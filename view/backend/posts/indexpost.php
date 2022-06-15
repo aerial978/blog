@@ -73,9 +73,9 @@
                                     <div class="id"><span><?= $indexPost['postId']; ?></span></div>
                                     <div class="status">
                                     <?php if($indexPost['status_post'] == 2): ?>
-                                        <h6 style="color: green;"><?php echo 'published'; ?></h6>
+                                        <h6 style="color: green;"><?='published'; ?></h6>
                                     <?php else: ?>
-                                        <h6 style="color: red;"><?php echo 'unpublished'; ?></h6>
+                                        <h6 style="color: red;"><?= 'unpublished'; ?></h6>
                                     <?php endif; ?>
                                     </div>
                                     <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $indexPost['total']; ?></span></div>

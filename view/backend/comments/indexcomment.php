@@ -34,8 +34,8 @@
                             <td class="date_comment"><?= $indexComment['date_comment']; ?></td>
                             <td class="post-title"><small><?= $indexComment['title']; ?></small></td>
                             <td class="status"><?php if($indexComment['status_comm'] == 2) { ?>
-                                <h6 style="color: green;"><?php echo 'published'; ?></h6>
-                                <?php } else { ?><h6 style="color: red;"><?php echo 'unpublished'; } ?></h6></td>
+                                <h6 style="color: green;"><?= 'published'; ?></h6>
+                                <?php } else { ?><h6 style="color: red;"><?= 'unpublished'; } ?></h6></td>
                             </td>
                             <td>
                                 <div class="action-button">

@@ -40,7 +40,7 @@
                                     <div class="comment-author fw-bolder"><?= $listComment['name_author']; ?></div>
                                     <div class="comment-datetime"><?= $listComment['date_comment']; ?></div>
                                 </div>
-                            </div>;
+                            </div>
                             <div class="comment-content"><?= $listComment['comment'] ?></div>
                         </div>
                     <?php endforeach; ?>
