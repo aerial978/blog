@@ -164,11 +164,11 @@ class frontEndController extends baseController
                 $errors['name_author'] = 'Your name is required !';
             }
 
-            if (isset($_POST['submit']) && empty($this->getPost('email_author')) || !filter_var($this->getPost('email_author'), FILTER_VALIDATE_EMAIL)) {
+            if ($this->issetPost('submit') && empty($this->getPost('email_author')) || !filter_var($this->getPost('email_author'), FILTER_VALIDATE_EMAIL)) {
                 $errors['email_author'] = 'Your email is required or invalid !';
             }
 
-            if (isset($_POST['submit']) && empty($this->getPost('comment'))) {
+            if ($this->issetPost('submit') && empty($this->getPost('comment'))) {
                 $errors['comment'] = 'Your comment is required !';
             }
 
