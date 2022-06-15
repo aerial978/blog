@@ -52,7 +52,7 @@ class tagsController extends baseController
             $errors = array();
             
             if($this->issetPost()) {
-                $this->setSession('input','');
+                $this->setSession('input',$_POST);
             }
             
             if($this->issePost('submit') && empty($this->getPost('tagname'))) {
@@ -127,7 +127,7 @@ class tagsController extends baseController
                 $errors['description'] = "Enter a description !";
             }
 
-            $_SESSION['errors'] = $errors;
+            $this->setSession('errors',$errors);
 
             if(empty($errors)) {
                 $name = $this->getPost('tagname');
