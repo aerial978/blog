@@ -227,10 +227,11 @@ class usersController extends baseController
 
                 $maxsize = 5000000;
 
-                $picture = $_FILES['picture']['name'];
-                $picture_tmp_name = $_FILES['picture']['tmp_name'];
-                $picture_size = $_FILES['picture']['size'];
+                $picture = $this->getFiles('picture','name');
+                $picture_tmp_name = $this->getFiles('picture','tmp_name');
+                $picture_size = $this->getFiles('picture','size');
                 $upload_folder = "images/";
+            
 
 
                 if ($picture_size >= $maxsize) {
