@@ -126,8 +126,9 @@ class postsController extends baseController
                 }
             
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
-                    /*$this->setSession('picture', $this->getFiles('image'));*/
-                    $_SESSION['picture'] = $_FILES['image'];
+                    $this->setSession('picture', $this->getFiles('image'));
+                    /*$_SESSION['picture'] = $_FILES['image'];*/
+                
                 }
 
                 if (empty($errors)) {
@@ -221,7 +222,7 @@ class postsController extends baseController
                 }
             }
 
-            if ($this->issePost('tag') &&  $this->getPost('tag') == 0) {
+            if ($this->issetPost('tag') &&  $this->getPost('tag') == 0) {
                 $errors['tag'] = 'Select a tag !';
             }
 

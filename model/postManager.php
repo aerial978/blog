@@ -129,7 +129,7 @@ class postManager extends manager
 
     public function insertPost($title,$headline,$content,$image,$tag,$status_post)
     {
-        $req = $this->bdd->prepare("INSERT INTO posts(user_id,tag_id,title,headline,content,image,status_post,date_create) VALUES (:user_id, :tag, :title, :headline, :content, :image, :status_post, NOW())");
+        $req = $this->bdd->prepare("INSERT INTO posts(user_id,title,headline,content,image,tag_id,status_post,date_create) VALUES (:user_id, :title, :headline, :content, :image, :tag, :status_post, NOW())");
         $insertPost = $req->execute([
         'user_id' => $_SESSION['auth']['id'],
         'title' => $title,

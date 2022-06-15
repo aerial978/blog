@@ -56,7 +56,7 @@
                             </div>
                             <?php if ($this->issetSession('auth','role') && $this->getSession('auth','role') == 2): ?>
                             <div class="form-check">
-                                <input type="checkbox" name="status_post" class="form-check-input mt-3" value="2" <?php if(isset($posts['status_post']) && $posts['status_post'] == 2) { echo "checked='checked'"; } ?> id="checkbox">
+                                <input type="checkbox" name="status_post" class="form-check-input mt-3" value="2" <?php if(isset($posts['status_post']) && $posts['status_post'] == 2) { ?><?= "checked='checked'"; } ?> id="checkbox">
                                 <label class="form-check-label" for="checkbox">Published</label>
                             </div> 
                             <?php endif; ?>
