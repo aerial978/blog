@@ -24,7 +24,7 @@ class baseController extends Superglobal
 
     public function alreadyLog() 
     {
-        if(isset($_SESSION['auth'])) {
+        if($this->issetSession('auth')) {
             $this->setSession('alreadylog','You are already logged in !');
             header("Location: index.php?page=dashboard");
         }

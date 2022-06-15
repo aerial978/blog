@@ -18,7 +18,7 @@ spl_autoload_register(function($class){
     }
 });
 
-$_GET["page"] == "home";
+$this->getPost('page') == "home";
 
 switch ($this->getPost('page')) {
 

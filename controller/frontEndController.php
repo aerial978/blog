@@ -30,9 +30,9 @@ class frontEndController extends baseController
 
             $errors = array();
 
-            $name = htmlspecialchars($_POST['name']);
-            $email = htmlspecialchars($_POST['email']);
-            $message = htmlspecialchars($_POST['message']);
+            $name = htmlspecialchars($this->getPost('name'));
+            $email = htmlspecialchars($this->getPost('email'));
+            $message = htmlspecialchars($this->getPost('message'));
 
             $this->setSession('input', $_POST);
 
@@ -191,7 +191,7 @@ class frontEndController extends baseController
                 })
             </script>
 <?php
-            unset($_SESSION['comment']);
+            $this->unsetSession('comment');
         }
     }
 
