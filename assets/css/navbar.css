@@ -66,11 +66,11 @@
     }
 
     .navbar-toggler:hover {
-        color: white!important;
+        color: white !important;
     }
-    
+
     .navbar-collapse {
-        background : var(--primaryColor);
+        background: var(--primaryColor);
     }
 
     .navbar-nav .nav-link {
@@ -81,7 +81,7 @@
 
     .navbar-nav .nav-link:hover {
         background: var(--thirdColor);
-        color: var(--primaryColor)!important;
+        color: var(--primaryColor) !important;
     }
 
     .dropdown-menu .dropdown-item {
@@ -126,7 +126,7 @@
 .sidebar-menu {
     margin-top: 150px;
     padding-top: 30px;
-    
+
 }
 
 .sidebar-menu li {
@@ -143,7 +143,7 @@
     font-size: 18px;
     text-decoration: none;
     border-radius: 30px 0px 0px 30px;
-    padding: 15px 0 15px 25px;  
+    padding: 15px 0 15px 25px;
 }
 
 .sidebar-menu a.active {
@@ -170,10 +170,10 @@
     top: 0;
     z-index: 250;
     height: 80px;
-} 
+}
 
 .main-content header .nav-btn {
-   visibility: hidden;
+    visibility: hidden;
 }
 
 .main-content header .nav-btn .bar {
@@ -189,7 +189,7 @@
     font-size: 25px;
     margin-left: 15px;
     margin-right: 20px;
-} 
+}
 
 .main-content li {
     list-style: none;
@@ -218,7 +218,7 @@
 
 .user-wrapper img {
     margin-right: 15px;
-    
+
     border-radius: 50%;
 }
 
@@ -311,7 +311,7 @@
     .sidemenu .close-btn {
         display: inline;
     }
-    
+
     .sidebar-menu a.active {
         background: var(--secondaryColor);
         color: var(--primaryColor) !important;

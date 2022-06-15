@@ -1,9 +1,9 @@
 :root {
-	--primaryColor: #2C3E50;
-	--secondaryColor: #f6f6f6;
+    --primaryColor: #2C3E50;
+    --secondaryColor: #f6f6f6;
     --thirdColor: #1aBC9C;
     --primaryFontFamily: 'Candal';
-    --secondaryFontFamily: 'Lato';   
+    --secondaryFontFamily: 'Lato';
 }
 
 body {
@@ -34,7 +34,7 @@ body {
 }
 
 .text-center {
-    text-align: center!important;
+    text-align: center !important;
 }
 
 .intro {
@@ -179,7 +179,7 @@ body {
 }
 
 .recent-posts .postcards .card-body .card-top span a:hover {
-    color : var(--primaryColor);
+    color: var(--primaryColor);
 }
 
 .recent-posts .postcards .card-body .card-top .badge:hover {
@@ -187,7 +187,8 @@ body {
     border: 1px solid var(--thirdColor);
 }
 
-.recent-posts .postcards .card-body .card-title, p {
+.recent-posts .postcards .card-body .card-title,
+p {
     font-size: 15px;
     font-family: var(--secondaryFontFamily);
 }
@@ -225,9 +226,9 @@ body {
 
 .aside-tags,
 .aside-comments {
-   background: var(--thirdColor);
-   border-radius: 10px;
-   padding: 20px;
+    background: var(--thirdColor);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .aside-posts {
@@ -277,10 +278,10 @@ body {
     color: var(--primaryColor);
 }
 
-.aside-posts ul li {  
+.aside-posts ul li {
     padding: 15px 0px 15px 0px;
     border-bottom: 1px solid var(--thirdColor);
-    transition: all 0.3s; 
+    transition: all 0.3s;
 }
 
 .aside-posts ul li img {
@@ -383,7 +384,8 @@ body {
     color: var(--secondaryColor);
     font-size: 1.25rem;
     font-weight: 300;
-    margin-bottom: 50px;;
+    margin-bottom: 50px;
+    ;
 }
 
 .about .download-btn {
@@ -426,29 +428,29 @@ body {
     width: 100%;
     border-width: 0 0 1px 0;
     border-color: #ced4da;
-    font-size: 18px;  
+    font-size: 18px;
     font-weight: 400;
     background: none;
     font-family: var(--secondaryFontFamily);
 }
 
-.contact .form-field input ~ label,
-.contact .form-field textarea ~ label {
+.contact .form-field input~label,
+.contact .form-field textarea~label {
     font-size: 25px;
     color: #858585;
 }
 
-.contact .form-field input ~ label {
+.contact .form-field input~label {
     bottom: 15px;
 }
 
-.contact .form-field input:focus ~ label,
-.contact .form-field input:valid ~ label,
-.contact .form-field textarea:focus ~ label,
-.contact .form-field textarea:valid ~ label {
-    transform : translateY(-30px);
+.contact .form-field input:focus~label,
+.contact .form-field input:valid~label,
+.contact .form-field textarea:focus~label,
+.contact .form-field textarea:valid~label {
+    transform: translateY(-30px);
     font-size: 17px;
-    opacity: 0.50;   
+    opacity: 0.50;
     letter-spacing: 1px;
 }
 
@@ -530,7 +532,7 @@ body {
 
 }
 
-.list-section .card .card-img-top { 
+.list-section .card .card-img-top {
     border-radius: 10px 10px 0 0;
     width: 100%;
     height: 100%;
@@ -567,7 +569,7 @@ body {
 }
 
 .list-section .card .card-body .badge a:hover {
-    color : var(--thirdColor);
+    color: var(--thirdColor);
 }
 
 .list-section .card-body .card-date {
@@ -579,12 +581,12 @@ body {
 }
 
 .list-section .card .card-body .card-title {
-    font-family : var(--secondaryFontFamily);
+    font-family: var(--secondaryFontFamily);
     font-weight: bold;
 }
 
 .list-section .card .card-body .card-content {
-    height: 180px;  
+    height: 180px;
 }
 
 @media(max-width: 992px) {
@@ -629,7 +631,7 @@ body {
 }
 
 .single-section span a:hover {
-    color : var(--thirdColor);
+    color: var(--thirdColor);
 }
 
 .single-section .badge:hover {
@@ -643,7 +645,7 @@ body {
 }
 
 .single-section h6 a:hover {
-    color : var(--primaryColor);
+    color: var(--primaryColor);
     border: 1px solid none;
     border-radius: 5px;
 }
@@ -655,7 +657,7 @@ body {
 
 .comment-number {
     font-weight: bolder;
-    color: var(--primaryColor)!important;
+    color: var(--primaryColor) !important;
     border-bottom: 1px solid var(--primaryColor);
     padding-bottom: 8px;
 }
@@ -666,7 +668,7 @@ body {
 }
 
 .comment-list .comment-id {
-    margin-bottom : 15px;
+    margin-bottom: 15px;
 }
 
 .comment-id img {
@@ -712,7 +714,7 @@ body {
     border-radius: 10px 10px 10px 10px;
 }
 
-.user-section .card .card-img-top { 
+.user-section .card .card-img-top {
     border-radius: 10px 10px 0 0;
     width: 100%;
     height: 100%;
@@ -744,7 +746,7 @@ body {
 }
 
 .user-section .card .card-body .badge a:hover {
-    color : var(--thirdColor);
+    color: var(--thirdColor);
 }
 
 .user-section .card-body .card-date {
@@ -756,12 +758,12 @@ body {
 }
 
 .user-section .card .card-body .card-title {
-    font-family : var(--secondaryFontFamily);
+    font-family: var(--secondaryFontFamily);
     font-weight: bold;
 }
 
 .user-section .card .card-body .card-content {
-    height: 180px;  
+    height: 180px;
 }
 
 @media(max-width: 992px) {
@@ -799,7 +801,7 @@ body {
     border-radius: 10px 10px 10px 10px;
 }
 
-.tag-section .card .card-img-top { 
+.tag-section .card .card-img-top {
     border-radius: 10px 10px 0 0;
     width: 100%;
     height: 100%;
@@ -831,7 +833,7 @@ body {
 }
 
 .tag-section .card .card-body .badge a:hover {
-    color : var(--thirdColor);
+    color: var(--thirdColor);
 }
 
 .tag-section .card-body .card-date {
@@ -843,12 +845,12 @@ body {
 }
 
 .tag-section .card .card-body .card-title {
-    font-family : var(--secondaryFontFamily);
+    font-family: var(--secondaryFontFamily);
     font-weight: bold;
 }
 
 .tag-section .card .card-body .card-content {
-    height: 180px;  
+    height: 180px;
 }
 
 @media(max-width: 992px) {
@@ -921,30 +923,3 @@ body {
     text-decoration: none;
     color: var(--secondaryColor);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
