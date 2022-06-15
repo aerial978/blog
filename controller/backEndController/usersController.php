@@ -247,7 +247,7 @@ class usersController extends baseController
                 }
 
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
-                $this->setSession('picture',$_FILES['picture']);
+                $this->setSession('picture',$this->getFiles('picture'));
                 }
 
                 if (empty($errors)) {
