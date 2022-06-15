@@ -218,9 +218,9 @@ class usersController extends baseController
                         $updateName = $userManager->updateName($name,$id);
                     }
 
-                if(!empty($_FILES['picture']['name'])) {
+                if(!empty($this->getFiles('picture','name'))) {
 
-                if ($error = $_FILES['picture']['error'] > 0) {
+                if ($error = $this->getFiles('picture','error') > 0) {
 
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
