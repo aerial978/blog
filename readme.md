@@ -1,0 +1,1 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8d5431b3fdef4d8a80e5a1ceee24302b)](https://www.codacy.com/gh/aerial978/blog/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aerial978/blog&amp;utm_campaign=Badge_Grade)
