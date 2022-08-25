@@ -1,14 +1,19 @@
 <?php
 
-require_once 'model/userManager.php';
+use blogmvc\model\UserManager;
 
-class usersController
+class usersController extends baseController
 {
+    public function __construct()
+    {
+        $this->authentification();
+    }
+    
     public function indexUser()
     {
         $activeMenu = 'usermenu';
 
-        if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 1) {
+        if($this->issetSession('auth_role') && $this->getSession('auth_role') == 1) {
 
             $userManager = new userManager();
             $indexUsers = $userManager->indexUser1();
@@ -21,40 +26,40 @@ class usersController
         
         require('view/backend/users/indexuser.php');
 
-        if(isset($_SESSION['create']) && $_SESSION['create'] != "") { ?>
+        if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['create'] ?>",
+                    title: "<?= $this->getSession('create') ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['create']);
+        $this->unsetSession('create');
         }
 
-        if(isset($_SESSION['update']) && $_SESSION['update'] != "") { ?>
+        if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['update'] ?>",
+                    title: "<?= $this->getSession('update') ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['update']);
+        $this->unsetSession('update');
         }
 
-        if(isset($_SESSION['process']) && $_SESSION['process'] != "") { ?>
+        if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['process'] ?>",
+                    title: "<?= $this->getSession('process') ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['process']);
+        $this->unsetSession('process');
         }
     }
 
@@ -64,11 +69,11 @@ class usersController
 
         $errors = array();
 
-        $_SESSION['input'] = $_POST;
+        $this->setSession('input',$_POST);
 
-        if (!empty($_POST)) {
+        if ($this->issetPost()) {
 
-            if(empty($_POST['username']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['username'])) {
+            if(empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$this->getPost('username'))) {
 
                 $errors['username'] = "Invalid username !";
 
@@ -82,20 +87,34 @@ class usersController
                 } 
             }
 
-            if(isset($_FILES['picture']) && $_FILES['picture']['size'] == 0) {
-                $errors['picture'] = 'Select an image !';
+            if(empty($this->getPost('name')) || !preg_match('(^[A-Z][a-z]*$)',$this->getPost('name'))) {
+
+                $errors['username'] = "Invalid name !";
+
+            } else {
+                
+                $userManager = new UserManager();
+                $getUserIdName = $userManager->getUserIdName();
+
+                if($getUserIdName) {
+                    $errors['name'] = 'Name already used !';
+                } 
+            }
+
+            if($this->issetFiles('picture') && $this->getFiles('picture','size') == 0) {
+                $errors['picture'] = 'Select an image !';    
             
-            } else if (isset($_FILES['picture']) && $_FILES['picture']['size'] > 0) {
-            
-                if ($_FILES['picture']['error'] > 0) {
+            } else if ($this->issetFiles('picture') && $this->getFiles('picture','size') > 0) {
+
+                if ($error = $this->getFiles('picture','error') > 0) {
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
             
                 $maxsize = 5000000;
             
-                $picture = $_FILES['picture']['name'];
-                $picture_tmp_name = $_FILES['picture']['tmp_name'];
-                $picture_size = $_FILES['picture']['size'];
+                $picture = $this->getFiles('picture','name');
+                $picture_tmp_name = $this->getFiles('picture','tmp_name');
+                $picture_size = $this->getFiles('picture','size');
                 $upload_folder = "images/";
             
                 if ($picture_size >= $maxsize) {
@@ -111,7 +130,7 @@ class usersController
                 }
             }
 
-            if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            if(empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = "Invalid email !";
             } else {
                 
@@ -123,32 +142,33 @@ class usersController
                 }
             }
 
-            if(empty($_POST['password']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
+            if(empty($this->getPost('password')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
                 $errors['password'] = "Invalid password !";
             }
 
-            $_SESSION['errors'] = $errors;
+            $this->setSession('errors',$errors);
 
             if(empty($errors)){
-                if(isset($_POST['role']) && $_POST['role'] == 2) {
-                    $role = $_POST['role'];
+                if($this->issetPost('role') && $this->getPost('role') == 2) {
+                    $role = $this->getPost('role');
                 } else {
                     $role = 1; 
                 }
 
                 move_uploaded_file($picture_tmp_name, $upload_folder); 
-                $password = password_hash($_POST['password'], PASSWORD_BCRYPT); 
+                $password = password_hash($this->getPost('password'), PASSWORD_BCRYPT); 
 
                 $userManager = new UserManager();
                 $insertUser = $userManager->insertUser($password,$role);
                 
-                $_SESSION['create'] = 'Creation successfully !';    
+                $this->setSession('create','Creation successfully !');   
                 header('Location: index.php?page=indexuser');
             }        
         }           
         require('view/backend/users/adduser.php');
-        unset($_SESSION['errors']);
-        unset($_SESSION['input']);
+
+        $this->unsetSession('errors');
+        $this->unsetSession('input');
     }
 
     public function editUser()
@@ -157,27 +177,28 @@ class usersController
 
         $errors = array();
 
-        if(isset($_GET['id'])) {
+        if($this->issetGet('id')) {
 
-            $id = $_GET['id'];
+            $id = $this->getGet('id');
 
             $userManager = new UserManager();
-            $editUser = $userManager->editUser($_GET['id']);
+            $editUser = $userManager->editUser($this->getGet('id'));
 
             } else {
 
             $errors['id'] = 'You need a user id to change it !';
             }
 
-            if (!empty($_POST) && isset($_POST)) {
+            if ($this->issetPost()) {
 
-                $username = $_POST['username'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
+                $username = $this->getPost('username');
+                $name = $this->getPost('name');
+                $email = $this->getPost('email');
+                $password = $this->getPost('password');
 
-                $_SESSION['input'] = $_POST;
+                $this->setSession('input',$_POST);
 
-                if(empty($_POST['username']) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['username'])) {
+                if(empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$this->getPost('username'))) {
 
                 $errors['username'] = "Username is not valid !";
 
@@ -185,6 +206,16 @@ class usersController
                     $userManager = new userManager();
                     $updateUsername = $userManager->updateUsername($username,$id);
                 }
+
+                if(empty($this->getPost('name')) || !preg_match('(^[A-Z][a-z]*$)',$this->getPost('name'))) {
+
+                    $errors['name'] = "Name is not valid !";
+    
+                    } else {
+                        $userManager = new userManager();
+                        $updateName = $userManager->updateName($name,$id);
+                    }
+
 
                 if(!empty($_FILES['picture']['name'])) {
 
@@ -214,7 +245,7 @@ class usersController
                 }
 
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
-                $_SESSION['picture'] = $_FILES['picture'];
+                $this->setSession('picture',$_FILES['picture']);
                 }
 
                 if (empty($errors)) {
@@ -225,7 +256,7 @@ class usersController
                 }
             }
 
-            if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            if(empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
 
                 $errors['email'] = "Invalid Email !";
 
@@ -234,43 +265,43 @@ class usersController
                 $updateEmail = $userManager->updateEmail($email,$id);
             }
 
-            $password = $_POST['password'];
+            $password = $this->getPost('password');
 
-            if(!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
+            if(!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
                 $errors['password'] = "Invalid password !";
             } 
 
-            $_SESSION['errors'] = $errors;
+            $this->setSession('errors',$errors);
 
             if (empty($errors)) {
 
-                if(isset($_POST['role']) && $_POST['role'] == 2) {
-                $role = $_POST['role'];
-            } else {
-                $role = 1; 
-            }
+                if($this->issetPost('role') && $this->getPost('role') == 2) {
+                    $role = $this->getPost('role');
+                } else {
+                    $role = 1; 
+                }
 
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $password = password_hash($this->getPost('password'), PASSWORD_BCRYPT);
 
             $userManager = new userManager();
             $updatePasswordRole = $userManager->updatePasswordRole($password,$role,$id);
 
-            $_SESSION['update'] = 'Update successfully !';
+            $this->setSession('update','Update successfully !');   
             header('Location: index.php?page=indexuser');  
             }   
         }
         require('view/backend/users/edituser.php');
-        unset($_SESSION['errors']);
-        unset($_SESSION['input']);
+        $this->unsetSession('errors');
+        $this->unsetSession('input');
     }
 
     public function deleteuser()
     {
         $userManager = new UserManager();
-        $deleteUser = $userManager->deleteUser($_GET['id']);
+        $deleteUser = $userManager->deleteUser($this->getGet('id'));
 
         if($deleteUser == NULL) {
-            $_SESSION['danger'] = "There was a problem with a data processing !";
+            $this->setSession('danger','There was a problem with a data processing !');   
         }
         header('Location: index.php?page=indexuser');
     }   

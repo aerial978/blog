@@ -29,9 +29,7 @@
                             <div class="form-field col-lg-12">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" id="title" class="form-control" <?php if($_SESSION['id'] != $editPost['id']) : ?> readonly <?php endif; ?> value="<?= isset($_SESSION['input']['title']) && !empty($_SESSION['input']['title']) ? $_SESSION['input']['title'] : $editPost['title'] ?>">
-                            </div>
-                            <?php var_dump($_SESSION['id']); ?><?php var_dump($editPost['id']); ?>
-                            
+                            </div>                         
                             <div class="form-field col-lg-12">
                                 <label for="headline">Headline</label>
                                 <input type="text" name="headline" id="headline" class="form-control" <?php if($_SESSION['id'] != $editPost['id']) { ?> readonly <?php } ?> value="<?= isset($_SESSION['input']['headline']) && !empty($_SESSION['input']['headline']) ? $_SESSION['input']['headline'] : $editPost['headline'] ?>">
@@ -46,7 +44,7 @@
                                 <?php if(!empty($editPost['image']) && $editPost['image'] != NULL): ?>
                                     <img src="assets/images/<?= isset($_SESSION['picture']['name']) ? $_SESSION['picture']['name'] : $editPost['image']; ?>" alt="post-pic" width="200px;">
                                     <?= isset($_SESSION['picture']['name']) ? basename($_SESSION['picture']['name']) : basename($editPost['image']); ?>
-                                <? else: ?>
+                                <?php else: ?>
                                     <img src="assets/images/land-default.png" alt="post-pic" width="200px;">
                                 <?php endif; ?>
                             </div>  
@@ -55,11 +53,11 @@
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="tags">Tag category</label>
-                                <select name="tag" id="tag" class="form-control" <?php if($_SESSION['id'] != $editPost['id']) { ?> readonly <?php } ?>>
+                                <select name="tagname" id="tag" class="form-control" <?php if($_SESSION['id'] != $editPost['id']) { ?> readonly <?php } ?>>
                                     <option value="0">Select option</option>
                                         <?php if(count($selectTag)>0) : ?>
                                             <?php for ($i=0; $i<count($selectTag); $i++) : ?>
-                                                <option value="<?= $selectTag[$i]['id']?>"<?= isset($editPost['tag_id']) && $selectTag[$i]['id'] == $editPost['tag_id'] ? "selected" : "" ?>><?= $selectTag[$i]['name']?></option>
+                                                <option value="<?= $selectTag[$i]['id']?>"<?= isset($editPost['tag_id']) && $selectTag[$i]['id'] == $editPost['tag_id'] ? "selected" : "" ?>><?= $selectTag[$i]['tagname']?></option>
                                             <?php endfor; ?>    
                                     <?php endif; ?>    
                                 </select>
@@ -83,4 +81,4 @@
 </div>
 <?php $bodyAdmin = ob_get_clean(); ?>
 
-<?php require('view/backend/basebackend.php'); ?>  
+<?php require('view/headers/headerbackend.php'); ?>

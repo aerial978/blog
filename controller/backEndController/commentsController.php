@@ -1,8 +1,13 @@
 <?php
 
-require_once 'model/commentManager.php';
+use blogmvc\model\commentManager;
 
-class commentsController {
+class commentsController extends baseController
+{
+    public function __construct()
+    {
+        $this->authentification();
+    }
 
     public function indexcomment()
     { 
@@ -13,28 +18,28 @@ class commentsController {
         
         require('view/backend/comments/indexcomment.php');
 
-        if(isset($_SESSION['update']) && $_SESSION['update'] != "") { ?>
+        if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['update'] ?>",
+                    title: "<?= $this->getSession('update') ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['update']);
+        $this->unsetSession('update');
         }
 
-        if(isset($_SESSION['process']) && $_SESSION['process'] != "") { ?>
+        if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['process'] ?>",
+                    title: "<?= $this->getSession('process') ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-        unset($_SESSION['process']);
+        $this->unsetSession('process');
         }
     }
 
@@ -44,16 +49,16 @@ class commentsController {
 
         if(isset($_GET['id'])) {
 
-            $id = $_GET['id'];
+            $id = $this->getGet('id');
             
             $commentManager = new commentManager();
             $editComment = $commentManager->editComment($id); 
             }
             
-            if (!empty($_POST) && isset($_POST)) {
+            if ($this->issetpost()) {
             
-            if(isset($_POST['status_comm']) && $_POST['status_comm'] == 2) {
-                $status_comm = $_POST['status_comm'];
+            if($this->issetPost('status_comm') && $this->getPost('status_comm') == 2) {
+                $status_comm = $this->getPost('status_comm');
             } else {
                 $status_comm = 1; 
             }
@@ -61,7 +66,7 @@ class commentsController {
             $commentManager = new commentManager();
             $statusComment = $commentManager->statusComment($status_comm,$id);
             
-            $_SESSION['update'] = 'Update successfully !'; 
+            $this->setSession('update','Update successfully !');
             header('Location: index.php?page=indexcomment');
             }
         
@@ -70,14 +75,14 @@ class commentsController {
 
     public function deletecomment()
     {
-        if(isset($_GET['id']) && !empty($_GET['id'])) {
-            $id = $_GET['id'];
+        if($this->issetGet('id') && !empty($this->getGet('id'))) {
+            $id = $this->getGet('id');
             
             $commentManager = new commentManager();
             $deleteComment = $commentManager->deleteComment($id);
 
             if($deleteComment == NULL) {
-                $_SESSION['danger'] = "There was a problem with a data processing !";
+                $this->setSession('danger',"There was a problem with a data processing !");
             }
             header('Location: index.php?page=indexcomment');
         }

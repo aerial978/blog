@@ -19,7 +19,8 @@
                     </div>    
                 <?php endif; ?>
                 <form method="post" action="">
-                    <fieldset class="form-group row">    
+                    <fieldset class="form-group row">
+                    <input type="hidden" name="csrf_token" value="<?= $token ?>">  
                         <div class="form-field col-md-12">
                             <label for="email" class="label">Email</label>
                             <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value=""/>        
@@ -33,4 +34,4 @@
 </section>
 <?php $form = ob_get_clean(); ?>
 
-<?php require('baseform.php'); ?>
+<?php require('view/headers/headerform.php'); ?>

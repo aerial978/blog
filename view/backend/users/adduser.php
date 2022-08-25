@@ -26,6 +26,10 @@
                                         <label for="username">Username</label>
                                         <input type="text" name="username" id="username" class="form-control" placeholder="At least 8 characters, one lowercase letter, one uppercase letter, one number & one special character." value="<?= isset($_SESSION['input']['username']) ? $_SESSION['input']['username'] : "" ?>">
                                     </div>
+                                    <div class="form-field col-lg-12">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="First character uppercase, the rest lowercase." value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>">
+                                    </div>
                                     <div class="form-field col-lg-12 file-input">
                                         <label for="formFile" class="form-label">Image</label>
                                         <input type="file" name="picture" id="picture" class="form-control" value="<?= isset($_SESSION['input']['picture']) ? $_SESSION['input']['picture'] : "" ?>">
@@ -61,4 +65,4 @@
         </div>
 <?php $bodyAdmin = ob_get_clean(); ?>
 
-<?php require('view/backend/basebackend.php'); ?>        
+<?php require('view/headers/headerbackend.php'); ?>

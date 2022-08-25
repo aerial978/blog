@@ -1,16 +1,21 @@
 <?php
 
-require_once 'model/postManager.php';
-require_once 'model/commentManager.php';
-require_once 'model/userManager.php';
-require_once 'model/tagManager.php';
+use blogmvc\model\postManager;
+use blogmvc\model\tagManager;
+use blogmvc\model\commentManager;
+use blogmvc\model\userManager;
 
-class dashboardController
+class dashboardController extends baseController
 {
+    public function __construct()
+    {
+        $this->authentification();
+    }
+        
     public function dashboard()
     {   
         $activeMenu = 'dashboardmenu';
-        
+    
         $postManager = new postManager();
         $countPosts = $postManager->countPosts();
 
@@ -25,17 +30,29 @@ class dashboardController
         
         require('view/backend/dashboard.php');
 
-        if(isset($_SESSION['login']) && $_SESSION['login'] != "") { ?>        
+        if($this->issetSession('login') && $this->getSession('login') != "") { ?>        
             <script>
                 Swal.fire({
-                    title: "<?= $_SESSION['login'] ?>",
+                    title: "<?= $this->getSession('login') ?>",
                     text: "You are identified now !",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
         <?php
-            unset($_SESSION['login']);
+            $this->unsetSession('login');
         } 
+
+        if($this->issetSession('alreadylog') && $this->getSession('alreadylog') != "") { ?>
+            <script>
+                Swal.fire({
+                title: "<?= $this->getSession('alreadylog') ?>",
+                icon: "error",
+                confirmButtonColor: '#1aBC9C',
+                })
+            </script>
+        <?php
+        $this->unsetSession('alreadylog');
+        }
     }
 }

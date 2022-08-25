@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Model/Manager.php';
+namespace blogmvc\model;
 
 class formManager extends manager
 {

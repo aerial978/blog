@@ -1,0 +1,79 @@
+/*-- ACCOUNT FORM PAGES --*/
+
+.sign {
+    width: 100%;
+    height: 90vh;
+}
+
+.sign-form {
+    background: white;
+    margin-top: 75px;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.50) 0px 5px 15px;
+}
+
+.sign-title {
+    border: 3px solid var(--thirdColor);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: var(--primaryColor);
+}
+
+.sign label {
+    margin-bottom: 5px;
+    font-family: var(--secondaryFontFamily);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sign input {
+    font-family: var(--secondaryFontFamily);
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.sign-form small {
+    font-family: var(--secondaryFontFamily);
+}
+
+.sign-form small span {
+    font-weight: bold;
+}
+
+.sign-form .pass-link {
+    font-family: var(--secondaryFontFamily);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.sign-form .pass-link a {
+    text-decoration: none;
+}
+
+.sign .submit-btn {
+    width: 100%;
+    margin: 20px 0;
+    padding: 16px 16px;
+    font-size: 22px;
+    background: var(--thirdColor);
+    color: var(--secondaryColor);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--secondaryFontFamily);
+}
+
+.sign-form .sign-link {
+    font-family: var(--secondaryFontFamily);
+    text-align: center;
+}
+
+.sign-form .sign-link a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Model/Manager.php';
+namespace blogmvc\model;
 
 class commentManager extends manager
 {
@@ -19,9 +19,20 @@ class commentManager extends manager
         return $comments;
     }
 
+    public function commentsPost()
+    {
+        $req = $this->bdd->query('SELECT * FROM comments 
+        WHERE post_id = '. $_GET['id'] .' AND status_comm = 2');
+        $countComments = $req->rowCount();
+
+        return $countComments;
+    }
+
     public function countCommentsPost()
     {
-        $req = $this->bdd->query('SELECT COUNT(*) AS total FROM comments WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); 
+        $req = $this->bdd->query('SELECT COUNT(*) AS total FROM comments
+        LEFT JOIN posts ON comments.post_id = posts.id   
+        WHERE post_id = '. $_GET['id'] .' AND status_comm = 2'); 
         $countCommentsPosts = $req->fetchAll();
 
         return $countCommentsPosts;
@@ -73,9 +84,11 @@ class commentManager extends manager
 
     public function editComment($id)
     {
-        $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS date_comment FROM comments LEFT JOIN posts ON comments.post_id = posts.id WHERE comments.id = ?');
+        $req = $this->bdd->prepare('SELECT *, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS date_comment FROM comments 
+        LEFT JOIN posts ON comments.post_id = posts.id 
+        WHERE comments.id = ?');
         $req->execute(array($id));
-        $editComment = $req->fetch(PDO::FETCH_ASSOC);
+        $editComment = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $editComment;
     }

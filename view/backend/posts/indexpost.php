@@ -81,7 +81,7 @@
                                     <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $indexPost['total']; ?></span></div>
                                 </div>
                                 <div class="card-body image">
-                                    <img src="<?= "assets/images/".$indexPost['image']; ?>" alt="img-post">
+                                    <img src="<?="assets/images/".$indexPost['image']; ?>" alt="img-post">
                                 </div>    
                                 <div class="card-body h-50 text-dark">
                                     <h5 class="card-title h-50"><?= $indexPost['title']; ?></h5>
@@ -103,7 +103,7 @@
 </div>
 <?php $bodyAdmin = ob_get_clean(); ?>
 
-<?php require('view/backend/basebackend.php'); ?>
+<?php require('view/headers/headerbackend.php'); ?>
 
 <script>
     $(document).ready(function () {
@@ -121,7 +121,7 @@
             }).then((result) => {   
                 if (result.isConfirmed) {
                     let sourceUrl = window.location.href.split('/');
-                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + href;
+                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + href;
                     $.ajax({
                         url: newUrl,
                         type: 'GET',

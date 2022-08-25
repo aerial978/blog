@@ -29,7 +29,7 @@
                             <?php foreach($listTags as $listTag): ?>
                                 <tr data-id="<?= $listTag['id']; ?>">
                                     <th scope="row"><?= $listTag['id'] ?></th>
-                                    <td class="tagname"><?= $listTag['name'] ?></td>
+                                    <td class="tagname"><?= $listTag['tagname'] ?></td>
                                     <td>
                                         <div class="action-button">
                                         <a href="?page=edittag&id=<?= $listTag['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
@@ -47,7 +47,7 @@
 </div>
 <?php $bodyAdmin = ob_get_clean(); ?>
 
-<?php require('view/backend/basebackend.php'); ?>
+<?php require('view/headers/headerbackend.php'); ?>
 
 <script>
     $(document).ready(function () {
@@ -65,7 +65,7 @@
             }).then((result) => {   
                 if (result.isConfirmed) {
                     let sourceUrl = window.location.href.split('/');
-                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + href;
+                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + href;
                     $.ajax({
                         url: newUrl,
                         type: 'GET',

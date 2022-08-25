@@ -16,7 +16,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Candal&family=Lato&display=swap" rel="stylesheet">
         
         <!-- CSS -->
-        <link rel="stylesheet" href="assets/css/style.css"> 
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/navbar.css">
+
     </head>
     <body>
         <!-- NAVBAR -->
@@ -49,8 +51,8 @@
                             <?php if (isset($_SESSION['auth'])): ?>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php if(!empty($_SESSION['pictures'])): ?>
-                                            <img src="assets/images/<?= $_SESSION['pictures'] ?>" alt="user-pic" width="70px;">
+                                        <?php if(!empty($this->getSession('pictures'))): ?>
+                                            <img src="assets/images/<?= $this->getSession('pictures') ?>" alt="user-pic" width="70px;">
                                         <?php else: ?>
                                             <img src="assets/images/default.png" alt="user-pic" width="70px;">
                                         <?php endif; ?>
@@ -69,8 +71,7 @@
             </nav>
                                          
             <?= $content ?>
-            
-
+    
             <footer class="footer text-center mt-5">
             <div class="container">
                 <div class="row">

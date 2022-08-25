@@ -1,10 +1,11 @@
 <?php
 
-require_once 'model/manager.php';
+namespace blogmvc\model;
+
+use blogmvc\model\manager;
 
 class tagManager extends manager
 {
-
     public function __construct()
     {
         $this->bdd = $this->dbConnect();
@@ -21,7 +22,7 @@ class tagManager extends manager
 
     public function getTag()
     {
-        $req = $this->bdd->prepare('SELECT name FROM tags WHERE id = ?');
+        $req = $this->bdd->prepare('SELECT tagname FROM tags WHERE id = ?');
         $req->execute([$_GET['id']]);
         $tag = $req->fetch();
 
@@ -36,11 +37,11 @@ class tagManager extends manager
         return $countTags;
     }
 
-    public function selectTag($id)
+    public function selectTag()
     {
         $req = $this->bdd->prepare('SELECT * FROM tags');
-        $req->execute(array($id));
-        $selectTag = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->execute();
+        $selectTag = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $selectTag;
     }
@@ -49,14 +50,14 @@ class tagManager extends manager
     {
         $req = $this->bdd->prepare('SELECT * FROM tags WHERE id = ?');
         $req->execute(array($id));
-        $tagId = $req->fetch(PDO::FETCH_ASSOC);
+        $tagId = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $tagId;
     }
 
     public function updateTag($name,$description,$id)
     {
-        $req = $this->bdd->prepare("UPDATE tags SET name = :name, description = :description WHERE id = :id");
+        $req = $this->bdd->prepare("UPDATE tags SET tagname = :tagname, description = :description WHERE id = :id");
         $updateTag = $req->execute([
         'name'=> $name,
         'description' => $description,
@@ -68,8 +69,8 @@ class tagManager extends manager
 
     public function getTagName()
     {
-        $req = $this->bdd->prepare("SELECT id FROM tags WHERE name = ?");
-        $req->execute([$_POST['name']]);
+        $req = $this->bdd->prepare("SELECT id FROM tags WHERE tagname = ?");
+        $req->execute([$_POST['tagname']]);
         $getTagName = $req->fetch();
 
         return $getTagName;
@@ -86,7 +87,7 @@ class tagManager extends manager
 
     public function insertTag()
     {
-        $req = $this->bdd->prepare("INSERT INTO tags SET name = ?, description = ?");
+        $req = $this->bdd->prepare("INSERT INTO tags SET tagname = ?, description = ?");
         $insertTag = $req->execute([$_POST['name'], $_POST['description']]);
 
         return $insertTag;
