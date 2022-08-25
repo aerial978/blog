@@ -20,26 +20,30 @@
                 <?php endif; ?>
                 <form method="post" action="">
                     <fieldset class="form-group row">
-                    <input type="hidden" name="csrf_token" value="<?= $token ?>">
+                    <input type="hidden" name="csrf_token" value="<?= $token; ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="<?= isset($_SESSION['input']['username']) ? $_SESSION['input']['username'] : "" ?>"/>  
+                            <input type="text" class="form-control" name="username" id="username" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : ""; ?>"/>  
+                            <a style="font-size:9.5px">At least 8 characters, one lowercase letter, one uppercase letter, one number & one special</a>
+                        </div>
+                        <div class="form-field col-md-12">
+                            <label for="name" class="label">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>"/>  
+                            <a style="font-size:9.5px">First letter uppercase and the rest lowercase</a>
                         </div>
                         <div class="form-field col-md-12">
                             <label for="email" class="label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= isset($_SESSION['input']['email']) ? $_SESSION['input']['email'] : "" ?>"/>        
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : ""; ?>"/>        
                         </div>
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters"/>        
+                            <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters"/>
+                            <a style="font-size:9.5px">At least 8 characters, one lowercase letter, one uppercase letter, one number & one special</a>       
                         </div>
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Confirm password</label>
                             <input type="password" class="form-control" name="password_confirm" id="password_confirm"/>        
                         </div>
-                        <small>By clicking <span>sign up</span> you agree to this site to keep 
-                            your personal data via this form.</small>
-                        
                     </fieldset>
                         <button type="submit" class="submit-btn">Sign up</button>  
                 </form>

@@ -55,11 +55,11 @@ class tagManager extends manager
         return $tagId;
     }
 
-    public function updateTag($name,$description,$id)
+    public function updateTag($tagname,$description,$id)
     {
         $req = $this->bdd->prepare("UPDATE tags SET tagname = :tagname, description = :description WHERE id = :id");
         $updateTag = $req->execute([
-        'name'=> $name,
+        'tagname'=> $tagname,
         'description' => $description,
         'id' => $id
         ]);
@@ -88,7 +88,7 @@ class tagManager extends manager
     public function insertTag()
     {
         $req = $this->bdd->prepare("INSERT INTO tags SET tagname = ?, description = ?");
-        $insertTag = $req->execute([$_POST['name'], $_POST['description']]);
+        $insertTag = $req->execute([$_POST['tagname'], $_POST['description']]);
 
         return $insertTag;
     }

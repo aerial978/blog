@@ -33,7 +33,7 @@ class dashboardController extends baseController
         if($this->issetSession('login') && $this->getSession('login') != "") { ?>        
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('login') ?>",
+                    title: "<?= $this->getSession('login'); ?>",
                     text: "You are identified now !",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
@@ -46,7 +46,7 @@ class dashboardController extends baseController
         if($this->issetSession('alreadylog') && $this->getSession('alreadylog') != "") { ?>
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('alreadylog') ?>",
+                title: "<?= $this->getSession('alreadylog'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C',
                 })

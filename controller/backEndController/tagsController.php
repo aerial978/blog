@@ -21,7 +21,7 @@ class tagsController extends baseController
         if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('create') ?>",
+                    title: "<?= $this->getSession('create'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -33,7 +33,7 @@ class tagsController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('update') ?>",
+                    title: "<?= $this->getSession('update'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -55,7 +55,7 @@ class tagsController extends baseController
                 $this->setSession('input',$_POST);
             }
             
-            if($this->issePost('submit') && empty($this->getPost('name'))) {
+            if($this->issePost('submit') && empty($this->getPost('tagname'))) {
                 $errors['name'] = 'Enter a name ! ';
             } else {
 
@@ -119,7 +119,7 @@ class tagsController extends baseController
 
             $this->setSession('input',$_POST);
 
-            if($this->issePost('submit') && empty($this->getPost('name')) && $this->getPost('name') == '') {        
+            if($this->issePost('submit') && empty($this->getPost('name')) && $this->getPost('tagname') == '') {        
                 $errors['name'] = "Enter a name !";    
             }
 
@@ -127,10 +127,10 @@ class tagsController extends baseController
                 $errors['description'] = "Enter a description !";
             }
 
-            $_SESSION['errors'] = $errors;
+            $this->setSession('errors',$errors);
 
             if(empty($errors)) {
-                $name = $this->getPost('name');
+                $name = $this->getPost('tagname');
                 $description = $this->getPost('description');
 
                 $tagManager = new TagManager();

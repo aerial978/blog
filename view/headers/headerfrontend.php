@@ -37,7 +37,7 @@
                                 <a class="nav-link <?php if($activeMenu == 'postsmenu'): ?> active <?php endif; ?>" href="?page=postslist">Posts</a>
                             </li>
                         </ul>
-                        <?php if(!isset($_SESSION['auth'])): ?>
+                        <?php if($this->issetSession2('auth')): ?>
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="?page=register">Sign up</a>
@@ -48,15 +48,15 @@
                         </ul>
                         <?php endif; ?>
                         <ul class="navbar-nav">
-                            <?php if (isset($_SESSION['auth'])): ?>
+                            <?php if ($this->issetSession('auth')): ?>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php if(!empty($this->getSession('pictures'))): ?>
-                                            <img src="assets/images/<?= $this->getSession('pictures') ?>" alt="user-pic" width="70px;">
+                                        <?php if($this->issetSession('auth','picture')): ?>
+                                            <img src="assets/images/<?= $this->getSession('auth','picture'); ?>" alt="user-pic" width="70px;">
                                         <?php else: ?>
                                             <img src="assets/images/default.png" alt="user-pic" width="70px;">
                                         <?php endif; ?>
-                                        <?= $_SESSION['username'] ?>
+                                        <?= $this->getSession('auth','name'); ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="?page=dashboard">Dashboard</a>
@@ -70,7 +70,7 @@
                 </div> 
             </nav>
                                          
-            <?= $content ?>
+            <?= $content; ?>
     
             <footer class="footer text-center mt-5">
             <div class="container">

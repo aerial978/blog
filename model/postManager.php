@@ -71,7 +71,7 @@ class postManager extends manager
         $req = $this->bdd->query('SELECT *, DATE_FORMAT(date_create, \'%d/%m/%Y\') AS date_create, COUNT(comments.id) AS total, posts.id AS postId FROM posts 
         LEFT JOIN users ON posts.user_id = users.id 
         LEFT JOIN comments ON comments.post_id = posts.id
-        WHERE posts.user_id = '.$_SESSION['id'].'
+        WHERE posts.user_id = '.$_SESSION['auth']['id'].'
         GROUP BY posts.id ORDER BY date_create DESC');
         $indexPosts = $req->fetchAll();
 
@@ -129,9 +129,9 @@ class postManager extends manager
 
     public function insertPost($title,$headline,$content,$image,$tag,$status_post)
     {
-        $req = $this->bdd->prepare("INSERT INTO posts(user_id,tag_id,title,headline,content,image,status_post,date_create) VALUES (:user_id, :tag, :title, :headline, :content, :image, :status_post, NOW())");
+        $req = $this->bdd->prepare("INSERT INTO posts(user_id,title,headline,content,image,tag_id,status_post,date_create) VALUES (:user_id, :title, :headline, :content, :image, :tag, :status_post, NOW())");
         $insertPost = $req->execute([
-        'user_id' => $_SESSION['id'],
+        'user_id' => $_SESSION['auth']['id'],
         'title' => $title,
         'headline' => $headline,
         'content' => $content,

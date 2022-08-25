@@ -14,7 +14,7 @@
                             <div class="card card-post mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= $countPosts ?></h2>
+                                        <h2><?= $countPosts; ?></h2>
                                         <h4>Posts</h4>
                                     </div>
                                     <div class="card-icon">
@@ -28,12 +28,12 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if(isset($_SESSION['auth_role']) && $_SESSION['auth_role'] == 2) { ?>
+                        <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2) : ?>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-com mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= $countComments ?></h2>
+                                        <h2><?= $countComments; ?></h2>
                                         <h4>Comments</h4>
                                     </div>
                                     <div class="card-icon">
@@ -47,12 +47,12 @@
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                        <?php endif; ?>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-users mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= $countUsers ?></h2>
+                                        <h2><?= $countUsers; ?></h2>
                                         <h4>Users</h4>
                                     </div>
                                     <div class="card-icon">
@@ -66,11 +66,12 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2) : ?>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-tags mb-3" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <div class="card-info">
-                                        <h2><?= $countTags ?></h2>
+                                        <h2><?= $countTags; ?></h2>
                                         <h4>Tags</h4>
                                     </div>
                                     <div class="card-icon">
@@ -84,6 +85,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>       

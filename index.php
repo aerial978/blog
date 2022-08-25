@@ -67,6 +67,11 @@ switch ($_GET["page"]) {
         $logoutController->logout();
         break;
 
+    case 'logout2':
+        $logout2Controller = new logoutController();
+        $logout2Controller->logout2();
+        break;
+
     case 'forget':
         $forgetController = new loginController();
         $forgetController->forget();

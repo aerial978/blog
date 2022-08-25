@@ -10,7 +10,7 @@ class loginController extends baseController
     }
 
     public function login()
-    {
+    {    
         $activeMenu = 'signinmenu';
 
         if($this->issetPost()) {
@@ -35,12 +35,7 @@ class loginController extends baseController
                 if($user['activation'] != 0) {
                     if(password_verify(htmlspecialchars($this->getPost('password')), $user['password'])) {
                         session_start();
-                        $this->setSession('auth',$user);
-                        $this->setSession('id',$user['id']);
-                        $this->setSession('username',$_POST['username']);
-                        $this->setSession('pictures',$user['picture']);
-                        $this->setSession('auth_role',$user['role']);
-
+                        $this->setSession('auth',$user);    
                         $this->setSession('login','Welcome to the Dashboard !');
                         header('Location: index.php?page=dashboard');
                     }  else {
@@ -65,7 +60,7 @@ class loginController extends baseController
         if($this->issetSession('invalid') && $this->getSession('invalid') != "") { ?>    
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('invalid') ?>",
+                title: "<?= $this->getSession('invalid'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C', 
                 })
@@ -77,7 +72,7 @@ class loginController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>    
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('process') ?>",
+                title: "<?= $this->getSession('process'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C', 
                 })
@@ -89,7 +84,7 @@ class loginController extends baseController
         if(isset($danger['activation']) && $danger['activation'] != "") { ?>        
             <script>
                 Swal.fire({
-                title: "<?= $danger['activation'] ?>",
+                title: "<?= $danger['activation']; ?>",
                 text: "Please follow instructions sent by email !",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C',
@@ -102,7 +97,7 @@ class loginController extends baseController
         if($this->issetSession('reset') && $this->getSession('reset') != "") { ?>
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('reset') ?>",
+                title: "<?= $this->getSession('reset'); ?>",
                 text: "Login please !",
                 icon: "success",
                 confirmButtonColor: '#1aBC9C',
@@ -115,7 +110,7 @@ class loginController extends baseController
         if($this->issetSession('authentification') && $this->getSession('authentification') != "") { ?>
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('authentification') ?>",
+                title: "<?= $this->getSession('authentification'); ?>",
                 icon: "error",
                 confirmButtonColor: '#1aBC9C',
                 })
@@ -124,10 +119,11 @@ class loginController extends baseController
         $this->unsetSession('authentification');
         }
 
-        if($this->issetSession('logout') && $this->getSession('logout') != "") { ?>        
+        if($this->issetSession('logout') && $this->getSession('logout') != "") { 
+            ?>        
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('logout') ?>",
+                    title: "<?= $this->getSession('logout'); ?>",
                     imageUrl: 'assets/images/avatar.png',
                     imageWidth: 200,
                     imageHeight: 200,
@@ -135,9 +131,9 @@ class loginController extends baseController
                 })
             </script>
         <?php
-        $_SESSION = array();
-        session_destroy();
+        $this->unsetSession('logout');
         }         
+
     }
 
     public function forget()
@@ -176,14 +172,14 @@ class loginController extends baseController
 
                 $to         =  $email;
                 $subject    = 'Resetting your password';
-                $message    = "To reset your password, please <a href='http://localhost/blogmvc/index.php?page=reset&id=$user_id&token=$forget_token'>click on this link</a>";
+                $message    = "To reset your password, please <a href='http://localhost/index.php?page=reset&id=$user_id&token=$forget_token'>click on this link</a>";
                 $headers    = 'MIME Version 1.0\r\n';
                 $headers    = 'From: Your name <info@address.com>' . "\r\n";
                 $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
                 
                 mail($to, $subject, $message, $headers);
         
-                $this->setSession('forget','Check your inbox to reset password !'); 
+                $this->setSession('forget','Check your inbox to reset password !');
             }  else {
                 $errors['danger'] = "No account corresponds to this email address !";        
             }    
@@ -200,7 +196,7 @@ class loginController extends baseController
         if($this->issetSession('forget') && $this->getSession('forget') != "") { ?>    
             <script>
                 Swal.fire({
-                title: "<?= $this->getSession('forget') ?>",
+                title: "<?= $this->getSession('forget'); ?>",
                 imageUrl: 'assets/images/letter_red.png',
                 imageWidth: 100,
                 imageHeight: 100,
@@ -246,11 +242,6 @@ class loginController extends baseController
                             $errors['danger'] = "There was a problem with a data processing !";
                         }
                         $this->setSession('auth',$resetUser);
-                        $this->setSession('id',$resetUser['id']);
-                        $this->setSession('username',$resetUser['username']);
-                        $this->setSession('pictures',$resetUser['picture']);
-                        $this->setSession('auth_role',$resetUser['role']);
-        
                         $this->setSession('reset','Well done, your password has been reset !');
                         header('Location: index.php?page=login');                     
                     } else {

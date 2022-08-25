@@ -1,6 +1,6 @@
 <?php
 
-require 'core/superglobal.php';
+require ('core/superglobal.php');
 
 class baseController extends Superglobal
 {
@@ -19,16 +19,14 @@ class baseController extends Superglobal
         if(!isset($_SESSION['auth'])) {
             $this->setSession('authentification','Login to access admin area !');
             header("Location: index.php?page=login");
-            exit();
         }
     }
 
     public function alreadyLog() 
     {
-        if(isset($_SESSION['auth'])) {
+        if($this->issetSession('auth')) {
             $this->setSession('alreadylog','You are already logged in !');
             header("Location: index.php?page=dashboard");
-            exit();
         }
     }
 }

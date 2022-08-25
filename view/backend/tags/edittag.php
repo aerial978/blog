@@ -9,11 +9,11 @@
             </div>
             <div class="create">
                 <div class="container">
-                    <?php if(!empty($_SESSION['errors'])): ?>
+                    <?php if($this->issetSession('errors')): ?>
                         <div class="alert alert-danger alert-dismissible show pt-5" role="alert">
                             <p>You have not completed the form correctly :</p>
                             <ul>
-                                <?php foreach($_SESSION['errors'] as $error) : ?>
+                                <?php foreach($this->getSession('errors') as $error) : ?>
                                     <li><?= $error; ?></li>  
                                 <?php endforeach; ?>
                             </ul>
@@ -24,11 +24,11 @@
                         <fieldset class="form-group form-tag row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="nametag">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="<?= isset($_SESSION['input']['name']) && !empty($_SESSION['input']['name']) ? $_SESSION['input']['name'] : $tagId['name'] ?>">
+                                <input type="text" name="tagname" id="tagname" class="form-control" value="<?= $this->issetSession('input','tagname') ? $this->getSession('input','tagname') : $tagId['tagname'] ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea name="description" id="content" class="form-control"><?= isset($_SESSION['input']['description']) && !empty($_SESSION['input']['description']) ? $_SESSION['input']['description'] : $tagId['description'] ?></textarea>
+                                <textarea name="description" id="content" class="form-control"><?= $this->issetSession('input','description') ? $this->getSession('input','description') : $tagId['description'] ?></textarea>
                             </div>
                             <div class="btn-tag d-flex justify-content-between">
                             <button type="submit" name="submit" class="submit-tag submit-btn">Update tag</button>

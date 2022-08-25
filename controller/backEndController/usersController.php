@@ -13,7 +13,7 @@ class usersController extends baseController
     {
         $activeMenu = 'usermenu';
 
-        if($this->issetSession('auth_role') && $this->getSession('auth_role') == 1) {
+        if($this->issetSession('auth','role') && $this->getSession('auth','role') == 1) {
 
             $userManager = new userManager();
             $indexUsers = $userManager->indexUser1();
@@ -29,7 +29,7 @@ class usersController extends baseController
         if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('create') ?>",
+                    title: "<?= $this->getSession('create'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -41,7 +41,7 @@ class usersController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('update') ?>",
+                    title: "<?= $this->getSession('update'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -53,7 +53,7 @@ class usersController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('process') ?>",
+                    title: "<?= $this->getSession('process'); ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -69,7 +69,7 @@ class usersController extends baseController
 
         $errors = array();
 
-        $this->setSession('input',$_POST);
+        $this->setSession('input','');
 
         if ($this->issetPost()) {
 
@@ -163,8 +163,10 @@ class usersController extends baseController
                 
                 $this->setSession('create','Creation successfully !');   
                 header('Location: index.php?page=indexuser');
-            }        
-        }           
+                
+            }    
+        }  
+        
         require('view/backend/users/adduser.php');
 
         $this->unsetSession('errors');
@@ -216,22 +218,20 @@ class usersController extends baseController
                         $updateName = $userManager->updateName($name,$id);
                     }
 
+                if(!empty($this->getFiles('picture','name'))) {
 
-                if(!empty($_FILES['picture']['name'])) {
-
-                if ($error = $_FILES['picture']['error'] > 0) {
+                if ($error = $this->getFiles('picture','error') > 0) {
 
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
 
                 $maxsize = 5000000;
 
-                $picture = $_FILES['picture']['name'];
-                $picture_tmp_name = $_FILES['picture']['tmp_name'];
-                $picture_size = $_FILES['picture']['size'];
+                $picture = $this->getFiles('picture','name');
+                $picture_tmp_name = $this->getFiles('picture','tmp_name');
+                $picture_size = $this->getFiles('picture','size');
                 $upload_folder = "images/";
-
-
+            
                 if ($picture_size >= $maxsize) {
                 $errors['size'] = ''.$picture.' is too large ( 5 Mo max ) !';
                 }
@@ -245,7 +245,7 @@ class usersController extends baseController
                 }
 
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
-                $this->setSession('picture',$_FILES['picture']);
+                $this->setSession('picture',$this->getFiles('picture'));
                 }
 
                 if (empty($errors)) {
@@ -258,18 +258,21 @@ class usersController extends baseController
 
             if(empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
 
-                $errors['email'] = "Invalid Email !";
+                $errors['email'] = "Invalid email !";
 
             } else {    
                 $userManager = new UserManager();
                 $updateEmail = $userManager->updateEmail($email,$id);
             }
 
-            $password = $this->getPost('password');
+            
 
-            if(!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
-                $errors['password'] = "Invalid password !";
-            } 
+                $password = $this->getPost('password');
+
+                if(!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)',$this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
+                    $errors['password'] = "Invalid password !";
+                }
+            
 
             $this->setSession('errors',$errors);
 
@@ -295,14 +298,23 @@ class usersController extends baseController
         $this->unsetSession('input');
     }
 
-    public function deleteuser()
-    {
-        $userManager = new UserManager();
-        $deleteUser = $userManager->deleteUser($this->getGet('id'));
+    public function deleteUser()
+    {   
+        if($this->getGet('id') == $this->getSession('auth')['id']) {
+            if($this->issetGet('id') && !empty($this->getGet('id'))) {
+            
+                $userManager = new UserManager();
+                $userManager->deleteUser($this->getGet('id'));
 
-        if($deleteUser == NULL) {
-            $this->setSession('danger','There was a problem with a data processing !');   
+                echo json_encode([
+                    'code' => 200,
+                    'role' => 1
+                ]);
+            } 
+        
+        } else {
+        header('location: ?page=page404');
         }
-        header('Location: index.php?page=indexuser');
-    }   
+    }
+    
 }

@@ -14,7 +14,7 @@ class postsController extends baseController
     {
         $activeMenu = 'postmenu';
 
-        if($this->issetSession('auth_role') && $this->getSession('auth_role') == 1) {
+        if($this->issetSession('auth','role') && $this->getSession('auth','role') == 1) {
 
             $postManager = new postManager();
             $indexPosts = $postManager->indexPost1();
@@ -31,7 +31,7 @@ class postsController extends baseController
         if($this->issetSession('create') && $this->getSession('create') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('create') ?>",
+                    title: "<?= $this->getSession('create'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -43,7 +43,7 @@ class postsController extends baseController
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('update') ?>",
+                    title: "<?= $this->getSession('update'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -55,7 +55,7 @@ class postsController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('process') ?>",
+                    title: "<?= $this->getSession('process'); ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -77,7 +77,7 @@ class postsController extends baseController
         $editPost = $postManager->editPost($this->getGet('id'));
 
         $tagManager = new tagManager();
-        $selectTag = $tagManager->selectTag($this->getGet('id'));
+        $selectTag = $tagManager->selectTag();
 
         } else {
 
@@ -86,10 +86,6 @@ class postsController extends baseController
         } 
         
         if ($this->issetPost()) {
-
-            /*if(isset($_POST['submit']) && empty($_POST['title']) && $_POST['title'] == '') {
-                $errors['title'] = "Enter a title !"; 
-            }*/
 
             if($this->issePost('submit') && empty($this->getPost('title')) && $this->getPost('title') == '') {
                 $errors['title'] = "Enter a title !";
@@ -131,6 +127,8 @@ class postsController extends baseController
             
                 if(!isset($errors['size']) && !isset($errors['extension'])) {
                     $this->setSession('picture', $this->getFiles('image'));
+                    /*$_SESSION['picture'] = $_FILES['image'];*/
+                
                 }
 
                 if (empty($errors)) {
@@ -224,8 +222,8 @@ class postsController extends baseController
                 }
             }
 
-            if ($this->issePost('tag') &&  $this->getPost('tag') == 0) {
-                $errors['tagname'] = 'Select a tag !';
+            if ($this->issetPost('tag') &&  $this->getPost('tag') == 0) {
+                $errors['tag'] = 'Select a tag !';
             }
 
             $this->setSession('errors',$errors);
@@ -234,7 +232,7 @@ class postsController extends baseController
                 $title = $this->getPost('title');
                 $headline = $this->getPost('headline'); 
                 $content = $this->getPost('content'); 
-                $tag = $this->getPost('tagname');
+                $tag = $this->getPost('tag');
 
                 if($this->issetPost('status_post') && $this->getPost('status_post') == 2) {
                     $status_post = $this->getPost('status_post');
@@ -253,7 +251,7 @@ class postsController extends baseController
         }
 
         $tagManager = new tagManager();
-        $selectTag = $tagManager->selectTag($this->getGet('id'));//////////////////////////////////
+        $selectTag = $tagManager->selectTag();
         
         require('view/backend/posts/addpost.php');    
         $this->unsetSession('errors');

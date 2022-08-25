@@ -37,21 +37,21 @@
                 <?php foreach($posts as $post): ?>
                     <div class="row postcards g-0">
                         <div class="col-md-4">
-                            <img src="<?="assets/images/".$post['image']; ?>" class="img-fluid" alt="image post">
+                            <img src="<?= "assets/images/".$post['image']; ?>" class="img-fluid" alt="image post">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <div class="card-top d-flex justify-content-between align-items-center mb-4">
                                     <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
-                                    <a href="?page=userposts&id=<?=$post['user_id'] ?>">
-                                    <?= " ".$post['username'] ?></a></span>
-                                    <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span><?= $post['date_create'] ?></span></div>
-                                    <span class="badge"><a href="?page=tagposts&id=<?=$post['tag_id']?>"><?=$post['name'] ?></a></span>
+                                    <a href="?page=userposts&id=<?= $post['user_id']; ?>">
+                                    <?= " ".$post['name']; ?></a></span>
+                                    <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span><?= $post['date_create']; ?></span></div>
+                                    <span class="badge"><a href="?page=tagposts&id=<?= $post['tag_id']; ?>"><?= $post['tagname']; ?></a></span>
                                 </div>
-                                <h6 class="card-title fw-bold"><?= $post['title'] ?></h6>
-                                <p class="card-text fs-5"><?= $this->number_words($post['content']) ?></p>
+                                <h6 class="card-title fw-bold"><?= $post['title']; ?></h6>
+                                <p class="card-text fs-5"><?= $this->number_words($post['content']); ?></p>
                                 <div class="card-meta d-flex justify-content-between">
-                                    <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $post['comment_count'] ?></span>
+                                    <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $post['comment_count']; ?></span>
                                     <a href="?page=postsingle&id=<?= $post['postId'] ?>"class="btn btn-primary">Read more</a>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                     <ul>
                         <?php foreach($comments as $comment): ?>
                             <li>
-                                <a href="?page=postsingle&id=<?=$comment['post_id']?>"><?= $comment['name_author'] ?><span> sur </span><?= $comment['title']; ?></a>
+                                <a href="?page=postsingle&id=<?= $comment['post_id']?>"><?= $comment['name_author'] ?><span> sur </span><?= $comment['title']; ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>    
@@ -144,15 +144,15 @@
             <fieldset class="form-group row">
                 <input type="hidden" name="csrf_token" value="<?= $token ?>">
                 <div class="form-field col-lg-12">
-                    <input type="text" name="name" id="name" class="input-text" value="<?= isset($_SESSION['input']['name']) ? $_SESSION['input']['name'] : ""; ?>"/>        
+                    <input type="text" name="name" id="name" class="input-text" value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>"/>        
                     <label for="name" class="label">Name</label>
                 </div>
                 <div class="form-field col-lg-12">
-                    <input type="email" name="email" id="email" class="input-text" value="<?= isset($_SESSION['input']['email']) ? $_SESSION['input']['email'] : ""; ?>"/> 
+                    <input type="email" name="email" id="email" class="input-text" value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : ""; ?>"/> 
                     <label for="email" class="label">Email address</label>
                 </div>
                 <div class="form-field col-lg-12">
-                    <textarea id="textarea" name="message" class="input-text" rows="5" cols="50"><?= isset($_SESSION['input']['message']) ? $_SESSION['input']['message'] : ""; ?></textarea>
+                    <textarea id="textarea" name="message" class="input-text" rows="5" cols="50"><?= $this->issetSession('input','message') ? $this->getSession('input','message') : ""; ?></textarea>
                     <label for="textarea" class="label">Message</label>
                 </div>
                 <div class="form-check">

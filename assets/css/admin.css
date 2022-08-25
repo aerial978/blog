@@ -23,8 +23,9 @@ section .content {
     border-radius: 30px;
     text-align: center;
     margin-bottom: 100px;
-   
+
 }
+
 .link-btn .add-btn {
     color: white;
     border: 2px solid var(--primaryColor);
@@ -57,7 +58,7 @@ section .content {
 @media(max-width: 768px) {
     .content-header .title {
         width: 150px;
-        padding: 5px;  
+        padding: 5px;
     }
 
     .link-btn .add-btn {
@@ -85,23 +86,23 @@ section .content {
 }
 
 .dashboard .cards-dash .card-post {
-    background: rgb(13,110,253);
-    background: linear-gradient(90deg, rgba(13,110,253,1) 50%, rgba(0,212,255,1) 100%);
+    background: rgb(13, 110, 253);
+    background: linear-gradient(90deg, rgba(13, 110, 253, 1) 50%, rgba(0, 212, 255, 1) 100%);
 }
 
 .dashboard .cards-dash .card-com {
-    background: rgb(255,193,7);
-    background: linear-gradient(90deg, rgba(255,193,7,1) 50%, rgba(255,224,131,1) 100%);
+    background: rgb(255, 193, 7);
+    background: linear-gradient(90deg, rgba(255, 193, 7, 1) 50%, rgba(255, 224, 131, 1) 100%);
 }
 
 .dashboard .cards-dash .card-users {
-    background: rgb(220,53,69);
-    background: linear-gradient(90deg, rgba(220,53,69,1) 50%, rgba(237,154,162,1) 100%);
+    background: rgb(220, 53, 69);
+    background: linear-gradient(90deg, rgba(220, 53, 69, 1) 50%, rgba(237, 154, 162, 1) 100%);
 }
 
 .dashboard .cards-dash .card-tags {
-    background: rgb(25,135,84);
-    background: linear-gradient(90deg, rgba(25,135,84,1) 50%, rgba(140,195,169,1) 100%);  
+    background: rgb(25, 135, 84);
+    background: linear-gradient(90deg, rgba(25, 135, 84, 1) 50%, rgba(140, 195, 169, 1) 100%);
 }
 
 .dashboard .card .card-body {
@@ -114,7 +115,7 @@ section .content {
 
 .dashboard .card .card-footer a {
     color: white;
-    text-decoration: none;  
+    text-decoration: none;
 }
 
 .dashboard .card-body .card-icon {
@@ -125,20 +126,20 @@ section .content {
     background: white;
 }
 
-.dashboard .card-post .card-footer a:hover { 
-    color: rgb(13,110,253);
+.dashboard .card-post .card-footer a:hover {
+    color: rgb(13, 110, 253);
 }
 
 .dashboard .card-com .card-footer a:hover {
-    color: rgb(255,193,7);
+    color: rgb(255, 193, 7);
 }
 
 .dashboard .card-users .card-footer a:hover {
-    color: rgb(220,53,69);
+    color: rgb(220, 53, 69);
 }
 
 .dashboard .card-tags .card-footer a:hover {
-    color: rgb(25,135,84);
+    color: rgb(25, 135, 84);
 }
 
 @media(max-width: 768px) {
@@ -157,7 +158,8 @@ section .content {
     text-align: center;
 }
 
-.table-body th,td {
+.table-body th,
+td {
     vertical-align: middle;
 }
 
@@ -184,23 +186,23 @@ section .content {
 /*-- INDEX POSTS CONTENT PAGE --*/
 
 .content-header .title-post {
-    color: rgba(0,212,255,1);
+    color: rgba(0, 212, 255, 1);
 }
 
 .link-btn .post-btn {
-    background: rgba(0,212,255,1);
+    background: rgba(0, 212, 255, 1);
 }
 
-.link-btn .post-btn:hover { 
-    color: rgba(0,212,255,1);
+.link-btn .post-btn:hover {
+    color: rgba(0, 212, 255, 1);
 }
 
 .table-post .table-body tr {
-    background: rgba(147,236,255);
+    background: rgba(147, 236, 255);
 }
 
 .table-post .table-body tr:hover {
-    background: rgba(0,210,255);
+    background: rgba(0, 210, 255);
 }
 
 .cards-post .card {
@@ -208,7 +210,7 @@ section .content {
 }
 
 .cards .card .card-post {
-    background: rgba(0,212,255,1);
+    background: rgba(0, 212, 255, 1);
 }
 
 section .content .cards .card .card-body img {
@@ -226,7 +228,7 @@ section .content .edit-post:hover {
 
 section .content .cards-post {
     display: none;
-   }
+}
 
 @media(max-width: 1400px) {
 
@@ -242,7 +244,7 @@ section .content .cards-post {
 
     section .content .cards-post {
         display: inline;
-       }
+    }
 
     section .content .cards-post .image {
         background: #bfbfbf;
@@ -255,43 +257,44 @@ section .content .cards-post {
 
     section .content .cards-post .card-text {
         font-size: 14px;
-    }  
+    }
 }
 
 @media(max-width: 992px) {
     section .content .cards-post .card-title {
         font-size: 15px;
-   }
+    }
 }
 
 @media(max-width: 576px) {
     section .content .cards .card {
-    margin: auto;
-   }
+        margin: auto;
+    }
 }
 
 /*-- EDIT POST PAGE --*/
 
 section .content .form-post label {
-    color: rgba(0,212,255,1);
+    color: rgba(0, 212, 255, 1);
+    margin-top: 10px;
     margin-bottom: 5px;
     font-size: 20px;
 }
 
-section .content .edit .form-post .submit-btn  {
-    background: rgba(0,212,255,1);
+section .content .edit .form-post .submit-btn {
+    background: rgba(0, 212, 255, 1);
     width: auto;
 }
 
 /*-- ADMIN ADD POST CONTENT PAGE --*/
 
 section .content .create .submit-post {
-    background: rgba(0,212,255,1);
+    background: rgba(0, 212, 255, 1);
     width: auto;
 }
 
 section .content .create .submit-post:hover {
-    color: rgba(0,212,255,1);
+    color: rgba(0, 212, 255, 1);
 }
 
 @media(max-width: 576px) {
@@ -303,7 +306,7 @@ section .content .create .submit-post:hover {
 /*-- INDEX COMMENTS PAGE --*/
 
 section .content .title-comment {
-    color: rgba(255,193,7,1);
+    color: rgba(255, 193, 7, 1);
 }
 
 section .content .table {
@@ -341,11 +344,11 @@ section .content .table {
 section .content .table-comment .table-body tr {
     cursor: pointer;
     text-align: center;
-    background: rgba(255,239,193);
+    background: rgba(255, 239, 193);
 }
 
 section .content .table-comment .table-body tr:hover {
-    background: rgba(255,193,7,1);
+    background: rgba(255, 193, 7, 1);
 }
 
 section .content .table .table-body .table-bold {
@@ -378,12 +381,12 @@ section .content .comment-date {
 }
 
 section .content .cards .card .card-com {
-    background: rgba(255,224,131);
+    background: rgba(255, 224, 131);
 }
 
 section .content .cards-comment {
     display: none;
-   }
+}
 
 .cards .card .card-header .card-comment {
     text-align: center;
@@ -391,7 +394,7 @@ section .content .cards-comment {
 
 @media(max-width: 1200px) {
     section .content .cards-comment {
-     display: inline;
+        display: inline;
     }
 
     section .content .cards-comment .card {
@@ -399,7 +402,7 @@ section .content .cards-comment {
     }
 
     section .content .cards-comment .card-body .post-title {
-        font-size : 15px;
+        font-size: 15px;
         font-weight: bold;
         height: 40px;
 
@@ -413,8 +416,9 @@ section .content .cards-comment {
 /*-- EDIT COMMENT PAGE --*/
 
 section .content .form-comment label {
-    color: rgba(255,193,7,1);
+    color: rgba(255, 193, 7, 1);
     margin-bottom: 5px;
+    margin-top: 10px;
     font-size: 20px;
 }
 
@@ -423,16 +427,16 @@ section .content .form-comment label {
 }
 
 section .content .edit .form-comment .submit-btn {
-    background: rgba(255,224,131,1);
+    background: rgba(255, 224, 131, 1);
     width: auto;
 }
 
 section .content .edit .form-comment .submit-comment:hover {
-    color: rgba(255,224,131,1);
+    color: rgba(255, 224, 131, 1);
 }
 
 section .content .edit .form-comment .btn-comment .btn {
-    background: rgba(255,224,131,1);
+    background: rgba(255, 224, 131, 1);
     font-size: 22px;
     width: auto;
     border: 2px solid var(--primaryColor);
@@ -440,37 +444,38 @@ section .content .edit .form-comment .btn-comment .btn {
 }
 
 section .content .edit .form-comment .btn-comment .btn:hover {
-    color: rgba(255,224,131,1);
+    color: rgba(255, 224, 131, 1);
     background: white;
 }
 
 /*-- INDEX USER PAGE --*/
 
 section .content .title-user {
-    color: rgba(220,53,69,1);
+    color: rgba(220, 53, 69, 1);
 }
 
 section .content .user-btn {
-    background: rgba(220,53,69,1);
+    background: rgba(220, 53, 69, 1);
 }
 
-section .content .user-btn:hover { 
-    color: rgba(220,53,69);
+section .content .user-btn:hover {
+    color: rgba(220, 53, 69);
 }
 
 section .content .table-user .table-body tr {
-    background: rgba(244,194,199);
+    background: rgba(244, 194, 199);
 }
 
 section .content .table-user .table-body tr:hover {
-    background: rgba(227,93,106);
+    background: rgba(227, 93, 106);
 }
 
 section .content .table-user .user-img img {
     width: 60px;
 }
 
-section .content .table-user .table-body th,td {
+section .content .table-user .table-body th,
+td {
     vertical-align: middle;
 }
 
@@ -486,7 +491,7 @@ section .content .cards-user .card {
 }
 
 section .content .cards .card .card-user {
-    background: rgba(237,154,162,1);
+    background: rgba(237, 154, 162, 1);
 }
 
 section .content .cards-user .card .card-body img {
@@ -500,7 +505,7 @@ section .content .cards .card .card-body .card-userdetail {
 }
 
 section .content .cards-user {
-    display: none;  
+    display: none;
 }
 
 section .content .cards-user .card .card-body {
@@ -509,7 +514,7 @@ section .content .cards-user .card .card-body {
 
 @media(max-width: 1200px) {
     section .content .cards-user {
-     display: inline;
+        display: inline;
     }
 
     section .content .cards-user .card .card-body {
@@ -532,7 +537,7 @@ section .content .cards-user .card .card-body {
         font-size: 13px;
     }
 
-    section .content .cards-user .card .card-userdetail .card-username {
+    section .content .cards-user .card .card-userdetail .card-name {
         font-size: 15px;
     }
 
@@ -543,18 +548,19 @@ section .content .cards-user .card .card-body {
     section .content .cards-user .action-button span {
         display: none;
     }
- }
+}
 
- @media(max-width: 768px) {
+@media(max-width: 768px) {
     section .content .cards-user .card {
         margin: auto;
     }
- }
+}
 
 /*-- ADD USER PAGE --*/
 
 section .content .form-user label {
-    color: rgba(237,154,162,1);
+    color: rgba(237, 154, 162, 1);
+    margin-top: 10px;
     margin-bottom: 5px;
     font-size: 20px;
 }
@@ -568,16 +574,16 @@ section .content .create .form-user .btn-user {
 }
 
 section .content .create .form-user .submit-user {
-    background: rgba(237,154,162,1);
+    background: rgba(237, 154, 162, 1);
     width: auto;
 }
 
 section .content .create .form-user .submit-user:hover {
-    color: rgba(237,154,162,1);
+    color: rgba(237, 154, 162, 1);
 }
 
 section .content .create .form-user .btn-user .btn {
-    background: rgba(237,154,162,1);
+    background: rgba(237, 154, 162, 1);
     font-size: 22px;
     width: auto;
     border: 2px solid var(--primaryColor);
@@ -585,28 +591,28 @@ section .content .create .form-user .btn-user .btn {
 }
 
 section .content .create .form-user .btn-user .btn:hover {
-    color: rgba(237,154,162,1);
+    color: rgba(237, 154, 162, 1);
     background: white;
 }
 
- /*-- EDIT USER PAGE --*/
+/*-- EDIT USER PAGE --*/
 
- section .content .edit .form-user .btn-user {
-     margin-top: 20px;
- }
+section .content .edit .form-user .btn-user {
+    margin-top: 20px;
+}
 
 section .content .edit .form-user .btn-user .submit-user {
-    background: rgba(237,154,162,1);
+    background: rgba(237, 154, 162, 1);
     width: auto;
 }
 
 section .content .edit .form-user .btn-user .submit-user:hover {
-    color: rgba(237,154,162,1);
+    color: rgba(237, 154, 162, 1);
 }
 
 
 section .content .edit .form-user .btn-user .btn {
-    background: rgba(237,154,162,1);
+    background: rgba(237, 154, 162, 1);
     font-size: 22px;
     width: auto;
     border: 2px solid var(--primaryColor);
@@ -614,30 +620,30 @@ section .content .edit .form-user .btn-user .btn {
 }
 
 section .content .edit .form-user .btn-user .btn:hover {
-    color: rgba(237,154,162,1);
+    color: rgba(237, 154, 162, 1);
     background: white;
 }
 
 /*-- INDEX TAG PAGE --*/
 
 section .content .title-tag {
-    color: rgba(25,135,84,1);
+    color: rgba(25, 135, 84, 1);
 }
 
 section .content .tag-btn {
-    background: rgba(25,135,84,1);
+    background: rgba(25, 135, 84, 1);
 }
 
-section .content .tag-btn:hover { 
-    color: rgba(25,135,84,1);
+section .content .tag-btn:hover {
+    color: rgba(25, 135, 84, 1);
 }
 
 section .content .table-tag .table-body tr {
-    background: rgba(186,219,203);
+    background: rgba(186, 219, 203);
 }
 
 section .content .table-tag .table-body tr:hover {
-    background: rgba(140,195,169);
+    background: rgba(140, 195, 169);
 }
 
 @media(max-width: 576px) {
@@ -648,13 +654,14 @@ section .content .table-tag .table-body tr:hover {
     section .content .table-tag .action-button i {
         width: 10px;
     }
- }
+}
 
- /*-- ADD/EDIT TAG PAGES --*/
+/*-- ADD/EDIT TAG PAGES --*/
 
- section .content .form-tag label {
-    color: rgba(25,135,84,1);
+section .content .form-tag label {
+    color: rgba(25, 135, 84, 1);
     margin-bottom: 5px;
+    margin-top: 10px;
     font-size: 20px;
 }
 
@@ -667,31 +674,22 @@ section .content .create .form-tag .btn-tag {
 }
 
 section .content .create .form-tag .submit-tag {
-    background: rgba(140,195,169,1);
-    width: auto;   
+    background: rgba(140, 195, 169, 1);
+    width: auto;
 }
 
 section .content .create .form-tag .submit-tag:hover {
-    color: rgba(140,195,169,1);
+    color: rgba(140, 195, 169, 1);
 }
 
 section .content .create .form-tag .btn-tag .btn {
-    background: rgba(140,195,169,1);
+    background: rgba(140, 195, 169, 1);
     font-size: 22px;
     border: 2px solid var(--primaryColor);
     border-radius: 8px;
 }
 
 section .content .create .form-tag .btn-tag .btn:hover {
-    color: rgba(140,195,169,1);
+    color: rgba(140, 195, 169, 1);
     background: white;
 }
-
-
-
-
-
-
-
-
-

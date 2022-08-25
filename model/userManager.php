@@ -36,7 +36,7 @@ class UserManager extends Manager
 
     public function indexUser2()
     {
-        $req = $this->bdd->query('SELECT * FROM users ORDER BY id DESC');
+        $req = $this->bdd->query('SELECT * FROM users WHERE role = 1 ORDER BY id DESC');
         $indexUsers = $req->fetchAll();
 
         return $indexUsers;
@@ -146,9 +146,11 @@ class UserManager extends Manager
     public function deleteUser($id)
     {
     $req = $this->bdd->query("DELETE FROM users WHERE id = $id");
-    $deleteUser = $req->execute();
+    $req->execute();
 
-    return $deleteUser;
+    return $req->rowCount();
     }
+
+
 
 }

@@ -16,12 +16,12 @@ class commentsController extends baseController
         $commentManager = new commentManager();
         $indexComments = $commentManager->indexComment();
         
-        require('view/backend/comments/indexcomment.php');
+        require 'view/backend/comments/indexcomment.php';
 
         if($this->issetSession('update') && $this->getSession('update') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('update') ?>",
+                    title: "<?= $this->getSession('update'); ?>",
                     icon: 'success',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -33,7 +33,7 @@ class commentsController extends baseController
         if($this->issetSession('process') && $this->getSession('process') != "") { ?>
             <script>
                 Swal.fire({
-                    title: "<?= $this->getSession('process') ?>",
+                    title: "<?= $this->getSession('process'); ?>",
                     icon: 'error',
                     confirmButtonColor: '#1aBC9C',
                 })
@@ -47,7 +47,7 @@ class commentsController extends baseController
     { 
         $activeMenu = 'commentmenu';
 
-        if(isset($_GET['id'])) {
+        if($this->issetGet('id')) {
 
             $id = $this->getGet('id');
             
@@ -67,10 +67,10 @@ class commentsController extends baseController
             $statusComment = $commentManager->statusComment($status_comm,$id);
             
             $this->setSession('update','Update successfully !');
-            header('Location: index.php?page=indexcomment');
+            header("Location: index.php?page=indexcomment");
             }
         
-        require('view/backend/comments/editcomment.php');   
+        require ('view/backend/comments/editcomment.php');   
     }
 
     public function deletecomment()

@@ -44,6 +44,18 @@ class registerController extends baseController
                     $errors['username'] = 'Username already used !';
                 } 
             }
+
+            if(empty($this->getPost('name')) || !preg_match('(^[A-Z][a-z]*$)',$this->getPost('name'))) {
+                $errors['name'] = "Invalid name !";
+            } else {
+                
+                $formManager = new formManager();
+                $registerName = $formManager->registerName($this->getPost('name'));
+
+                if($registerName) {
+                    $errors['name'] = 'Name already used !';
+                } 
+            }
         
             if(empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = "Invalid email !";
@@ -67,7 +79,7 @@ class registerController extends baseController
                 $token = bin2hex(random_bytes(60));
                 
                 $formManager = new formManager();
-                $registerUser = $formManager->registerUser(htmlspecialchars($this->getPost('username')),htmlspecialchars($this->getPost('email')),$password,$token);
+                $registerUser = $formManager->registerUser(htmlspecialchars($this->getPost('username')),htmlspecialchars($this->getPost('name')),htmlspecialchars($this->getPost('email')),$password,$token);
 
                 if($registerUser != NULL) {
                 $to         = $this->getPost('email');
@@ -113,11 +125,7 @@ class registerController extends baseController
                 $tokenConfirm = $formManager->tokenConfirm($this->getGet('id'));
 
                 if($tokenConfirm == true) {    
-                $this->setSession('auth',$tokenUser);
-                $this->setSession('username',$tokenUser['username']);
-                $this->setSession('id',$tokenUser['id']);
-                $this->setSession('pictures',$tokenUser['picture']);
-                $this->setSession('auth_role',$tokenUser['role']);
+                $this->setSession('auth',$tokenUser);    
                 $this->setSession('confirmation',"Your account has been validated !");
                 header('Location: index.php?page=home');
             } else {
