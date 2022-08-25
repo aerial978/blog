@@ -127,7 +127,7 @@
                             let array = JSON.parse(data);
                             if(array.code == 200 && array.role == 1) {
                                 Swal.fire({
-                                    title: "Do you want to delete your account !",
+                                    title: "Do you want to delete this account ?",
                                     text: "",
                                     icon: "warning",
                                     confirmButtonColor: '#1aBC9C',
@@ -142,7 +142,7 @@
                                             if(result.isConfirmed) {
                                                 $(`tr[data-id= ${id} ]`).remove();
                                                 $("div[data-id=" + id +"]").remove();  
-                                                window.location.href = sourceUrl[0] + '//' + sourceUrl[2] + '/index.php?page=logout';
+                                                window.location.href = sourceUrl[0] + '//' + sourceUrl[2] + '/index.php?page=logout2';
                                             }       
                                         })
                                     }

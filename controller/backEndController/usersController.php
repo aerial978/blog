@@ -300,7 +300,7 @@ class usersController extends baseController
 
     public function deleteUser()
     {   
-        if($this->getGet('id') == $this->getSession('auth')['id']) {
+        if($this->getSession('auth')['role'] == 2 | $this->getGet('id') == $this->getSession('auth')['id']) {
             if($this->issetGet('id') && !empty($this->getGet('id'))) {
             
                 $userManager = new UserManager();
