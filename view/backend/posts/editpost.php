@@ -57,7 +57,7 @@
                                     <option value="0">Select option</option>
                                         <?php if(count($selectTag)>0) : ?>
                                             <?php for ($i=0; $i<count($selectTag); $i++) : ?>
-                                                <option value="<?= $selectTag[$i]['id']?>"<?= isset($editPost['tag_id']) && $selectTag[$i]['id'] == $editPost['tag_id'] ? "selected" : "" ?>><?= $selectTag[$i]['tagname']?></option>
+                                                <option value="<?= $selectTag[$i]['id']?>" <?= isset($editPost['tag_id']) && $selectTag[$i]['id'] == $editPost['tag_id'] ? "selected" : "" ?>><?= $selectTag[$i]['tagname']?></option>
                                             <?php endfor; ?>    
                                     <?php endif; ?>    
                                 </select>

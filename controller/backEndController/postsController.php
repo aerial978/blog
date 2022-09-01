@@ -140,7 +140,7 @@ class postsController extends baseController
                 }
             }
         
-            if(empty($this->getPost('tag'))) {           
+            if(empty($this->getPost('tagname'))) {           
                 $errors['tag'] = "Selected a tag !";          
             }
 
@@ -156,7 +156,7 @@ class postsController extends baseController
                 $title = $this->getPost('title');
                 $headline = $this->getPost('headline'); 
                 $content = $this->getPost('content'); 
-                $tag = $this->getPost('tag');
+                $tag = $this->getPost('tagname');
                 
                 $postManager = new postManager();
                 $updatePost = $postManager->updatePost($title,$headline,$content,$tag,$status_post,$this->getGet('id'));
