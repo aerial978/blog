@@ -33,31 +33,37 @@
             <div class="divider-custom-line"></div>
         </div>
         <div class="row">
-            <div class="col-xl-8">    
-                <?php foreach($posts as $post): ?>
-                    <div class="row postcards g-0">
-                        <div class="col-md-4">
-                            <img src="<?= "assets/images/".$post['image']; ?>" class="img-fluid" alt="image post">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <div class="card-top d-flex justify-content-between align-items-center mb-4">
-                                    <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
-                                    <a href="?page=userposts&id=<?= $post['user_id']; ?>">
-                                    <?= " ".$post['name']; ?></a></span>
-                                    <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span><?= $post['date_create']; ?></span></div>
-                                    <span class="badge"><a href="?page=tagposts&id=<?= $post['tag_id']; ?>"><?= $post['tagname']; ?></a></span>
-                                </div>
-                                <h6 class="card-title fw-bold"><?= $post['title']; ?></h6>
-                                <p class="card-text fs-5"><?= $this->number_words($post['content']); ?></p>
-                                <div class="card-meta d-flex justify-content-between">
-                                    <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $post['comment_count']; ?></span>
-                                    <a href="?page=postsingle&id=<?= $post['postId'] ?>"class="btn btn-primary">Read more</a>
+            <div class="col-xl-8">
+                <?php if(empty($posts)): ?>
+                    <div class="alert alert-danger show" role="alert">
+                        <h4 class="text-center">Empty list !</h4>  
+                    </div>    
+                <?php  else : ?>   
+                    <?php foreach($posts as $post): ?>
+                        <div class="row postcards g-0">
+                            <div class="col-md-4">
+                                <img src="<?= "assets/images/".$post['image']; ?>" class="img-fluid" alt="image post">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="card-top d-flex justify-content-between align-items-center mb-4">
+                                        <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
+                                        <a href="?page=userposts&id=<?= $post['user_id']; ?>">
+                                        <?= " ".$post['name']; ?></a></span>
+                                        <div class="card-date"><i class="far fa-calendar">&nbsp;</i><span><?= $post['date_create']; ?></span></div>
+                                        <span class="badge"><a href="?page=tagposts&id=<?= $post['tag_id']; ?>"><?= $post['tagname']; ?></a></span>
+                                    </div>
+                                    <h6 class="card-title fw-bold"><?= $post['title']; ?></h6>
+                                    <p class="card-text fs-5"><?= $this->number_words($post['content']); ?></p>
+                                    <div class="card-meta d-flex justify-content-between">
+                                        <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $post['comment_count']; ?></span>
+                                        <a href="?page=postsingle&id=<?= $post['postId'] ?>"class="btn btn-primary">Read more</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> 
-                <?php endforeach; ?>        
+                        </div> 
+                    <?php endforeach; ?>
+                <?php endif; ?>        
             </div>
             <div class="col-xl-4">
 <!-- ASIDE TAGS LIST -->

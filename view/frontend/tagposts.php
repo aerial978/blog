@@ -7,12 +7,12 @@
         <div class="title_tag mb-4 h4"><?= $tag['tagname'] ?></div> 
         <div class="row">
             <div class="col-xl-9">
-                <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
-                    <?php if(empty($tagPosts)): ?>
-                        <div class="alert alert-danger show" role="alert">
+                <?php if(empty($tagPosts)): ?>
+                    <div class="alert alert-danger show" role="alert">
                         <h4 class="text-center">Empty list !</h4>  
                     </div>    
-                    <?php  else : ?>
+                <?php  else : ?>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
                         <?php foreach($tagPosts as $tagPost): ?>
                             <div class="col">
                                 <div class="card">
@@ -37,9 +37,8 @@
                                 </div>
                             </div> 
                         <?php endforeach; ?>
-                    <?php endif; ?>
-
-                </div>                
+                    </div>
+                <?php endif; ?>                
             </div>                  
             <div class="col-xl-3">
                 <?php include ('view/partials/asides.php'); ?>                   

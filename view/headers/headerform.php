@@ -39,10 +39,10 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link <?php if($activeMenu == 'signupmenu'): ?> active <?php endif; ?>" href="?page=register">Sign up</a>
+                            <a class="nav-link" href="?page=register">Sign up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php if($activeMenu == 'signinmenu'): ?> active <?php endif; ?>" href="?page=login">Sign in</a>
+                            <a class="nav-link" href="?page=login">Sign in</a>
                         </li>
                     </ul>
                 </div>

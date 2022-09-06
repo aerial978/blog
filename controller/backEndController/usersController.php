@@ -296,19 +296,28 @@ class usersController extends baseController
             if ($this->getSession('auth')['role'] == 2 | $this->getGet('id') == $this->getSession('auth')['id']) {
                 if ($this->issetGet('id') && !empty($this->getGet('id'))) {
 
+                $to         =  $this->getSession('auth')['email'];
+                $subject    = 'Blog account closure';
+                $message    = "Your account has been successfully terminated.";
+                $headers    = 'MIME Version 1.0\r\n';
+                $headers    = 'From: Your name <info@address.com>' . "\r\n";
+                $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+
+                mail($to, $subject, $message, $headers);
+/*
                     $userManager = new UserManager();
                     $userManager->deleteUser($this->getGet('id'));
 
                     echo json_encode([
                         'code' => 200,
                         'role' => 1
-                    ]);
+                    ]); */
                 }
             } else {
                 header('location: ?page=page404');
             }
         } else {
-            echo 'dudul';
+            header('location: ?page=page404');
         }
     }
 }
