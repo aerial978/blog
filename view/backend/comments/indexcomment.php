@@ -40,7 +40,7 @@
                             <td>
                                 <div class="action-button">
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                 </div>
                             </td>
                         </tr>
@@ -80,7 +80,7 @@
                                         <?php endif; ?>
                                     </div>
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId'] ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= $indexComment['commentId'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="?page=deletecomment&id=<?= $indexComment['commentId'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                 </div>
                             </div>        
                         </div>          
@@ -113,7 +113,8 @@
             }).then((result) => {   
                 if (result.isConfirmed) {
                     let sourceUrl = window.location.href.split('/');
-                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + href;
+                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3].replace('?page=indexcomment', '') + href;
+                    console.log(newUrl);
                     $.ajax({
                         url: newUrl,
                         type: 'GET',

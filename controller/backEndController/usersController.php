@@ -304,14 +304,14 @@ class usersController extends baseController
                 $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
                 mail($to, $subject, $message, $headers);
-/*
+
                     $userManager = new UserManager();
                     $userManager->deleteUser($this->getGet('id'));
 
                     echo json_encode([
                         'code' => 200,
                         'role' => 1
-                    ]); */
+                    ]);
                 }
             } else {
                 header('location: ?page=page404');

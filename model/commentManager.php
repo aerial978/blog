@@ -104,6 +104,16 @@ class commentManager extends manager
         return $statusComm;
     }
 
+    public function getComment($id)
+    {
+        $req = $this->bdd->prepare('SELECT * FROM comments WHERE id = ?');
+        $req->execute([$id]);
+
+        $comment = $req->fetch();
+
+        return $comment;
+    }
+
     public function deleteComment($id)
     {
         $req = $this->bdd->prepare('DELETE FROM comments WHERE id = ?');

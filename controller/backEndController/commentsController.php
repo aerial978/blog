@@ -78,9 +78,9 @@ class commentsController extends baseController
         if($this->issetGet('id') && !empty($this->getGet('id'))) {
 
             $commentManager = new commentManager();
-            $indexComments = $commentManager->indexComment();
+            $getcomment = $commentManager->getComment($this->getGet('id'));
 
-            $to         = $email_author;
+            $to         = $getcomment['email_author'];
             $subject    = 'Your comment on a blog post';
             $message    = "We are sorry that your comment was not accepted.</a>";
             $headers    = 'MIME Version 1.0\r\n';
