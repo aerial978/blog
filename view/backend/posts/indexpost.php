@@ -31,7 +31,7 @@
                         </thead>
                         <tbody class="table-body">
                         <?php foreach ($indexPosts as $indexPost): ?>
-                            <tr data-id="<?php $indexPost['postId']; ?>">
+                            <tr data-id="<?= $indexPost['postId']; ?>">
                                 <th scope="row"><?= $indexPost['postId']; ?></th>
                                 <td><?= $indexPost['name']; ?></td>
                                 <td class="date_create"><?= $indexPost['date_create'] ?></td>
@@ -53,8 +53,8 @@
                                 </td>
                                 <td>
                                     <div class="action-button">
-                                        <a href="index.php?page=editpost&id=<?= $indexPost['postId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                        <a data-id="<?= $indexPost['postId']; ?>" href="index.php?page=deletepost&id=<?= $indexPost['postId']; ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
+                                        <a href="?page=editpost&id=<?= $indexPost['postId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <a data-id="<?= $indexPost['postId']; ?>" href="?page=deletepost&id=<?= $indexPost['postId']; ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
                                     </div>
                                 </td>
                             </tr>      
@@ -89,7 +89,7 @@
                                 <div class="card-footer card-post border-success">    
                                     <div class="action-button">
                                         <a href="?page=editpost&id=<?= $indexPost['postId']; ?>"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <a data-id="<?= $indexPost['postId'] ?>" href="?page=deletepost&id=<?= $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
+                                        <a data-id="<?= $indexPost['postId']; ?>" href="?page=deletepost&id=<?= $indexPost['postId']; ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
                                     </div>
                                 </div>   
                             </div>
@@ -121,7 +121,8 @@
             }).then((result) => {   
                 if (result.isConfirmed) {
                     let sourceUrl = window.location.href.split('/');
-                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + href;
+                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3].replace('?page=indexpost', '') + href;
+                    console.log(newUrl);
                     $.ajax({
                         url: newUrl,
                         type: 'GET',

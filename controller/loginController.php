@@ -39,13 +39,13 @@ class loginController extends baseController
                         $this->setSession('login','Welcome to the Dashboard !');
                         header('Location: index.php?page=dashboard');
                     }  else {
-                        $errors['danger'] = 'Incorrect username or password';
+                        $errors['danger'] = 'Invalid username or password';
                     }
                 } else { 
                     $danger['activation'] = 'Inactive account !';    
                 }
             } else { 
-                $errors['danger'] = 'Incorrect username or password';  
+                $errors['danger'] = 'Invalid username or password';  
             }
         }
 

@@ -64,7 +64,7 @@ class frontEndController extends baseController
 
             if (empty($errors)) {
                 $headers = 'FROM: ' . $this->getPost('email');
-                mail('mhathier@gmail.com', 'contact blog de ' . $this->getPost('name'), $this->getPost('message'), $headers);
+                mail('blog@gmail.com', 'Message de ' . $this->getPost('name'), $this->getPost('message'), $headers);
 
                 $this->setSession('message', 'Message sent success !');
             }

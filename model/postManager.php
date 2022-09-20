@@ -143,6 +143,16 @@ class postManager extends manager
         return $insertPost;
     }
 
+    public function getPost($id)
+    {
+        $req = $this->bdd->prepare('SELECT * FROM posts WHERE id = ?');
+        $req->execute([$id]);
+
+        $post = $req->fetch();
+
+        return $post;
+    }
+
     public function deletePost($id)
     {
         $req = $this->bdd->query("DELETE FROM posts WHERE id = $id");

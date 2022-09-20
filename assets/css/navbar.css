@@ -2,9 +2,9 @@
 
 .navbar {
     background-color: var(--primaryColor);
-    height: 10vh;
     position: fixed;
     width: 100%;
+    height: auto;
 }
 
 .navbar .navbar-brand {

@@ -74,7 +74,6 @@ class registerController extends baseController
             }
         
             if(empty($errors)){
-
                 $password = password_hash($this->getPost('password'), PASSWORD_BCRYPT);
                 $token = bin2hex(random_bytes(60));
                 
