@@ -24,7 +24,7 @@
                         <fieldset class="form-group form-user row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" class="form-control" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?> value="<?= $editUser['username']; ?>">
+                                <input type="text" name="username" id="username" class="form-control" placeholder="At least 8 characters, one lowercase letter, one uppercase letter, one number & one special character like #?!@$%^*-" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?> value="<?= $editUser['username']; ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="name">Name</label>
@@ -49,7 +49,7 @@
                             <?php if($this->getSession('auth','role') == 1) : ?> 
                             <div class="form-field col-lg-12">
                                 <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                <input type="password" class="form-control" name="password" id="password">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters, one lowercase letter, one uppercase letter, one number & one special character like #?!@$%^*-">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="password" class="col-sm-2 col-form-label">Confirm password</label>

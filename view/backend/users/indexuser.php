@@ -142,7 +142,7 @@
                                             if(result.isConfirmed) {
                                                 $(`tr[data-id= ${id} ]`).remove();
                                                 $("div[data-id=" + id +"]").remove();  
-                                                window.location.href = sourceUrl[0] + '//' + sourceUrl[2] + '/index.php?page=logout2';
+                                                window.location.href = sourceUrl[0] + '//' + sourceUrl[2] + '/' + 'index.php?page=logout2';
                                             }       
                                         })
                                     }

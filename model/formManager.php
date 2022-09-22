@@ -12,7 +12,7 @@ class formManager extends manager
     public function loginUser($username)
     {
         $req = $this->bdd->prepare('SELECT * FROM users WHERE username = ?');
-        $req->execute([$username]);
+        $user = $req->execute([$username]);
         $user = $req->fetch();
         
         return $user;

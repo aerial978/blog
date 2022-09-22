@@ -33,7 +33,7 @@ class registerController extends baseController
         
             $this->setSession('input',$_POST);
         
-            if(empty($this->getPost('username')) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$this->getPost('username'))) {
+            if(empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^*-]).{8,}$)',$this->getPost('username'))) {
                 $errors['username'] = "Invalid username !";
             } else {
                 
@@ -69,7 +69,7 @@ class registerController extends baseController
                 }
             }
         
-            if(empty($this->getPost('password')) || !preg_match('((?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)',$this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
+            if(empty($this->getPost('password')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^*-]).{8,}$)',$this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
                 $errors['password'] = "Invalid password !";
             }
         

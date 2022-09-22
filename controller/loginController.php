@@ -45,7 +45,7 @@ class loginController extends baseController
                     $danger['activation'] = 'Inactive account !';    
                 }
             } else { 
-                $errors['danger'] = 'Invalid username or password';  
+                $errors['danger'] = 'dudul';  
             }
         }
 

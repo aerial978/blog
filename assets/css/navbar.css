@@ -2,7 +2,6 @@
 
 .navbar {
     background-color: var(--primaryColor);
-    position: fixed;
     width: 100%;
     height: auto;
 }

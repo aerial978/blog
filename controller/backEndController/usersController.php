@@ -194,7 +194,7 @@ class usersController extends baseController
 
             $this->setSession('input', $_POST);
 
-            if (empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)', $this->getPost('username'))) {
+            if (empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^*-]).{8,}$)', $this->getPost('username'))) {
 
                 $errors['username'] = "Username is not valid !";
             } else {
@@ -256,14 +256,11 @@ class usersController extends baseController
                 $updateEmail = $userManager->updateEmail($email, $id);
             }
 
-
-
             $password = $this->getPost('password');
 
             if (!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)', $this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
                 $errors['password'] = "Invalid password !";
             }
-
 
             $this->setSession('errors', $errors);
 

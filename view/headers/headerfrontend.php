@@ -26,7 +26,7 @@
 
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="?page=home">Michel HATHIER</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
@@ -97,29 +97,19 @@
                                     <small>Posts</small>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="?page=register">
+                                    <small>Sign up</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="?page=login">
+                                    <small>Sign in</small>
+                                </a>
+                            </li>
                         </ul>
                     </div>
-                    <div class="user-footer">
-                        <ul class="navbar-nav">
-                            <?php if ($this->issetSession('auth')) : ?>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php if ($this->issetSession('auth', 'picture')) : ?>
-                                            <img src="assets/images/<?= $this->getSession('auth', 'picture'); ?>" alt="user-pic" width="70px;">
-                                        <?php else : ?>
-                                            <img src="assets/images/default.png" alt="user-pic" width="70px;">
-                                        <?php endif; ?>
-                                        <?= $this->getSession('auth', 'name'); ?>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="?page=dashboard">Dashboard</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="index.php?page=logout"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a>
-                                    </div>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-                    </div>
+                    
                 </div>
                 <div class="col-lg-4 d-flex align-items-center flex-column">
                     <img src="assets/images/avatar.png" alt="avatar" width="150px;">  

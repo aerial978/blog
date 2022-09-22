@@ -166,6 +166,8 @@ class postsController extends baseController
 
     public function addPost()
     {
+        $activeMenu = 'postmenu';
+        
         if ($_POST) {
 
             $errors = array();

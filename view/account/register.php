@@ -23,8 +23,8 @@
                     <input type="hidden" name="csrf_token" value="<?= $token; ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : ""; ?>"/>  
-                            <a style="font-size:9.5px">At least 8 characters, one lowercase letter, one uppercase letter, one number & one special</a>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : ""; ?>"/>  
+                            <a style="font-size:9.5px">At least one lowercase & one uppercase letter, one number & one special like #?!@$%^*-</a>
                         </div>
                         <div class="form-field col-md-12">
                             <label for="name" class="label">Name</label>
@@ -38,7 +38,7 @@
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Password</label>
                             <input type="password" class="form-control" name="password" id="password" placeholder="At least 8 characters"/>
-                            <a style="font-size:9.5px">At least 8 characters, one lowercase letter, one uppercase letter, one number & one special</a>       
+                            <a style="font-size:9.5px">At least one lowercase & one uppercase letter, one number & one special</a>       
                         </div>
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Confirm password</label>
