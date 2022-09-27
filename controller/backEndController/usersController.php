@@ -111,7 +111,7 @@ class usersController extends baseController
                 $picture = $this->getFiles('picture', 'name');
                 $picture_tmp_name = $this->getFiles('picture', 'tmp_name');
                 $picture_size = $this->getFiles('picture', 'size');
-                $upload_folder = "images/";
+                $upload_folder = "assets/images/";
 
                 if ($picture_size >= $maxsize) {
                     $errors['size'] = 'File too large !';
@@ -151,7 +151,7 @@ class usersController extends baseController
                     $role = 1;
                 }
 
-                move_uploaded_file($picture_tmp_name, $upload_folder);
+                move_uploaded_file($picture_tmp_name, $upload_folder.$picture);
                 $password = password_hash($this->getPost('password'), PASSWORD_BCRYPT);
 
                 $userManager = new UserManager();
@@ -222,7 +222,7 @@ class usersController extends baseController
                 $picture = $this->getFiles('picture', 'name');
                 $picture_tmp_name = $this->getFiles('picture', 'tmp_name');
                 $picture_size = $this->getFiles('picture', 'size');
-                $upload_folder = "images/";
+                $upload_folder = "assets/images/";
 
                 if ($picture_size >= $maxsize) {
                     $errors['size'] = '' . $picture . ' is too large ( 5 Mo max ) !';
@@ -241,7 +241,7 @@ class usersController extends baseController
                 }
 
                 if (empty($errors)) {
-                    move_uploaded_file($picture_tmp_name, $upload_folder);
+                    move_uploaded_file($picture_tmp_name, $upload_folder.$picture);
 
                     $userManager = new userManager();
                     $updatePicture = $userManager->updatePicture($picture, $id);

@@ -88,13 +88,14 @@ class commentsController extends baseController
             $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
             mail($to, $subject, $message, $headers);
-            
-           /* $commentManager = new commentManager();
-            $deleteComment = $commentManager->deleteComment($id);
+            /*
+            $commentManager = new commentManager();
+            $deleteComment = $commentManager->deleteComment($this->getGet('id'));
 
             if($deleteComment == NULL) {
                 $this->setSession('danger',"There was a problem with a data processing !");
-            } */
+            }*/
+
             header('Location: index.php?page=indexcomment');
         }
     }

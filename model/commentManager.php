@@ -117,7 +117,7 @@ class commentManager extends manager
     public function deleteComment($id)
     {
         $req = $this->bdd->prepare('DELETE FROM comments WHERE id = ?');
-        $deleteComment = $req->execute(array($id));
+        $deleteComment = $req->execute([$id]);
 
         return $deleteComment;
     }

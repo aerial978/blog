@@ -20,7 +20,7 @@ class UserManager extends Manager
 
     public function countUsers()
     {
-        $req = $this->bdd->query('SELECT * FROM users');
+        $req = $this->bdd->query('SELECT * FROM users WHERE role = 1');
         $countUsers = $req->rowCount();
 
         return $countUsers;

@@ -101,15 +101,15 @@ class postsController extends baseController
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
 
-                $maxsize = 1000000;
+                $maxsize = 5000000;
 
                 $image = $this->getFiles('image', 'name');
                 $image_tmp_name = $this->getFiles('image', 'tmp_name');
                 $image_size = $this->getFiles('image', 'size');
-                $upload_folder = "images/";
+                $upload_folder = "assets/images/";
 
                 if ($image_size >= $maxsize) {
-                    $errors['size'] = '' . $image . ' is too large ( 1 Mo max ) !';
+                    $errors['size'] = '' . $image . ' is too large (5 Mo max) !';
                 }
 
                 $image_ext = pathinfo($image, PATHINFO_EXTENSION);
@@ -126,7 +126,7 @@ class postsController extends baseController
                 }
 
                 if (empty($errors)) {
-                    move_uploaded_file($image_tmp_name, $upload_folder);
+                    move_uploaded_file($image_tmp_name, $upload_folder.$image);
 
                     $postManager = new postManager();
                     $imageUpdate = $postManager->imagePost($image, $this->getGet('id'));
@@ -196,15 +196,15 @@ class postsController extends baseController
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
 
-                $maxsize = 5000000;
-
                 $image = $this->getFiles('image', 'name');
                 $image_tmp_name = $this->getFiles('image', 'tmp_name');
                 $image_size = $this->getFiles('image', 'size');
-                $upload_folder = "images/";
+                $upload_folder = "assets/images/";
+
+                $maxsize = 5000000;
 
                 if ($image_size >= $maxsize) {
-                    $errors['size'] = 'File too large !';
+                    $errors['size'] = 'File too large (5 Mo max) !';
                 }
 
                 $image_ext = pathinfo($image, PATHINFO_EXTENSION);
@@ -216,7 +216,7 @@ class postsController extends baseController
                 }
             }
 
-            if ($this->issetPost('tag') &&  $this->getPost('tag') == 0) {
+            if ($this->issetPost('tagname') &&  $this->getPost('tagname') == 0) {
                 $errors['tag'] = 'Select a tag !';
             }
 
@@ -226,7 +226,7 @@ class postsController extends baseController
                 $title = $this->getPost('title');
                 $headline = $this->getPost('headline');
                 $content = $this->getPost('content');
-                $tag = $this->getPost('tag');
+                $tag = $this->getPost('tagname');
 
                 if ($this->issetPost('status_post') && $this->getPost('status_post') == 2) {
                     $status_post = $this->getPost('status_post');
@@ -234,7 +234,7 @@ class postsController extends baseController
                     $status_post = 1;
                 }
 
-                move_uploaded_file($image_tmp_name, $upload_folder);
+                move_uploaded_file($image_tmp_name, $upload_folder.$image);
 
                 $postManager = new postManager();
                 $insertPost = $postManager->insertPost($title, $headline, $content, $image, $tag, $status_post);
@@ -254,27 +254,32 @@ class postsController extends baseController
 
     public function deletepost()
     {
+        if ($this->issetGet('id') && !empty($this->getGet('id'))) {
 
-   /*$postManager = new postManager();
-    $editpost = $postManager->editPost($this->getGet('id'));
+            $postManager = new postManager();
+            $singlePost = $postManager->singlePost($this->getGet('id'));
 
-    $to         = $editpost['users.username'];
-    $subject    = 'Your post on a blog post';
-    $message    = "We are sorry that your post was not accepted.</a>";
-    $headers    = 'MIME Version 1.0\r\n';
-    $headers    = 'From: Your name <info@address.com>' . "\r\n";
-    $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+            if($singlePost['id'] != $this->getSession('auth')['id']) {
 
-    mail($to, $subject, $message, $headers);*/
-    /*
-                $postManager = new postManager();
-                $deletePost = $postManager->deletePost($this->getGet('id'));
+                $to         = $singlePost['email'];
+                $subject    = 'Your post on a blog';
+                $message    = 'We are sorry that your post was not accepted.';
+                $headers    = 'MIME Version 1.0\r\n';
+                $headers    = 'From: Your name <info@address.com>' . "\r\n";
+                $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
-                if ($deletePost == null) {
-                    $this->setSession('process', 'There was a problem with a data processing !');
-                }*/
+                mail($to, $subject, $message, $headers);
+                
+            }
 
-    header('Location: index.php?page=indexpost');
+            $postManager = new postManager();
+            $deletePost = $postManager->deletePost($this->getGet('id'));
 
+            if ($deletePost == null) {
+                $this->setSession('process', 'There was a problem with a data processing !');
+            }
+
+            header('Location: index.php?page=indexpost');
+        }
     }
 }

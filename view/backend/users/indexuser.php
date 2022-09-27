@@ -36,11 +36,11 @@
                             <tr data-id="<?= $indexUser['id']; ?>">
                                 <th scope="row"><?= $indexUser['id']; ?></th>
                                 <td class="user-img">
-                                <?php if(!empty($indexUser['picture']) && $indexUser['picture'] != NULL): ?>
-                                    <img src="assets/images/<?= $indexUser['picture']; ?>" alt="user-pic"></td>
-                                <?php else: ?>
-                                    <img src="assets/images/default.png" alt="user-pic">
-                                <?php endif; ?>
+                                    <?php if(!empty($indexUser['picture']) && $indexUser['picture'] != NULL): ?>
+                                        <img src="<?= "assets/images/".$indexUser['picture']; ?>" alt="user-pic" width="100px;">
+                                    <?php else: ?>
+                                        <img src="assets/images/default.png" alt="user-pic">
+                                    <?php endif; ?>
                                 </td>
                                 <td class="table-bold"><?= $indexUser['name']; ?></td>           
                                 <td><?= $indexUser['username']; ?></td>
@@ -71,9 +71,9 @@
                                 </div>    
                                 <div class="card-body h-75">
                                     <?php if(!empty($indexUser['picture']) && $indexUser['picture'] != NULL): ?>
-                                        <img src="assets/images/<?= $indexUser['picture']; ?>" alt="user-pic"></td>
+                                        <img src="assets/images/<?= $indexUser['picture']; ?>" alt="user-pic"  width="100px;"></td>
                                     <?php else: ?>
-                                        <img src="assets/images/default.png" alt="user-pic">
+                                        <img src="assets/images/default.png" alt="user-pic" width="100px;">
                                     <?php endif; ?>
                                 </div>
                                 <div class="card-userdetail text-dark">

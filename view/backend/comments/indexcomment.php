@@ -69,7 +69,6 @@
                                 </div>
                                 <div class="card-body text-dark">
                                     <h5 class="post-title"><?= $indexComment['title'] ?></h5>
-                                    <p class="comment-text"><span class="far fa-comment">&thinsp;</span><?= $indexComment['comment'] ?></p>
                                 </div>
                                 <div class="card-footer card-com border-success d-flex justify-content-around">
                                     <div class="status status-red d-flex align-items-center">
