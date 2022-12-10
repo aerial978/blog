@@ -36,7 +36,7 @@ class UserManager extends Manager
 
     public function indexUser2()
     {
-        $req = $this->bdd->query('SELECT * FROM users WHERE role = 1 ORDER BY id DESC');
+        $req = $this->bdd->query('SELECT * FROM users ORDER BY id DESC');
         $indexUsers = $req->fetchAll();
 
         return $indexUsers;
@@ -50,7 +50,6 @@ class UserManager extends Manager
 
         return $editUser;
     }
-
 
     public function updateUsername($username,$id)
     {
@@ -106,6 +105,17 @@ class UserManager extends Manager
         ]);
 
         return $updatePasswordRole;
+    }
+
+    public function updateRole($role,$id)
+    {
+        $req = $this->bdd->prepare("UPDATE users SET role = :role, date_signup = NOW() WHERE id = :id");
+        $updateRole = $req->execute([
+            'role' => $role,
+            'id' => $id
+        ]);
+
+        return $updateRole;
     }
 
     public function getUserId()

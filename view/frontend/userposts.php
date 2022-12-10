@@ -4,19 +4,27 @@
 <!-- POSTS LIST BY USER -->
 <section class="user-section">
     <div class="container">
-        <div class="title_tag mb-4 h4"><?= $getUsername['name']; ?></div> 
+        <div class="title_tag mb-4 h4">
+            <?php if(!empty($userPosts)): ?>
+                <?= $getUsername['name']; ?>
+            <?php endif; ?>
+        </div> 
         <div class="row">
             <div class="col-xl-9">
-                <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
                 <?php if(empty($userPosts)): ?>
                     <div class="alert alert-danger show" role="alert">
                         <h4 class="text-center">Empty list !</h4>  
                     </div>    
-                    <?php  else: ?> 
+                <?php  else: ?> 
+                    <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
                         <?php foreach($userPosts as $userPost): ?>
                             <div class="col">
                                 <div class="card">
-                                    <img src="<?= "assets/images/".$userPost['image']; ?>" alt="img post" class="card-img-top">
+                                    <?php if (!empty($userPost['image']) && $userPost['image'] != NULL) : ?>
+                                        <img src="<?= "assets/images/".$userPost['image']; ?>" alt="img-post" class="card-img-top">
+                                    <?php else :  ?>
+                                        <img src="assets/images/land-default.png" alt="img-post">
+                                    <?php endif; ?>
                                     <div class="card-body">    
                                         <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
                                             <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>&nbsp;<?= $userPost['name']; ?></span>
@@ -36,8 +44,8 @@
                                 </div>
                             </div> 
                         <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>                
+                    </div>
+                <?php endif; ?>                   
             </div>                  
             <div class="col-xl-3">
                 <?php include ('view/partials/asides.php'); ?>                   

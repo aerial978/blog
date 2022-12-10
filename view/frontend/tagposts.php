@@ -7,16 +7,20 @@
         <div class="title_tag mb-4 h4"><?= $tag['tagname'] ?></div> 
         <div class="row">
             <div class="col-xl-9">
-                <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
-                    <?php if(empty($tagPosts)): ?>
-                        <div class="alert alert-danger show" role="alert">
+                <?php if(empty($tagPosts)): ?>
+                    <div class="alert alert-danger show" role="alert">
                         <h4 class="text-center">Empty list !</h4>  
                     </div>    
-                    <?php  else : ?>
+                <?php  else : ?>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 pb-4">
                         <?php foreach($tagPosts as $tagPost): ?>
                             <div class="col">
                                 <div class="card">
-                                    <img src="<?= "assets/images/".$tagPost['image']; ?>" alt="img post" class="card-img-top">
+                                    <?php if (!empty($tagPost['image']) && $tagPost['image'] != NULL) : ?>
+                                        <img src="<?= "assets/images/".$tagPost['image']; ?>" alt="img-post" class="card-img-top">
+                                    <?php else :  ?>
+                                        <img src="assets/images/land-default.png" alt="img-post">
+                                    <?php endif; ?>
                                     <div class="card-body">    
                                         <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
                                             <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>
@@ -37,9 +41,8 @@
                                 </div>
                             </div> 
                         <?php endforeach; ?>
-                    <?php endif; ?>
-
-                </div>                
+                    </div>
+                <?php endif; ?>                
             </div>                  
             <div class="col-xl-3">
                 <?php include ('view/partials/asides.php'); ?>                   

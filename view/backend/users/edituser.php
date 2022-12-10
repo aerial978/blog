@@ -24,7 +24,8 @@
                         <fieldset class="form-group form-user row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" class="form-control" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?> value="<?= $editUser['username']; ?>">
+                                <input type="text" name="username" id="username" class="form-control" placeholder="At least 8 characters, one lowercase letter, one uppercase letter, one number & one special character like #?!@$%^*-" 
+                                <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?> value="<?= $editUser['username']; ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="name">Name</label>
@@ -33,32 +34,39 @@
                             <div class="form-field col-lg-12 d-flex flex-column mb-3">
                                 <label for="formFile" class="form-label">Image</label>
                                 <?php if (!empty($editUser['picture']) && $editUser['picture'] != NULL) : ?>
-                                    <img src="assets/images/<?= $this->issetSession('picture','name') ? $this->getSession('picture','name') : $editUser['picture']; ?>" alt="" width="115px;">
-                                    <?= $this->issetSession('picture','name') ? basename($this->getSession('picture','name')) : basename($editUser['picture']); ?>
+                                    <img src="assets/images/<?= $this->issetSession('input','picture') ? $this->getSession('input','picture') : $editUser['picture']; ?>" 
+                                    alt="picture-user" width="100px;">
+                                    <?= basename($editUser['picture']); ?>
                                 <?php else :  ?>
-                                    <img src="assets/images/default.png" alt="pic-user" width="115px;">
+                                    <img src="assets/images/default.png" alt="pic-user" width="100px;">
                                 <?php endif; ?>
                             </div>
                             <div class="form-field col-lg-12">
-                                <input type="file" name="picture" id="image" class="form-control" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?>>
+                                <input type="file" name="picture" id="image" class="form-control" 
+                                <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> disabled <?php endif; ?>>
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?> value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : $editUser['email'] ?>">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" 
+                                <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?> 
+                                value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : $editUser['email'] ?>">
                             </div>
-                            <?php if($this->getSession('auth','role') == 1) : ?> 
                             <div class="form-field col-lg-12">
                                 <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                <input type="password" class="form-control" name="password" id="password">
+                                <input type="password" class="form-control" name="password" id="password" 
+                                placeholder="At least 8 characters, one lowercase letter, one uppercase letter, one number & one special character like #?!@$%^*-" 
+                                <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?>>
+                                
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="password" class="col-sm-2 col-form-label">Confirm password</label>
-                                <input type="password" class="form-control" name="password_confirm" id="password_confirm">
+                                <input type="password" class="form-control" name="password_confirm" id="password_confirm" 
+                                <?php if ($this->getSession('auth','id') != $editUser['id']) : ?> readonly <?php endif; ?>>
                             </div>
-                            <?php endif; ?>
                             <?php if ($this->issetSession('auth','role') && $this->getSession('auth','role') == 2) : ?>
                                 <div class="form-check">
-                                    <input type="checkbox" name="role" class="form-check-input mt-3" value="2" <?php if (isset($editUser['role']) && $editUser['role'] == 2) { "checked='checked'";} ?> id="checkbox">                                                                                
+                                    <input type="checkbox" name="role" class="form-check-input mt-3" value="2" 
+                                    <?php if (isset($editUser['role']) && $editUser['role'] == 2) { ?><?= "checked='checked'"; } ?> id="checkbox">                                                                                
                                     <label class="form-check-label" for="checkbox">Super admin</label>
                                 </div>
                             <?php endif; ?>

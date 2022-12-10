@@ -48,7 +48,6 @@ class tagsController extends baseController
         $activeMenu = 'tagmenu';
 
         if($_POST) {
-
             $errors = array();
             
             if($this->issetPost()) {
@@ -58,7 +57,6 @@ class tagsController extends baseController
             if($this->issePost('submit') && empty($this->getPost('tagname'))) {
                 $errors['name'] = 'Enter a name ! ';
             } else {
-
                 $tagManager = new TagManager();
                 $getTagName = $tagManager->getTagName();
 
@@ -70,7 +68,6 @@ class tagsController extends baseController
             if($this->issePost('submit') && empty($this->getPost('description')) && $this->getPost('description') == "") {
                 $errors['description'] = 'Enter a description ! ';
             } else {
-
                 $tagManager = new TagManager();
                 $getTagDescription= $tagManager->getTagDescription();
 
@@ -81,8 +78,7 @@ class tagsController extends baseController
             
             $this->setSession('errors',$errors);
             
-            if(empty($errors)){
-
+            if(empty($errors)) {
                 $tagManager = new TagManager();
                 $insertTag = $tagManager->insertTag();
             
@@ -107,7 +103,6 @@ class tagsController extends baseController
         $id = $this->getGet('id');
 
         if($this->issetGet('id')) {
-
             $tagManager = new TagManager();
             $tagId = $tagManager->tagId($id);
 
@@ -116,10 +111,9 @@ class tagsController extends baseController
         }
             
         if ($this->issetpost()) {
-
             $this->setSession('input',$_POST);
 
-            if($this->issePost('submit') && empty($this->getPost('name')) && $this->getPost('tagname') == '') {        
+            if($this->issePost('submit') && empty($this->getPost('tagname')) && $this->getPost('tagname') == '') {        
                 $errors['name'] = "Enter a name !";    
             }
 
@@ -147,13 +141,14 @@ class tagsController extends baseController
 
     public function deletetag()
     {  
-        $tagManager = new tagManager();
-        $deleteTag = $tagManager->deleteTag($this->getGet('id'));
-        
-        if($deleteTag == NULL) {
-            $this->setSession('danger','There was a problem with a data processing !'); 
+        if ($this->issetGet('id') && !empty($this->getGet('id'))) {  
+            $tagManager = new tagManager();
+            $deleteTag = $tagManager->deleteTag($this->getGet('id'));
+
+            if ($deleteTag == null) {
+                $this->setSession('danger', 'There was a problem with a data processing !');
+            }
+            header('Location: index.php?page=indextag');
         }
-    
-        header('Location: index.php?page=indextag');
     }
 }

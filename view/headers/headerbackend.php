@@ -33,14 +33,39 @@
             </div>
             <div class="sidebar-menu">   
                 <ul>
-                    <li><a href="?page=dashboard" class="nav-link <?php if($activeMenu == 'dashboardmenu'): ?> active <?php endif; ?>"><span class="fas fa-tachometer-alt"></span><span>Dashboard</span></a></li>
-                    <li><a href="?page=indexpost" class="nav-link <?php if($activeMenu == 'postmenu'): ?> active <?php endif; ?>"><span class="far fa-file-alt"></span><span>Posts</span></a></li>
+                    <li>
+                        <a href="?page=dashboard" class="nav-link <?php if($activeMenu == 'dashboardmenu'): ?> active <?php endif; ?>">
+                            <span class="fas fa-tachometer-alt"></span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?page=indexpost" class="nav-link <?php if($activeMenu == 'postmenu'): ?> active <?php endif; ?>">
+                            <span class="far fa-file-alt"></span>
+                            <span>Posts</span>
+                        </a>
+                    </li>
                     <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2): ?>
-                        <li><a href="?page=indexcomment" class="nav-link <?php if($activeMenu == 'commentmenu'): ?> active <?php endif; ?>"><span class="fas fa-comments"></span><span>Comments</span></a></li>
+                        <li>
+                            <a href="?page=indexcomment" class="nav-link <?php if($activeMenu == 'commentmenu'): ?> active <?php endif; ?>">
+                                <span class="fas fa-comments"></span>
+                                <span>Comments</span>
+                            </a>
+                        </li>
                     <?php endif; ?>
-                    <li><a href="?page=indexuser" class="nav-link <?php if($activeMenu == 'usermenu'): ?> active <?php endif; ?>"><span class="fas fa-user"></span><span>Users</span></a></li>
+                    <li>
+                        <a href="?page=indexuser" class="nav-link <?php if($activeMenu == 'usermenu'): ?> active <?php endif; ?>">
+                            <span class="fas fa-user"></span>
+                            <span>Users</span>
+                        </a>
+                    </li>
                     <?php if($this->issetSession('auth','role') && $this->getSession('auth','role') == 2): ?>
-                        <li><a href="?page=indextag" class="nav-link <?php if($activeMenu == 'tagmenu'): ?> active <?php endif; ?>"><span class="fas fa-tag"></span><span>Tags</span></a></li>  
+                        <li>
+                            <a href="?page=indextag" class="nav-link <?php if($activeMenu == 'tagmenu'): ?> active <?php endif; ?>">
+                                <span class="fas fa-tag"></span>
+                                <span>Tags</span>
+                            </a>
+                        </li>  
                     <?php endif; ?>
                 </ul>
             </div>
@@ -72,21 +97,15 @@
                     </li>
                 </ul>
             <?php endif; ?>
-
         </header>
     
     <?= $bodyAdmin; ?>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
-    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>    
     <script src="assets/js/main.js"></script>
-
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>

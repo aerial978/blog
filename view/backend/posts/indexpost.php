@@ -31,7 +31,7 @@
                         </thead>
                         <tbody class="table-body">
                         <?php foreach ($indexPosts as $indexPost): ?>
-                            <tr data-id="<?php $indexPost['postId']; ?>">
+                            <tr data-id="<?= $indexPost['postId']; ?>">
                                 <th scope="row"><?= $indexPost['postId']; ?></th>
                                 <td><?= $indexPost['name']; ?></td>
                                 <td class="date_create"><?= $indexPost['date_create'] ?></td>
@@ -40,7 +40,7 @@
                                     <?php if(!empty($indexPost['image']) && $indexPost['image'] != NULL): ?>
                                         <img src="<?= "assets/images/".$indexPost['image']; ?>" alt="post-pic" width="100px;"></td>
                                     <?php else: ?>
-                                        <img src="assets/images/land-default.png" alt="img-post">
+                                        <img src="assets/images/land-default.png" alt="img-post" width="100px;">
                                     <?php endif; ?>
                                 </td>
                                 <td class="comments"><?= $indexPost['total']; ?></td>
@@ -53,8 +53,10 @@
                                 </td>
                                 <td>
                                     <div class="action-button">
-                                        <a href="index.php?page=editpost&id=<?= $indexPost['postId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                        <a data-id="<?= $indexPost['postId']; ?>" href="index.php?page=deletepost&id=<?= $indexPost['postId']; ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>
+                                        <a href="?page=editpost&id=<?= $indexPost['postId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
+                                        <a data-id="<?= $indexPost['postId']; ?>" href="?page=deletepost&id=<?= $indexPost['postId']; ?>" class="delete-btn btn btn-danger">
+                                            <i class="fas fa-times"></i><span> delete</span>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>      
@@ -62,7 +64,7 @@
                         </tbody>
                     </table>
                 <?php endif; ?>
-            <!-- CARDS POSTS -->
+            <!-- RESPONSIVE POSTS -->
             <div class="cards cards-post">
                 <div class="container">
                     <div class="row">
@@ -81,7 +83,11 @@
                                     <div class="card-comment"><span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $indexPost['total']; ?></span></div>
                                 </div>
                                 <div class="card-body image">
-                                    <img src="<?= "assets/images/".$indexPost['image']; ?>" alt="img-post">
+                                    <?php if(!empty($indexPost['image']) && $indexPost['image'] != NULL): ?>
+                                        <img src="<?= "assets/images/".$indexPost['image']; ?>" alt="img-post">
+                                    <?php else: ?>
+                                        <img src="assets/images/land-default.png" alt="img-post">
+                                    <?php endif; ?>
                                 </div>    
                                 <div class="card-body h-50 text-dark">
                                     <h5 class="card-title h-50"><?= $indexPost['title']; ?></h5>
@@ -89,7 +95,9 @@
                                 <div class="card-footer card-post border-success">    
                                     <div class="action-button">
                                         <a href="?page=editpost&id=<?= $indexPost['postId']; ?>"class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <a data-id="<?= $indexPost['postId'] ?>" href="?page=deletepost&id=<?= $indexPost['postId'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i> <span> delete</span></a>    
+                                        <a data-id="<?= $indexPost['postId']; ?>" href="?page=deletepost&id=<?= $indexPost['postId']; ?>" class="delete-btn btn btn-danger">
+                                            <i class="fas fa-times"></i> <span> delete</span>
+                                        </a>    
                                     </div>
                                 </div>   
                             </div>
@@ -121,7 +129,7 @@
             }).then((result) => {   
                 if (result.isConfirmed) {
                     let sourceUrl = window.location.href.split('/');
-                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + href;
+                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3].replace('?page=indexpost', '') + href;
                     $.ajax({
                         url: newUrl,
                         type: 'GET',

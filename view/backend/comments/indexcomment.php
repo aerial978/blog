@@ -40,7 +40,9 @@
                             <td>
                                 <div class="action-button">
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="btn delete-btn btn-danger">
+                                        <i class="fas fa-times"></i><span> delete</span>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
@@ -48,7 +50,7 @@
                     </tbody>
                 </table>
             <?php endif; ?>
-            <!-- CARDS COMMENTS -->   
+            <!-- RESPONSIVE COMMENTS -->   
             <div class="cards cards-comment">
                 <div class="container">
                     <div class="row">
@@ -69,7 +71,6 @@
                                 </div>
                                 <div class="card-body text-dark">
                                     <h5 class="post-title"><?= $indexComment['title'] ?></h5>
-                                    <p class="comment-text"><span class="far fa-comment">&thinsp;</span><?= $indexComment['comment'] ?></p>
                                 </div>
                                 <div class="card-footer card-com border-success d-flex justify-content-around">
                                     <div class="status status-red d-flex align-items-center">
@@ -80,7 +81,7 @@
                                         <?php endif; ?>
                                     </div>
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId'] ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?= $indexComment['commentId']; ?>" href="index.php?page=deletecomment&id=<?= $indexComment['commentId'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
                                 </div>
                             </div>        
                         </div>          
@@ -113,7 +114,7 @@
             }).then((result) => {   
                 if (result.isConfirmed) {
                     let sourceUrl = window.location.href.split('/');
-                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + href;
+                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3].replace('?page=indexcomment', '') + href;
                     $.ajax({
                         url: newUrl,
                         type: 'GET',

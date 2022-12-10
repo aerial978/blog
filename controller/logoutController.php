@@ -11,8 +11,12 @@ class logoutController extends basecontroller
     
     public function logout2()
     {
-        $this->setSession('logout2', 'See you soon !');
-        $this->unsetSession('auth');
-        header('Location: index.php?page=home');
+        if($this->getSession('auth')['role'] == 1) {
+            $this->setSession('logout2', 'See you soon !');
+            $this->unsetSession('auth');
+            header('Location: index.php?page=home');
+        } else {
+            header('Location: index.php?page=indexuser');
+        }
     }
 }

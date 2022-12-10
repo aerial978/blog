@@ -13,7 +13,7 @@ class commentManager extends manager
     {
         $req = $this->bdd->query('SELECT * FROM comments 
         LEFT JOIN posts ON comments.post_id = posts.id
-        WHERE status_comm = 2 ORDER BY comments.id DESC LIMIT 5');
+        WHERE status_comm = 2 AND status_post = 2 ORDER BY comments.id DESC LIMIT 5');
         $comments = $req->fetchAll();
 
         return $comments;
@@ -104,10 +104,20 @@ class commentManager extends manager
         return $statusComm;
     }
 
+    public function getComment($id)
+    {
+        $req = $this->bdd->prepare('SELECT * FROM comments WHERE id = ?');
+        $req->execute([$id]);
+
+        $comment = $req->fetch();
+
+        return $comment;
+    }
+
     public function deleteComment($id)
     {
         $req = $this->bdd->prepare('DELETE FROM comments WHERE id = ?');
-        $deleteComment = $req->execute(array($id));
+        $deleteComment = $req->execute([$id]);
 
         return $deleteComment;
     }

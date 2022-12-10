@@ -5,7 +5,7 @@
     <section>
         <div class="content">
             <div class="content-header">
-                    <h4 class="title title-tag">Create Tag</h4>
+                <h4 class="title title-tag">Create Tag</h4>
             </div>
             <div class="create">
                 <div class="container">
@@ -24,11 +24,13 @@
                         <fieldset class="form-group form-tag row g-0">
                             <div class="form-field col-lg-12">
                                 <label for="tagname">Name</label>
-                                <input type="text" name="tagname" id="tagname" class="form-control" value="<?= $this->issetSession('input','tagname') ? $this->getSession('input','tagname') : ""; ?>">
+                                <input type="text" name="tagname" id="tagname" class="form-control" 
+                                value="<?= $this->issetSession('input','tagname') ? $this->getSession('input','tagname') : ""; ?>">
                             </div>
                             <div class="form-field col-lg-12">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea name="description" id="content" class="form-control"><?= $this->issetSession('input','description') ? $this->getSession('input','description') : ""; ?></textarea>
+                                <textarea name="description" id="content" class="form-control">
+                                    <?= $this->issetSession('input','description') ? $this->getSession('input','description') : ""; ?></textarea>
                             </div>
                             <div class="btn-tag d-flex justify-content-between">
                             <button type="submit" name="submit" class="submit-tag submit-btn">Add tag</button>
