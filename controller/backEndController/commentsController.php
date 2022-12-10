@@ -48,26 +48,24 @@ class commentsController extends baseController
         $activeMenu = 'commentmenu';
 
         if($this->issetGet('id')) {
-
             $id = $this->getGet('id');
             
             $commentManager = new commentManager();
             $editComment = $commentManager->editComment($id); 
             }
             
-            if ($this->issetpost()) {
+            if ($this->issetpost()) {  
+                if($this->issetPost('status_comm') && $this->getPost('status_comm') == 2) {
+                    $status_comm = $this->getPost('status_comm');
+                } else {
+                    $status_comm = 1; 
+                }
             
-            if($this->issetPost('status_comm') && $this->getPost('status_comm') == 2) {
-                $status_comm = $this->getPost('status_comm');
-            } else {
-                $status_comm = 1; 
-            }
-            
-            $commentManager = new commentManager();
-            $statusComment = $commentManager->statusComment($status_comm,$id);
-            
-            $this->setSession('update','Update successfully !');
-            header("Location: index.php?page=indexcomment");
+                $commentManager = new commentManager();
+                $statusComment = $commentManager->statusComment($status_comm,$id);
+                
+                $this->setSession('update','Update successfully !');
+                header("Location: index.php?page=indexcomment");
             }
         
         require ('view/backend/comments/editcomment.php');   
@@ -76,7 +74,6 @@ class commentsController extends baseController
     public function deletecomment()
     {
         if($this->issetGet('id') && !empty($this->getGet('id'))) {
-
             $commentManager = new commentManager();
             $getcomment = $commentManager->getComment($this->getGet('id'));
 
@@ -88,13 +85,13 @@ class commentsController extends baseController
             $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
             mail($to, $subject, $message, $headers);
-            /*
+
             $commentManager = new commentManager();
             $deleteComment = $commentManager->deleteComment($this->getGet('id'));
 
             if($deleteComment == NULL) {
                 $this->setSession('danger',"There was a problem with a data processing !");
-            }*/
+            }
 
             header('Location: index.php?page=indexcomment');
         }

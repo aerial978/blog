@@ -14,7 +14,6 @@ class registerController extends baseController
         $activeMenu = 'signupmenu';
 
         if ($this->issetPost()) {
-
             $errors = array();
 
             if ($this->issetPost('csrf_token') && $this->issetSession('csrf_token')) {
@@ -36,7 +35,6 @@ class registerController extends baseController
             if (empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^*-]).{8,}$)', $this->getPost('username'))) {
                 $errors['username'] = "Invalid username !";
             } else {
-
                 $formManager = new formManager();
                 $registerUsername = $formManager->registerUsername($this->getPost('username'));
 
@@ -48,7 +46,6 @@ class registerController extends baseController
             if (empty($this->getPost('name')) || !preg_match('(^[A-Z][a-z]*$)', $this->getPost('name'))) {
                 $errors['name'] = "Invalid name !";
             } else {
-
                 $formManager = new formManager();
                 $registerName = $formManager->registerName($this->getPost('name'));
 
@@ -60,7 +57,6 @@ class registerController extends baseController
             if (empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = "Invalid email !";
             } else {
-
                 $formManager = new formManager();
                 $user = $formManager->registerEmail($this->getPost('email'));
 
@@ -98,14 +94,11 @@ class registerController extends baseController
             }
         }
 
-        // Generation du token et session
-
         $token = bin2hex(random_bytes(32));
         $this->setSession('csrf_token', $token);
         $this->setSession('csrf_token_time', time() + 3600);
 
         require('view/account/register.php');
-        //$this->unsetSession('danger');
         $this->unsetSession('input');
     }
 
@@ -119,7 +112,6 @@ class registerController extends baseController
             $tokenUser = $formManager->tokenUser($this->getGet('id'), $this->getGet('token'));
 
             if ($tokenUser && $tokenUser['token_confirm'] == $token) {
-
                 $formManager = new formManager();
                 $tokenConfirm = $formManager->tokenConfirm($this->getGet('id'));
 

@@ -49,7 +49,9 @@
                                 <td>
                                     <div class="action-button">
                                         <a href="?page=edituser&id=<?= $indexUser['id']; ?>" class="edit-post action-btn btn btn-primary"><i class="far fa-edit"></i> edit</a>
-                                        <a data-id="<?= $indexUser['id']; ?>" href="?page=deleteuser&id=<?= $indexUser['id'] ?>" class="delete-btn action-btn btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                        <a data-id="<?= $indexUser['id']; ?>" href="?page=deleteuser&id=<?= $indexUser['id'] ?>" class="delete-btn action-btn btn btn-danger">
+                                            <i class="fas fa-times"></i><span> delete</span>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -58,12 +60,12 @@
                 </table>
             </div>
         <?php endif; ?>
-        <!-- CARD USERS -->
+        <!-- RESPONSIVE USERS -->
         <div class="cards cards-user">
             <div class="container">
                 <div class="row">
                     <?php foreach($indexUsers as $indexUser): ?> 
-                        <div data-id="<?= $indexUser['id']; ?>" class="col-lg-4 col-sm-4 col-6">
+                        <div data-id="<?= $indexUser['id']; ?>" class="col-lg-4 col-sm-6">
                             <div class="card border-dark mb-3">
                                 <div class="card-header card-user"> 
                                     <div class="id"><span># <?= $indexUser['id']; ?></span></div>
@@ -82,8 +84,11 @@
                                 </div>
                                 <div class="card-footer card-user border-success">
                                     <div class="action-button">
-                                    <a href="?page=edituser&id=<?= $indexUser['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                    <a data-id="<?= $indexUser['id']; ?>" href="index.php?page=deleteuser&id=<?= $indexUser['id'] ?>" class="delete-btn btn-danger p-2" style="text-decoration:none; border-radius:3px"><i class="fas fa-times"></i><span> delete</span></a>
+                                        <a href="?page=edituser&id=<?= $indexUser['id'] ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                        <a data-id="<?= $indexUser['id']; ?>" href="index.php?page=deleteuser&id=<?= $indexUser['id'] ?>" 
+                                        class="delete-btn btn-danger p-2" style="text-decoration:none; border-radius:3px"><i class="fas fa-times">
+                                            </i><span> delete</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +128,6 @@
                         contentType: false,
                         processData: false,
                         success:function(data) {
-                            console.log(data);
                             let array = JSON.parse(data);
                             if(array.code == 200 && array.role == 1) {
                                 Swal.fire({
@@ -142,7 +146,7 @@
                                             if(result.isConfirmed) {
                                                 $(`tr[data-id= ${id} ]`).remove();
                                                 $("div[data-id=" + id +"]").remove();  
-                                                window.location.href = sourceUrl[0] + '//' + sourceUrl[2] + '/' + 'index.php?page=logout2';
+                                                window.location.href = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + 'index.php?page=logout2';
                                             }       
                                         })
                                     }

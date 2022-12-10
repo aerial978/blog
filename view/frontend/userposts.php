@@ -20,7 +20,11 @@
                         <?php foreach($userPosts as $userPost): ?>
                             <div class="col">
                                 <div class="card">
-                                    <img src="<?= "assets/images/".$userPost['image']; ?>" alt="img post" class="card-img-top">
+                                    <?php if (!empty($userPost['image']) && $userPost['image'] != NULL) : ?>
+                                        <img src="<?= "assets/images/".$userPost['image']; ?>" alt="img-post" class="card-img-top">
+                                    <?php else :  ?>
+                                        <img src="assets/images/land-default.png" alt="img-post">
+                                    <?php endif; ?>
                                     <div class="card-body">    
                                         <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
                                             <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>&nbsp;<?= $userPost['name']; ?></span>

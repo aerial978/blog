@@ -15,11 +15,9 @@ class postsController extends baseController
         $activeMenu = 'postmenu';
 
         if ($this->issetSession('auth', 'role') && $this->getSession('auth', 'role') == 1) {
-
             $postManager = new postManager();
             $indexPosts = $postManager->indexPost1();
         } else {
-
             $postManager = new postManager();
             $indexPosts = $postManager->indexPost2();
         }
@@ -58,7 +56,7 @@ class postsController extends baseController
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
-<?php
+        <?php
             $this->unsetSession('process');
         }
     }
@@ -70,19 +68,16 @@ class postsController extends baseController
         $errors = array();
 
         if ($this->issetGet('id')) {
-
             $postManager = new postManager();
             $editPost = $postManager->editPost($this->getGet('id'));
 
             $tagManager = new tagManager();
             $selectTag = $tagManager->selectTag();
         } else {
-
             $errors['id'] = 'You need a post id to change it !';
         }
 
         if ($this->issetPost()) {
-
             if ($this->issePost('submit') && empty($this->getPost('title')) && $this->getPost('title') == '') {
                 $errors['title'] = "Enter a title !";
             }
@@ -96,12 +91,11 @@ class postsController extends baseController
             }
 
             if (!empty($this->getFiles('image', 'name'))) {
-
                 if ($this->getFiles('image', 'error') > 0) {
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
 
-                $maxsize = 5000000;
+                $maxsize = 10000000;
 
                 $image = $this->getFiles('image', 'name');
                 $image_tmp_name = $this->getFiles('image', 'tmp_name');
@@ -122,7 +116,6 @@ class postsController extends baseController
 
                 if (!isset($errors['size']) && !isset($errors['extension'])) {
                     $this->setSession('picture', $this->getFiles('image'));
-                    /*$_SESSION['picture'] = $_FILES['image'];*/
                 }
 
                 if (empty($errors)) {
@@ -169,7 +162,6 @@ class postsController extends baseController
         $activeMenu = 'postmenu';
         
         if ($_POST) {
-
             $errors = array();
 
             if ($this->issetPost()) {
@@ -255,12 +247,10 @@ class postsController extends baseController
     public function deletepost()
     {
         if ($this->issetGet('id') && !empty($this->getGet('id'))) {
-
             $postManager = new postManager();
             $singlePost = $postManager->singlePost($this->getGet('id'));
 
             if($singlePost['id'] != $this->getSession('auth')['id']) {
-
                 $to         = $singlePost['email'];
                 $subject    = 'Your post on a blog';
                 $message    = 'We are sorry that your post was not accepted.';
@@ -268,8 +258,7 @@ class postsController extends baseController
                 $headers    = 'From: Your name <info@address.com>' . "\r\n";
                 $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
-                mail($to, $subject, $message, $headers);
-                
+                mail($to, $subject, $message, $headers);    
             }
 
             $postManager = new postManager();
@@ -278,7 +267,6 @@ class postsController extends baseController
             if ($deletePost == null) {
                 $this->setSession('process', 'There was a problem with a data processing !');
             }
-
             header('Location: index.php?page=indexpost');
         }
     }

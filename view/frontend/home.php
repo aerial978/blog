@@ -16,7 +16,7 @@
         <p class="subheading">PHP / Symfony Application Developer</p>
         <div class="social-network col-lg-12">
             <a href="https://github.com/aerial978"><i class="fab fa-github-square"></i></a>
-            <a href="https://fr.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://fr.linkedin.com/in/mh4125"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
 </header>
@@ -24,7 +24,6 @@
 <section class="recent-posts section">
     <div class="container">
         <h2 class="text-center text-uppercase">Recent Posts</h2>
-        <!--<h2 class="section-heading text-center text-uppercase">Recent Posts</h2>-->
         <div class="divider-custom divider-light mb-5">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon">
@@ -42,7 +41,11 @@
                     <?php foreach ($posts as $post) : ?>
                         <div class="row postcards g-0">
                             <div class="col-md-4">
-                                <img src="<?= "assets/images/" . $post['image']; ?>" class="img-fluid" alt="image post">
+                            <?php if (!empty($post['image']) && $post['image'] != NULL) : ?>
+                                <img src="<?= "assets/images/" . $post['image']; ?>" class="img-fluid" alt="image-post">
+                                <?php else :  ?>
+                                    <img src="assets/images/land-default.png" alt="image-post" class="img-fluid">
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -54,7 +57,7 @@
                                         <span class="badge"><a href="?page=tagposts&id=<?= $post['tag_id']; ?>"><?= $post['tagname']; ?></a></span>
                                     </div>
                                     <h6 class="card-title fw-bold"><?= $post['title']; ?></h6>
-                                    <p class="card-text fs-5"><?= $this->number_words($post['content']); ?></p>
+                                    <p class="card-text"><?= $this->number_words($post['content']); ?></p>
                                     <div class="card-meta d-flex justify-content-between">
                                         <span class="fa-stack fa-1x"><i class="far fa-comment fa-stack-2x"></i><?= $post['comment_count']; ?></span>
                                         <a href="?page=postsingle&id=<?= $post['postId'] ?>" class="btn btn-primary">Read more</a>
@@ -148,7 +151,7 @@
         <?php endif; ?>
         <form method="post" action="" class="d-flex justify-content-center">
             <fieldset class="form-group row">
-            <input type="hidden" name="csrf_token" value="<?= $token ?>">
+                <input type="hidden" name="csrf_token" value="<?= $token ?>">
                 <div class="col-lg-12 mb-3">
                     <label for="name" class="form-label fs-5">Name</label>
                     <input type="text" name="name" id="name" class="form-control" value="<?= $this->issetSession('input', 'name') ? $this->getSession('input', 'name') : ""; ?>" />
@@ -159,7 +162,9 @@
                 </div>
                 <div class="mb-3">
                     <label for="textarea" class="form-label fs-5">Message</label>
-                    <textarea name="message" id="textarea" class="form-control" rows="5" cols="50"><?= $this->issetSession('input', 'message') ? $this->getSession('input', 'message') : ""; ?></textarea>
+                    <textarea name="message" id="textarea" class="form-control" rows="5" cols="50">
+                        <?= $this->issetSession('input', 'message') ? $this->getSession('input', 'message') : ""; ?>
+                    </textarea>
                 </div>
                 <button type="submit" class="submit-btn" href="#contact">Send</button>
             </fieldset>

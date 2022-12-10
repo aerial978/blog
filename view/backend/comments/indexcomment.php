@@ -40,7 +40,9 @@
                             <td>
                                 <div class="action-button">
                                     <a href="?page=editcomment&id=<?= $indexComment['commentId']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i> edit</a>
-                                    <a data-id="<?= $indexComment['commentId']; ?>" href="?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="btn delete-btn btn-danger"><i class="fas fa-times"></i> delete</a>
+                                    <a data-id="<?= $indexComment['commentId']; ?>" href="?page=deletecomment&id=<?= $indexComment['commentId']; ?>" class="btn delete-btn btn-danger">
+                                        <i class="fas fa-times"></i><span> delete</span>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
@@ -48,7 +50,7 @@
                     </tbody>
                 </table>
             <?php endif; ?>
-            <!-- CARDS COMMENTS -->   
+            <!-- RESPONSIVE COMMENTS -->   
             <div class="cards cards-comment">
                 <div class="container">
                     <div class="row">

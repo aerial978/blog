@@ -17,7 +17,11 @@
             <?php if (isset($posts[$i])) : ?>
                 <li>
                     <div class="recent-post">
-                        <img src="<?= "assets/images/" . $posts[$i]['image']; ?>" class="img-recent img-fluid">
+                    <?php if (!empty($posts[$i]['image']) && $posts[$i]['image'] != NULL) : ?>
+                        <img src="<?= "assets/images/" . $posts[$i]['image']; ?>" class="img-recent img-fluid" alt="image-post">
+                    <?php else :  ?>
+                        <img src="assets/images/land-default.png" alt="image-post" class="img-fluid">
+                    <?php endif; ?>
                         <div class="title-recents">
                             <h6><a href="?page=postsingle&id=<?= $posts[$i]['postId']; ?>"><?= $posts[$i]['title']; ?></a></h6>
                             <p><a href="?page=userposts&id=<?= $posts[$i]['user_id']; ?>"><?= $posts[$i]['name']; ?></a></p>
@@ -35,7 +39,7 @@
         <?php foreach ($comments as $comment) { ?>
             <li>
             <li>
-                <a href="?page=postsingle&id=<?= $comment['post_id']; ?>"><?= $comment['name_author']; ?><span> sur </span><?= $comment['title']; ?></a>
+                <a href="?page=postsingle&id=<?= $comment['post_id']; ?>"><?= $comment['name_author']; ?><span> on </span><?= $comment['title']; ?></a>
             </li>
             </li>
         <?php } ?>

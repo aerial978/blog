@@ -13,7 +13,7 @@ class commentManager extends manager
     {
         $req = $this->bdd->query('SELECT * FROM comments 
         LEFT JOIN posts ON comments.post_id = posts.id
-        WHERE status_comm = 2 ORDER BY comments.id DESC LIMIT 5');
+        WHERE status_comm = 2 AND status_post = 2 ORDER BY comments.id DESC LIMIT 5');
         $comments = $req->fetchAll();
 
         return $comments;

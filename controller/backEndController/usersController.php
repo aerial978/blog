@@ -14,11 +14,9 @@ class usersController extends baseController
         $activeMenu = 'usermenu';
 
         if ($this->issetSession('auth', 'role') && $this->getSession('auth', 'role') == 1) {
-
             $userManager = new userManager();
             $indexUsers = $userManager->indexUser1();
         } else {
-
             $userManager = new userManager();
             $indexUsers = $userManager->indexUser2();
         }
@@ -67,16 +65,13 @@ class usersController extends baseController
         $activeMenu = 'usermenu';
 
         $errors = array();
-
         $this->setSession('input', '');
 
         if ($this->issetPost()) {
-
             if (empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)', $this->getPost('username'))) {
 
                 $errors['username'] = "Invalid username !";
             } else {
-
                 $userManager = new UserManager();
                 $getUserId = $userManager->getUserId();
 
@@ -89,7 +84,6 @@ class usersController extends baseController
 
                 $errors['username'] = "Invalid name !";
             } else {
-
                 $userManager = new UserManager();
                 $getUserIdName = $userManager->getUserIdName();
 
@@ -101,7 +95,6 @@ class usersController extends baseController
             if ($this->issetFiles('picture') && $this->getFiles('picture', 'size') == 0) {
                 $errors['picture'] = 'Select an image !';
             } else if ($this->issetFiles('picture') && $this->getFiles('picture', 'size') > 0) {
-
                 if ($error = $this->getFiles('picture', 'error') > 0) {
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
@@ -129,7 +122,6 @@ class usersController extends baseController
             if (empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = "Invalid email !";
             } else {
-
                 $userManager = new UserManager();
                 $getUserEmail = $userManager->getUserEmail();
 
@@ -175,13 +167,11 @@ class usersController extends baseController
         $errors = array();
 
         if ($this->issetGet('id')) {
-
             $id = $this->getGet('id');
 
             $userManager = new UserManager();
             $editUser = $userManager->editUser($this->getGet('id'));
         } else {
-
             $errors['id'] = 'You need a user id to change it !';
         }
 
@@ -195,25 +185,21 @@ class usersController extends baseController
             $this->setSession('input', $_POST);
 
             if (empty($this->getPost('username')) || !preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^*-]).{8,}$)', $this->getPost('username'))) {
-
-                $errors['username'] = "Username is not valid !";
+                $errors['username'] = "Invalid username !";
             } else {
                 $userManager = new userManager();
                 $updateUsername = $userManager->updateUsername($username, $id);
             }
 
             if (empty($this->getPost('name')) || !preg_match('(^[A-Z][a-z]*$)', $this->getPost('name'))) {
-
-                $errors['name'] = "Name is not valid !";
+                $errors['name'] = "Invalid name !";
             } else {
                 $userManager = new userManager();
                 $updateName = $userManager->updateName($name, $id);
             }
 
             if (!empty($this->getFiles('picture', 'name'))) {
-
                 if ($error = $this->getFiles('picture', 'error') > 0) {
-
                     $errors['transfert'] = 'There was a problem with the transfer !';
                 }
 
@@ -249,33 +235,36 @@ class usersController extends baseController
             }
 
             if (empty($this->getPost('email')) || !filter_var($this->getPost('email'), FILTER_VALIDATE_EMAIL)) {
-
                 $errors['email'] = "Invalid email !";
             } else {
                 $userManager = new UserManager();
                 $updateEmail = $userManager->updateEmail($email, $id);
             }
 
-            $password = $this->getPost('password');
-
-            if (!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)', $this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
-                $errors['password'] = "Invalid password !";
+            if ($this->getSession('auth','id') == $editUser['id']) {
+                $password = $this->getPost('password');
+                if (!preg_match('(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)', $this->getPost('password')) || $this->getPost('password') != $this->getPost('password_confirm')) {
+                    $errors['password'] = "Invalid password !";
+                }
             }
 
             $this->setSession('errors', $errors);
 
             if (empty($errors)) {
-
                 if ($this->issetPost('role') && $this->getPost('role') == 2) {
                     $role = $this->getPost('role');
                 } else {
                     $role = 1;
                 }
 
-                $password = password_hash($this->getPost('password'), PASSWORD_BCRYPT);
-
-                $userManager = new userManager();
-                $updatePasswordRole = $userManager->updatePasswordRole($password, $role, $id);
+                if ($this->getSession('auth','id') == $editUser['id']) {
+                    $password = password_hash($this->getPost('password'), PASSWORD_BCRYPT);
+                    $userManager = new userManager();
+                    $updatePasswordRole = $userManager->updatePasswordRole($password, $role, $id);
+                    } else {
+                        $userManager = new userManager();
+                        $updatePasswordRole = $userManager->updateRole($role, $id);
+                    }
 
                 $this->setSession('update', 'Update successfully !');
                 header('Location: index.php?page=indexuser');
@@ -292,15 +281,14 @@ class usersController extends baseController
 
             if ($this->getSession('auth')['role'] == 2 | $this->getGet('id') == $this->getSession('auth')['id']) {
                 if ($this->issetGet('id') && !empty($this->getGet('id'))) {
+                    $to         =  $this->getSession('auth')['email'];
+                    $subject    = 'Blog account closure';
+                    $message    = "Your account has been successfully terminated.";
+                    $headers    = 'MIME Version 1.0\r\n';
+                    $headers    = 'From: Your name <info@address.com>' . "\r\n";
+                    $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
-                $to         =  $this->getSession('auth')['email'];
-                $subject    = 'Blog account closure';
-                $message    = "Your account has been successfully terminated.";
-                $headers    = 'MIME Version 1.0\r\n';
-                $headers    = 'From: Your name <info@address.com>' . "\r\n";
-                $headers   .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-
-                mail($to, $subject, $message, $headers);
+                    mail($to, $subject, $message, $headers);
 
                     $userManager = new UserManager();
                     $userManager->deleteUser($this->getGet('id'));

@@ -27,7 +27,6 @@ class frontEndController extends baseController
         $comments = $this->commentManager->getComments();
 
         if ($this->issetPost()) {
-
             $errors = array();
 
             $name = htmlspecialchars($this->getPost('name'));
@@ -69,8 +68,6 @@ class frontEndController extends baseController
                 $this->setSession('message', 'Message sent success !');
             }
         }
-
-        // Generation du token et session
 
         $token = bin2hex(random_bytes(32));
         $this->setSession('csrf_token', $token);
@@ -158,7 +155,6 @@ class frontEndController extends baseController
         $comments = $this->commentManager->getComments();
 
         if ($this->issetGet('id')) {
-
             $postManager = new postManager();
             $singlePost = $postManager->singlePost($this->getGet('id'));
 
@@ -172,23 +168,21 @@ class frontEndController extends baseController
         }
 
         if ($this->issetPost()) {
-
             $errors = array();
 
-            if (htmlentities($this->issetPost('submit')) && empty($this->getPost('name_author'))) {
+            if (empty($this->getPost('name_author'))) {
                 $errors['name_author'] = 'Your name is required !';
             }
 
-            if ($this->issetPost('submit') && empty($this->getPost('email_author')) || !filter_var($this->getPost('email_author'), FILTER_VALIDATE_EMAIL)) {
+            if (empty($this->getPost('email_author')) || !filter_var($this->getPost('email_author'), FILTER_VALIDATE_EMAIL)) {
                 $errors['email_author'] = 'Your email is required or invalid !';
             }
 
-            if ($this->issetPost('submit') && empty($this->getPost('comment'))) {
+            if (empty($this->getPost('comment'))) {
                 $errors['comment'] = 'Your comment is required !';
             }
 
             if (empty($errors)) {
-
                 $commentManager = new commentManager();
                 $insertComment = $commentManager->insertComment();
 
@@ -205,7 +199,7 @@ class frontEndController extends baseController
                     confirmButtonColor: '#1aBC9C',
                 })
             </script>
-<?php
+        <?php
             $this->unsetSession('comment');
         }
     }
@@ -219,7 +213,6 @@ class frontEndController extends baseController
         $comments = $this->commentManager->getComments();
 
         if ($this->issetGet('id')) {
-
             $userManager = new userManager();
             $getUsername = $userManager->getUsername($this->getGet('id'));
 
@@ -242,7 +235,6 @@ class frontEndController extends baseController
         $comments = $this->commentManager->getComments();
 
         if ($this->issetGet('id')) {
-
             $tagManager = new tagManager();
             $tag = $tagManager->gettag($this->getGet('id'));
 

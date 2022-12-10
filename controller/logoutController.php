@@ -18,6 +18,5 @@ class logoutController extends basecontroller
         } else {
             header('Location: index.php?page=indexuser');
         }
-
     }
 }

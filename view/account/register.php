@@ -23,17 +23,20 @@
                     <input type="hidden" name="csrf_token" value="<?= $token; ?>">
                         <div class="form-field col-md-12">
                             <label for="username" class="label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : ""; ?>"/>  
+                            <input type="text" class="form-control" name="username" id="username" placeholder="At least 8 characters" 
+                            value="<?= $this->issetSession('input','username') ? $this->getSession('input','username') : ""; ?>"/>  
                             <a style="font-size:9.5px">At least one lowercase & one uppercase letter, one number & one special like #?!@$%^*-</a>
                         </div>
                         <div class="form-field col-md-12">
                             <label for="name" class="label">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>"/>  
+                            <input type="text" class="form-control" name="name" id="name" 
+                            value="<?= $this->issetSession('input','name') ? $this->getSession('input','name') : ""; ?>"/>  
                             <a style="font-size:9.5px">First letter uppercase and the rest lowercase</a>
                         </div>
                         <div class="form-field col-md-12">
                             <label for="email" class="label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : ""; ?>"/>        
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email@address.com" 
+                            value="<?= $this->issetSession('input','email') ? $this->getSession('input','email') : ""; ?>"/>        
                         </div>
                         <div class="form-field col-md-12">
                             <label for="password" class="label">Password</label>

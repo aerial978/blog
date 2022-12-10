@@ -19,7 +19,13 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-8">
-                <figure class="mb-4"><img src="<?= "assets/images/".$singlePost['image'] ?>" alt="image post" class="img-fluid rounded" ></figure>
+                <figure class="mb-4">
+                    <?php if (!empty($singlePost['image']) && $singlePost['image'] != NULL) : ?>
+                        <img src="<?= "assets/images/".$singlePost['image']; ?>" alt="image-post" class="img-fluid rounded">
+                    <?php else :  ?>
+                        <img src="assets/images/land-default.png" alt="image-post" class="img-fluid">
+                    <?php endif; ?>
+                </figure>
                 <div class="mb-1">
                     <p class="card-text fw-bolder fs-4 mb-4"><?= $singlePost['headline']; ?></p>
                     <p class="card-text fs-5 mb-4"><?= $singlePost['content']; ?></p>

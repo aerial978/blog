@@ -16,7 +16,11 @@
                         <?php foreach($tagPosts as $tagPost): ?>
                             <div class="col">
                                 <div class="card">
-                                    <img src="<?= "assets/images/".$tagPost['image']; ?>" alt="img post" class="card-img-top">
+                                    <?php if (!empty($tagPost['image']) && $tagPost['image'] != NULL) : ?>
+                                        <img src="<?= "assets/images/".$tagPost['image']; ?>" alt="img-post" class="card-img-top">
+                                    <?php else :  ?>
+                                        <img src="assets/images/land-default.png" alt="img-post">
+                                    <?php endif; ?>
                                     <div class="card-body">    
                                         <div class="card-top mb-2 d-flex justify-content-between align-items-center mb-4">
                                             <span class="card-user fst-italic"><i class="fas fa-user-alt"></i>

@@ -7,7 +7,7 @@
             <div class="content-header">
                 <h4 class="title title-tag">Manage Tags</h4>
                 <div class="link-btn">
-                <a href="?page=addtag" class="tag-btn add-btn btn"><i class="fas fa-plus"></i> Tag</a>
+                    <a href="?page=addtag" class="tag-btn add-btn btn"><i class="fas fa-plus"></i> Tag</a>
                 </div>
             </div>
             <!-- TABLE TAGS -->
@@ -32,8 +32,10 @@
                                     <td class="tagname"><?= $listTag['tagname']; ?></td>
                                     <td>
                                         <div class="action-button">
-                                        <a href="?page=edittag&id=<?= $listTag['id']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
-                                        <a data-id="<?= $listTag['id'] ?>" href="?page=deletetag&id=<?= $listTag['id'] ?>" class="delete-btn btn btn-danger"><i class="fas fa-times"></i><span> delete</span></a>
+                                            <a href="?page=edittag&id=<?= $listTag['id']; ?>" class="btn edit-post btn-primary"><i class="far fa-edit"></i><span> edit</span></a>
+                                            <a data-id="<?= $listTag['id'] ?>" href="?page=deletetag&id=<?= $listTag['id'] ?>" class="delete-btn btn btn-danger">
+                                                <i class="fas fa-times"></i><span> delete</span>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -65,7 +67,7 @@
             }).then((result) => {   
                 if (result.isConfirmed) {
                     let sourceUrl = window.location.href.split('/');
-                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3] + '/' + href;
+                    let newUrl = sourceUrl[0] + '//' + sourceUrl[2] + '/' + sourceUrl[3].replace('?page=indextag', '') + href;
                     $.ajax({
                         url: newUrl,
                         type: 'GET',
