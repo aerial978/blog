@@ -4,6 +4,8 @@
 
 Creation of a Web Developper Blog with an Object Oriented MVC structure PHP 8.
 
+[![portfolio](https://img.shields.io/badge/my_blog-000?style=for-the-badge&logo=ko-fi&logoColor=white)]()
+
 ## Description
 
 This responsive website consists of :
